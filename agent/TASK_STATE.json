@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "page-chi-siamo-shell",
+  "currentTaskId": "section-chi-siamo-about-hero",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "section-menu-menu-categories",
+  "lastCompletedTaskId": "page-chi-siamo-shell",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -12,6 +12,7 @@
     "cta-home-home-whatsapp",
     "page-menu-shell",
     "section-menu-menu-hero",
-    "section-menu-menu-categories"
+    "section-menu-menu-categories",
+    "page-chi-siamo-shell"
   ]
 }
