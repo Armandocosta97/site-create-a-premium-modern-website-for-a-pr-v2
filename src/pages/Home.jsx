@@ -1,18 +1,9 @@
+import HeroSection from "../components/HeroSection"
+
 export default function Home() {
   return (
     <>
-      <section id="hero">
-        <p>Educazione cinofila moderna, pratica e rispettosa</p>
-        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
-        <p>
-          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-        </p>
-        <div>
-          <a href="#/menu">Prenota una consulenza</a>
-          <a href="#/contatti">Contattami</a>
-        </div>
-      </section>
+      <HeroSection />
 
       <section id="signature-preview">
         <h2>Un approccio chiaro, rispettoso e concreto</h2>
