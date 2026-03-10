@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "section-chi-siamo-philosophy",
+  "currentTaskId": "page-contatti-shell",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "section-chi-siamo-story",
+  "lastCompletedTaskId": "section-chi-siamo-philosophy",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -15,6 +15,7 @@
     "section-menu-menu-categories",
     "page-chi-siamo-shell",
     "section-chi-siamo-about-hero",
-    "section-chi-siamo-story"
+    "section-chi-siamo-story",
+    "section-chi-siamo-philosophy"
   ]
 }
