@@ -109,3 +109,19 @@ Waiting for validation.
 
 TASK cta-home-home-contact-cta completed successfully.
 Build passed.
+Commit created for TASK cta-home-home-contact-cta.
+
+Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
+
+Launching Codex for TASK cta-home-home-whatsapp.
+
+Completed TASK `cta-home-home-whatsapp`.
+- Created a reusable floating WhatsApp CTA component in `src/components/FloatingWhatsAppButton.jsx`.
+- Updated `src/pages/Home.jsx` to render the required `home-whatsapp` CTA in a floating placement.
+- Kept the CTA destination valid with the WhatsApp link `https://wa.me/39011000000`.
+
+TASK cta-home-home-whatsapp executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-whatsapp completed successfully.
+Build passed.

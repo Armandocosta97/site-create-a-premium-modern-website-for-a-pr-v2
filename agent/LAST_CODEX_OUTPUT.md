@@ -1,6 +1,6 @@
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [FloatingWhatsAppButton.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/FloatingWhatsAppButton.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-Implemented the current task by updating [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx) so the home hero now explicitly passes `home-contact-cta` as `secondaryCta` with `href="#/contatti"` and label `Contattami`. That keeps the CTA visible in the hero and points it to the valid contact route. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with a short task summary, per project instructions.
+Implemented the `home-whatsapp` CTA on the home page as a reusable floating button. `Home.jsx` now renders a fixed-position WhatsApp CTA that points to the valid destination `https://wa.me/39011000000`, matching the task’s required floating placement.
 
 Build result: `npm run build` passed successfully with Vite production build completed.
 
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9e4-51a5-7492-b405-c0d44fd436bd
+session id: 019cd9e4-e1df-72e0-a013-b8170859f709
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1226,10 +1226,10 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-cta-home-home-contact-cta
+cta-home-home-whatsapp
 
 ## Current task title
-Add CTA home-contact-cta on home
+Add CTA home-whatsapp on home
 
 ## Current task type
 cta
@@ -1238,13 +1238,13 @@ cta
 ```json
 {
   "pageId": "home",
-  "ctaId": "home-contact-cta",
-  "ctaKind": "internal",
+  "ctaId": "home-whatsapp",
+  "ctaKind": "external",
   "destination": {
-    "type": "route",
-    "value": "/contatti"
+    "type": "whatsapp",
+    "value": "whatsapp"
   },
-  "placement": "hero"
+  "placement": "floating"
 }
 ```
 
@@ -1254,11 +1254,13 @@ cta
 ## Files allowed
 - src/pages/Home.jsx
 - src/components
+- src/App.jsx
+- src/layout/Layout.jsx
 
 ## Definition of done
-- CTA home-contact-cta exists on home
-- CTA home-contact-cta is visible in placement hero
-- CTA home-contact-cta points to a valid destination
+- CTA home-whatsapp exists on home
+- CTA home-whatsapp is visible in placement floating
+- CTA home-whatsapp points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1287,11 +1289,105 @@ cta
 
 mcp startup: no servers
 codex
-I’m implementing the current task only: add the `home-contact-cta` to the home hero so it routes to `/contatti`, then I’ll run a build check and update the agent report.
+I’m implementing only the current task: add the floating WhatsApp CTA on the home page, verify it builds, then update the agent report. I’ll inspect the existing home/layout/components first so the change stays minimal and consistent.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "rg --files src agent brief docs | rg 'Home\\.jsx|AGENT_REPORT\\.md|CURRENT_TASK_PROMPT\\.md|TASK_STATE\\.json|site-spec\\.json|DEVELOPMENT_METHOD\\.md'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+/bin/zsh -lc "find src/components -maxdepth 2 -type f | sort | while read f; do echo '---' \""'$f"; sed -n '"'1,220p' \""'$f"; done' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "rg --files src agent | rg '"'^(src/pages/Home.jsx|src/App.jsx|src/layout/Layout.jsx|src/components/|agent/AGENT_REPORT.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+import HeroSection from "../components/HeroSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+
+export default function Home() {
+  return (
+    <>
+      <HeroSection
+        primaryCta={{
+          href: "#/menu",
+          label: "Prenota una consulenza",
+        }}
+        secondaryCta={{
+          href: "#/contatti",
+          label: "Contattami",
+        }}
+      />
+
+      <SignaturePreviewSection />
+
+ succeeded in 51ms:
+export default function Layout({ children }) {
+  return (
+    <>
+      <header>
+        <nav aria-label="Main navigation">
+          <a href="#/">Home</a>
+          <a href="#/menu">Menu</a>
+          <a href="#/chi-siamo">Chi siamo</a>
+          <a href="#/contatti">Contatti</a>
+        </nav>
+      </header>
+
+      <main>{children}</main>
+
+      <footer>
+        <p>© Website</p>
+      </footer>
+    </>
+  )
+}
+ succeeded in 51ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/ChiSiamo"
+import Contatti from "./pages/Contatti"
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/contatti" element={<Contatti />} />
+        </Routes>
+      </Layout>
+    </HashRouter>
+  )
+ succeeded in 51ms:
+--- src/components/BrandStoryPreviewSection.jsx
+const storyHighlights = [
+  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
+  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
+  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
+]
+
+const styles = {
+  section: {
+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
+    backgroundColor: "#efe7db",
+    color: "#2f312d",
+  },
+  container: {
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
+    display: "grid",
+    gap: "1.75rem",
+    alignItems: "center",
+  },
+ succeeded in 51ms:
+agent/AGENT_REPORT.md
+src/pages/Home.jsx
+src/layout/Layout.jsx
+src/App.jsx
+codex
+The home page already has the WhatsApp link, but it’s just raw text at the bottom of the page and does not satisfy the floating placement requirement. I’m extracting it into a dedicated floating component and wiring it into `Home.jsx` without touching unrelated routes or sections.
+exec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
 # AGENT REPORT
 
 Project created.
@@ -1312,10 +1408,280 @@ TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
 
+codex
+I’ve confirmed the report format and the smallest safe scope. Next I’m editing `Home.jsx`, adding a reusable floating WhatsApp component under `src/components`, and then I’ll run the build.
+file update
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/FloatingWhatsAppButton.jsx
+const styles = {
+  link: {
+    position: "fixed",
+    right: "1rem",
+    bottom: "1rem",
+    zIndex: 50,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "3.5rem",
+    padding: "0.95rem 1.2rem",
+    borderRadius: "999px",
+    border: "1px solid rgba(47, 49, 45, 0.12)",
+    backgroundColor: "#5f7a57",
+    color: "#f8f3ea",
+    textDecoration: "none",
+    boxShadow: "0 18px 30px rgba(39, 50, 35, 0.18)",
+    fontSize: "0.98rem",
+    fontWeight: 600,
+    lineHeight: 1,
+  },
+}
+
+export default function FloatingWhatsAppButton({
+  href = "https://wa.me/39011000000",
+  label = "WhatsApp",
+}) {
+  return (
+    <a
+      aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
+      href={href}
+      rel="noreferrer"
+      style={styles.link}
+      target="_blank"
+    >
+      {label}
+    </a>
+  )
+}
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+@@ -116 +116,6 @@
+ Launching Codex for TASK cta-home-home-whatsapp.
++
++Completed TASK `cta-home-home-whatsapp`.
++- Created a reusable floating WhatsApp CTA component in `src/components/FloatingWhatsAppButton.jsx`.
++- Updated `src/pages/Home.jsx` to render the required `home-whatsapp` CTA in a floating placement.
++- Kept the CTA destination valid with the WhatsApp link `https://wa.me/39011000000`.
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
+@@ -3,2 +3,3 @@
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
++import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+@@ -22,8 +23,3 @@
+ 
+-      <a
+-        aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
+-        href="https://wa.me/39011000000"
+-      >
+-        WhatsApp
+-      </a>
++      <FloatingWhatsAppButton href="https://wa.me/39011000000" />
+     </>
+apply_patch(auto_approved=true) exited 0 in 48ms:
+Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/FloatingWhatsAppButton.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 7642816ae7d337f0fd82bd2f07fcf8402b3443fa..2fa84404e35f4f8b189dc45864e07a7f977fe680
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -114,3 +114,8 @@
+ Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
+ 
+ Launching Codex for TASK cta-home-home-whatsapp.
++
++Completed TASK `cta-home-home-whatsapp`.
++- Created a reusable floating WhatsApp CTA component in `src/components/FloatingWhatsAppButton.jsx`.
++- Updated `src/pages/Home.jsx` to render the required `home-whatsapp` CTA in a floating placement.
++- Kept the CTA destination valid with the WhatsApp link `https://wa.me/39011000000`.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..785c3b66900e268c14bbd190aff298132683d072
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,39 @@
++const styles = {
++  link: {
++    position: "fixed",
++    right: "1rem",
++    bottom: "1rem",
++    zIndex: 50,
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.2rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(47, 49, 45, 0.12)",
++    backgroundColor: "#5f7a57",
++    color: "#f8f3ea",
++    textDecoration: "none",
++    boxShadow: "0 18px 30px rgba(39, 50, 35, 0.18)",
++    fontSize: "0.98rem",
++    fontWeight: 600,
++    lineHeight: 1,
++  },
++}
++
++export default function FloatingWhatsAppButton({
++  href = "https://wa.me/39011000000",
++  label = "WhatsApp",
++}) {
++  return (
++    <a
++      aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
++      href={href}
++      rel="noreferrer"
++      style={styles.link}
++      target="_blank"
++    >
++      {label}
++    </a>
++  )
++}
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e..ef7f3fd2c3ecef39e511bec59aef9299e6fda364
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,6 +1,7 @@
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
++import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
+   return (
+@@ -20,12 +21,7 @@
+ 
+       <BrandStoryPreviewSection />
+ 
+-      <a
+-        aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
+-        href="https://wa.me/39011000000"
+-      >
+-        WhatsApp
+-      </a>
++      <FloatingWhatsAppButton href="https://wa.me/39011000000" />
+     </>
+   )
+ }
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 7642816ae7d337f0fd82bd2f07fcf8402b3443fa..2fa84404e35f4f8b189dc45864e07a7f977fe680
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -114,3 +114,8 @@
+ Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
+ 
+ Launching Codex for TASK cta-home-home-whatsapp.
++
++Completed TASK `cta-home-home-whatsapp`.
++- Created a reusable floating WhatsApp CTA component in `src/components/FloatingWhatsAppButton.jsx`.
++- Updated `src/pages/Home.jsx` to render the required `home-whatsapp` CTA in a floating placement.
++- Kept the CTA destination valid with the WhatsApp link `https://wa.me/39011000000`.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..785c3b66900e268c14bbd190aff298132683d072
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,39 @@
++const styles = {
++  link: {
++    position: "fixed",
++    right: "1rem",
++    bottom: "1rem",
++    zIndex: 50,
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.2rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(47, 49, 45, 0.12)",
++    backgroundColor: "#5f7a57",
++    color: "#f8f3ea",
++    textDecoration: "none",
++    boxShadow: "0 18px 30px rgba(39, 50, 35, 0.18)",
++    fontSize: "0.98rem",
++    fontWeight: 600,
++    lineHeight: 1,
++  },
++}
++
++export default function FloatingWhatsAppButton({
++  href = "https://wa.me/39011000000",
++  label = "WhatsApp",
++}) {
++  return (
++    <a
++      aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
++      href={href}
++      rel="noreferrer"
++      style={styles.link}
++      target="_blank"
++    >
++      {label}
++    </a>
++  )
++}
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e..ef7f3fd2c3ecef39e511bec59aef9299e6fda364
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,6 +1,7 @@
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
++import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
+   return (
+@@ -20,12 +21,7 @@
+ 
+       <BrandStoryPreviewSection />
+ 
+-      <a
+-        aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
+-        href="https://wa.me/39011000000"
+-      >
+-        WhatsApp
+-      </a>
++      <FloatingWhatsAppButton href="https://wa.me/39011000000" />
+     </>
+   )
+ }
+
+codex
+The CTA is now a fixed-position component rather than inline page text. I’m running the build check now to make sure the new component integrates cleanly and the task can be closed with a verified result.
+exec
+/bin/zsh -lc "sed -n '1,240p' src/components/FloatingWhatsAppButton.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc 'tail -n 20 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+const styles = {
+  link: {
+    position: "fixed",
+    right: "1rem",
+    bottom: "1rem",
+    zIndex: 50,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "3.5rem",
+    padding: "0.95rem 1.2rem",
+    borderRadius: "999px",
+    border: "1px solid rgba(47, 49, 45, 0.12)",
+    backgroundColor: "#5f7a57",
+    color: "#f8f3ea",
+    textDecoration: "none",
+    boxShadow: "0 18px 30px rgba(39, 50, 35, 0.18)",
+    fontSize: "0.98rem",
+    fontWeight: 600,
+    lineHeight: 1,
  succeeded in 52ms:
 import HeroSection from "../components/HeroSection"
 import SignaturePreviewSection from "../components/SignaturePreviewSection"
 import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
 
 export default function Home() {
   return (
@@ -1325,265 +1691,226 @@ export default function Home() {
           href: "#/menu",
           label: "Prenota una consulenza",
         }}
+        secondaryCta={{
+          href: "#/contatti",
+          label: "Contattami",
+        }}
       />
 
       <SignaturePreviewSection />
-
-      <BrandStoryPreviewSection />
-
-      <a
-        aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
  succeeded in 52ms:
-docs/DEVELOPMENT_METHOD.md
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
-agent/AGENT_REPORT.md
-src/pages/Home.jsx
-codex
-I’ve confirmed the home page currently only passes the primary hero CTA from `Home.jsx`. Next I’m checking the hero component API so I can add the contact CTA with the smallest valid change.
-exec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc 'rg -n "secondaryCta|primaryCta|#/contatti|/contatti" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-    backgroundColor: "#f3ede3",
-    color: "#2f312d",
-  },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  },
-  container: {
-    position: "relative",
-    zIndex: 1,
-    width: "min(100%, 40rem)",
- succeeded in 51ms:
-src/pages/Home.jsx:9:        primaryCta={{
-src/components/HeroSection.jsx:91:  href: "#/contatti",
-src/components/HeroSection.jsx:96:  primaryCta = defaultPrimaryCta,
-src/components/HeroSection.jsx:97:  secondaryCta = defaultSecondaryCta,
-src/components/HeroSection.jsx:118:          <a href={primaryCta.href} style={styles.primaryLink}>
-src/components/HeroSection.jsx:119:            {primaryCta.label}
-src/components/HeroSection.jsx:121:          <a href={secondaryCta.href} style={styles.secondaryLink}>
-src/components/HeroSection.jsx:122:            {secondaryCta.label}
-codex
-The hero already supports a secondary CTA and defaults to `#/contatti`; I’m making the home page pass that CTA explicitly so this task is satisfied at the page level without redesigning the component.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
-@@ -12,2 +12,6 @@
-         }}
-+        secondaryCta={{
-+          href: "#/contatti",
-+          label: "Contattami",
-+        }}
-       />
-apply_patch(auto_approved=true) exited 0 in 37ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
-file update:
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 00910000e1263596ca160965e1af8118646d334d..6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           href: "#/menu",
-           label: "Prenota una consulenza",
-         }}
-+        secondaryCta={{
-+          href: "#/contatti",
-+          label: "Contattami",
-+        }}
-       />
- 
-       <SignaturePreviewSection />
+Waiting for validation.
 
-file update:
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 00910000e1263596ca160965e1af8118646d334d..6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           href: "#/menu",
-           label: "Prenota una consulenza",
-         }}
-+        secondaryCta={{
-+          href: "#/contatti",
-+          label: "Contattami",
-+        }}
-       />
- 
-       <SignaturePreviewSection />
+TASK cta-home-home-contact-cta completed successfully.
+Build passed.
 
-codex
-The code change is in place. I’m running the build now, then I’ll append the task result to the agent report.
+TASK cta-home-home-contact-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-contact-cta completed successfully.
+Build passed.
+Commit created for TASK cta-home-home-contact-cta.
+
+Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
+
+Launching Codex for TASK cta-home-home-whatsapp.
+
+Completed TASK `cta-home-home-whatsapp`.
+- Created a reusable floating WhatsApp CTA component in `src/components/FloatingWhatsAppButton.jsx`.
+- Updated `src/pages/Home.jsx` to render the required `home-whatsapp` CTA in a floating placement.
+- Kept the CTA destination valid with the WhatsApp link `https://wa.me/39011000000`.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 803ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 842ms:
 
 > site-create-a-premium-modern-website-for-a-pr@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 49 modules transformed.
+✓ 50 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CUKrnSWt.js   239.78 kB │ gzip: 76.33 kB
-✓ built in 541ms
-file update:
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 00910000e1263596ca160965e1af8118646d334d..6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           href: "#/menu",
-           label: "Prenota una consulenza",
-         }}
-+        secondaryCta={{
-+          href: "#/contatti",
-+          label: "Contattami",
-+        }}
-       />
- 
-       <SignaturePreviewSection />
-
-codex
-The build passed cleanly. I’m updating `agent/AGENT_REPORT.md` with the exact task summary and validation result, without touching task state.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -95 +95,11 @@
- Launching Codex for TASK cta-home-home-contact-cta.
-+
-+Completed TASK `cta-home-home-contact-cta`.
-+- Updated `src/pages/Home.jsx` to pass the required `home-contact-cta` into the home hero explicitly.
-+- Confirmed the hero CTA is visible in the hero placement and points to the valid hash route `#/contatti`.
-+
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-contact-cta completed successfully.
-+Build passed.
-apply_patch(auto_approved=true) exited 0 in 48ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+dist/assets/index-HitIIGuw.js   240.32 kB │ gzip: 76.46 kB
+✓ built in 557ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 3d7d15036d628235f19119179cf2f7c63d3a474a..e55a0e37e247365dc02696a48c73dd3540eb7e32
+index 7642816ae7d337f0fd82bd2f07fcf8402b3443fa..2fa84404e35f4f8b189dc45864e07a7f977fe680
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -93,3 +93,13 @@
- Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
+@@ -114,3 +114,8 @@
+ Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
  
- Launching Codex for TASK cta-home-home-contact-cta.
+ Launching Codex for TASK cta-home-home-whatsapp.
 +
-+Completed TASK `cta-home-home-contact-cta`.
-+- Updated `src/pages/Home.jsx` to pass the required `home-contact-cta` into the home hero explicitly.
-+- Confirmed the hero CTA is visible in the hero placement and points to the valid hash route `#/contatti`.
++Completed TASK `cta-home-home-whatsapp`.
++- Created a reusable floating WhatsApp CTA component in `src/components/FloatingWhatsAppButton.jsx`.
++- Updated `src/pages/Home.jsx` to render the required `home-whatsapp` CTA in a floating placement.
++- Kept the CTA destination valid with the WhatsApp link `https://wa.me/39011000000`.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..785c3b66900e268c14bbd190aff298132683d072
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,39 @@
++const styles = {
++  link: {
++    position: "fixed",
++    right: "1rem",
++    bottom: "1rem",
++    zIndex: 50,
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.2rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(47, 49, 45, 0.12)",
++    backgroundColor: "#5f7a57",
++    color: "#f8f3ea",
++    textDecoration: "none",
++    boxShadow: "0 18px 30px rgba(39, 50, 35, 0.18)",
++    fontSize: "0.98rem",
++    fontWeight: 600,
++    lineHeight: 1,
++  },
++}
 +
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-contact-cta completed successfully.
-+Build passed.
++export default function FloatingWhatsAppButton({
++  href = "https://wa.me/39011000000",
++  label = "WhatsApp",
++}) {
++  return (
++    <a
++      aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
++      href={href}
++      rel="noreferrer"
++      style={styles.link}
++      target="_blank"
++    >
++      {label}
++    </a>
++  )
++}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 00910000e1263596ca160965e1af8118646d334d..6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e
+index 6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e..ef7f3fd2c3ecef39e511bec59aef9299e6fda364
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           href: "#/menu",
-           label: "Prenota una consulenza",
-         }}
-+        secondaryCta={{
-+          href: "#/contatti",
-+          label: "Contattami",
-+        }}
-       />
+@@ -1,6 +1,7 @@
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
++import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
  
-       <SignaturePreviewSection />
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 3d7d15036d628235f19119179cf2f7c63d3a474a..e55a0e37e247365dc02696a48c73dd3540eb7e32
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -93,3 +93,13 @@
- Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
+ export default function Home() {
+   return (
+@@ -20,12 +21,7 @@
  
- Launching Codex for TASK cta-home-home-contact-cta.
-+
-+Completed TASK `cta-home-home-contact-cta`.
-+- Updated `src/pages/Home.jsx` to pass the required `home-contact-cta` into the home hero explicitly.
-+- Confirmed the hero CTA is visible in the hero placement and points to the valid hash route `#/contatti`.
-+
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-contact-cta completed successfully.
-+Build passed.
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 00910000e1263596ca160965e1af8118646d334d..6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           href: "#/menu",
-           label: "Prenota una consulenza",
-         }}
-+        secondaryCta={{
-+          href: "#/contatti",
-+          label: "Contattami",
-+        }}
-       />
+       <BrandStoryPreviewSection />
  
-       <SignaturePreviewSection />
+-      <a
+-        aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
+-        href="https://wa.me/39011000000"
+-      >
+-        WhatsApp
+-      </a>
++      <FloatingWhatsAppButton href="https://wa.me/39011000000" />
+     </>
+   )
+ }
 
 codex
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [FloatingWhatsAppButton.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/FloatingWhatsAppButton.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-Implemented the current task by updating [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx) so the home hero now explicitly passes `home-contact-cta` as `secondaryCta` with `href="#/contatti"` and label `Contattami`. That keeps the CTA visible in the hero and points it to the valid contact route. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with a short task summary, per project instructions.
+Implemented the `home-whatsapp` CTA on the home page as a reusable floating button. `Home.jsx` now renders a fixed-position WhatsApp CTA that points to the valid destination `https://wa.me/39011000000`, matching the task’s required floating placement.
 
 Build result: `npm run build` passed successfully with Vite production build completed.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 3d7d15036d628235f19119179cf2f7c63d3a474a..e55a0e37e247365dc02696a48c73dd3540eb7e32
+index 7642816ae7d337f0fd82bd2f07fcf8402b3443fa..2fa84404e35f4f8b189dc45864e07a7f977fe680
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -93,3 +93,13 @@
- Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
+@@ -114,3 +114,8 @@
+ Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
  
- Launching Codex for TASK cta-home-home-contact-cta.
+ Launching Codex for TASK cta-home-home-whatsapp.
 +
-+Completed TASK `cta-home-home-contact-cta`.
-+- Updated `src/pages/Home.jsx` to pass the required `home-contact-cta` into the home hero explicitly.
-+- Confirmed the hero CTA is visible in the hero placement and points to the valid hash route `#/contatti`.
++Completed TASK `cta-home-home-whatsapp`.
++- Created a reusable floating WhatsApp CTA component in `src/components/FloatingWhatsAppButton.jsx`.
++- Updated `src/pages/Home.jsx` to render the required `home-whatsapp` CTA in a floating placement.
++- Kept the CTA destination valid with the WhatsApp link `https://wa.me/39011000000`.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..785c3b66900e268c14bbd190aff298132683d072
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,39 @@
++const styles = {
++  link: {
++    position: "fixed",
++    right: "1rem",
++    bottom: "1rem",
++    zIndex: 50,
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.2rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(47, 49, 45, 0.12)",
++    backgroundColor: "#5f7a57",
++    color: "#f8f3ea",
++    textDecoration: "none",
++    boxShadow: "0 18px 30px rgba(39, 50, 35, 0.18)",
++    fontSize: "0.98rem",
++    fontWeight: 600,
++    lineHeight: 1,
++  },
++}
 +
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-contact-cta completed successfully.
-+Build passed.
++export default function FloatingWhatsAppButton({
++  href = "https://wa.me/39011000000",
++  label = "WhatsApp",
++}) {
++  return (
++    <a
++      aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
++      href={href}
++      rel="noreferrer"
++      style={styles.link}
++      target="_blank"
++    >
++      {label}
++    </a>
++  )
++}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 00910000e1263596ca160965e1af8118646d334d..6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e
+index 6837c2d5d1be9574973cd9ccd73e8ab3a941fd0e..ef7f3fd2c3ecef39e511bec59aef9299e6fda364
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           href: "#/menu",
-           label: "Prenota una consulenza",
-         }}
-+        secondaryCta={{
-+          href: "#/contatti",
-+          label: "Contattami",
-+        }}
-       />
+@@ -1,6 +1,7 @@
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
++import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
  
-       <SignaturePreviewSection />
+ export default function Home() {
+   return (
+@@ -20,12 +21,7 @@
+ 
+       <BrandStoryPreviewSection />
+ 
+-      <a
+-        aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
+-        href="https://wa.me/39011000000"
+-      >
+-        WhatsApp
+-      </a>
++      <FloatingWhatsAppButton href="https://wa.me/39011000000" />
+     </>
+   )
+ }
 
 tokens used
-15.919
+19.879
