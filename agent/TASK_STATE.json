@@ -1,10 +1,11 @@
 {
-  "currentTaskId": "section-home-brand-story-preview",
+  "currentTaskId": "cta-home-home-primary-cta",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "section-home-signature-preview",
+  "lastCompletedTaskId": "section-home-brand-story-preview",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
-    "section-home-signature-preview"
+    "section-home-signature-preview",
+    "section-home-brand-story-preview"
   ]
 }

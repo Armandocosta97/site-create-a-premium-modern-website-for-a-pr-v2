@@ -1,8 +1,8 @@
-Modificati [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx) e [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-Ho implementato la `signature-preview` della home come componente riutilizzabile `SignaturePreviewSection`, con struttura `grid-cards-preview`: intro editoriale, tre card tematiche coerenti col brand e CTA verso `#/menu`. In [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx) la sezione inline è stata sostituita dal nuovo componente, mantenendo l’id richiesto `signature-preview`.
+Implemented the home `brand-story-preview` as a dedicated split-content preview component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx). The new section in [BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx) includes a text column, a supporting highlights panel, and a CTA to `#/chi-siamo`, while preserving the required `brand-story-preview` section id.
 
-Build result: `npm run build` completato con successo tramite Vite.
+Build result: `npm run build` passed successfully. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with the task summary.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9e1-7e70-7911-be77-2bc711959300
+session id: 019cd9e2-93d1-7913-8bc9-65763f8b1b91
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1226,10 +1226,10 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-section-home-signature-preview
+section-home-brand-story-preview
 
 ## Current task title
-Create signature-preview section on home
+Create brand-story-preview section on home
 
 ## Current task type
 section
@@ -1238,8 +1238,8 @@ section
 ```json
 {
   "pageId": "home",
-  "sectionId": "signature-preview",
-  "sectionType": "grid-cards-preview"
+  "sectionId": "brand-story-preview",
+  "sectionType": "split-content-preview"
 }
 ```
 
@@ -1248,13 +1248,13 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/SignaturePreviewSection.jsx
+- src/components/BrandStoryPreviewSection.jsx
 - src/components
 
 ## Definition of done
-- section signature-preview exists on home
-- section signature-preview matches type grid-cards-preview
-- section signature-preview is rendered in page home
+- section brand-story-preview exists on home
+- section brand-story-preview matches type split-content-preview
+- section brand-story-preview is rendered in page home
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1283,43 +1283,67 @@ section
 
 mcp startup: no servers
 codex
-Sto verificando la struttura corrente della home e i componenti disponibili per aggiungere solo la `signature-preview` senza toccare il resto del sito.
+I’m checking the current home page structure and the existing shared components first, so I can add only the `brand-story-preview` section without drifting into future tasks.
 exec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "pwd && rg --files src agent | rg 'Home\\.jsx|AGENT_REPORT\\.md|src/components'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "rg -n \"export default|function |const .* = \\(\" src/components -g '*.jsx'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '"'^(src/pages/Home.jsx|src/components/|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md|docs/DEVELOPMENT_METHOD.md|site-spec.json)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-premium-modern-website-for-a-pr
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
+ succeeded in 51ms:
 import HeroSection from "../components/HeroSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
 
 export default function Home() {
   return (
     <>
       <HeroSection />
 
-      <section id="signature-preview">
-        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+      <SignaturePreviewSection />
+
+      <section id="brand-story-preview">
+        <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
         <p>
-          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
-          familiare e dagli obiettivi reali della convivenza quotidiana.
+          Il percorso educativo non si limita all&apos;esercizio: aiuta le persone
+          a leggere meglio il proprio cane, a creare routine piu serene e a
+          trovare strumenti utili anche nelle situazioni piu delicate.
         </p>
-        <ul>
-          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
-          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
-          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
-        </ul>
-        <a href="#/menu">Scopri i percorsi</a>
-      </section>
- succeeded in 51ms:
-src/components/HeroSection.jsx:85:export default function HeroSection() {
- succeeded in 51ms:
+        <p>
+          Se stai cercando un supporto competente e umano, puoi iniziare da un
+          primo contatto semplice e senza pressione.
+ succeeded in 52ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr
+docs/DEVELOPMENT_METHOD.md
+agent/CURRENT_TASK_PROMPT.md
 agent/AGENT_REPORT.md
 src/pages/Home.jsx
-src/components/HeroSection.jsx
 codex
-Ho trovato una `signature-preview` già presente ma ancora inline e molto basilare dentro la home. Ora leggo il `HeroSection` per allineare tono, markup e livello di finitura del nuovo componente senza introdurre refactor fuori task.
+I found the home page already has an inline placeholder for this section. I’m reading the neighboring components so the new section matches the current patterns and doesn’t introduce a one-off structure.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "rg -n \"font|background|section|main|max-width|container|style=|className=\" src -g '*.jsx' -g '*.css'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+src/components/SignaturePreviewSection.jsx
+src/components/HeroSection.jsx
+ succeeded in 51ms:
 const styles = {
   section: {
     position: "relative",
@@ -1341,98 +1365,6 @@ const styles = {
     zIndex: 1,
     width: "min(100%, 40rem)",
  succeeded in 51ms:
-src/pages/Home.jsx:8:      <section id="signature-preview">
-src/pages/Home.jsx:20:      </section>
-src/pages/Home.jsx:22:      <section id="brand-story-preview">
-src/pages/Home.jsx:34:      </section>
-src/pages/ChiSiamo.jsx:4:      <section id="about-hero">
-src/pages/ChiSiamo.jsx:7:      </section>
-src/pages/ChiSiamo.jsx:8:      <section id="story">
-src/pages/ChiSiamo.jsx:11:      </section>
-src/pages/ChiSiamo.jsx:12:      <section id="philosophy">
-src/pages/ChiSiamo.jsx:15:      </section>
-src/pages/Contatti.jsx:4:      <section id="contact-hero">
-src/pages/Contatti.jsx:7:      </section>
-src/pages/Contatti.jsx:8:      <section id="contact-details">
-src/pages/Contatti.jsx:11:      </section>
-src/pages/Contatti.jsx:12:      <section id="opening-hours">
-src/pages/Contatti.jsx:15:      </section>
-src/components/HeroSection.jsx:2:  section: {
-src/components/HeroSection.jsx:6:    backgroundColor: "#f3ede3",
-src/components/HeroSection.jsx:9:  background: {
-src/components/HeroSection.jsx:12:    backgroundImage:
-codex
-Sto passando all’implementazione: estraggo la sezione in un componente dedicato, la rendo un vero `grid-cards-preview` più coerente con il tono premium del progetto, poi aggiorno la home a usarlo e faccio il build check.
-exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK `page-home-shell`.
-- Replaced home placeholder content with a semantic homepage shell in `src/pages/Home.jsx`.
-- Kept required section ids: `hero`, `signature-preview`, and `brand-story-preview`.
-- Added valid homepage CTAs targeting `#/menu`, `#/contatti`, and WhatsApp to match the current spec.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
-Commit created for TASK page-home-shell.
-
- succeeded in 50ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Contatti from "./pages/Contatti"
-
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-      </Layout>
-    </HashRouter>
-  )
- succeeded in 51ms:
-export default function Layout({ children }) {
-  return (
-    <>
-      <header>
-        <nav aria-label="Main navigation">
-          <a href="#/">Home</a>
-          <a href="#/menu">Menu</a>
-          <a href="#/chi-siamo">Chi siamo</a>
-          <a href="#/contatti">Contatti</a>
-        </nav>
-      </header>
-
-      <main>{children}</main>
-
-      <footer>
-        <p>© Website</p>
-      </footer>
-    </>
-  )
-}
-codex
-Sto applicando le modifiche ai file consentiti e al report agente: nuova sezione modulare, home aggiornata a renderizzarla, nota finale nel report.
-file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
 const previewCards = [
   {
     title: "Percorsi educativi personalizzati",
@@ -1453,20 +1385,82 @@ const previewCards = [
 
 const styles = {
   section: {
+codex
+The existing code uses inline section styles and simple component modules, so I’m keeping the new section in that same shape. Next I’m checking the build command and the current report format before editing.
+exec
+/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+# AGENT REPORT
+
+Project created.
+
+Prepared TASK page-home-shell (Create home page shell) for execution.
+
+Launching Codex for TASK page-home-shell.
+
+Completed TASK `page-home-shell`.
+- Replaced home placeholder content with a semantic homepage shell in `src/pages/Home.jsx`.
+- Kept required section ids: `hero`, `signature-preview`, and `brand-story-preview`.
+- Added valid homepage CTAs targeting `#/menu`, `#/contatti`, and WhatsApp to match the current spec.
+
+TASK page-home-shell executed by Codex.
+Waiting for validation.
+
+TASK page-home-shell completed successfully.
+Build passed.
+Commit created for TASK page-home-shell.
+
+ succeeded in 52ms:
+{
+  "name": "site-create-a-premium-modern-website-for-a-pr",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.2",
+codex
+I’m replacing the inline home markup with a dedicated `BrandStoryPreviewSection` component and then I’ll append the task result to the agent report before running the build.
+file update
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx
+const storyHighlights = [
+  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
+  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
+  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
+]
+
+const styles = {
+  section: {
     padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
-    backgroundColor: "#f8f3ea",
+    backgroundColor: "#efe7db",
     color: "#2f312d",
   },
   container: {
     width: "min(100%, 72rem)",
     margin: "0 auto",
     display: "grid",
-    gap: "2rem",
+    gap: "1.75rem",
+    alignItems: "center",
   },
-  intro: {
+  contentGrid: {
+    display: "grid",
+    gap: "1.5rem",
+  },
+  textColumn: {
     display: "grid",
     gap: "1rem",
-    maxWidth: "44rem",
   },
   eyebrow: {
     margin: 0,
@@ -1479,7 +1473,7 @@ const styles = {
   title: {
     margin: 0,
     fontSize: "clamp(2rem, 5vw, 3.25rem)",
-    lineHeight: 1,
+    lineHeight: 1.05,
     color: "#23251f",
     maxWidth: "12ch",
   },
@@ -1488,46 +1482,29 @@ const styles = {
     fontSize: "1rem",
     lineHeight: 1.75,
     color: "#4b5047",
-    maxWidth: "40rem",
+    maxWidth: "38rem",
   },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-    gap: "1rem",
-  },
-  card: {
+  panel: {
     display: "grid",
     gap: "1rem",
-    minHeight: "100%",
     padding: "1.5rem",
-    borderRadius: "1.5rem",
-    backgroundColor: "#fffdf9",
+    borderRadius: "1.75rem",
+    backgroundColor: "rgba(255, 253, 249, 0.85)",
     border: "1px solid rgba(47, 49, 45, 0.08)",
     boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
   },
-  cardIndex: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "2.5rem",
-    height: "2.5rem",
-    borderRadius: "999px",
-    backgroundColor: "#e6ded1",
-    color: "#5c6455",
-    fontSize: "0.9rem",
-    fontWeight: 700,
-  },
-  cardTitle: {
+  panelTitle: {
     margin: 0,
-    fontSize: "1.25rem",
-    lineHeight: 1.3,
+    fontSize: "1.1rem",
     color: "#23251f",
   },
-  cardDescription: {
+  list: {
     margin: 0,
-    fontSize: "0.98rem",
-    lineHeight: 1.7,
+    paddingLeft: "1.1rem",
+    display: "grid",
+    gap: "0.75rem",
     color: "#53584f",
+    lineHeight: 1.7,
   },
   action: {
     display: "inline-flex",
@@ -1543,127 +1520,132 @@ const styles = {
   },
 }
 
-export default function SignaturePreviewSection() {
+export default function BrandStoryPreviewSection() {
   return (
-    <section id="signature-preview" style={styles.section}>
+    <section id="brand-story-preview" style={styles.section}>
       <div style={styles.container}>
-        <div style={styles.intro}>
-          <p style={styles.eyebrow}>Come lavoro</p>
-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-          <p style={styles.description}>
-            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
-            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
-          </p>
-        </div>
+        <div
+          style={{
+            ...styles.contentGrid,
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <div style={styles.textColumn}>
+            <p style={styles.eyebrow}>Chi sono</p>
+            <h2 style={styles.title}>
+              Un supporto educativo che parte dalla relazione
+            </h2>
+            <p style={styles.description}>
+              Equilibrio Cinofilo nasce per aiutare le persone a comprendere
+              meglio il proprio cane e a ritrovare equilibrio nelle situazioni
+              di tutti i giorni, con un lavoro chiaro, rispettoso e senza
+              scorciatoie.
+            </p>
+            <p style={styles.description}>
+              Ogni percorso mette insieme osservazione, gestione pratica e
+              accompagnamento reale, cosi che i cambiamenti possano diventare
+              stabili nella vita quotidiana.
+            </p>
 
-        <div style={styles.grid}>
-          {previewCards.map((card, index) => (
-            <article key={card.title} style={styles.card}>
-              <span aria-hidden="true" style={styles.cardIndex}>
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 style={styles.cardTitle}>{card.title}</h3>
-              <p style={styles.cardDescription}>{card.description}</p>
-            </article>
-          ))}
-        </div>
+            <a href="#/chi-siamo" style={styles.action}>
+              Conosci il mio approccio
+            </a>
+          </div>
 
-        <a href="#/menu" style={styles.action}>
-          Scopri i percorsi
-        </a>
+          <aside style={styles.panel}>
+            <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
+            <ul style={styles.list}>
+              {storyHighlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+          </aside>
+        </div>
       </div>
     </section>
   )
 }
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
-@@ -1,2 +1,3 @@
- import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+@@ -2,2 +2,3 @@
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
  
-@@ -7,15 +8,3 @@
+@@ -10,15 +11,3 @@
  
--      <section id="signature-preview">
--        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-      <section id="brand-story-preview">
+-        <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 -        <p>
--          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
--          familiare e dagli obiettivi reali della convivenza quotidiana.
+-          Il percorso educativo non si limita all&apos;esercizio: aiuta le persone
+-          a leggere meglio il proprio cane, a creare routine piu serene e a
+-          trovare strumenti utili anche nelle situazioni piu delicate.
 -        </p>
--        <ul>
--          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
--          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
--          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
--        </ul>
--        <a href="#/menu">Scopri i percorsi</a>
+-        <p>
+-          Se stai cercando un supporto competente e umano, puoi iniziare da un
+-          primo contatto semplice e senza pressione.
+-        </p>
+-        <a href="#/contatti">Richiedi informazioni</a>
 -      </section>
-+      <SignaturePreviewSection />
++      <BrandStoryPreviewSection />
  
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -42 +42,6 @@
- Launching Codex for TASK section-home-signature-preview.
+@@ -58 +58,6 @@
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
-+- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
-+- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
-apply_patch(auto_approved=true) exited 0 in 47ms:
++Completed TASK `section-home-brand-story-preview`.
++- Created a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the inline `brand-story-preview` markup in `src/pages/Home.jsx` with the new split-content-preview section component.
++- Added concise trust-building copy and a CTA to `#/chi-siamo`, while preserving the required `brand-story-preview` section id on the homepage.
+apply_patch(auto_approved=true) exited 0 in 46ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
+index d24cd215a71c07a9eca8ce11ce675aad6a0f4d80..98f9c54a876aeace72258e2a9200b1f3c9a0ddd5
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -40,3 +40,8 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -56,3 +56,8 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
-+- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
-+- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
++Completed TASK `section-home-brand-story-preview`.
++- Created a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the inline `brand-story-preview` markup in `src/pages/Home.jsx` with the new split-content-preview section component.
++- Added concise trust-building copy and a CTA to `#/chi-siamo`, while preserving the required `brand-story-preview` section id on the homepage.
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
+index 0000000000000000000000000000000000000000..57657c4ccbb63e5329189b31b3f9268f32c8b659
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,142 @@
-+const previewCards = [
-+  {
-+    title: "Percorsi educativi personalizzati",
-+    description:
-+      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
-+  },
-+  {
-+    title: "Strumenti utili per la vita quotidiana",
-+    description:
-+      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
-+  },
-+  {
-+    title: "Progressi realistici e rispettosi",
-+    description:
-+      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,130 @@
++const storyHighlights = [
++  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
++  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
++  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
-+    backgroundColor: "#f8f3ea",
++    backgroundColor: "#efe7db",
 +    color: "#2f312d",
 +  },
 +  container: {
 +    width: "min(100%, 72rem)",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2rem",
++    gap: "1.75rem",
++    alignItems: "center",
 +  },
-+  intro: {
++  contentGrid: {
++    display: "grid",
++    gap: "1.5rem",
++  },
++  textColumn: {
 +    display: "grid",
 +    gap: "1rem",
-+    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1676,7 +1658,7 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-+    lineHeight: 1,
++    lineHeight: 1.05,
 +    color: "#23251f",
 +    maxWidth: "12ch",
 +  },
@@ -1685,46 +1667,29 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +    fontSize: "1rem",
 +    lineHeight: 1.75,
 +    color: "#4b5047",
-+    maxWidth: "40rem",
++    maxWidth: "38rem",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  panel: {
 +    display: "grid",
 +    gap: "1rem",
-+    minHeight: "100%",
 +    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#fffdf9",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.85)",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
-+  cardIndex: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    width: "2.5rem",
-+    height: "2.5rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#e6ded1",
-+    color: "#5c6455",
-+    fontSize: "0.9rem",
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
++  panelTitle: {
 +    margin: 0,
-+    fontSize: "1.25rem",
-+    lineHeight: 1.3,
++    fontSize: "1.1rem",
 +    color: "#23251f",
 +  },
-+  cardDescription: {
++  list: {
 +    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.75rem",
 +    color: "#53584f",
++    lineHeight: 1.7,
 +  },
 +  action: {
 +    display: "inline-flex",
@@ -1740,123 +1705,130 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
-+    <section id="signature-preview" style={styles.section}>
++    <section id="brand-story-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Come lavoro</p>
-+          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-+          <p style={styles.description}>
-+            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
-+            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
-+          </p>
-+        </div>
++        <div
++          style={{
++            ...styles.contentGrid,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.textColumn}>
++            <p style={styles.eyebrow}>Chi sono</p>
++            <h2 style={styles.title}>
++              Un supporto educativo che parte dalla relazione
++            </h2>
++            <p style={styles.description}>
++              Equilibrio Cinofilo nasce per aiutare le persone a comprendere
++              meglio il proprio cane e a ritrovare equilibrio nelle situazioni
++              di tutti i giorni, con un lavoro chiaro, rispettoso e senza
++              scorciatoie.
++            </p>
++            <p style={styles.description}>
++              Ogni percorso mette insieme osservazione, gestione pratica e
++              accompagnamento reale, cosi che i cambiamenti possano diventare
++              stabili nella vita quotidiana.
++            </p>
 +
-+        <div style={styles.grid}>
-+          {previewCards.map((card, index) => (
-+            <article key={card.title} style={styles.card}>
-+              <span aria-hidden="true" style={styles.cardIndex}>
-+                {String(index + 1).padStart(2, "0")}
-+              </span>
-+              <h3 style={styles.cardTitle}>{card.title}</h3>
-+              <p style={styles.cardDescription}>{card.description}</p>
-+            </article>
-+          ))}
-+        </div>
++            <a href="#/chi-siamo" style={styles.action}>
++              Conosci il mio approccio
++            </a>
++          </div>
 +
-+        <a href="#/menu" style={styles.action}>
-+          Scopri i percorsi
-+        </a>
++          <aside style={styles.panel}>
++            <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
++            <ul style={styles.list}>
++              {storyHighlights.map((highlight) => (
++                <li key={highlight}>{highlight}</li>
++              ))}
++            </ul>
++          </aside>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
+index 1ed04cfe4c7d49c38b55beda9504f671fe7e53b3..e54a9718e681c5637827d8d5f6bd7fef44529ea5
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,23 +1,12 @@
+@@ -1,5 +1,6 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
  
  export default function Home() {
    return (
-     <>
-       <HeroSection />
+@@ -8,19 +9,7 @@
  
--      <section id="signature-preview">
--        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+       <SignaturePreviewSection />
+ 
+-      <section id="brand-story-preview">
+-        <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 -        <p>
--          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
--          familiare e dagli obiettivi reali della convivenza quotidiana.
+-          Il percorso educativo non si limita all&apos;esercizio: aiuta le persone
+-          a leggere meglio il proprio cane, a creare routine piu serene e a
+-          trovare strumenti utili anche nelle situazioni piu delicate.
 -        </p>
--        <ul>
--          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
--          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
--          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
--        </ul>
--        <a href="#/menu">Scopri i percorsi</a>
+-        <p>
+-          Se stai cercando un supporto competente e umano, puoi iniziare da un
+-          primo contatto semplice e senza pressione.
+-        </p>
+-        <a href="#/contatti">Richiedi informazioni</a>
 -      </section>
-+      <SignaturePreviewSection />
++      <BrandStoryPreviewSection />
  
-       <section id="brand-story-preview">
-         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
+       <a
+         aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
+index d24cd215a71c07a9eca8ce11ce675aad6a0f4d80..98f9c54a876aeace72258e2a9200b1f3c9a0ddd5
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -40,3 +40,8 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -56,3 +56,8 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
-+- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
-+- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
++Completed TASK `section-home-brand-story-preview`.
++- Created a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the inline `brand-story-preview` markup in `src/pages/Home.jsx` with the new split-content-preview section component.
++- Added concise trust-building copy and a CTA to `#/chi-siamo`, while preserving the required `brand-story-preview` section id on the homepage.
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
+index 0000000000000000000000000000000000000000..57657c4ccbb63e5329189b31b3f9268f32c8b659
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,142 @@
-+const previewCards = [
-+  {
-+    title: "Percorsi educativi personalizzati",
-+    description:
-+      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
-+  },
-+  {
-+    title: "Strumenti utili per la vita quotidiana",
-+    description:
-+      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
-+  },
-+  {
-+    title: "Progressi realistici e rispettosi",
-+    description:
-+      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,130 @@
++const storyHighlights = [
++  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
++  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
++  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
-+    backgroundColor: "#f8f3ea",
++    backgroundColor: "#efe7db",
 +    color: "#2f312d",
 +  },
 +  container: {
 +    width: "min(100%, 72rem)",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2rem",
++    gap: "1.75rem",
++    alignItems: "center",
 +  },
-+  intro: {
++  contentGrid: {
++    display: "grid",
++    gap: "1.5rem",
++  },
++  textColumn: {
 +    display: "grid",
 +    gap: "1rem",
-+    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1869,7 +1841,7 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-+    lineHeight: 1,
++    lineHeight: 1.05,
 +    color: "#23251f",
 +    maxWidth: "12ch",
 +  },
@@ -1878,46 +1850,29 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +    fontSize: "1rem",
 +    lineHeight: 1.75,
 +    color: "#4b5047",
-+    maxWidth: "40rem",
++    maxWidth: "38rem",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  panel: {
 +    display: "grid",
 +    gap: "1rem",
-+    minHeight: "100%",
 +    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#fffdf9",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.85)",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
-+  cardIndex: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    width: "2.5rem",
-+    height: "2.5rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#e6ded1",
-+    color: "#5c6455",
-+    fontSize: "0.9rem",
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
++  panelTitle: {
 +    margin: 0,
-+    fontSize: "1.25rem",
-+    lineHeight: 1.3,
++    fontSize: "1.1rem",
 +    color: "#23251f",
 +  },
-+  cardDescription: {
++  list: {
 +    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.75rem",
 +    color: "#53584f",
++    lineHeight: 1.7,
 +  },
 +  action: {
 +    display: "inline-flex",
@@ -1933,140 +1888,147 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
-+    <section id="signature-preview" style={styles.section}>
++    <section id="brand-story-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Come lavoro</p>
-+          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-+          <p style={styles.description}>
-+            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
-+            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
-+          </p>
-+        </div>
++        <div
++          style={{
++            ...styles.contentGrid,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.textColumn}>
++            <p style={styles.eyebrow}>Chi sono</p>
++            <h2 style={styles.title}>
++              Un supporto educativo che parte dalla relazione
++            </h2>
++            <p style={styles.description}>
++              Equilibrio Cinofilo nasce per aiutare le persone a comprendere
++              meglio il proprio cane e a ritrovare equilibrio nelle situazioni
++              di tutti i giorni, con un lavoro chiaro, rispettoso e senza
++              scorciatoie.
++            </p>
++            <p style={styles.description}>
++              Ogni percorso mette insieme osservazione, gestione pratica e
++              accompagnamento reale, cosi che i cambiamenti possano diventare
++              stabili nella vita quotidiana.
++            </p>
 +
-+        <div style={styles.grid}>
-+          {previewCards.map((card, index) => (
-+            <article key={card.title} style={styles.card}>
-+              <span aria-hidden="true" style={styles.cardIndex}>
-+                {String(index + 1).padStart(2, "0")}
-+              </span>
-+              <h3 style={styles.cardTitle}>{card.title}</h3>
-+              <p style={styles.cardDescription}>{card.description}</p>
-+            </article>
-+          ))}
-+        </div>
++            <a href="#/chi-siamo" style={styles.action}>
++              Conosci il mio approccio
++            </a>
++          </div>
 +
-+        <a href="#/menu" style={styles.action}>
-+          Scopri i percorsi
-+        </a>
++          <aside style={styles.panel}>
++            <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
++            <ul style={styles.list}>
++              {storyHighlights.map((highlight) => (
++                <li key={highlight}>{highlight}</li>
++              ))}
++            </ul>
++          </aside>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
+index 1ed04cfe4c7d49c38b55beda9504f671fe7e53b3..e54a9718e681c5637827d8d5f6bd7fef44529ea5
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,23 +1,12 @@
+@@ -1,5 +1,6 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
  
  export default function Home() {
    return (
-     <>
-       <HeroSection />
+@@ -8,19 +9,7 @@
  
--      <section id="signature-preview">
--        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+       <SignaturePreviewSection />
+ 
+-      <section id="brand-story-preview">
+-        <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 -        <p>
--          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
--          familiare e dagli obiettivi reali della convivenza quotidiana.
+-          Il percorso educativo non si limita all&apos;esercizio: aiuta le persone
+-          a leggere meglio il proprio cane, a creare routine piu serene e a
+-          trovare strumenti utili anche nelle situazioni piu delicate.
 -        </p>
--        <ul>
--          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
--          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
--          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
--        </ul>
--        <a href="#/menu">Scopri i percorsi</a>
+-        <p>
+-          Se stai cercando un supporto competente e umano, puoi iniziare da un
+-          primo contatto semplice e senza pressione.
+-        </p>
+-        <a href="#/contatti">Richiedi informazioni</a>
 -      </section>
-+      <SignaturePreviewSection />
++      <BrandStoryPreviewSection />
  
-       <section id="brand-story-preview">
-         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
+       <a
+         aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
 
 codex
-La sezione è stata estratta e resa un componente dedicato; ora verifico che il progetto compili senza regressioni.
+The section is in place. I’m running the build now to verify the new component resolves cleanly with the existing home page.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 873ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 875ms:
 
 > site-create-a-premium-modern-website-for-a-pr@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 48 modules transformed.
+✓ 49 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-BBXbQ5EV.js   237.53 kB │ gzip: 75.98 kB
-✓ built in 548ms
+dist/assets/index-BcbNTnGU.js   239.58 kB │ gzip: 76.26 kB
+✓ built in 595ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
+index d24cd215a71c07a9eca8ce11ce675aad6a0f4d80..98f9c54a876aeace72258e2a9200b1f3c9a0ddd5
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -40,3 +40,8 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -56,3 +56,8 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
-+- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
-+- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
++Completed TASK `section-home-brand-story-preview`.
++- Created a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the inline `brand-story-preview` markup in `src/pages/Home.jsx` with the new split-content-preview section component.
++- Added concise trust-building copy and a CTA to `#/chi-siamo`, while preserving the required `brand-story-preview` section id on the homepage.
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
+index 0000000000000000000000000000000000000000..57657c4ccbb63e5329189b31b3f9268f32c8b659
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,142 @@
-+const previewCards = [
-+  {
-+    title: "Percorsi educativi personalizzati",
-+    description:
-+      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
-+  },
-+  {
-+    title: "Strumenti utili per la vita quotidiana",
-+    description:
-+      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
-+  },
-+  {
-+    title: "Progressi realistici e rispettosi",
-+    description:
-+      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,130 @@
++const storyHighlights = [
++  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
++  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
++  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
-+    backgroundColor: "#f8f3ea",
++    backgroundColor: "#efe7db",
 +    color: "#2f312d",
 +  },
 +  container: {
 +    width: "min(100%, 72rem)",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2rem",
++    gap: "1.75rem",
++    alignItems: "center",
 +  },
-+  intro: {
++  contentGrid: {
++    display: "grid",
++    gap: "1.5rem",
++  },
++  textColumn: {
 +    display: "grid",
 +    gap: "1rem",
-+    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2079,7 +2041,7 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-+    lineHeight: 1,
++    lineHeight: 1.05,
 +    color: "#23251f",
 +    maxWidth: "12ch",
 +  },
@@ -2088,46 +2050,29 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +    fontSize: "1rem",
 +    lineHeight: 1.75,
 +    color: "#4b5047",
-+    maxWidth: "40rem",
++    maxWidth: "38rem",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  panel: {
 +    display: "grid",
 +    gap: "1rem",
-+    minHeight: "100%",
 +    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#fffdf9",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.85)",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
-+  cardIndex: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    width: "2.5rem",
-+    height: "2.5rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#e6ded1",
-+    color: "#5c6455",
-+    fontSize: "0.9rem",
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
++  panelTitle: {
 +    margin: 0,
-+    fontSize: "1.25rem",
-+    lineHeight: 1.3,
++    fontSize: "1.1rem",
 +    color: "#23251f",
 +  },
-+  cardDescription: {
++  list: {
 +    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.75rem",
 +    color: "#53584f",
++    lineHeight: 1.7,
 +  },
 +  action: {
 +    display: "inline-flex",
@@ -2143,129 +2088,136 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
-+    <section id="signature-preview" style={styles.section}>
++    <section id="brand-story-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Come lavoro</p>
-+          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-+          <p style={styles.description}>
-+            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
-+            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
-+          </p>
-+        </div>
++        <div
++          style={{
++            ...styles.contentGrid,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.textColumn}>
++            <p style={styles.eyebrow}>Chi sono</p>
++            <h2 style={styles.title}>
++              Un supporto educativo che parte dalla relazione
++            </h2>
++            <p style={styles.description}>
++              Equilibrio Cinofilo nasce per aiutare le persone a comprendere
++              meglio il proprio cane e a ritrovare equilibrio nelle situazioni
++              di tutti i giorni, con un lavoro chiaro, rispettoso e senza
++              scorciatoie.
++            </p>
++            <p style={styles.description}>
++              Ogni percorso mette insieme osservazione, gestione pratica e
++              accompagnamento reale, cosi che i cambiamenti possano diventare
++              stabili nella vita quotidiana.
++            </p>
 +
-+        <div style={styles.grid}>
-+          {previewCards.map((card, index) => (
-+            <article key={card.title} style={styles.card}>
-+              <span aria-hidden="true" style={styles.cardIndex}>
-+                {String(index + 1).padStart(2, "0")}
-+              </span>
-+              <h3 style={styles.cardTitle}>{card.title}</h3>
-+              <p style={styles.cardDescription}>{card.description}</p>
-+            </article>
-+          ))}
-+        </div>
++            <a href="#/chi-siamo" style={styles.action}>
++              Conosci il mio approccio
++            </a>
++          </div>
 +
-+        <a href="#/menu" style={styles.action}>
-+          Scopri i percorsi
-+        </a>
++          <aside style={styles.panel}>
++            <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
++            <ul style={styles.list}>
++              {storyHighlights.map((highlight) => (
++                <li key={highlight}>{highlight}</li>
++              ))}
++            </ul>
++          </aside>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
+index 1ed04cfe4c7d49c38b55beda9504f671fe7e53b3..e54a9718e681c5637827d8d5f6bd7fef44529ea5
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,23 +1,12 @@
+@@ -1,5 +1,6 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
  
  export default function Home() {
    return (
-     <>
-       <HeroSection />
+@@ -8,19 +9,7 @@
  
--      <section id="signature-preview">
--        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+       <SignaturePreviewSection />
+ 
+-      <section id="brand-story-preview">
+-        <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 -        <p>
--          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
--          familiare e dagli obiettivi reali della convivenza quotidiana.
+-          Il percorso educativo non si limita all&apos;esercizio: aiuta le persone
+-          a leggere meglio il proprio cane, a creare routine piu serene e a
+-          trovare strumenti utili anche nelle situazioni piu delicate.
 -        </p>
--        <ul>
--          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
--          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
--          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
--        </ul>
--        <a href="#/menu">Scopri i percorsi</a>
+-        <p>
+-          Se stai cercando un supporto competente e umano, puoi iniziare da un
+-          primo contatto semplice e senza pressione.
+-        </p>
+-        <a href="#/contatti">Richiedi informazioni</a>
 -      </section>
-+      <SignaturePreviewSection />
++      <BrandStoryPreviewSection />
  
-       <section id="brand-story-preview">
-         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
+       <a
+         aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
 
 codex
-Modificati [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx) e [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-Ho implementato la `signature-preview` della home come componente riutilizzabile `SignaturePreviewSection`, con struttura `grid-cards-preview`: intro editoriale, tre card tematiche coerenti col brand e CTA verso `#/menu`. In [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx) la sezione inline è stata sostituita dal nuovo componente, mantenendo l’id richiesto `signature-preview`.
+Implemented the home `brand-story-preview` as a dedicated split-content preview component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx). The new section in [BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx) includes a text column, a supporting highlights panel, and a CTA to `#/chi-siamo`, while preserving the required `brand-story-preview` section id.
 
-Build result: `npm run build` completato con successo tramite Vite.
+Build result: `npm run build` passed successfully. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with the task summary.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
+index d24cd215a71c07a9eca8ce11ce675aad6a0f4d80..98f9c54a876aeace72258e2a9200b1f3c9a0ddd5
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -40,3 +40,8 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -56,3 +56,8 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
-+- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
-+- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
++Completed TASK `section-home-brand-story-preview`.
++- Created a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the inline `brand-story-preview` markup in `src/pages/Home.jsx` with the new split-content-preview section component.
++- Added concise trust-building copy and a CTA to `#/chi-siamo`, while preserving the required `brand-story-preview` section id on the homepage.
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
+index 0000000000000000000000000000000000000000..57657c4ccbb63e5329189b31b3f9268f32c8b659
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,142 @@
-+const previewCards = [
-+  {
-+    title: "Percorsi educativi personalizzati",
-+    description:
-+      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
-+  },
-+  {
-+    title: "Strumenti utili per la vita quotidiana",
-+    description:
-+      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
-+  },
-+  {
-+    title: "Progressi realistici e rispettosi",
-+    description:
-+      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,130 @@
++const storyHighlights = [
++  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
++  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
++  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
-+    backgroundColor: "#f8f3ea",
++    backgroundColor: "#efe7db",
 +    color: "#2f312d",
 +  },
 +  container: {
 +    width: "min(100%, 72rem)",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2rem",
++    gap: "1.75rem",
++    alignItems: "center",
 +  },
-+  intro: {
++  contentGrid: {
++    display: "grid",
++    gap: "1.5rem",
++  },
++  textColumn: {
 +    display: "grid",
 +    gap: "1rem",
-+    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2278,7 +2230,7 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-+    lineHeight: 1,
++    lineHeight: 1.05,
 +    color: "#23251f",
 +    maxWidth: "12ch",
 +  },
@@ -2287,46 +2239,29 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +    fontSize: "1rem",
 +    lineHeight: 1.75,
 +    color: "#4b5047",
-+    maxWidth: "40rem",
++    maxWidth: "38rem",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  panel: {
 +    display: "grid",
 +    gap: "1rem",
-+    minHeight: "100%",
 +    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#fffdf9",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.85)",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
-+  cardIndex: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    width: "2.5rem",
-+    height: "2.5rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#e6ded1",
-+    color: "#5c6455",
-+    fontSize: "0.9rem",
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
++  panelTitle: {
 +    margin: 0,
-+    fontSize: "1.25rem",
-+    lineHeight: 1.3,
++    fontSize: "1.1rem",
 +    color: "#23251f",
 +  },
-+  cardDescription: {
++  list: {
 +    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.75rem",
 +    color: "#53584f",
++    lineHeight: 1.7,
 +  },
 +  action: {
 +    display: "inline-flex",
@@ -2342,68 +2277,83 @@ index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969
 +  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
-+    <section id="signature-preview" style={styles.section}>
++    <section id="brand-story-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Come lavoro</p>
-+          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-+          <p style={styles.description}>
-+            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
-+            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
-+          </p>
-+        </div>
++        <div
++          style={{
++            ...styles.contentGrid,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.textColumn}>
++            <p style={styles.eyebrow}>Chi sono</p>
++            <h2 style={styles.title}>
++              Un supporto educativo che parte dalla relazione
++            </h2>
++            <p style={styles.description}>
++              Equilibrio Cinofilo nasce per aiutare le persone a comprendere
++              meglio il proprio cane e a ritrovare equilibrio nelle situazioni
++              di tutti i giorni, con un lavoro chiaro, rispettoso e senza
++              scorciatoie.
++            </p>
++            <p style={styles.description}>
++              Ogni percorso mette insieme osservazione, gestione pratica e
++              accompagnamento reale, cosi che i cambiamenti possano diventare
++              stabili nella vita quotidiana.
++            </p>
 +
-+        <div style={styles.grid}>
-+          {previewCards.map((card, index) => (
-+            <article key={card.title} style={styles.card}>
-+              <span aria-hidden="true" style={styles.cardIndex}>
-+                {String(index + 1).padStart(2, "0")}
-+              </span>
-+              <h3 style={styles.cardTitle}>{card.title}</h3>
-+              <p style={styles.cardDescription}>{card.description}</p>
-+            </article>
-+          ))}
-+        </div>
++            <a href="#/chi-siamo" style={styles.action}>
++              Conosci il mio approccio
++            </a>
++          </div>
 +
-+        <a href="#/menu" style={styles.action}>
-+          Scopri i percorsi
-+        </a>
++          <aside style={styles.panel}>
++            <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
++            <ul style={styles.list}>
++              {storyHighlights.map((highlight) => (
++                <li key={highlight}>{highlight}</li>
++              ))}
++            </ul>
++          </aside>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
+index 1ed04cfe4c7d49c38b55beda9504f671fe7e53b3..e54a9718e681c5637827d8d5f6bd7fef44529ea5
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,23 +1,12 @@
+@@ -1,5 +1,6 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
  
  export default function Home() {
    return (
-     <>
-       <HeroSection />
+@@ -8,19 +9,7 @@
  
--      <section id="signature-preview">
--        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+       <SignaturePreviewSection />
+ 
+-      <section id="brand-story-preview">
+-        <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 -        <p>
--          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
--          familiare e dagli obiettivi reali della convivenza quotidiana.
+-          Il percorso educativo non si limita all&apos;esercizio: aiuta le persone
+-          a leggere meglio il proprio cane, a creare routine piu serene e a
+-          trovare strumenti utili anche nelle situazioni piu delicate.
 -        </p>
--        <ul>
--          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
--          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
--          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
--        </ul>
--        <a href="#/menu">Scopri i percorsi</a>
+-        <p>
+-          Se stai cercando un supporto competente e umano, puoi iniziare da un
+-          primo contatto semplice e senza pressione.
+-        </p>
+-        <a href="#/contatti">Richiedi informazioni</a>
 -      </section>
-+      <SignaturePreviewSection />
++      <BrandStoryPreviewSection />
  
-       <section id="brand-story-preview">
-         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
+       <a
+         aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
 
 tokens used
-18.536
+20.008
