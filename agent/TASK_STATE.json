@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "seo-basics",
+  "currentTaskId": "responsive-polish",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "navigation-structure",
+  "lastCompletedTaskId": "seo-basics",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -23,6 +23,7 @@
     "section-contatti-opening-hours",
     "cta-contatti-contatti-whatsapp",
     "cta-contatti-contatti-phone",
-    "navigation-structure"
+    "navigation-structure",
+    "seo-basics"
   ]
 }

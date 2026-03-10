@@ -418,3 +418,25 @@ Waiting for validation.
 
 TASK navigation-structure completed successfully.
 Build passed.
+Commit created for TASK navigation-structure.
+
+Prepared TASK seo-basics (Add baseline SEO structure) for execution.
+
+Launching Codex for TASK seo-basics.
+
+Completed TASK `seo-basics`.
+- Updated `index.html` with Italian language metadata, a production title, and a baseline meta description for the site.
+- Added route-specific `document.title` and `meta[name="description"]` updates in `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, and `src/pages/Contatti.jsx`.
+- Verified the required single `h1` already exists on each targeted page through the existing hero sections.
+
+TASK seo-basics executed by Codex.
+Waiting for validation.
+
+TASK seo-basics completed successfully.
+Build passed.
+
+TASK seo-basics executed by Codex.
+Waiting for validation.
+
+TASK seo-basics completed successfully.
+Build passed.

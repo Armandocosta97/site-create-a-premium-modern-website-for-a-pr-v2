@@ -1,6 +1,6 @@
-Modified files: [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.jsx), [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
+Modified files: `index.html`, `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, `src/pages/Contatti.jsx`, `agent/AGENT_REPORT.md`.
 
-Implemented the `navigation-structure` task by moving the spec navigation into `App` and rendering it through `Layout` with `NavLink` under `HashRouter`. The header now renders all required items from a single route-aligned source of truth: `/`, `/menu`, `/chi-siamo`, and `/contatti`, with the home link using `end` so active matching stays correct.
+Implemented baseline SEO structure by setting `lang="it"`, adding a site-level default `<title>` and `<meta name="description">` in `index.html`, and adding per-page `document.title` plus meta description updates in the four targeted route components. I also verified the required single meaningful `h1` already exists on each page via the existing hero sections.
 
 Build result: `npm run build` passed successfully with Vite production build completed.
 
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9f3-8f58-7e50-8315-ec3214631391
+session id: 019cd9f4-4a7e-7dc3-81e2-4204e182f62f
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1226,40 +1226,23 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-navigation-structure
+seo-basics
 
 ## Current task title
-Build navigation from spec
+Add baseline SEO structure
 
 ## Current task type
-navigation
+seo
 
 ## Current task target
 ```json
 {
-  "navigation": [
-    {
-      "label": "Home",
-      "type": "route",
-      "target": "/"
-    },
-    {
-      "label": "Menu",
-      "type": "route",
-      "target": "/menu"
-    },
-    {
-      "label": "Chi siamo",
-      "type": "route",
-      "target": "/chi-siamo"
-    },
-    {
-      "label": "Contatti",
-      "type": "route",
-      "target": "/contatti"
-    }
-  ],
-  "routingMode": "hash"
+  "pages": [
+    "home",
+    "menu",
+    "chi-siamo",
+    "contatti"
+  ]
 }
 ```
 
@@ -1268,26 +1251,18 @@ navigation
 - page-menu-shell
 - page-chi-siamo-shell
 - page-contatti-shell
-- section-home-hero
-- section-home-signature-preview
-- section-home-brand-story-preview
-- section-menu-menu-hero
-- section-menu-menu-categories
-- section-chi-siamo-about-hero
-- section-chi-siamo-story
-- section-chi-siamo-philosophy
-- section-contatti-contact-hero
-- section-contatti-contact-details
-- section-contatti-opening-hours
 
 ## Files allowed
-- src/App.jsx
-- src/layout/Layout.jsx
+- index.html
+- src/pages/Home.jsx
+- src/pages/Menu.jsx
+- src/pages/ChiSiamo.jsx
+- src/pages/Contatti.jsx
 
 ## Definition of done
-- all navigation items are rendered
-- all navigation links point to valid pages or sections
-- navigation is compatible with routing mode
+- title exists
+- meta description exists
+- one meaningful h1 per page exists
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1316,108 +1291,112 @@ navigation
 
 mcp startup: no servers
 codex
-I’m checking the current app shell and layout so I can wire navigation directly from the spec without touching unrelated sections. After that I’ll patch the two allowed source files, run a build, and update the task report.
+I’m checking the current page shells and `index.html` first so I can add the SEO baseline without drifting outside the task scope.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' site-spec.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "pwd && rg --files | rg '"'^(src/App'"\\.jsx|src/layout/Layout\\.jsx|agent/AGENT_REPORT\\.md|site-spec\\.json|agent/CURRENT_TASK_PROMPT\\.md|package\\.json)"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
-{
-  "originalPrompt": "Create a premium modern website for a professional dog educator and behavior consultant called Equilibrio Cinofilo.\n\nThe business helps dog owners improve communication, behavior, daily management, and emotional balance with their dogs through ethical, practical, and modern education.\nThe approach must feel professional, calm, trustworthy, and deeply human.\nThis is not a flashy “alpha dog” brand.\nIt must communicate competence, empathy, structure, and real-world results.\n\nSERVICES OFFERED\nThe business offers:\n- puppy education\n- basic dog education\n- leash work and recall\n- behavioral consultations\n- support for reactivity, anxiety, and management issues\n- one-to-one sessions\n- educational walks\n- support for owners before and after adoption\n- optional group classes if useful\n- online consultation if suitable\n\nGOAL\nThe website must feel like a real premium service business that a client would trust with their dog.\nIt must not feel cheap, aggressive, or gimmicky.\nIt must avoid stereotypes like domination language, punitive energy, or “miracle training” tone.\nThe final result should feel modern, clean, grounded, emotionally intelligent, and professional.\n\nARCHITECTURE\nThis must be a real multi-page website.\nDo NOT build it as a single-page website with anchor links.\nDo NOT collapse all content into the homepage.\n\nCreate these real pages with real routes:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nRequired routes:\n- /\n- /services\n- /percorsi\n- /chi-siamo\n- /faq\n- /contatti\n\nNAVIGATION\nHeader navigation must include:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nNavigation must use real routes, not homepage anchors.\nEach navigation item must point to an actually existing page.\nThe mobile menu must work properly.\nNo broken links.\n\nGENERAL BRAND DIRECTION\nBrand name: Equilibrio Cinofilo\nTarget audience:\n- first-time dog owners\n- families with puppies\n- people with adolescent or adult dogs showing difficult behaviors\n- owners who want practical and respectful guidance\n- people who want help understanding their dog better\n\nBrand values:\n- trust\n- calm\n- respect\n- consistency\n- education\n- emotional balance\n- clarity\n- everyday practicality\n\nTONE OF VOICE\nThe copy must feel:\n- reassuring\n- competent\n- calm\n- clear\n- empathetic\n- realistic\n- never judgmental\n- never macho\n- never exaggerated\n\nAvoid:\n- aggressive dog training clichés\n- fake urgency\n- manipulative language\n- miracle promises\n- overcomplicated technical jargon\n\nVISUAL STYLE\nThe design must feel:\n- calm\n- elegant\n- natural\n- modern\n- clean\n- spacious\n- trustworthy\n- warm but professional\n\nInspiration:\n- premium wellness service websites\n- boutique consulting brands\n- nature-inspired modern service brands\n- behavior / care services with a calm visual identity\n\nCOLOR PALETTE\nUse a calm and refined palette such as:\n- warm off-white / sand background\n- muted sage or olive accents\n- charcoal or deep warm gray for text\n- soft earthy beige / taupe neutrals\n- optional dusty terracotta accent used sparingly\n\nTypography:\n- refined modern serif or elegant humanist heading font\n- clean sans serif for body copy\n- excellent readability\n- soft, premium hierarchy\n\nLAYOUT RULES\n- mobile first\n- clear visual hierarchy\n- spacious sections\n- no visual clutter\n- no cheap gradients\n- no noisy icons everywhere\n- premium use of whitespace\n- content blocks must feel balanced and easy to scan\n- all pages must feel coherent as one brand\n\nIMAGE DIRECTION\nUse high quality Unsplash images.\nSearch themes like:\n- dog owner outdoors\n- dog training positive reinforcement\n- person with dog in park\n- calm dog portrait\n- dog and human connection\n- puppy training\n- dog walking training\n- responsible dog education\n\nImages must:\n- feel natural and authentic\n- avoid cheesy stock-photo energy\n- use object-fit: cover\n- never be stretched\n- support a calm and trustworthy tone\n- show healthy and respectful dog-human interaction\n\nHOME PAGE\nThe homepage must be a true strategic overview, not a page that contains the whole site.\n\nInclude these sections:\n1. Hero\n2. Main services preview\n3. Why work with Equilibrio Cinofilo\n4. Percorsi preview\n5. Short about preview\n6. FAQ preview\n7. Final CTA\n\nHOME HERO\nLarge calm hero section with premium natural imagery.\n\nHero content:\nEyebrow:\n\"Educazione cinofila moderna, pratica e rispettosa\"\n\nMain title:\n\"Aiuto concreto per costruire una relazione più serena con il tuo cane\"\n\nSubtitle:\n\"Equilibrio Cinofilo accompagna cani e persone con percorsi educativi chiari, etici e personalizzati, pensati per la vita di tutti i giorni.\"\n\nPrimary CTA:\n\"Prenota una consulenza\"\n\nSecondary CTA:\n\"Scopri i percorsi\"\n\nSERVICES PAGE\nCreate a full dedicated Services page.\n\nInclude:\n- hero section\n- introduction to the service approach\n- clear service cards or structured blocks\n- puppy education\n- adolescent dog education\n- adult dog education\n- behavioral consultation\n- educational walks\n- pre-adoption support\n- post-adoption support\n- online consultation if suitable\n- CTA section\n\nEach service block should include:\n- service name\n- short practical description\n- who it is for\n- outcome or benefit\n\nThis page must feel helpful, concrete, and non-generic.\n\nPERCORSI PAGE\nCreate a dedicated Percorsi page.\nThis page should explain how the work is structured.\n\nInclude:\n- hero\n- intro explaining that every dog-owner pair is different\n- examples of educational paths such as:\n  - Cucciolo sereno\n  - Passeggiate senza tensione\n  - Richiamo e gestione in esterna\n  - Convivenza equilibrata\n  - Supporto per reattività e gestione emotiva\n- each path should have:\n  - title\n  - who it is for\n  - main goals\n  - tone focused on progress, not miracles\n- section explaining how a first consultation works\n- CTA to contact\n\nThis page should help the user understand structure and professionalism.\n\nCHI SIAMO PAGE\nCreate a dedicated About page.\n\nInclude:\n- hero\n- educator presentation\n- philosophy and method\n- values\n- relationship-centered approach\n- practical and respectful work style\n- trust-building content\n- image + text sections\n- closing CTA\n\nThis page should make the educator feel real, competent, and approachable.\nAvoid sounding self-important.\n\nFAQ PAGE\nCreate a dedicated FAQ page.\n\nInclude realistic and useful questions such as:\n- When should I contact a dog educator?\n- Is it too late if my dog is already an adult?\n- Do you also work with puppies?\n- Do you use force-free or respectful methods?\n- How many sessions are usually needed?\n- Can the whole family participate?\n- Do you offer home visits?\n- Can online sessions be useful?\n- Do you work with reactive dogs?\n\nAnswers must be realistic, reassuring, and professional.\n\nCONTACT PAGE\nCreate a real Contact page.\n\nInclude:\n- hero\n- short welcoming intro\n- contact info block\n- phone\n- email\n- WhatsApp CTA if suitable\n- city / service area\n- optional service availability\n- inquiry CTA or clean contact form block if appropriate\n\nUse realistic placeholder details such as:\nService area:\nTorino and surrounding areas\n\nPhone:\n+39 011 000000\n\nEmail:\nciao@equilibriocinofilo.it\n\nWhatsApp:\navailable as a CTA if it fits the design\n\nThe contact page should feel easy, calm, and inviting.\n\nCTA STRATEGY\nThe site must contain meaningful CTAs such as:\n- Prenota una consulenza\n- Scopri i percorsi\n- Richiedi informazioni\n- Contattami\n- Inizia da qui\n\nCTA style must be consistent across the site.\nButtons must feel elegant and clear.\nNo spammy conversion style.\n\nFOOTER\nCreate a refined footer with:\n- brand name\n- short brand line\n- navigation links\n- contact info\n- service area\n- social placeholder links if useful\n- copyright\n\nSEO / CONTENT\n- one clear H1 per page\n- polished realistic copy in Italian\n- no lorem ipsum\n- no placeholder feel\n- content should sound like a real premium dog education brand\n- page titles and meta descriptions should exist\n- heading structure must be logical\n- copy should be concise but warm and credible\n\nRESPONSIVE QUALITY\n- fully responsive\n- no horizontal scroll\n- balanced spacing at all key breakpoints\n- mobile navigation must work\n- sections must stack cleanly\n- cards must remain readable on mobile\n- forms and CTAs must be easy to use on mobile\n\nQUALITY EXPECTATION\nThe final website must feel like a real professional website for a modern dog educator.\nIt should be sellable to a real client.\nIt must look emotionally intelligent, calm, modern, and trustworthy.\nIt must not feel like a generic pet template.\nIt must not feel like a single-page site stretched into fake pages.\nEach page must have a real purpose and distinct content.",
-  "siteName": "site-create-a-premium-modern-website-for-a-pr",
-  "businessType": "generic-business",
-  "architecture": "multi-page",
-  "routing": {
-    "mode": "hash"
-  },
-  "pages": [
-    {
-      "id": "home",
-      "route": "/",
-      "role": "landing",
-      "sections": [
-        {
-          "id": "hero",
-          "type": "hero"
-        },
-        {
-          "id": "signature-preview",
- succeeded in 52ms:
-export default function Layout({ children }) {
+/bin/zsh -lc "sed -n '1,220p' index.html" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "pwd && rg --files | rg '"'^(index'"\\.html|src/pages/(Home|Menu|ChiSiamo|Contatti)\\.jsx|agent/AGENT_REPORT\\.md|agent/CURRENT_TASK_PROMPT\\.md|site-spec\\.json|docs/DEVELOPMENT_METHOD\\.md)"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+import ContactHeroSection from "../components/ContactHeroSection"
+import ContactDetailsSection from "../components/ContactDetailsSection"
+import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+import OpeningHoursSection from "../components/OpeningHoursSection"
+
+export default function Contatti() {
+  return (
+    <main>
+      <ContactHeroSection />
+      <ContactDetailsSection />
+      <ContactPhoneCtaSection />
+      <ContactWhatsAppCtaSection />
+      <OpeningHoursSection />
+    </main>
+  )
+}
+ succeeded in 51ms:
+import AboutHeroSection from "../components/AboutHeroSection"
+import PhilosophySection from "../components/PhilosophySection"
+import StorySection from "../components/StorySection"
+
+export default function ChiSiamo() {
+  return (
+    <main>
+      <AboutHeroSection />
+
+      <StorySection />
+
+      <PhilosophySection />
+    </main>
+  )
+}
+ succeeded in 51ms:
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>site-create-a-premium-modern-website-for-a-pr</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+ succeeded in 51ms:
+import HeroSection from "../components/HeroSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+
+export default function Home() {
   return (
     <>
-      <header>
-        <nav aria-label="Main navigation">
-          <a href="#/">Home</a>
-          <a href="#/menu">Menu</a>
-          <a href="#/chi-siamo">Chi siamo</a>
-          <a href="#/contatti">Contatti</a>
-        </nav>
-      </header>
+      <HeroSection
+        primaryCta={{
+          href: "#/menu",
+          label: "Prenota una consulenza",
+        }}
+        secondaryCta={{
+          href: "#/contatti",
+          label: "Contattami",
+        }}
+      />
 
-      <main>{children}</main>
+      <SignaturePreviewSection />
+ succeeded in 51ms:
+import MenuHeroSection from "../components/MenuHeroSection"
+import MenuCategoriesSection from "../components/MenuCategoriesSection"
 
-      <footer>
-        <p>© Website</p>
-      </footer>
-    </>
+export default function Menu() {
+  return (
+    <main>
+      <MenuHeroSection />
+      <MenuCategoriesSection />
+    </main>
   )
 }
  succeeded in 52ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Contatti from "./pages/Contatti"
-
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-      </Layout>
-    </HashRouter>
-  )
- succeeded in 52ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr
-src/App.jsx
-src/layout/Layout.jsx
-package.json
+src/pages/Home.jsx
+src/pages/ChiSiamo.jsx
+src/pages/Contatti.jsx
+src/pages/Menu.jsx
+docs/DEVELOPMENT_METHOD.md
 agent/CURRENT_TASK_PROMPT.md
 agent/AGENT_REPORT.md
 site-spec.json
+index.html
 codex
-The app already has the right routes; the weak point is the layout, which hardcodes hash anchors. I’m switching that to spec-driven React Router links so navigation stays aligned with hash routing and future route changes stay centralized.
+The page shells are thin, so I’m verifying whether each route already renders a single `h1` inside its section components before I add route-level title and description handling.
 exec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-{
-  "name": "site-create-a-premium-modern-website-for-a-pr",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc 'rg -n "<h1|h1>" src/components src/sections src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+Total output lines: 220
+
 # AGENT REPORT
 
 Project created.
@@ -1436,632 +1415,1019 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
-Commit created for TASK page-home-shell.
-
+ exited 2 in 51ms:
+rg: src/sections: No such file or directory (os error 2)
+src/components/AboutHeroSection.jsx:124:          <h1 id="about-hero-title" style={styles.title}>
+src/components/AboutHeroSection.jsx:126:          </h1>
+src/components/ContactHeroSection.jsx:135:          <h1 id="contact-hero-title" style={styles.title}>
+src/components/ContactHeroSection.jsx:137:          </h1>
+src/components/HeroSection.jsx:108:        <h1 style={styles.title}>
+src/components/HeroSection.jsx:110:        </h1>
+src/components/MenuHeroSection.jsx:101:        <h1 id="menu-title" style={styles.title}>
+src/components/MenuHeroSection.jsx:103:        </h1>
 codex
-I have enough context to edit safely. The change is limited to centralizing the route/navigation config in `src/App.jsx` and making `src/layout/Layout.jsx` consume that config with router-aware links instead of raw hash anchors.
+I’ve confirmed each page already has a single `h1` in its hero component. Next I’m adding route-specific `document.title` and meta description updates in the page files, plus a better default title/description in `index.html`.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx
-@@ -1,2 +1,4 @@
--export default function Layout({ children }) {
-+import { NavLink } from "react-router-dom"
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+@@ -5,2 +6,14 @@
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Equilibrio Cinofilo"
 +
-+export default function Layout({ children, navigationItems = [] }) {
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
++      )
++    }
++  }, [])
++
    return (
-@@ -5,6 +7,11 @@
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink
-+              key={item.target}
-+              to={item.target}
-+              end={item.target === "/"}
-+            >
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.jsx
-@@ -7,2 +7,16 @@
- 
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Contatti", target: "/contatti" },
-+]
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+@@ -7,2 +8,14 @@
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Equilibrio Cinofilo"
 +
-+const routes = [
-+  { path: "/", element: <Home /> },
-+  { path: "/menu", element: <Menu /> },
-+  { path: "/chi-siamo", element: <ChiSiamo /> },
-+  { path: "/contatti", element: <Contatti /> },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
++      )
++    }
++  }, [])
 +
- export default function App() {
-@@ -10,8 +24,7 @@
-     <HashRouter>
--      <Layout>
-+      <Layout navigationItems={navigationItems}>
-         <Routes>
--          <Route path="/" element={<Home />} />
--          <Route path="/menu" element={<Menu />} />
--          <Route path="/chi-siamo" element={<ChiSiamo />} />
--          <Route path="/contatti" element={<Contatti />} />
-+          {routes.map((route) => (
-+            <Route key={route.path} path={route.path} element={route.element} />
-+          ))}
-         </Routes>
-apply_patch(auto_approved=true) exited 0 in 40ms:
+   return (
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+@@ -6,2 +7,15 @@
+ export default function Home() {
++  useEffect(() => {
++    document.title =
++      "Equilibrio Cinofilo | Educazione cinofila moderna e rispettosa"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Aiuto concreto per migliorare relazione, gestione quotidiana e benessere del cane con percorsi educativi etici e personalizzati a Torino e dintorni.",
++      )
++    }
++  }, [])
++
+   return (
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/index.html
+@@ -1,3 +1,3 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+@@ -6,3 +6,7 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-premium-modern-website-for-a-pr</title>
++    <meta
++      name="description"
++      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
++    />
++    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+   </head>
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+@@ -4,2 +5,14 @@
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Servizi | Equilibrio Cinofilo"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
++      )
++    }
++  }, [])
++
+   return (
+apply_patch(auto_approved=true) exited 0 in 59ms:
 Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx
+M index.html
+M src/pages/Home.jsx
+M src/pages/Menu.jsx
+M src/pages/ChiSiamo.jsx
+M src/pages/Contatti.jsx
 file update:
-diff --git a/src/App.jsx b/src/App.jsx
-index a9f59fd2ef30561bcf081f8a7703ea339ec77144..c221e780bf7b5758ba6f97966b3fcd0b3930b10a
---- a/src/App.jsx
-+++ b/src/App.jsx
-@@ -5,15 +5,28 @@
- import ChiSiamo from "./pages/ChiSiamo"
- import Contatti from "./pages/Contatti"
+diff --git a/index.html b/index.html
+index 7e9252c147dd3e4fd8c7cf8d78050760026d1c4e..229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-premium-modern-website-for-a-pr</title>
++    <meta
++      name="description"
++      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
++    />
++    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index 3ff403ad90d26a40a177802ae671f76410c9d806..86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,8 +1,21 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Contatti", target: "/contatti" },
-+]
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Equilibrio Cinofilo"
 +
-+const routes = [
-+  { path: "/", element: <Home /> },
-+  { path: "/menu", element: <Menu /> },
-+  { path: "/chi-siamo", element: <ChiSiamo /> },
-+  { path: "/contatti", element: <Contatti /> },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
++      )
++    }
++  }, [])
 +
- export default function App() {
    return (
-     <HashRouter>
--      <Layout>
-+      <Layout navigationItems={navigationItems}>
-         <Routes>
--          <Route path="/" element={<Home />} />
--          <Route path="/menu" element={<Menu />} />
--          <Route path="/chi-siamo" element={<ChiSiamo />} />
--          <Route path="/contatti" element={<Contatti />} />
-+          {routes.map((route) => (
-+            <Route key={route.path} path={route.path} element={route.element} />
-+          ))}
-         </Routes>
-       </Layout>
-     </HashRouter>
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index 0066ae9a27313bd0bec8ca9023f1c66c0516c0c1..5550c15a8943c6cd5619d56a9986e6c9ef338246
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,12 +1,19 @@
--export default function Layout({ children }) {
-+import { NavLink } from "react-router-dom"
+     <main>
+       <AboutHeroSection />
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 4c38d39de4d5056b9f2e4f2e87bded3400d14d7b..a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,3 +1,4 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+@@ -5,6 +6,18 @@
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Equilibrio Cinofilo"
 +
-+export default function Layout({ children, navigationItems = [] }) {
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef7f3fd2c3ecef39e511bec59aef9299e6fda364..44e8715cad6ffc6d8db1f71a1d871967a188c35a
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,9 +1,23 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title =
++      "Equilibrio Cinofilo | Educazione cinofila moderna e rispettosa"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Aiuto concreto per migliorare relazione, gestione quotidiana e benessere del cane con percorsi educativi etici e personalizzati a Torino e dintorni.",
++      )
++    }
++  }, [])
++
    return (
      <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink
-+              key={item.target}
-+              to={item.target}
-+              end={item.target === "/"}
-+            >
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+       <HeroSection
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..22c5b72197a4c0560fc899957fafb84c92781d10
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,20 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
  
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Servizi | Equilibrio Cinofilo"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 file update:
-diff --git a/src/App.jsx b/src/App.jsx
-index a9f59fd2ef30561bcf081f8a7703ea339ec77144..c221e780bf7b5758ba6f97966b3fcd0b3930b10a
---- a/src/App.jsx
-+++ b/src/App.jsx
-@@ -5,15 +5,28 @@
- import ChiSiamo from "./pages/ChiSiamo"
- import Contatti from "./pages/Contatti"
+diff --git a/index.html b/index.html
+index 7e9252c147dd3e4fd8c7cf8d78050760026d1c4e..229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-premium-modern-website-for-a-pr</title>
++    <meta
++      name="description"
++      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
++    />
++    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index 3ff403ad90d26a40a177802ae671f76410c9d806..86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,8 +1,21 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Contatti", target: "/contatti" },
-+]
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Equilibrio Cinofilo"
 +
-+const routes = [
-+  { path: "/", element: <Home /> },
-+  { path: "/menu", element: <Menu /> },
-+  { path: "/chi-siamo", element: <ChiSiamo /> },
-+  { path: "/contatti", element: <Contatti /> },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
++      )
++    }
++  }, [])
 +
- export default function App() {
    return (
-     <HashRouter>
--      <Layout>
-+      <Layout navigationItems={navigationItems}>
-         <Routes>
--          <Route path="/" element={<Home />} />
--          <Route path="/menu" element={<Menu />} />
--          <Route path="/chi-siamo" element={<ChiSiamo />} />
--          <Route path="/contatti" element={<Contatti />} />
-+          {routes.map((route) => (
-+            <Route key={route.path} path={route.path} element={route.element} />
-+          ))}
-         </Routes>
-       </Layout>
-     </HashRouter>
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index 0066ae9a27313bd0bec8ca9023f1c66c0516c0c1..5550c15a8943c6cd5619d56a9986e6c9ef338246
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,12 +1,19 @@
--export default function Layout({ children }) {
-+import { NavLink } from "react-router-dom"
+     <main>
+       <AboutHeroSection />
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 4c38d39de4d5056b9f2e4f2e87bded3400d14d7b..a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,3 +1,4 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+@@ -5,6 +6,18 @@
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Equilibrio Cinofilo"
 +
-+export default function Layout({ children, navigationItems = [] }) {
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef7f3fd2c3ecef39e511bec59aef9299e6fda364..44e8715cad6ffc6d8db1f71a1d871967a188c35a
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,9 +1,23 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title =
++      "Equilibrio Cinofilo | Educazione cinofila moderna e rispettosa"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Aiuto concreto per migliorare relazione, gestione quotidiana e benessere del cane con percorsi educativi etici e personalizzati a Torino e dintorni.",
++      )
++    }
++  }, [])
++
    return (
      <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink
-+              key={item.target}
-+              to={item.target}
-+              end={item.target === "/"}
-+            >
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+       <HeroSection
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..22c5b72197a4c0560fc899957fafb84c92781d10
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,20 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
  
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Servizi | Equilibrio Cinofilo"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 codex
-The navigation wiring is in place. I’m running the build now to catch any router or JSX issues before I append the task report entry.
+The SEO changes are in place. I’m running a build now, then I’ll append the required task summary to `agent/AGENT_REPORT.md`.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Contatti from "./pages/Contatti"
+/bin/zsh -lc 'tail -n 40 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+TASK section-contatti-opening-hours completed successfully.
+Build passed.
+Commit created for TASK section-contatti-opening-hours.
 
-const navigationItems = [
-  { label: "Home", target: "/" },
-  { label: "Menu", target: "/menu" },
-  { label: "Chi siamo", target: "/chi-siamo" },
-  { label: "Contatti", target: "/contatti" },
-]
+Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
 
-const routes = [
-  { path: "/", element: <Home /> },
-  { path: "/menu", element: <Menu /> },
-  { path: "/chi-siamo", element: <ChiSiamo /> },
-  { path: "/contatti", element: <Contatti /> },
-]
- succeeded in 51ms:
-import { NavLink } from "react-router-dom"
+Launching Codex for TASK cta-contatti-contatti-whatsapp.
 
-export default function Layout({ children, navigationItems = [] }) {
-  return (
-    <>
-      <header>
-        <nav aria-label="Main navigation">
-          {navigationItems.map((item) => (
-            <NavLink
-              key={item.target}
-              to={item.target}
-              end={item.target === "/"}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-      </header>
+TASK cta-contatti-contatti-whatsapp executed by Codex.
+Waiting for validation.
 
-      <main>{children}</main>
+TASK cta-contatti-contatti-whatsapp completed successfully.
+Build passed.
+Commit created for TASK cta-contatti-contatti-whatsapp.
+
+Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-phone.
+
+TASK cta-contatti-contatti-phone executed by Codex.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 741ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 831ms:
+
+> site-create-a-premium-modern-website-for-a-pr@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 60 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   0.50 kB │ gzip:  0.32 kB
+dist/index.html                   0.71 kB │ gzip:  0.41 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CPhlKOpE.js   271.63 kB │ gzip: 82.30 kB
-✓ built in 567ms
+dist/assets/index-Buob2CnG.js   272.90 kB │ gzip: 82.51 kB
+✓ built in 573ms
 file update:
-diff --git a/src/App.jsx b/src/App.jsx
-index a9f59fd2ef30561bcf081f8a7703ea339ec77144..c221e780bf7b5758ba6f97966b3fcd0b3930b10a
---- a/src/App.jsx
-+++ b/src/App.jsx
-@@ -5,15 +5,28 @@
- import ChiSiamo from "./pages/ChiSiamo"
- import Contatti from "./pages/Contatti"
+diff --git a/index.html b/index.html
+index 7e9252c147dd3e4fd8c7cf8d78050760026d1c4e..229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-premium-modern-website-for-a-pr</title>
++    <meta
++      name="description"
++      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
++    />
++    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index 3ff403ad90d26a40a177802ae671f76410c9d806..86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,8 +1,21 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Contatti", target: "/contatti" },
-+]
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Equilibrio Cinofilo"
 +
-+const routes = [
-+  { path: "/", element: <Home /> },
-+  { path: "/menu", element: <Menu /> },
-+  { path: "/chi-siamo", element: <ChiSiamo /> },
-+  { path: "/contatti", element: <Contatti /> },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
++      )
++    }
++  }, [])
 +
- export default function App() {
    return (
-     <HashRouter>
--      <Layout>
-+      <Layout navigationItems={navigationItems}>
-         <Routes>
--          <Route path="/" element={<Home />} />
--          <Route path="/menu" element={<Menu />} />
--          <Route path="/chi-siamo" element={<ChiSiamo />} />
--          <Route path="/contatti" element={<Contatti />} />
-+          {routes.map((route) => (
-+            <Route key={route.path} path={route.path} element={route.element} />
-+          ))}
-         </Routes>
-       </Layout>
-     </HashRouter>
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index 0066ae9a27313bd0bec8ca9023f1c66c0516c0c1..5550c15a8943c6cd5619d56a9986e6c9ef338246
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,12 +1,19 @@
--export default function Layout({ children }) {
-+import { NavLink } from "react-router-dom"
+     <main>
+       <AboutHeroSection />
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 4c38d39de4d5056b9f2e4f2e87bded3400d14d7b..a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,3 +1,4 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+@@ -5,6 +6,18 @@
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Equilibrio Cinofilo"
 +
-+export default function Layout({ children, navigationItems = [] }) {
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef7f3fd2c3ecef39e511bec59aef9299e6fda364..44e8715cad6ffc6d8db1f71a1d871967a188c35a
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,9 +1,23 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title =
++      "Equilibrio Cinofilo | Educazione cinofila moderna e rispettosa"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Aiuto concreto per migliorare relazione, gestione quotidiana e benessere del cane con percorsi educativi etici e personalizzati a Torino e dintorni.",
++      )
++    }
++  }, [])
++
    return (
      <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink
-+              key={item.target}
-+              to={item.target}
-+              end={item.target === "/"}
-+            >
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+       <HeroSection
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..22c5b72197a4c0560fc899957fafb84c92781d10
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,20 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
  
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Servizi | Equilibrio Cinofilo"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 codex
-The build passed. I’m adding the required task note to `agent/AGENT_REPORT.md` now, keeping it limited to the navigation work and build result.
+The build passed. I’m updating `agent/AGENT_REPORT.md` with the task summary and build result to close the task cleanly.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -220,2 +220,13 @@
- 
-+Completed TASK `navigation-structure`.
-+- Centralized the spec navigation items and route definitions in `src/App.jsx`.
-+- Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
-+- Confirmed the rendered navigation targets remain valid for `/`, `/menu`, `/chi-siamo`, and `/contatti`.
+@@ -425 +425,12 @@
+ Launching Codex for TASK seo-basics.
 +
-+TASK navigation-structure executed by Codex.
++Completed TASK `seo-basics`.
++- Updated `index.html` with Italian language metadata, a production title, and a baseline meta description for the site.
++- Added route-specific `document.title` and `meta[name="description"]` updates in `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, and `src/pages/Contatti.jsx`.
++- Verified the required single `h1` already exists on each targeted page through the existing hero sections.
++
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
-+
- Completed TASK `cta-contatti-contatti-whatsapp`.
-apply_patch(auto_approved=true) exited 0 in 57ms:
+apply_patch(auto_approved=true) exited 0 in 82ms:
 Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+M agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index cd1a18d05c1ebac573b105e0cba656c0d4d1d9b8..a399d4cde207356aec70d31b67377e83be760fc6
+index 32261a93e5ab7d23723e5feae7004fc9d8af3c86..99cb8ae6bd7d379b3d7e24f1f6be4e5ebdb6c0b6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
- TASK section-chi-siamo-about-hero completed successfully.
- Build passed.
+@@ -423,3 +423,14 @@
+ Prepared TASK seo-basics (Add baseline SEO structure) for execution.
  
-+Completed TASK `navigation-structure`.
-+- Centralized the spec navigation items and route definitions in `src/App.jsx`.
-+- Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
-+- Confirmed the rendered navigation targets remain valid for `/`, `/menu`, `/chi-siamo`, and `/contatti`.
+ Launching Codex for TASK seo-basics.
 +
-+TASK navigation-structure executed by Codex.
++Completed TASK `seo-basics`.
++- Updated `index.html` with Italian language metadata, a production title, and a baseline meta description for the site.
++- Added route-specific `document.title` and `meta[name="description"]` updates in `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, and `src/pages/Contatti.jsx`.
++- Verified the required single `h1` already exists on each targeted page through the existing hero sections.
++
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
-+
- Completed TASK `cta-contatti-contatti-whatsapp`.
- - Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
- - Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
-diff --git a/src/App.jsx b/src/App.jsx
-index a9f59fd2ef30561bcf081f8a7703ea339ec77144..c221e780bf7b5758ba6f97966b3fcd0b3930b10a
---- a/src/App.jsx
-+++ b/src/App.jsx
-@@ -5,15 +5,28 @@
- import ChiSiamo from "./pages/ChiSiamo"
- import Contatti from "./pages/Contatti"
+diff --git a/index.html b/index.html
+index 7e9252c147dd3e4fd8c7cf8d78050760026d1c4e..229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-premium-modern-website-for-a-pr</title>
++    <meta
++      name="description"
++      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
++    />
++    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index 3ff403ad90d26a40a177802ae671f76410c9d806..86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,8 +1,21 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Contatti", target: "/contatti" },
-+]
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Equilibrio Cinofilo"
 +
-+const routes = [
-+  { path: "/", element: <Home /> },
-+  { path: "/menu", element: <Menu /> },
-+  { path: "/chi-siamo", element: <ChiSiamo /> },
-+  { path: "/contatti", element: <Contatti /> },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
++      )
++    }
++  }, [])
 +
- export default function App() {
    return (
-     <HashRouter>
--      <Layout>
-+      <Layout navigationItems={navigationItems}>
-         <Routes>
--          <Route path="/" element={<Home />} />
--          <Route path="/menu" element={<Menu />} />
--          <Route path="/chi-siamo" element={<ChiSiamo />} />
--          <Route path="/contatti" element={<Contatti />} />
-+          {routes.map((route) => (
-+            <Route key={route.path} path={route.path} element={route.element} />
-+          ))}
-         </Routes>
-       </Layout>
-     </HashRouter>
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index 0066ae9a27313bd0bec8ca9023f1c66c0516c0c1..5550c15a8943c6cd5619d56a9986e6c9ef338246
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,12 +1,19 @@
--export default function Layout({ children }) {
-+import { NavLink } from "react-router-dom"
+     <main>
+       <AboutHeroSection />
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 4c38d39de4d5056b9f2e4f2e87bded3400d14d7b..a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,3 +1,4 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+@@ -5,6 +6,18 @@
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Equilibrio Cinofilo"
 +
-+export default function Layout({ children, navigationItems = [] }) {
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef7f3fd2c3ecef39e511bec59aef9299e6fda364..44e8715cad6ffc6d8db1f71a1d871967a188c35a
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,9 +1,23 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title =
++      "Equilibrio Cinofilo | Educazione cinofila moderna e rispettosa"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Aiuto concreto per migliorare relazione, gestione quotidiana e benessere del cane con percorsi educativi etici e personalizzati a Torino e dintorni.",
++      )
++    }
++  }, [])
++
    return (
      <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink
-+              key={item.target}
-+              to={item.target}
-+              end={item.target === "/"}
-+            >
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+       <HeroSection
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..22c5b72197a4c0560fc899957fafb84c92781d10
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,20 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
  
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Servizi | Equilibrio Cinofilo"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index cd1a18d05c1ebac573b105e0cba656c0d4d1d9b8..a399d4cde207356aec70d31b67377e83be760fc6
+index 32261a93e5ab7d23723e5feae7004fc9d8af3c86..99cb8ae6bd7d379b3d7e24f1f6be4e5ebdb6c0b6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
- TASK section-chi-siamo-about-hero completed successfully.
- Build passed.
+@@ -423,3 +423,14 @@
+ Prepared TASK seo-basics (Add baseline SEO structure) for execution.
  
-+Completed TASK `navigation-structure`.
-+- Centralized the spec navigation items and route definitions in `src/App.jsx`.
-+- Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
-+- Confirmed the rendered navigation targets remain valid for `/`, `/menu`, `/chi-siamo`, and `/contatti`.
+ Launching Codex for TASK seo-basics.
 +
-+TASK navigation-structure executed by Codex.
++Completed TASK `seo-basics`.
++- Updated `index.html` with Italian language metadata, a production title, and a baseline meta description for the site.
++- Added route-specific `document.title` and `meta[name="description"]` updates in `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, and `src/pages/Contatti.jsx`.
++- Verified the required single `h1` already exists on each targeted page through the existing hero sections.
++
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
-+
- Completed TASK `cta-contatti-contatti-whatsapp`.
- - Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
- - Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
-diff --git a/src/App.jsx b/src/App.jsx
-index a9f59fd2ef30561bcf081f8a7703ea339ec77144..c221e780bf7b5758ba6f97966b3fcd0b3930b10a
---- a/src/App.jsx
-+++ b/src/App.jsx
-@@ -5,15 +5,28 @@
- import ChiSiamo from "./pages/ChiSiamo"
- import Contatti from "./pages/Contatti"
+diff --git a/index.html b/index.html
+index 7e9252c147dd3e4fd8c7cf8d78050760026d1c4e..229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-premium-modern-website-for-a-pr</title>
++    <meta
++      name="description"
++      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
++    />
++    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index 3ff403ad90d26a40a177802ae671f76410c9d806..86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,8 +1,21 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Contatti", target: "/contatti" },
-+]
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Equilibrio Cinofilo"
 +
-+const routes = [
-+  { path: "/", element: <Home /> },
-+  { path: "/menu", element: <Menu /> },
-+  { path: "/chi-siamo", element: <ChiSiamo /> },
-+  { path: "/contatti", element: <Contatti /> },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
++      )
++    }
++  }, [])
 +
- export default function App() {
    return (
-     <HashRouter>
--      <Layout>
-+      <Layout navigationItems={navigationItems}>
-         <Routes>
--          <Route path="/" element={<Home />} />
--          <Route path="/menu" element={<Menu />} />
--          <Route path="/chi-siamo" element={<ChiSiamo />} />
--          <Route path="/contatti" element={<Contatti />} />
-+          {routes.map((route) => (
-+            <Route key={route.path} path={route.path} element={route.element} />
-+          ))}
-         </Routes>
-       </Layout>
-     </HashRouter>
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index 0066ae9a27313bd0bec8ca9023f1c66c0516c0c1..5550c15a8943c6cd5619d56a9986e6c9ef338246
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,12 +1,19 @@
--export default function Layout({ children }) {
-+import { NavLink } from "react-router-dom"
+     <main>
+       <AboutHeroSection />
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 4c38d39de4d5056b9f2e4f2e87bded3400d14d7b..a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,3 +1,4 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+@@ -5,6 +6,18 @@
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Equilibrio Cinofilo"
 +
-+export default function Layout({ children, navigationItems = [] }) {
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef7f3fd2c3ecef39e511bec59aef9299e6fda364..44e8715cad6ffc6d8db1f71a1d871967a188c35a
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,9 +1,23 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title =
++      "Equilibrio Cinofilo | Educazione cinofila moderna e rispettosa"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Aiuto concreto per migliorare relazione, gestione quotidiana e benessere del cane con percorsi educativi etici e personalizzati a Torino e dintorni.",
++      )
++    }
++  }, [])
++
    return (
      <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink
-+              key={item.target}
-+              to={item.target}
-+              end={item.target === "/"}
-+            >
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+       <HeroSection
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..22c5b72197a4c0560fc899957fafb84c92781d10
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,20 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
  
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Servizi | Equilibrio Cinofilo"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 codex
-Modified files: [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.jsx), [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
+Modified files: `index.html`, `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, `src/pages/Contatti.jsx`, `agent/AGENT_REPORT.md`.
 
-Implemented the `navigation-structure` task by moving the spec navigation into `App` and rendering it through `Layout` with `NavLink` under `HashRouter`. The header now renders all required items from a single route-aligned source of truth: `/`, `/menu`, `/chi-siamo`, and `/contatti`, with the home link using `end` so active matching stays correct.
+Implemented baseline SEO structure by setting `lang="it"`, adding a site-level default `<title>` and `<meta name="description">` in `index.html`, and adding per-page `document.title` plus meta description updates in the four targeted route components. I also verified the required single meaningful `h1` already exists on each page via the existing hero sections.
 
 Build result: `npm run build` passed successfully with Vite production build completed.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index cd1a18d05c1ebac573b105e0cba656c0d4d1d9b8..a399d4cde207356aec70d31b67377e83be760fc6
+index 32261a93e5ab7d23723e5feae7004fc9d8af3c86..99cb8ae6bd7d379b3d7e24f1f6be4e5ebdb6c0b6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
- TASK section-chi-siamo-about-hero completed successfully.
- Build passed.
+@@ -423,3 +423,14 @@
+ Prepared TASK seo-basics (Add baseline SEO structure) for execution.
  
-+Completed TASK `navigation-structure`.
-+- Centralized the spec navigation items and route definitions in `src/App.jsx`.
-+- Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
-+- Confirmed the rendered navigation targets remain valid for `/`, `/menu`, `/chi-siamo`, and `/contatti`.
+ Launching Codex for TASK seo-basics.
 +
-+TASK navigation-structure executed by Codex.
++Completed TASK `seo-basics`.
++- Updated `index.html` with Italian language metadata, a production title, and a baseline meta description for the site.
++- Added route-specific `document.title` and `meta[name="description"]` updates in `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, and `src/pages/Contatti.jsx`.
++- Verified the required single `h1` already exists on each targeted page through the existing hero sections.
++
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
-+
- Completed TASK `cta-contatti-contatti-whatsapp`.
- - Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
- - Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
-diff --git a/src/App.jsx b/src/App.jsx
-index a9f59fd2ef30561bcf081f8a7703ea339ec77144..c221e780bf7b5758ba6f97966b3fcd0b3930b10a
---- a/src/App.jsx
-+++ b/src/App.jsx
-@@ -5,15 +5,28 @@
- import ChiSiamo from "./pages/ChiSiamo"
- import Contatti from "./pages/Contatti"
+diff --git a/index.html b/index.html
+index 7e9252c147dd3e4fd8c7cf8d78050760026d1c4e..229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-premium-modern-website-for-a-pr</title>
++    <meta
++      name="description"
++      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
++    />
++    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index 3ff403ad90d26a40a177802ae671f76410c9d806..86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,8 +1,21 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Contatti", target: "/contatti" },
-+]
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Equilibrio Cinofilo"
 +
-+const routes = [
-+  { path: "/", element: <Home /> },
-+  { path: "/menu", element: <Menu /> },
-+  { path: "/chi-siamo", element: <ChiSiamo /> },
-+  { path: "/contatti", element: <Contatti /> },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
++      )
++    }
++  }, [])
 +
- export default function App() {
    return (
-     <HashRouter>
--      <Layout>
-+      <Layout navigationItems={navigationItems}>
-         <Routes>
--          <Route path="/" element={<Home />} />
--          <Route path="/menu" element={<Menu />} />
--          <Route path="/chi-siamo" element={<ChiSiamo />} />
--          <Route path="/contatti" element={<Contatti />} />
-+          {routes.map((route) => (
-+            <Route key={route.path} path={route.path} element={route.element} />
-+          ))}
-         </Routes>
-       </Layout>
-     </HashRouter>
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index 0066ae9a27313bd0bec8ca9023f1c66c0516c0c1..5550c15a8943c6cd5619d56a9986e6c9ef338246
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,12 +1,19 @@
--export default function Layout({ children }) {
-+import { NavLink } from "react-router-dom"
+     <main>
+       <AboutHeroSection />
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 4c38d39de4d5056b9f2e4f2e87bded3400d14d7b..a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,3 +1,4 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+@@ -5,6 +6,18 @@
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Equilibrio Cinofilo"
 +
-+export default function Layout({ children, navigationItems = [] }) {
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef7f3fd2c3ecef39e511bec59aef9299e6fda364..44e8715cad6ffc6d8db1f71a1d871967a188c35a
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,9 +1,23 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title =
++      "Equilibrio Cinofilo | Educazione cinofila moderna e rispettosa"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Aiuto concreto per migliorare relazione, gestione quotidiana e benessere del cane con percorsi educativi etici e personalizzati a Torino e dintorni.",
++      )
++    }
++  }, [])
++
    return (
      <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink
-+              key={item.target}
-+              to={item.target}
-+              end={item.target === "/"}
-+            >
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+       <HeroSection
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..22c5b72197a4c0560fc899957fafb84c92781d10
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,20 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
  
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Servizi | Equilibrio Cinofilo"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 tokens used
-20.417
+17.801

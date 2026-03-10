@@ -1208,40 +1208,23 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-navigation-structure
+seo-basics
 
 ## Current task title
-Build navigation from spec
+Add baseline SEO structure
 
 ## Current task type
-navigation
+seo
 
 ## Current task target
 ```json
 {
-  "navigation": [
-    {
-      "label": "Home",
-      "type": "route",
-      "target": "/"
-    },
-    {
-      "label": "Menu",
-      "type": "route",
-      "target": "/menu"
-    },
-    {
-      "label": "Chi siamo",
-      "type": "route",
-      "target": "/chi-siamo"
-    },
-    {
-      "label": "Contatti",
-      "type": "route",
-      "target": "/contatti"
-    }
-  ],
-  "routingMode": "hash"
+  "pages": [
+    "home",
+    "menu",
+    "chi-siamo",
+    "contatti"
+  ]
 }
 ```
 
@@ -1250,26 +1233,18 @@ navigation
 - page-menu-shell
 - page-chi-siamo-shell
 - page-contatti-shell
-- section-home-hero
-- section-home-signature-preview
-- section-home-brand-story-preview
-- section-menu-menu-hero
-- section-menu-menu-categories
-- section-chi-siamo-about-hero
-- section-chi-siamo-story
-- section-chi-siamo-philosophy
-- section-contatti-contact-hero
-- section-contatti-contact-details
-- section-contatti-opening-hours
 
 ## Files allowed
-- src/App.jsx
-- src/layout/Layout.jsx
+- index.html
+- src/pages/Home.jsx
+- src/pages/Menu.jsx
+- src/pages/ChiSiamo.jsx
+- src/pages/Contatti.jsx
 
 ## Definition of done
-- all navigation items are rendered
-- all navigation links point to valid pages or sections
-- navigation is compatible with routing mode
+- title exists
+- meta description exists
+- one meaningful h1 per page exists
 
 ## Strict execution rules
 - Execute only this current task.
