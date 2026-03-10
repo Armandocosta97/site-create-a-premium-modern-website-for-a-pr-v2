@@ -88,3 +88,24 @@ Waiting for validation.
 
 TASK cta-home-home-primary-cta completed successfully.
 Build passed.
+Commit created for TASK cta-home-home-primary-cta.
+
+Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
+
+Launching Codex for TASK cta-home-home-contact-cta.
+
+Completed TASK `cta-home-home-contact-cta`.
+- Updated `src/pages/Home.jsx` to pass the required `home-contact-cta` into the home hero explicitly.
+- Confirmed the hero CTA is visible in the hero placement and points to the valid hash route `#/contatti`.
+
+TASK cta-home-home-contact-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-contact-cta completed successfully.
+Build passed.
+
+TASK cta-home-home-contact-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-contact-cta completed successfully.
+Build passed.

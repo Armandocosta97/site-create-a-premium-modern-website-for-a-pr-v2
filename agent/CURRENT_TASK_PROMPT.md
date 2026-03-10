@@ -1208,10 +1208,10 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-cta-home-home-primary-cta
+cta-home-home-contact-cta
 
 ## Current task title
-Add CTA home-primary-cta on home
+Add CTA home-contact-cta on home
 
 ## Current task type
 cta
@@ -1220,11 +1220,11 @@ cta
 ```json
 {
   "pageId": "home",
-  "ctaId": "home-primary-cta",
+  "ctaId": "home-contact-cta",
   "ctaKind": "internal",
   "destination": {
     "type": "route",
-    "value": "/menu"
+    "value": "/contatti"
   },
   "placement": "hero"
 }
@@ -1238,9 +1238,9 @@ cta
 - src/components
 
 ## Definition of done
-- CTA home-primary-cta exists on home
-- CTA home-primary-cta is visible in placement hero
-- CTA home-primary-cta points to a valid destination
+- CTA home-contact-cta exists on home
+- CTA home-contact-cta is visible in placement hero
+- CTA home-contact-cta points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.

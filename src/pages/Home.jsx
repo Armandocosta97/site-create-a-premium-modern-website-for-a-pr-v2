@@ -10,6 +10,10 @@ export default function Home() {
           href: "#/menu",
           label: "Prenota una consulenza",
         }}
+        secondaryCta={{
+          href: "#/contatti",
+          label: "Contattami",
+        }}
       />
 
       <SignaturePreviewSection />
