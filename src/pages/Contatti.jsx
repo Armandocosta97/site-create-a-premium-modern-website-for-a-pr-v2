@@ -1,15 +1,9 @@
+import ContactHeroSection from "../components/ContactHeroSection"
+
 export default function Contatti() {
   return (
     <main>
-      <section id="contact-hero">
-        <p>Contatti</p>
-        <h1>Parliamo del percorso piu adatto per te e per il tuo cane</h1>
-        <p>
-          Equilibrio Cinofilo offre un primo contatto chiaro e accogliente per
-          capire esigenze, obiettivi e modalita di lavoro piu adatte alla vostra
-          quotidianita.
-        </p>
-      </section>
+      <ContactHeroSection />
 
       <section id="contact-details">
         <h2>Riferimenti utili</h2>

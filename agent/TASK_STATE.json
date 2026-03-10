@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "section-contatti-contact-hero",
+  "currentTaskId": "section-contatti-contact-details",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "page-contatti-shell",
+  "lastCompletedTaskId": "section-contatti-contact-hero",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -17,6 +17,7 @@
     "section-chi-siamo-about-hero",
     "section-chi-siamo-story",
     "section-chi-siamo-philosophy",
-    "page-contatti-shell"
+    "page-contatti-shell",
+    "section-contatti-contact-hero"
   ]
 }

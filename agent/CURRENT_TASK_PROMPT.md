@@ -1208,32 +1208,35 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-page-contatti-shell
+section-contatti-contact-hero
 
 ## Current task title
-Create contatti page shell
+Create contact-hero section on contatti
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "contatti"
+  "pageId": "contatti",
+  "sectionId": "contact-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-contatti-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Contatti.jsx
+- src/components/ContactHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for contatti
-- contatti route is mounted if required
-- contatti page renders without crashing
+- section contact-hero exists on contatti
+- section contact-hero matches type hero
+- section contact-hero is rendered in page contatti
 
 ## Strict execution rules
 - Execute only this current task.
