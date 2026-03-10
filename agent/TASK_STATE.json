@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "section-contatti-opening-hours",
+  "currentTaskId": "cta-contatti-contatti-whatsapp",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "section-contatti-contact-details",
+  "lastCompletedTaskId": "section-contatti-opening-hours",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -19,6 +19,7 @@
     "section-chi-siamo-philosophy",
     "page-contatti-shell",
     "section-contatti-contact-hero",
-    "section-contatti-contact-details"
+    "section-contatti-contact-details",
+    "section-contatti-opening-hours"
   ]
 }

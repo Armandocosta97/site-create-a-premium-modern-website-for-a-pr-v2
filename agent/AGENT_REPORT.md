@@ -238,6 +238,9 @@ Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-sia
 Launching Codex for TASK section-chi-siamo-philosophy.
 
 Completed TASK `section-chi-siamo-philosophy`.
+- Created a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
+- Replaced the inline `opening-hours` placeholder in `src/pages/Contatti.jsx` with the new dedicated hours-block section component.
+- Added realistic availability windows and response-process copy aligned with the contact page tone while preserving the required `opening-hours` section id.
 - Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
 - Replaced the inline `contact-details` placeholder in `src/pages/Contatti.jsx` with the new `contact-block` section component.
 - Implemented phone, email, WhatsApp, and service-area contact details with responsive card layout and valid contact actions.
@@ -343,4 +346,15 @@ TASK section-contatti-contact-details executed by Codex.
 Waiting for validation.
 
 TASK section-contatti-contact-details completed successfully.
+Build passed.
+Commit created for TASK section-contatti-contact-details.
+
+Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-opening-hours.
+
+TASK section-contatti-opening-hours executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-opening-hours completed successfully.
 Build passed.
