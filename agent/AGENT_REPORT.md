@@ -238,6 +238,15 @@ Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-sia
 Launching Codex for TASK section-chi-siamo-philosophy.
 
 Completed TASK `section-chi-siamo-philosophy`.
+- Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
+- Replaced the inline `contact-details` placeholder in `src/pages/Contatti.jsx` with the new `contact-block` section component.
+- Implemented phone, email, WhatsApp, and service-area contact details with responsive card layout and valid contact actions.
+
+TASK section-contatti-contact-details executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-details completed successfully.
+Build passed.
 - Created a reusable `PhilosophySection` component in `src/components/PhilosophySection.jsx`.
 - Replaced the inline `philosophy` placeholder in `src/pages/ChiSiamo.jsx` with the new dedicated split-content section component.
 - Implemented responsive, brand-aligned Italian copy covering method, practical approach, and core principles while preserving the required `philosophy` section id.
@@ -312,4 +321,26 @@ TASK section-contatti-contact-hero executed by Codex.
 Waiting for validation.
 
 TASK section-contatti-contact-hero completed successfully.
+Build passed.
+Commit created for TASK section-contatti-contact-hero.
+
+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-details.
+
+Completed TASK `section-contatti-contact-details`.
+- Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
+- Replaced the inline `contact-details` placeholder in `src/pages/Contatti.jsx` with the new `contact-block` section component.
+- Implemented phone, email, WhatsApp, and service-area contact details with responsive card layout and valid contact actions.
+
+TASK section-contatti-contact-details executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-details completed successfully.
+Build passed.
+
+TASK section-contatti-contact-details executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-details completed successfully.
 Build passed.
