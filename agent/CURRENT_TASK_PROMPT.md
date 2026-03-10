@@ -1208,35 +1208,32 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-section-chi-siamo-philosophy
+page-contatti-shell
 
 ## Current task title
-Create philosophy section on chi-siamo
+Create contatti page shell
 
 ## Current task type
-section
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "chi-siamo",
-  "sectionId": "philosophy",
-  "sectionType": "split-content"
+  "pageId": "contatti"
 }
 ```
 
 ## Depends on
-- page-chi-siamo-shell
+- none
 
 ## Files allowed
-- src/pages/ChiSiamo.jsx
-- src/components/PhilosophySection.jsx
-- src/components
+- src/App.jsx
+- src/pages/Contatti.jsx
 
 ## Definition of done
-- section philosophy exists on chi-siamo
-- section philosophy matches type split-content
-- section philosophy is rendered in page chi-siamo
+- page shell exists for contatti
+- contatti route is mounted if required
+- contatti page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.

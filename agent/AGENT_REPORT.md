@@ -270,3 +270,20 @@ Waiting for validation.
 
 TASK section-chi-siamo-philosophy completed successfully.
 Build passed.
+Commit created for TASK section-chi-siamo-philosophy.
+
+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+
+Launching Codex for TASK page-contatti-shell.
+
+Completed TASK `page-contatti-shell`.
+- Replaced the placeholder content in `src/pages/Contatti.jsx` with a semantic page shell using the required `contact-hero`, `contact-details`, and `opening-hours` section ids.
+- Preserved the existing `/contatti` route in `src/App.jsx`, which was already mounted correctly under `HashRouter`.
+- Added stable, brand-aligned introductory copy so the page renders cleanly while leaving detailed contact content and CTAs to later tasks.
+Build passed.
+
+TASK page-contatti-shell executed by Codex.
+Waiting for validation.
+
+TASK page-contatti-shell completed successfully.
+Build passed.
