@@ -1208,20 +1208,25 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-section-contatti-opening-hours
+cta-contatti-contatti-whatsapp
 
 ## Current task title
-Create opening-hours section on contatti
+Add CTA contatti-whatsapp on contatti
 
 ## Current task type
-section
+cta
 
 ## Current task target
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "opening-hours",
-  "sectionType": "hours-block"
+  "ctaId": "contatti-whatsapp",
+  "ctaKind": "external",
+  "destination": {
+    "type": "whatsapp",
+    "value": "whatsapp"
+  },
+  "placement": "body"
 }
 ```
 
@@ -1230,13 +1235,12 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/OpeningHoursSection.jsx
 - src/components
 
 ## Definition of done
-- section opening-hours exists on contatti
-- section opening-hours matches type hours-block
-- section opening-hours is rendered in page contatti
+- CTA contatti-whatsapp exists on contatti
+- CTA contatti-whatsapp is visible in placement body
+- CTA contatti-whatsapp points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.

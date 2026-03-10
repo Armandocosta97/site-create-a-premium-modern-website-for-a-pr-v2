@@ -1,8 +1,11 @@
-Modified files: [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx), [OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
+Modified files:
+- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx)
+- [src/components/ContactWhatsAppCtaSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
 
-Implemented the `opening-hours` hours-block on the contact page by replacing the placeholder in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx) with a dedicated reusable component. [OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx) now renders the required `opening-hours` section with realistic weekday/saturday/sunday availability, response expectations, and operational notes consistent with the existing contact page design and copy tone.
+What was implemented: the `contatti-whatsapp` CTA now exists as a dedicated body callout on the contact page, rendered between the contact details and opening hours sections. It links to the valid WhatsApp destination `https://wa.me/39011000000` and opens externally with `target="_blank"` and `rel="noreferrer"`.
 
-Build result: `npm run build` passed successfully with Vite production build completed.
+Build result: `npm run build` passed successfully with a production Vite build.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +16,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9f0-8a87-7870-b3ec-a084dfacaa86
+session id: 019cd9f1-c457-76c3-a3f0-d26a892d7152
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1226,20 +1229,25 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-section-contatti-opening-hours
+cta-contatti-contatti-whatsapp
 
 ## Current task title
-Create opening-hours section on contatti
+Add CTA contatti-whatsapp on contatti
 
 ## Current task type
-section
+cta
 
 ## Current task target
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "opening-hours",
-  "sectionType": "hours-block"
+  "ctaId": "contatti-whatsapp",
+  "ctaKind": "external",
+  "destination": {
+    "type": "whatsapp",
+    "value": "whatsapp"
+  },
+  "placement": "body"
 }
 ```
 
@@ -1248,13 +1256,12 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/OpeningHoursSection.jsx
 - src/components
 
 ## Definition of done
-- section opening-hours exists on contatti
-- section opening-hours matches type hours-block
-- section opening-hours is rendered in page contatti
+- CTA contatti-whatsapp exists on contatti
+- CTA contatti-whatsapp is visible in placement body
+- CTA contatti-whatsapp points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1283,32 +1290,27 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing the `opening-hours` section for the `contatti` page and will first inspect the current page/component structure so the change stays within the allowed files and matches the existing design system.
+I’m executing the current task only: add the `contatti-whatsapp` body CTA on the contact page, then run a build check and update the agent report. First I’m reading the task source files and the current `Contatti` implementation to keep the change minimal.
 exec
-/bin/zsh -lc "sed -n '1,240p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,240p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "pwd && rg --files src agent | rg 'Contatti|OpeningHoursSection|AGENT_REPORT|components|pages'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg 'Contatti\\.jsx|AGENT_REPORT\\.md|CURRENT_TASK_PROMPT\\.md|TASK_STATE\\.json|TASK_GRAPH\\.json|site-spec\\.json|DEVELOPMENT_METHOD\\.md'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
 import ContactHeroSection from "../components/ContactHeroSection"
 import ContactDetailsSection from "../components/ContactDetailsSection"
+import OpeningHoursSection from "../components/OpeningHoursSection"
 
 export default function Contatti() {
   return (
     <main>
       <ContactHeroSection />
       <ContactDetailsSection />
-
-      <section id="opening-hours">
-        <h2>Disponibilita</h2>
-        <p>
-          Gli orari, le modalita di contatto e gli eventuali dettagli operativi
-          verranno sviluppati nei prossimi task dedicati ai contenuti della
-          pagina contatti.
-        </p>
-      </section>
+      <OpeningHoursSection />
     </main>
   )
 }
- succeeded in 52ms:
+ succeeded in 51ms:
+Total output lines: 220
+
 # AGENT REPORT
 
 Project created.
@@ -1327,32 +1329,21 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
-Commit created for TASK page-home-shell.
-
- succeeded in 51ms:
+ succeeded in 52ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr
+docs/DEVELOPMENT_METHOD.md
+agent/TASK_GRAPH.json
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
 agent/AGENT_REPORT.md
-src/pages/Home.jsx
-src/pages/ChiSiamo.jsx
 src/pages/Contatti.jsx
-src/pages/Menu.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/AboutHeroSection.jsx
-src/components/StorySection.jsx
-src/components/BrandStoryPreviewSection.jsx
-src/components/PhilosophySection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/ContactHeroSection.jsx
-src/components/MenuHeroSection.jsx
-src/components/HeroSection.jsx
-src/components/ContactDetailsSection.jsx
 codex
-I’ve confirmed the page still has a placeholder `opening-hours` block. Next I’m reading the adjacent contact components so the new section matches their spacing, typography, and tone instead of introducing a one-off pattern.
+The contact page shell is minimal, so I’m checking the existing contact components and button/link patterns before editing. That keeps the WhatsApp CTA consistent with the rest of the site and avoids touching unrelated layout.
 exec
 /bin/zsh -lc "sed -n '1,260p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/OpeningHoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
 /bin/zsh -lc "sed -n '1,260p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "rg -n \"maxWidth|background:|section id=|style=\\{\\{\" src/components src/pages | sed -n '1,220p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+/bin/zsh -lc 'rg -n "whatsapp|wa.me|api.whatsapp|Prenota|Richiedi|Contatt" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
 const contactCards = [
   {
     title: "Telefono",
@@ -1374,76 +1365,6 @@ const contactCards = [
     title: "WhatsApp",
     detail: "Messaggio diretto",
  succeeded in 51ms:
-const contactMethods = [
-  "Torino e dintorni",
-  "Primo confronto telefonico o via email",
-  "Consulenze in presenza e supporto online se utile",
-]
-
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-    backgroundColor: "#f4ede3",
-    color: "#2d302a",
-  },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(108deg, rgba(244, 237, 227, 0.97) 0%, rgba(244, 237, 227, 0.92) 36%, rgba(244, 237, 227, 0.62) 68%, rgba(244, 237, 227, 0.28) 100%), url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
- succeeded in 50ms:
-src/pages/Contatti.jsx:10:      <section id="opening-hours">
-src/components/AboutHeroSection.jsx:15:  background: {
-src/components/AboutHeroSection.jsx:36:    maxWidth: "40rem",
-src/components/AboutHeroSection.jsx:50:    maxWidth: "11ch",
-src/components/AboutHeroSection.jsx:58:    maxWidth: "38rem",
-src/components/StorySection.jsx:40:    maxWidth: "40rem",
-src/components/StorySection.jsx:55:    maxWidth: "11ch",
-src/components/StorySection.jsx:62:    maxWidth: "38rem",
-src/components/StorySection.jsx:71:    maxWidth: "34rem",
-src/components/StorySection.jsx:102:    <section id="story" aria-labelledby="story-title" style={styles.section}>
-src/components/ContactHeroSection.jsx:15:  background: {
-src/components/ContactHeroSection.jsx:36:    maxWidth: "40rem",
-src/components/ContactHeroSection.jsx:50:    maxWidth: "11ch",
-src/components/ContactHeroSection.jsx:58:    maxWidth: "37rem",
-src/components/MenuHeroSection.jsx:9:  background: {
-src/components/MenuHeroSection.jsx:36:    maxWidth: "11ch",
-src/components/MenuHeroSection.jsx:43:    maxWidth: "38rem",
-src/components/MenuHeroSection.jsx:95:    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-src/components/BrandStoryPreviewSection.jsx:41:    maxWidth: "12ch",
-src/components/BrandStoryPreviewSection.jsx:48:    maxWidth: "38rem",
-codex
-I have enough context. I’m replacing the inline placeholder with a dedicated `OpeningHoursSection` component and then wiring it into `Contatti` so the page renders a real `hours-block` section without touching unrelated routes or content.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
-@@ -2,2 +2,3 @@
- import ContactDetailsSection from "../components/ContactDetailsSection"
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
-@@ -8,11 +9,3 @@
-       <ContactDetailsSection />
--
--      <section id="opening-hours">
--        <h2>Disponibilita</h2>
--        <p>
--          Gli orari, le modalita di contatto e gli eventuali dettagli operativi
--          verranno sviluppati nei prossimi task dedicati ai contenuti della
--          pagina contatti.
--        </p>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -240,2 +240,5 @@
- Completed TASK `section-chi-siamo-philosophy`.
-+- Created a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` placeholder in `src/pages/Contatti.jsx` with the new dedicated hours-block section component.
-+- Added realistic availability windows and response-process copy aligned with the contact page tone while preserving the required `opening-hours` section id.
- - Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx
 const availabilityWindows = [
   {
     label: "Lunedi - Venerdi",
@@ -1464,26 +1385,70 @@ const availabilityWindows = [
 
 const processSteps = [
   "Risposta ai messaggi entro 24 ore lavorative.",
-  "Gli incontri vengono fissati in base alla zona, al contesto e al bisogno reale.",
-  "Per urgenze organizzative puoi indicarlo nel messaggio WhatsApp o nella email.",
+ succeeded in 51ms:
+const contactMethods = [
+  "Torino e dintorni",
+  "Primo confronto telefonico o via email",
+  "Consulenze in presenza e supporto online se utile",
 ]
 
 const styles = {
   section: {
-    padding: "clamp(4rem, 7vw, 6rem) 1.5rem 5rem",
-    backgroundColor: "#f6f0e6",
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
+    backgroundColor: "#f4ede3",
+    color: "#2d302a",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(108deg, rgba(244, 237, 227, 0.97) 0%, rgba(244, 237, 227, 0.92) 36%, rgba(244, 237, 227, 0.62) 68%, rgba(244, 237, 227, 0.28) 100%), url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+ succeeded in 52ms:
+src/pages/Home.jsx:12:          label: "Prenota una consulenza",
+src/pages/Home.jsx:16:          label: "Contattami",
+src/pages/Home.jsx:24:      <FloatingWhatsAppButton href="https://wa.me/39011000000" />
+src/components/FloatingWhatsAppButton.jsx:25:  href = "https://wa.me/39011000000",
+src/pages/Contatti.jsx:5:export default function Contatti() {
+src/components/ContactHeroSection.jsx:133:          <p style={styles.eyebrow}>Contatti</p>
+src/components/MenuHeroSection.jsx:114:            Richiedi informazioni
+src/components/HeroSection.jsx:87:  label: "Prenota una consulenza",
+src/components/HeroSection.jsx:92:  label: "Contattami",
+src/components/ContactDetailsSection.jsx:23:    href: "https://wa.me/39011000000",
+src/components/ContactDetailsSection.jsx:174:            Contatti semplici, chiari e adatti alla vostra situazione
+codex
+I found a WhatsApp action inside the contact cards, but to satisfy this task cleanly as a dedicated body CTA, I’m adding a standalone WhatsApp callout component on `Contatti`. That keeps the task explicit without redesigning the rest of the page.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
+@@ -2,2 +2,3 @@
+ import ContactDetailsSection from "../components/ContactDetailsSection"
++import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+@@ -9,2 +10,3 @@
+       <ContactDetailsSection />
++      <ContactWhatsAppCtaSection />
+       <OpeningHoursSection />
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx
+const styles = {
+  section: {
+    padding: "0 1.5rem 4rem",
+    backgroundColor: "#fcf8f1",
     color: "#2f312d",
   },
   container: {
     width: "min(100%, 72rem)",
     margin: "0 auto",
-    display: "grid",
-    gap: "2rem",
   },
-  intro: {
+  panel: {
     display: "grid",
     gap: "1rem",
-    maxWidth: "44rem",
+    padding: "1.75rem",
+    borderRadius: "1.75rem",
+    backgroundColor: "#e8efe2",
+    border: "1px solid rgba(47, 49, 45, 0.08)",
+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
   },
   eyebrow: {
     margin: 0,
@@ -1491,14 +1456,14 @@ const styles = {
     fontWeight: 700,
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "#7d695a",
+    color: "#5f6d55",
   },
   title: {
     margin: 0,
-    fontSize: "clamp(2rem, 5vw, 3rem)",
-    lineHeight: 1.05,
+    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
+    lineHeight: 1.1,
     color: "#23251f",
-    maxWidth: "13ch",
+    maxWidth: "16ch",
   },
   description: {
     margin: 0,
@@ -1507,217 +1472,472 @@ const styles = {
     color: "#4b5047",
     maxWidth: "42rem",
   },
-  layout: {
-    display: "grid",
-    gridTemplateColumns: "minmax(0, 1.15fr) minmax(280px, 0.85fr)",
-    gap: "1.25rem",
-    alignItems: "start",
-  },
-  scheduleCard: {
-    display: "grid",
-    gap: "1rem",
-    padding: "1.6rem",
-    borderRadius: "1.75rem",
-    backgroundColor: "#fffdf9",
-    border: "1px solid rgba(47, 49, 45, 0.08)",
-    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-  },
-  scheduleList: {
-    display: "grid",
-    gap: "0.9rem",
-  },
-  row: {
-    display: "grid",
-    gap: "0.35rem",
-    paddingBottom: "0.9rem",
-    borderBottom: "1px solid rgba(47, 49, 45, 0.08)",
-  },
-  rowLabel: {
-    margin: 0,
-    fontSize: "1rem",
-    fontWeight: 700,
-    color: "#23251f",
-  },
-  rowValue: {
-    margin: 0,
-    fontSize: "1.2rem",
-    lineHeight: 1.4,
-    color: "#5f6d55",
-  },
-  rowNote: {
-    margin: 0,
-    fontSize: "0.95rem",
-    lineHeight: 1.65,
-    color: "#53584f",
-  },
-  aside: {
-    display: "grid",
-    gap: "1rem",
-    padding: "1.6rem",
-    borderRadius: "1.75rem",
-    backgroundColor: "#e9dfd2",
-    color: "#383b35",
-    alignContent: "start",
-  },
-  asideLabel: {
-    margin: 0,
-    fontSize: "0.78rem",
-    fontWeight: 700,
-    letterSpacing: "0.14em",
-    textTransform: "uppercase",
-    color: "#7a6b5d",
-  },
-  asideTitle: {
-    margin: 0,
-    fontSize: "1.45rem",
-    lineHeight: 1.2,
-    color: "#23251f",
-  },
-  asideText: {
-    margin: 0,
-    lineHeight: 1.75,
-    color: "#4b5047",
-  },
-  list: {
-    margin: 0,
-    paddingLeft: "1.1rem",
-    display: "grid",
-    gap: "0.75rem",
-    color: "#4b5047",
-    lineHeight: 1.65,
+  action: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "fit-content",
+    minHeight: "3.25rem",
+    padding: "0.85rem 1.35rem",
+    borderRadius: "999px",
+    backgroundColor: "#6b7760",
+    color: "#f8f4ec",
+    textDecoration: "none",
+    fontWeight: 600,
   },
 }
 
-export default function OpeningHoursSection() {
+export default function ContactWhatsAppCtaSection() {
   return (
-    <section
-      id="opening-hours"
-      aria-labelledby="opening-hours-title"
-      style={styles.section}
-    >
+    <section style={styles.section} aria-label="Contatto WhatsApp">
       <div style={styles.container}>
-        <div style={styles.intro}>
-          <p style={styles.eyebrow}>Disponibilita</p>
-          <h2 id="opening-hours-title" style={styles.title}>
-            Orari chiari per organizzare il primo passo con calma
-          </h2>
+        <div style={styles.panel}>
+          <p style={styles.eyebrow}>WhatsApp</p>
+          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
           <p style={styles.description}>
-            Gli orari indicano le finestre in cui ricevo piu facilmente nuove
-            richieste e organizzo le consulenze. Se la tua situazione richiede
-            un confronto in una fascia diversa, possiamo valutarlo insieme in
-            base al contesto e all&apos;area di intervento.
+            Se preferisci un contatto immediato per disponibilita, zona di
+            intervento o prime informazioni pratiche, puoi inviare un messaggio
+            diretto e ricevere una risposta orientativa con chiarezza.
           </p>
-        </div>
-
-        <div style={styles.layout}>
-          <div style={styles.scheduleCard}>
-            <div style={styles.scheduleList}>
-              {availabilityWindows.map((slot, index) => (
-                <div
-                  key={slot.label}
-                  style={{
-                    ...styles.row,
-                    borderBottom:
-                      index === availabilityWindows.length - 1
-                        ? "none"
-                        : styles.row.borderBottom,
-                    paddingBottom:
-                      index === availabilityWindows.length - 1 ? 0 : "0.9rem",
-                  }}
-                >
-                  <p style={styles.rowLabel}>{slot.label}</p>
-                  <p style={styles.rowValue}>{slot.value}</p>
-                  <p style={styles.rowNote}>{slot.note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <aside style={styles.aside}>
-            <p style={styles.asideLabel}>Come funziona</p>
-            <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-            <p style={styles.asideText}>
-              Dopo il primo contatto definisco con te il formato piu adatto:
-              telefonata conoscitiva, incontro a domicilio o consulenza online
-              quando ha davvero senso per il lavoro da fare.
-            </p>
-            <ul style={styles.list}>
-              {processSteps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ul>
-          </aside>
+          <a
+            href="https://wa.me/39011000000"
+            target="_blank"
+            rel="noreferrer"
+            style={styles.action}
+          >
+            Scrivi su WhatsApp
+          </a>
         </div>
       </div>
     </section>
   )
 }
+apply_patch(auto_approved=true) exited 0 in 45ms:
+Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
+file update:
+diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
+--- /dev/null
++++ b/src/components/ContactWhatsAppCtaSection.jsx
+@@ -0,0 +1,81 @@
++const styles = {
++  section: {
++    padding: "0 1.5rem 4rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
++  },
++  container: {
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.75rem",
++    borderRadius: "1.75rem",
++    backgroundColor: "#e8efe2",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#5f6d55",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
++    lineHeight: 1.1,
++    color: "#23251f",
++    maxWidth: "16ch",
++  },
++  description: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#4b5047",
++    maxWidth: "42rem",
++  },
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3.25rem",
++    padding: "0.85rem 1.35rem",
++    borderRadius: "999px",
++    backgroundColor: "#6b7760",
++    color: "#f8f4ec",
++    textDecoration: "none",
++    fontWeight: 600,
++  },
++}
++
++export default function ContactWhatsAppCtaSection() {
++  return (
++    <section style={styles.section} aria-label="Contatto WhatsApp">
++      <div style={styles.container}>
++        <div style={styles.panel}>
++          <p style={styles.eyebrow}>WhatsApp</p>
++          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
++          <p style={styles.description}>
++            Se preferisci un contatto immediato per disponibilita, zona di
++            intervento o prime informazioni pratiche, puoi inviare un messaggio
++            diretto e ricevere una risposta orientativa con chiarezza.
++          </p>
++          <a
++            href="https://wa.me/39011000000"
++            target="_blank"
++            rel="noreferrer"
++            style={styles.action}
++          >
++            Scrivi su WhatsApp
++          </a>
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,5 +1,6 @@
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
++import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
+@@ -7,6 +8,7 @@
+     <main>
+       <ContactHeroSection />
+       <ContactDetailsSection />
++      <ContactWhatsAppCtaSection />
+       <OpeningHoursSection />
+     </main>
+   )
+
+file update:
+diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
+--- /dev/null
++++ b/src/components/ContactWhatsAppCtaSection.jsx
+@@ -0,0 +1,81 @@
++const styles = {
++  section: {
++    padding: "0 1.5rem 4rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
++  },
++  container: {
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.75rem",
++    borderRadius: "1.75rem",
++    backgroundColor: "#e8efe2",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#5f6d55",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
++    lineHeight: 1.1,
++    color: "#23251f",
++    maxWidth: "16ch",
++  },
++  description: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#4b5047",
++    maxWidth: "42rem",
++  },
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3.25rem",
++    padding: "0.85rem 1.35rem",
++    borderRadius: "999px",
++    backgroundColor: "#6b7760",
++    color: "#f8f4ec",
++    textDecoration: "none",
++    fontWeight: 600,
++  },
++}
++
++export default function ContactWhatsAppCtaSection() {
++  return (
++    <section style={styles.section} aria-label="Contatto WhatsApp">
++      <div style={styles.container}>
++        <div style={styles.panel}>
++          <p style={styles.eyebrow}>WhatsApp</p>
++          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
++          <p style={styles.description}>
++            Se preferisci un contatto immediato per disponibilita, zona di
++            intervento o prime informazioni pratiche, puoi inviare un messaggio
++            diretto e ricevere una risposta orientativa con chiarezza.
++          </p>
++          <a
++            href="https://wa.me/39011000000"
++            target="_blank"
++            rel="noreferrer"
++            style={styles.action}
++          >
++            Scrivi su WhatsApp
++          </a>
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,5 +1,6 @@
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
++import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
+@@ -7,6 +8,7 @@
+     <main>
+       <ContactHeroSection />
+       <ContactDetailsSection />
++      <ContactWhatsAppCtaSection />
+       <OpeningHoursSection />
+     </main>
+   )
+
+codex
+The CTA is now explicit in the contact page body with a direct `wa.me` destination. I’m running the project build next, then I’ll append the required task summary to the agent report.
+exec
+/bin/zsh -lc ls in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+AGENTS.md
+README.md
+agent
+brief
+dist
+docs
+eslint.config.js
+index.html
+node_modules
+package-lock.json
+package.json
+playwright.config.js
+public
+site-spec.json
+src
+tests
+vite.config.js
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 802ms:
+vite v7.3.1 building client environment for production...
+transforming...
+✓ 59 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.50 kB │ gzip:  0.32 kB
+dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
+dist/assets/index-C1GpqdvF.js   270.03 kB │ gzip: 82.05 kB
+✓ built in 572ms
+file update:
+diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
+--- /dev/null
++++ b/src/components/ContactWhatsAppCtaSection.jsx
+@@ -0,0 +1,81 @@
++const styles = {
++  section: {
++    padding: "0 1.5rem 4rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
++  },
++  container: {
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.75rem",
++    borderRadius: "1.75rem",
++    backgroundColor: "#e8efe2",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#5f6d55",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
++    lineHeight: 1.1,
++    color: "#23251f",
++    maxWidth: "16ch",
++  },
++  description: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#4b5047",
++    maxWidth: "42rem",
++  },
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3.25rem",
++    padding: "0.85rem 1.35rem",
++    borderRadius: "999px",
++    backgroundColor: "#6b7760",
++    color: "#f8f4ec",
++    textDecoration: "none",
++    fontWeight: 600,
++  },
++}
++
++export default function ContactWhatsAppCtaSection() {
++  return (
++    <section style={styles.section} aria-label="Contatto WhatsApp">
++      <div style={styles.container}>
++        <div style={styles.panel}>
++          <p style={styles.eyebrow}>WhatsApp</p>
++          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
++          <p style={styles.description}>
++            Se preferisci un contatto immediato per disponibilita, zona di
++            intervento o prime informazioni pratiche, puoi inviare un messaggio
++            diretto e ricevere una risposta orientativa con chiarezza.
++          </p>
++          <a
++            href="https://wa.me/39011000000"
++            target="_blank"
++            rel="noreferrer"
++            style={styles.action}
++          >
++            Scrivi su WhatsApp
++          </a>
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,5 +1,6 @@
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
++import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
+@@ -7,6 +8,7 @@
+     <main>
+       <ContactHeroSection />
+       <ContactDetailsSection />
++      <ContactWhatsAppCtaSection />
+       <OpeningHoursSection />
+     </main>
+   )
+
+codex
+The build passed. I’m making the required report update now, with only this task’s implementation summary and result.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+@@ -220,2 +220,12 @@
+ 
++Completed TASK `cta-contatti-contatti-whatsapp`.
++- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
++- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
++Waiting for validation.
++
++TASK cta-contatti-contatti-whatsapp completed successfully.
++Build passed.
+ Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 apply_patch(auto_approved=true) exited 0 in 57ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 2ca4a7c14de30ae69f743543872aeb69d19c9f69..65541ab8483cfd11dc000cea68a51ec7e46b7053
+index a522d9d12db45dc001cd025115d10806dd3161fc..142359d94cacde741ad61d3a3363ea834b704fb2
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -238,6 +238,9 @@
- Launching Codex for TASK section-chi-siamo-philosophy.
+@@ -218,6 +218,16 @@
+ TASK section-chi-siamo-about-hero completed successfully.
+ Build passed.
  
- Completed TASK `section-chi-siamo-philosophy`.
-+- Created a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` placeholder in `src/pages/Contatti.jsx` with the new dedicated hours-block section component.
-+- Added realistic availability windows and response-process copy aligned with the contact page tone while preserving the required `opening-hours` section id.
- - Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
- - Replaced the inline `contact-details` placeholder in `src/pages/Contatti.jsx` with the new `contact-block` section component.
- - Implemented phone, email, WhatsApp, and service-area contact details with responsive card layout and valid contact actions.
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
++Completed TASK `cta-contatti-contatti-whatsapp`.
++- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
++- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
++Waiting for validation.
++
++TASK cta-contatti-contatti-whatsapp completed successfully.
++Build passed.
+ Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-contact-hero.
+diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16bed3203e
+index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
 --- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,208 @@
-+const availabilityWindows = [
-+  {
-+    label: "Lunedi - Venerdi",
-+    value: "9:00 - 19:00",
-+    note: "Consulenze, sessioni individuali e risposte ai nuovi contatti.",
-+  },
-+  {
-+    label: "Sabato",
-+    value: "9:00 - 13:00",
-+    note: "Disponibilita dedicata a incontri programmati e uscite educative.",
-+  },
-+  {
-+    label: "Domenica",
-+    value: "Su richiesta",
-+    note: "Valutata solo per situazioni specifiche o necessita organizzative.",
-+  },
-+]
-+
-+const processSteps = [
-+  "Risposta ai messaggi entro 24 ore lavorative.",
-+  "Gli incontri vengono fissati in base alla zona, al contesto e al bisogno reale.",
-+  "Per urgenze organizzative puoi indicarlo nel messaggio WhatsApp o nella email.",
-+]
-+
++++ b/src/components/ContactWhatsAppCtaSection.jsx
+@@ -0,0 +1,81 @@
 +const styles = {
 +  section: {
-+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem 5rem",
-+    backgroundColor: "#f6f0e6",
++    padding: "0 1.5rem 4rem",
++    backgroundColor: "#fcf8f1",
 +    color: "#2f312d",
 +  },
 +  container: {
 +    width: "min(100%, 72rem)",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
-+  intro: {
++  panel: {
 +    display: "grid",
 +    gap: "1rem",
-+    maxWidth: "44rem",
++    padding: "1.75rem",
++    borderRadius: "1.75rem",
++    backgroundColor: "#e8efe2",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1725,14 +1945,14 @@ index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#7d695a",
++    color: "#5f6d55",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3rem)",
-+    lineHeight: 1.05,
++    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
++    lineHeight: 1.1,
 +    color: "#23251f",
-+    maxWidth: "13ch",
++    maxWidth: "16ch",
 +  },
 +  description: {
 +    margin: 0,
@@ -1741,240 +1961,112 @@ index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16
 +    color: "#4b5047",
 +    maxWidth: "42rem",
 +  },
-+  layout: {
-+    display: "grid",
-+    gridTemplateColumns: "minmax(0, 1.15fr) minmax(280px, 0.85fr)",
-+    gap: "1.25rem",
-+    alignItems: "start",
-+  },
-+  scheduleCard: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#fffdf9",
-+    border: "1px solid rgba(47, 49, 45, 0.08)",
-+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-+  },
-+  scheduleList: {
-+    display: "grid",
-+    gap: "0.9rem",
-+  },
-+  row: {
-+    display: "grid",
-+    gap: "0.35rem",
-+    paddingBottom: "0.9rem",
-+    borderBottom: "1px solid rgba(47, 49, 45, 0.08)",
-+  },
-+  rowLabel: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    fontWeight: 700,
-+    color: "#23251f",
-+  },
-+  rowValue: {
-+    margin: 0,
-+    fontSize: "1.2rem",
-+    lineHeight: 1.4,
-+    color: "#5f6d55",
-+  },
-+  rowNote: {
-+    margin: 0,
-+    fontSize: "0.95rem",
-+    lineHeight: 1.65,
-+    color: "#53584f",
-+  },
-+  aside: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#e9dfd2",
-+    color: "#383b35",
-+    alignContent: "start",
-+  },
-+  asideLabel: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#7a6b5d",
-+  },
-+  asideTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.2,
-+    color: "#23251f",
-+  },
-+  asideText: {
-+    margin: 0,
-+    lineHeight: 1.75,
-+    color: "#4b5047",
-+  },
-+  list: {
-+    margin: 0,
-+    paddingLeft: "1.1rem",
-+    display: "grid",
-+    gap: "0.75rem",
-+    color: "#4b5047",
-+    lineHeight: 1.65,
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3.25rem",
++    padding: "0.85rem 1.35rem",
++    borderRadius: "999px",
++    backgroundColor: "#6b7760",
++    color: "#f8f4ec",
++    textDecoration: "none",
++    fontWeight: 600,
 +  },
 +}
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCtaSection() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={styles.section}
-+    >
++    <section style={styles.section} aria-label="Contatto WhatsApp">
 +      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Disponibilita</p>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Orari chiari per organizzare il primo passo con calma
-+          </h2>
++        <div style={styles.panel}>
++          <p style={styles.eyebrow}>WhatsApp</p>
++          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
 +          <p style={styles.description}>
-+            Gli orari indicano le finestre in cui ricevo piu facilmente nuove
-+            richieste e organizzo le consulenze. Se la tua situazione richiede
-+            un confronto in una fascia diversa, possiamo valutarlo insieme in
-+            base al contesto e all&apos;area di intervento.
++            Se preferisci un contatto immediato per disponibilita, zona di
++            intervento o prime informazioni pratiche, puoi inviare un messaggio
++            diretto e ricevere una risposta orientativa con chiarezza.
 +          </p>
-+        </div>
-+
-+        <div style={styles.layout}>
-+          <div style={styles.scheduleCard}>
-+            <div style={styles.scheduleList}>
-+              {availabilityWindows.map((slot, index) => (
-+                <div
-+                  key={slot.label}
-+                  style={{
-+                    ...styles.row,
-+                    borderBottom:
-+                      index === availabilityWindows.length - 1
-+                        ? "none"
-+                        : styles.row.borderBottom,
-+                    paddingBottom:
-+                      index === availabilityWindows.length - 1 ? 0 : "0.9rem",
-+                  }}
-+                >
-+                  <p style={styles.rowLabel}>{slot.label}</p>
-+                  <p style={styles.rowValue}>{slot.value}</p>
-+                  <p style={styles.rowNote}>{slot.note}</p>
-+                </div>
-+              ))}
-+            </div>
-+          </div>
-+
-+          <aside style={styles.aside}>
-+            <p style={styles.asideLabel}>Come funziona</p>
-+            <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-+            <p style={styles.asideText}>
-+              Dopo il primo contatto definisco con te il formato piu adatto:
-+              telefonata conoscitiva, incontro a domicilio o consulenza online
-+              quando ha davvero senso per il lavoro da fare.
-+            </p>
-+            <ul style={styles.list}>
-+              {processSteps.map((step) => (
-+                <li key={step}>{step}</li>
-+              ))}
-+            </ul>
-+          </aside>
++          <a
++            href="https://wa.me/39011000000"
++            target="_blank"
++            rel="noreferrer"
++            style={styles.action}
++          >
++            Scrivi su WhatsApp
++          </a>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 8905da64f554cdac0901440e0d9a867f57ca4989..45f7ff857f0af04da85926b2097eb7e62469c4fe
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,20 +1,13 @@
+@@ -1,5 +1,6 @@
  import ContactHeroSection from "../components/ContactHeroSection"
  import ContactDetailsSection from "../components/ContactDetailsSection"
-+import OpeningHoursSection from "../components/OpeningHoursSection"
++import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
  
  export default function Contatti() {
-   return (
+@@ -7,6 +8,7 @@
      <main>
        <ContactHeroSection />
        <ContactDetailsSection />
--
--      <section id="opening-hours">
--        <h2>Disponibilita</h2>
--        <p>
--          Gli orari, le modalita di contatto e gli eventuali dettagli operativi
--          verranno sviluppati nei prossimi task dedicati ai contenuti della
--          pagina contatti.
--        </p>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCtaSection />
+       <OpeningHoursSection />
      </main>
    )
- }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 2ca4a7c14de30ae69f743543872aeb69d19c9f69..65541ab8483cfd11dc000cea68a51ec7e46b7053
+index a522d9d12db45dc001cd025115d10806dd3161fc..142359d94cacde741ad61d3a3363ea834b704fb2
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -238,6 +238,9 @@
- Launching Codex for TASK section-chi-siamo-philosophy.
+@@ -218,6 +218,16 @@
+ TASK section-chi-siamo-about-hero completed successfully.
+ Build passed.
  
- Completed TASK `section-chi-siamo-philosophy`.
-+- Created a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` placeholder in `src/pages/Contatti.jsx` with the new dedicated hours-block section component.
-+- Added realistic availability windows and response-process copy aligned with the contact page tone while preserving the required `opening-hours` section id.
- - Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
- - Replaced the inline `contact-details` placeholder in `src/pages/Contatti.jsx` with the new `contact-block` section component.
- - Implemented phone, email, WhatsApp, and service-area contact details with responsive card layout and valid contact actions.
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
++Completed TASK `cta-contatti-contatti-whatsapp`.
++- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
++- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
++Waiting for validation.
++
++TASK cta-contatti-contatti-whatsapp completed successfully.
++Build passed.
+ Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-contact-hero.
+diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16bed3203e
+index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
 --- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,208 @@
-+const availabilityWindows = [
-+  {
-+    label: "Lunedi - Venerdi",
-+    value: "9:00 - 19:00",
-+    note: "Consulenze, sessioni individuali e risposte ai nuovi contatti.",
-+  },
-+  {
-+    label: "Sabato",
-+    value: "9:00 - 13:00",
-+    note: "Disponibilita dedicata a incontri programmati e uscite educative.",
-+  },
-+  {
-+    label: "Domenica",
-+    value: "Su richiesta",
-+    note: "Valutata solo per situazioni specifiche o necessita organizzative.",
-+  },
-+]
-+
-+const processSteps = [
-+  "Risposta ai messaggi entro 24 ore lavorative.",
-+  "Gli incontri vengono fissati in base alla zona, al contesto e al bisogno reale.",
-+  "Per urgenze organizzative puoi indicarlo nel messaggio WhatsApp o nella email.",
-+]
-+
++++ b/src/components/ContactWhatsAppCtaSection.jsx
+@@ -0,0 +1,81 @@
 +const styles = {
 +  section: {
-+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem 5rem",
-+    backgroundColor: "#f6f0e6",
++    padding: "0 1.5rem 4rem",
++    backgroundColor: "#fcf8f1",
 +    color: "#2f312d",
 +  },
 +  container: {
 +    width: "min(100%, 72rem)",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
-+  intro: {
++  panel: {
 +    display: "grid",
 +    gap: "1rem",
-+    maxWidth: "44rem",
++    padding: "1.75rem",
++    borderRadius: "1.75rem",
++    backgroundColor: "#e8efe2",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1982,14 +2074,14 @@ index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#7d695a",
++    color: "#5f6d55",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3rem)",
-+    lineHeight: 1.05,
++    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
++    lineHeight: 1.1,
 +    color: "#23251f",
-+    maxWidth: "13ch",
++    maxWidth: "16ch",
 +  },
 +  description: {
 +    margin: 0,
@@ -1998,257 +2090,121 @@ index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16
 +    color: "#4b5047",
 +    maxWidth: "42rem",
 +  },
-+  layout: {
-+    display: "grid",
-+    gridTemplateColumns: "minmax(0, 1.15fr) minmax(280px, 0.85fr)",
-+    gap: "1.25rem",
-+    alignItems: "start",
-+  },
-+  scheduleCard: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#fffdf9",
-+    border: "1px solid rgba(47, 49, 45, 0.08)",
-+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-+  },
-+  scheduleList: {
-+    display: "grid",
-+    gap: "0.9rem",
-+  },
-+  row: {
-+    display: "grid",
-+    gap: "0.35rem",
-+    paddingBottom: "0.9rem",
-+    borderBottom: "1px solid rgba(47, 49, 45, 0.08)",
-+  },
-+  rowLabel: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    fontWeight: 700,
-+    color: "#23251f",
-+  },
-+  rowValue: {
-+    margin: 0,
-+    fontSize: "1.2rem",
-+    lineHeight: 1.4,
-+    color: "#5f6d55",
-+  },
-+  rowNote: {
-+    margin: 0,
-+    fontSize: "0.95rem",
-+    lineHeight: 1.65,
-+    color: "#53584f",
-+  },
-+  aside: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#e9dfd2",
-+    color: "#383b35",
-+    alignContent: "start",
-+  },
-+  asideLabel: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#7a6b5d",
-+  },
-+  asideTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.2,
-+    color: "#23251f",
-+  },
-+  asideText: {
-+    margin: 0,
-+    lineHeight: 1.75,
-+    color: "#4b5047",
-+  },
-+  list: {
-+    margin: 0,
-+    paddingLeft: "1.1rem",
-+    display: "grid",
-+    gap: "0.75rem",
-+    color: "#4b5047",
-+    lineHeight: 1.65,
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3.25rem",
++    padding: "0.85rem 1.35rem",
++    borderRadius: "999px",
++    backgroundColor: "#6b7760",
++    color: "#f8f4ec",
++    textDecoration: "none",
++    fontWeight: 600,
 +  },
 +}
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCtaSection() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={styles.section}
-+    >
++    <section style={styles.section} aria-label="Contatto WhatsApp">
 +      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Disponibilita</p>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Orari chiari per organizzare il primo passo con calma
-+          </h2>
++        <div style={styles.panel}>
++          <p style={styles.eyebrow}>WhatsApp</p>
++          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
 +          <p style={styles.description}>
-+            Gli orari indicano le finestre in cui ricevo piu facilmente nuove
-+            richieste e organizzo le consulenze. Se la tua situazione richiede
-+            un confronto in una fascia diversa, possiamo valutarlo insieme in
-+            base al contesto e all&apos;area di intervento.
++            Se preferisci un contatto immediato per disponibilita, zona di
++            intervento o prime informazioni pratiche, puoi inviare un messaggio
++            diretto e ricevere una risposta orientativa con chiarezza.
 +          </p>
-+        </div>
-+
-+        <div style={styles.layout}>
-+          <div style={styles.scheduleCard}>
-+            <div style={styles.scheduleList}>
-+              {availabilityWindows.map((slot, index) => (
-+                <div
-+                  key={slot.label}
-+                  style={{
-+                    ...styles.row,
-+                    borderBottom:
-+                      index === availabilityWindows.length - 1
-+                        ? "none"
-+                        : styles.row.borderBottom,
-+                    paddingBottom:
-+                      index === availabilityWindows.length - 1 ? 0 : "0.9rem",
-+                  }}
-+                >
-+                  <p style={styles.rowLabel}>{slot.label}</p>
-+                  <p style={styles.rowValue}>{slot.value}</p>
-+                  <p style={styles.rowNote}>{slot.note}</p>
-+                </div>
-+              ))}
-+            </div>
-+          </div>
-+
-+          <aside style={styles.aside}>
-+            <p style={styles.asideLabel}>Come funziona</p>
-+            <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-+            <p style={styles.asideText}>
-+              Dopo il primo contatto definisco con te il formato piu adatto:
-+              telefonata conoscitiva, incontro a domicilio o consulenza online
-+              quando ha davvero senso per il lavoro da fare.
-+            </p>
-+            <ul style={styles.list}>
-+              {processSteps.map((step) => (
-+                <li key={step}>{step}</li>
-+              ))}
-+            </ul>
-+          </aside>
++          <a
++            href="https://wa.me/39011000000"
++            target="_blank"
++            rel="noreferrer"
++            style={styles.action}
++          >
++            Scrivi su WhatsApp
++          </a>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 8905da64f554cdac0901440e0d9a867f57ca4989..45f7ff857f0af04da85926b2097eb7e62469c4fe
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,20 +1,13 @@
+@@ -1,5 +1,6 @@
  import ContactHeroSection from "../components/ContactHeroSection"
  import ContactDetailsSection from "../components/ContactDetailsSection"
-+import OpeningHoursSection from "../components/OpeningHoursSection"
++import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
  
  export default function Contatti() {
-   return (
+@@ -7,6 +8,7 @@
      <main>
        <ContactHeroSection />
        <ContactDetailsSection />
--
--      <section id="opening-hours">
--        <h2>Disponibilita</h2>
--        <p>
--          Gli orari, le modalita di contatto e gli eventuali dettagli operativi
--          verranno sviluppati nei prossimi task dedicati ai contenuti della
--          pagina contatti.
--        </p>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCtaSection />
+       <OpeningHoursSection />
      </main>
    )
- }
 
 codex
-The section is in place. I’m running the build now to catch any integration errors from the new component and confirm the contact page still compiles cleanly.
-exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 838ms:
+Modified files:
+- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx)
+- [src/components/ContactWhatsAppCtaSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
 
-> site-create-a-premium-modern-website-for-a-pr@0.0.0 build
-> vite build
+What was implemented: the `contatti-whatsapp` CTA now exists as a dedicated body callout on the contact page, rendered between the contact details and opening hours sections. It links to the valid WhatsApp destination `https://wa.me/39011000000` and opens externally with `target="_blank"` and `rel="noreferrer"`.
 
-vite v7.3.1 building client environment for production...
-transforming...
-✓ 58 modules transformed.
-rendering chunks...
-computing gzip size...
-dist/index.html                   0.50 kB │ gzip:  0.31 kB
-dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-DnbZai5B.js   268.45 kB │ gzip: 81.83 kB
-✓ built in 575ms
+Build result: `npm run build` passed successfully with a production Vite build.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 2ca4a7c14de30ae69f743543872aeb69d19c9f69..65541ab8483cfd11dc000cea68a51ec7e46b7053
+index a522d9d12db45dc001cd025115d10806dd3161fc..142359d94cacde741ad61d3a3363ea834b704fb2
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -238,6 +238,9 @@
- Launching Codex for TASK section-chi-siamo-philosophy.
+@@ -218,6 +218,16 @@
+ TASK section-chi-siamo-about-hero completed successfully.
+ Build passed.
  
- Completed TASK `section-chi-siamo-philosophy`.
-+- Created a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` placeholder in `src/pages/Contatti.jsx` with the new dedicated hours-block section component.
-+- Added realistic availability windows and response-process copy aligned with the contact page tone while preserving the required `opening-hours` section id.
- - Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
- - Replaced the inline `contact-details` placeholder in `src/pages/Contatti.jsx` with the new `contact-block` section component.
- - Implemented phone, email, WhatsApp, and service-area contact details with responsive card layout and valid contact actions.
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
++Completed TASK `cta-contatti-contatti-whatsapp`.
++- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
++- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
++Waiting for validation.
++
++TASK cta-contatti-contatti-whatsapp completed successfully.
++Build passed.
+ Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-contact-hero.
+diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16bed3203e
+index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
 --- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,208 @@
-+const availabilityWindows = [
-+  {
-+    label: "Lunedi - Venerdi",
-+    value: "9:00 - 19:00",
-+    note: "Consulenze, sessioni individuali e risposte ai nuovi contatti.",
-+  },
-+  {
-+    label: "Sabato",
-+    value: "9:00 - 13:00",
-+    note: "Disponibilita dedicata a incontri programmati e uscite educative.",
-+  },
-+  {
-+    label: "Domenica",
-+    value: "Su richiesta",
-+    note: "Valutata solo per situazioni specifiche o necessita organizzative.",
-+  },
-+]
-+
-+const processSteps = [
-+  "Risposta ai messaggi entro 24 ore lavorative.",
-+  "Gli incontri vengono fissati in base alla zona, al contesto e al bisogno reale.",
-+  "Per urgenze organizzative puoi indicarlo nel messaggio WhatsApp o nella email.",
-+]
-+
++++ b/src/components/ContactWhatsAppCtaSection.jsx
+@@ -0,0 +1,81 @@
 +const styles = {
 +  section: {
-+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem 5rem",
-+    backgroundColor: "#f6f0e6",
++    padding: "0 1.5rem 4rem",
++    backgroundColor: "#fcf8f1",
 +    color: "#2f312d",
 +  },
 +  container: {
 +    width: "min(100%, 72rem)",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
-+  intro: {
++  panel: {
 +    display: "grid",
 +    gap: "1rem",
-+    maxWidth: "44rem",
++    padding: "1.75rem",
++    borderRadius: "1.75rem",
++    backgroundColor: "#e8efe2",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2256,14 +2212,14 @@ index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#7d695a",
++    color: "#5f6d55",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3rem)",
-+    lineHeight: 1.05,
++    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
++    lineHeight: 1.1,
 +    color: "#23251f",
-+    maxWidth: "13ch",
++    maxWidth: "16ch",
 +  },
 +  description: {
 +    margin: 0,
@@ -2272,441 +2228,65 @@ index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16
 +    color: "#4b5047",
 +    maxWidth: "42rem",
 +  },
-+  layout: {
-+    display: "grid",
-+    gridTemplateColumns: "minmax(0, 1.15fr) minmax(280px, 0.85fr)",
-+    gap: "1.25rem",
-+    alignItems: "start",
-+  },
-+  scheduleCard: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#fffdf9",
-+    border: "1px solid rgba(47, 49, 45, 0.08)",
-+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-+  },
-+  scheduleList: {
-+    display: "grid",
-+    gap: "0.9rem",
-+  },
-+  row: {
-+    display: "grid",
-+    gap: "0.35rem",
-+    paddingBottom: "0.9rem",
-+    borderBottom: "1px solid rgba(47, 49, 45, 0.08)",
-+  },
-+  rowLabel: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    fontWeight: 700,
-+    color: "#23251f",
-+  },
-+  rowValue: {
-+    margin: 0,
-+    fontSize: "1.2rem",
-+    lineHeight: 1.4,
-+    color: "#5f6d55",
-+  },
-+  rowNote: {
-+    margin: 0,
-+    fontSize: "0.95rem",
-+    lineHeight: 1.65,
-+    color: "#53584f",
-+  },
-+  aside: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#e9dfd2",
-+    color: "#383b35",
-+    alignContent: "start",
-+  },
-+  asideLabel: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#7a6b5d",
-+  },
-+  asideTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.2,
-+    color: "#23251f",
-+  },
-+  asideText: {
-+    margin: 0,
-+    lineHeight: 1.75,
-+    color: "#4b5047",
-+  },
-+  list: {
-+    margin: 0,
-+    paddingLeft: "1.1rem",
-+    display: "grid",
-+    gap: "0.75rem",
-+    color: "#4b5047",
-+    lineHeight: 1.65,
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3.25rem",
++    padding: "0.85rem 1.35rem",
++    borderRadius: "999px",
++    backgroundColor: "#6b7760",
++    color: "#f8f4ec",
++    textDecoration: "none",
++    fontWeight: 600,
 +  },
 +}
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCtaSection() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={styles.section}
-+    >
++    <section style={styles.section} aria-label="Contatto WhatsApp">
 +      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Disponibilita</p>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Orari chiari per organizzare il primo passo con calma
-+          </h2>
++        <div style={styles.panel}>
++          <p style={styles.eyebrow}>WhatsApp</p>
++          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
 +          <p style={styles.description}>
-+            Gli orari indicano le finestre in cui ricevo piu facilmente nuove
-+            richieste e organizzo le consulenze. Se la tua situazione richiede
-+            un confronto in una fascia diversa, possiamo valutarlo insieme in
-+            base al contesto e all&apos;area di intervento.
++            Se preferisci un contatto immediato per disponibilita, zona di
++            intervento o prime informazioni pratiche, puoi inviare un messaggio
++            diretto e ricevere una risposta orientativa con chiarezza.
 +          </p>
-+        </div>
-+
-+        <div style={styles.layout}>
-+          <div style={styles.scheduleCard}>
-+            <div style={styles.scheduleList}>
-+              {availabilityWindows.map((slot, index) => (
-+                <div
-+                  key={slot.label}
-+                  style={{
-+                    ...styles.row,
-+                    borderBottom:
-+                      index === availabilityWindows.length - 1
-+                        ? "none"
-+                        : styles.row.borderBottom,
-+                    paddingBottom:
-+                      index === availabilityWindows.length - 1 ? 0 : "0.9rem",
-+                  }}
-+                >
-+                  <p style={styles.rowLabel}>{slot.label}</p>
-+                  <p style={styles.rowValue}>{slot.value}</p>
-+                  <p style={styles.rowNote}>{slot.note}</p>
-+                </div>
-+              ))}
-+            </div>
-+          </div>
-+
-+          <aside style={styles.aside}>
-+            <p style={styles.asideLabel}>Come funziona</p>
-+            <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-+            <p style={styles.asideText}>
-+              Dopo il primo contatto definisco con te il formato piu adatto:
-+              telefonata conoscitiva, incontro a domicilio o consulenza online
-+              quando ha davvero senso per il lavoro da fare.
-+            </p>
-+            <ul style={styles.list}>
-+              {processSteps.map((step) => (
-+                <li key={step}>{step}</li>
-+              ))}
-+            </ul>
-+          </aside>
++          <a
++            href="https://wa.me/39011000000"
++            target="_blank"
++            rel="noreferrer"
++            style={styles.action}
++          >
++            Scrivi su WhatsApp
++          </a>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 8905da64f554cdac0901440e0d9a867f57ca4989..45f7ff857f0af04da85926b2097eb7e62469c4fe
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,20 +1,13 @@
+@@ -1,5 +1,6 @@
  import ContactHeroSection from "../components/ContactHeroSection"
  import ContactDetailsSection from "../components/ContactDetailsSection"
-+import OpeningHoursSection from "../components/OpeningHoursSection"
++import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
  
  export default function Contatti() {
-   return (
+@@ -7,6 +8,7 @@
      <main>
        <ContactHeroSection />
        <ContactDetailsSection />
--
--      <section id="opening-hours">
--        <h2>Disponibilita</h2>
--        <p>
--          Gli orari, le modalita di contatto e gli eventuali dettagli operativi
--          verranno sviluppati nei prossimi task dedicati ai contenuti della
--          pagina contatti.
--        </p>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCtaSection />
+       <OpeningHoursSection />
      </main>
    )
- }
-
-codex
-Modified files: [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx), [OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
-
-Implemented the `opening-hours` hours-block on the contact page by replacing the placeholder in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx) with a dedicated reusable component. [OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx) now renders the required `opening-hours` section with realistic weekday/saturday/sunday availability, response expectations, and operational notes consistent with the existing contact page design and copy tone.
-
-Build result: `npm run build` passed successfully with Vite production build completed.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 2ca4a7c14de30ae69f743543872aeb69d19c9f69..65541ab8483cfd11dc000cea68a51ec7e46b7053
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -238,6 +238,9 @@
- Launching Codex for TASK section-chi-siamo-philosophy.
- 
- Completed TASK `section-chi-siamo-philosophy`.
-+- Created a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` placeholder in `src/pages/Contatti.jsx` with the new dedicated hours-block section component.
-+- Added realistic availability windows and response-process copy aligned with the contact page tone while preserving the required `opening-hours` section id.
- - Created a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
- - Replaced the inline `contact-details` placeholder in `src/pages/Contatti.jsx` with the new `contact-block` section component.
- - Implemented phone, email, WhatsApp, and service-area contact details with responsive card layout and valid contact actions.
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..975da4d13bf9d65b6a438271744eaa16bed3203e
---- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,208 @@
-+const availabilityWindows = [
-+  {
-+    label: "Lunedi - Venerdi",
-+    value: "9:00 - 19:00",
-+    note: "Consulenze, sessioni individuali e risposte ai nuovi contatti.",
-+  },
-+  {
-+    label: "Sabato",
-+    value: "9:00 - 13:00",
-+    note: "Disponibilita dedicata a incontri programmati e uscite educative.",
-+  },
-+  {
-+    label: "Domenica",
-+    value: "Su richiesta",
-+    note: "Valutata solo per situazioni specifiche o necessita organizzative.",
-+  },
-+]
-+
-+const processSteps = [
-+  "Risposta ai messaggi entro 24 ore lavorative.",
-+  "Gli incontri vengono fissati in base alla zona, al contesto e al bisogno reale.",
-+  "Per urgenze organizzative puoi indicarlo nel messaggio WhatsApp o nella email.",
-+]
-+
-+const styles = {
-+  section: {
-+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem 5rem",
-+    backgroundColor: "#f6f0e6",
-+    color: "#2f312d",
-+  },
-+  container: {
-+    width: "min(100%, 72rem)",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
-+  },
-+  intro: {
-+    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "44rem",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.16em",
-+    textTransform: "uppercase",
-+    color: "#7d695a",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3rem)",
-+    lineHeight: 1.05,
-+    color: "#23251f",
-+    maxWidth: "13ch",
-+  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.75,
-+    color: "#4b5047",
-+    maxWidth: "42rem",
-+  },
-+  layout: {
-+    display: "grid",
-+    gridTemplateColumns: "minmax(0, 1.15fr) minmax(280px, 0.85fr)",
-+    gap: "1.25rem",
-+    alignItems: "start",
-+  },
-+  scheduleCard: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#fffdf9",
-+    border: "1px solid rgba(47, 49, 45, 0.08)",
-+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-+  },
-+  scheduleList: {
-+    display: "grid",
-+    gap: "0.9rem",
-+  },
-+  row: {
-+    display: "grid",
-+    gap: "0.35rem",
-+    paddingBottom: "0.9rem",
-+    borderBottom: "1px solid rgba(47, 49, 45, 0.08)",
-+  },
-+  rowLabel: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    fontWeight: 700,
-+    color: "#23251f",
-+  },
-+  rowValue: {
-+    margin: 0,
-+    fontSize: "1.2rem",
-+    lineHeight: 1.4,
-+    color: "#5f6d55",
-+  },
-+  rowNote: {
-+    margin: 0,
-+    fontSize: "0.95rem",
-+    lineHeight: 1.65,
-+    color: "#53584f",
-+  },
-+  aside: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.6rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#e9dfd2",
-+    color: "#383b35",
-+    alignContent: "start",
-+  },
-+  asideLabel: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#7a6b5d",
-+  },
-+  asideTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.2,
-+    color: "#23251f",
-+  },
-+  asideText: {
-+    margin: 0,
-+    lineHeight: 1.75,
-+    color: "#4b5047",
-+  },
-+  list: {
-+    margin: 0,
-+    paddingLeft: "1.1rem",
-+    display: "grid",
-+    gap: "0.75rem",
-+    color: "#4b5047",
-+    lineHeight: 1.65,
-+  },
-+}
-+
-+export default function OpeningHoursSection() {
-+  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={styles.section}
-+    >
-+      <div style={styles.container}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Disponibilita</p>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Orari chiari per organizzare il primo passo con calma
-+          </h2>
-+          <p style={styles.description}>
-+            Gli orari indicano le finestre in cui ricevo piu facilmente nuove
-+            richieste e organizzo le consulenze. Se la tua situazione richiede
-+            un confronto in una fascia diversa, possiamo valutarlo insieme in
-+            base al contesto e all&apos;area di intervento.
-+          </p>
-+        </div>
-+
-+        <div style={styles.layout}>
-+          <div style={styles.scheduleCard}>
-+            <div style={styles.scheduleList}>
-+              {availabilityWindows.map((slot, index) => (
-+                <div
-+                  key={slot.label}
-+                  style={{
-+                    ...styles.row,
-+                    borderBottom:
-+                      index === availabilityWindows.length - 1
-+                        ? "none"
-+                        : styles.row.borderBottom,
-+                    paddingBottom:
-+                      index === availabilityWindows.length - 1 ? 0 : "0.9rem",
-+                  }}
-+                >
-+                  <p style={styles.rowLabel}>{slot.label}</p>
-+                  <p style={styles.rowValue}>{slot.value}</p>
-+                  <p style={styles.rowNote}>{slot.note}</p>
-+                </div>
-+              ))}
-+            </div>
-+          </div>
-+
-+          <aside style={styles.aside}>
-+            <p style={styles.asideLabel}>Come funziona</p>
-+            <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-+            <p style={styles.asideText}>
-+              Dopo il primo contatto definisco con te il formato piu adatto:
-+              telefonata conoscitiva, incontro a domicilio o consulenza online
-+              quando ha davvero senso per il lavoro da fare.
-+            </p>
-+            <ul style={styles.list}>
-+              {processSteps.map((step) => (
-+                <li key={step}>{step}</li>
-+              ))}
-+            </ul>
-+          </aside>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 8905da64f554cdac0901440e0d9a867f57ca4989..45f7ff857f0af04da85926b2097eb7e62469c4fe
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,20 +1,13 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-   return (
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
--
--      <section id="opening-hours">
--        <h2>Disponibilita</h2>
--        <p>
--          Gli orari, le modalita di contatto e gli eventuali dettagli operativi
--          verranno sviluppati nei prossimi task dedicati ai contenuti della
--          pagina contatti.
--        </p>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-   )
- }
 
 tokens used
-53.743
+21.645

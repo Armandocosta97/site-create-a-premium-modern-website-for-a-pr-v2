@@ -218,6 +218,16 @@ Waiting for validation.
 TASK section-chi-siamo-about-hero completed successfully.
 Build passed.
 
+Completed TASK `cta-contatti-contatti-whatsapp`.
+- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
+- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
+- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
+
+TASK cta-contatti-contatti-whatsapp executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-whatsapp completed successfully.
+Build passed.
 Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 
 Launching Codex for TASK section-contatti-contact-hero.
@@ -357,4 +367,15 @@ TASK section-contatti-opening-hours executed by Codex.
 Waiting for validation.
 
 TASK section-contatti-opening-hours completed successfully.
+Build passed.
+Commit created for TASK section-contatti-opening-hours.
+
+Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-whatsapp.
+
+TASK cta-contatti-contatti-whatsapp executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-whatsapp completed successfully.
 Build passed.
