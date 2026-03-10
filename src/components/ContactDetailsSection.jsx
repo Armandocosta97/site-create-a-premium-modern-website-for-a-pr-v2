@@ -164,11 +164,12 @@ export default function ContactDetailsSection() {
   return (
     <section
       id="contact-details"
+      className="content-section"
       aria-labelledby="contact-details-title"
       style={styles.section}
     >
-      <div style={styles.container}>
-        <div style={styles.intro}>
+      <div className="content-section__container" style={styles.container}>
+        <div className="section-intro" style={styles.intro}>
           <p style={styles.eyebrow}>Riferimenti</p>
           <h2 id="contact-details-title" style={styles.title}>
             Contatti semplici, chiari e adatti alla vostra situazione
@@ -181,16 +182,17 @@ export default function ContactDetailsSection() {
           </p>
         </div>
 
-        <div style={styles.layout}>
-          <div style={styles.cardsGrid}>
+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
             {contactCards.map((card) => (
-              <article key={card.title} style={styles.card}>
+              <article className="cards-grid__item" key={card.title} style={styles.card}>
                 <h3 style={styles.cardTitle}>{card.title}</h3>
                 <p style={styles.cardDetail}>{card.detail}</p>
                 <p style={styles.cardDescription}>{card.description}</p>
                 <a
                   href={card.href}
                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
+                  className="button-link button-link--primary"
                   style={styles.cardAction}
                   target={card.title === "WhatsApp" ? "_blank" : undefined}
                 >
@@ -200,7 +202,7 @@ export default function ContactDetailsSection() {
             ))}
           </div>
 
-          <aside style={styles.aside}>
+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
             <p style={styles.asideLabel}>Area e disponibilita</p>
             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
             <p style={styles.asideText}>

@@ -56,9 +56,9 @@ const styles = {
 
 export default function ContactPhoneCtaSection() {
   return (
-    <section style={styles.section} aria-label="Contatto telefonico">
-      <div style={styles.container}>
-        <div style={styles.panel}>
+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
+      <div className="content-section__container" style={styles.container}>
+        <div className="surface-panel cta-panel" style={styles.panel}>
           <p style={styles.eyebrow}>Telefono</p>
           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
           <p style={styles.description}>
@@ -66,7 +66,7 @@ export default function ContactPhoneCtaSection() {
             contattarmi telefonicamente per un primo confronto pratico su bisogni,
             priorita e disponibilita.
           </p>
-          <a href="tel:+39011000000" style={styles.action}>
+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
             Chiama +39 011 000000
           </a>
         </div>

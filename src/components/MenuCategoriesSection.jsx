@@ -137,11 +137,12 @@ export default function MenuCategoriesSection() {
   return (
     <section
       id="menu-categories"
+      className="content-section"
       aria-labelledby="menu-categories-title"
       style={styles.section}
     >
-      <div style={styles.container}>
-        <div style={styles.intro}>
+      <div className="content-section__container" style={styles.container}>
+        <div className="section-intro" style={styles.intro}>
           <p style={styles.eyebrow}>Aree di lavoro</p>
           <h2 id="menu-categories-title" style={styles.title}>
             Una panoramica chiara delle principali tipologie di supporto
@@ -153,9 +154,9 @@ export default function MenuCategoriesSection() {
           </p>
         </div>
 
-        <div style={styles.grid}>
+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
           {categories.map((category, index) => (
-            <article key={category.title} style={styles.card}>
+            <article className="cards-grid__item" key={category.title} style={styles.card}>
               <span aria-hidden="true" style={styles.index}>
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -170,7 +171,7 @@ export default function MenuCategoriesSection() {
           ))}
         </div>
 
-        <p style={styles.note}>
+        <p className="content-note" style={styles.note}>
           Se non sai quale area sia piu adatta alla tua situazione, il primo
           confronto serve proprio a fare chiarezza e a definire un percorso
           realistico, rispettoso e sostenibile nel tempo.

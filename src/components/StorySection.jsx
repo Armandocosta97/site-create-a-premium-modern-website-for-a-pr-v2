@@ -99,10 +99,10 @@ const styles = {
 
 export default function StorySection() {
   return (
-    <section id="story" aria-labelledby="story-title" style={styles.section}>
-      <div style={styles.container}>
-        <div style={styles.layout}>
-          <div style={styles.intro}>
+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
+      <div className="content-section__container" style={styles.container}>
+        <div className="split-layout split-layout--story" style={styles.layout}>
+          <div className="section-intro" style={styles.intro}>
             <p style={styles.eyebrow}>La mia storia</p>
             <h2 id="story-title" style={styles.title}>
               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
@@ -123,9 +123,9 @@ export default function StorySection() {
             </p>
           </div>
 
-          <div style={styles.cards}>
+          <div className="stacked-cards" style={styles.cards}>
             {storyPillars.map((pillar) => (
-              <article key={pillar.title} style={styles.card}>
+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
                 <p style={styles.cardDescription}>{pillar.description}</p>
               </article>

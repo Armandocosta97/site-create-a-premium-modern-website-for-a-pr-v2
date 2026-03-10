@@ -28,6 +28,7 @@ export default function FloatingWhatsAppButton({
   return (
     <a
       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
+      className="floating-whatsapp-button"
       href={href}
       rel="noreferrer"
       style={styles.link}

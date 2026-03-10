@@ -218,6 +218,17 @@ Waiting for validation.
 TASK section-chi-siamo-about-hero completed successfully.
 Build passed.
 
+Completed TASK `responsive-polish`.
+- Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
+- Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
+- Removed nested page-level `main` wrappers from the route pages and kept the existing routing/navigation structure intact while improving spacing coherence and preventing horizontal overflow.
+
+TASK responsive-polish executed by Codex.
+Waiting for validation.
+
+TASK responsive-polish completed successfully.
+Build passed.
+
 Completed TASK `navigation-structure`.
 - Centralized the spec navigation items and route definitions in `src/App.jsx`.
 - Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
@@ -439,4 +450,15 @@ TASK seo-basics executed by Codex.
 Waiting for validation.
 
 TASK seo-basics completed successfully.
+Build passed.
+Commit created for TASK seo-basics.
+
+Prepared TASK responsive-polish (Refine responsive layout and spacing) for execution.
+
+Launching Codex for TASK responsive-polish.
+
+TASK responsive-polish executed by Codex.
+Waiting for validation.
+
+TASK responsive-polish completed successfully.
 Build passed.

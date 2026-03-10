@@ -16,9 +16,9 @@ export default function Menu() {
   }, [])
 
   return (
-    <main>
+    <div className="page-shell page-shell--menu">
       <MenuHeroSection />
       <MenuCategoriesSection />
-    </main>
+    </div>
   )
 }

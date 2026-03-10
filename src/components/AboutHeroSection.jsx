@@ -112,12 +112,13 @@ export default function AboutHeroSection() {
   return (
     <section
       id="about-hero"
+      className="hero-section hero-section--inner"
       aria-labelledby="about-hero-title"
       style={styles.section}
     >
       <div aria-hidden="true" style={styles.background} />
 
-      <div style={styles.container}>
+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
         <div style={styles.content}>
           <p style={styles.eyebrow}>Chi sono</p>
 
@@ -138,14 +139,14 @@ export default function AboutHeroSection() {
             difficolta di tutti i giorni in occasioni di crescita concreta.
           </p>
 
-          <ul style={styles.meta}>
-            <li style={styles.metaItem}>Torino e dintorni</li>
-            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
           </ul>
         </div>
 
-        <aside style={styles.panel}>
+        <aside className="surface-panel" style={styles.panel}>
           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
           <ul style={styles.list}>

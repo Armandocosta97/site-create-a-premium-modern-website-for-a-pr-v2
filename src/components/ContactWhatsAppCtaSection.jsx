@@ -56,9 +56,9 @@ const styles = {
 
 export default function ContactWhatsAppCtaSection() {
   return (
-    <section style={styles.section} aria-label="Contatto WhatsApp">
-      <div style={styles.container}>
-        <div style={styles.panel}>
+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
+      <div className="content-section__container" style={styles.container}>
+        <div className="surface-panel cta-panel" style={styles.panel}>
           <p style={styles.eyebrow}>WhatsApp</p>
           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
           <p style={styles.description}>
@@ -70,6 +70,7 @@ export default function ContactWhatsAppCtaSection() {
             href="https://wa.me/39011000000"
             target="_blank"
             rel="noreferrer"
+            className="button-link button-link--primary"
             style={styles.action}
           >
             Scrivi su WhatsApp

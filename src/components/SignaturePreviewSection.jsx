@@ -110,9 +110,9 @@ const styles = {
 
 export default function SignaturePreviewSection() {
   return (
-    <section id="signature-preview" style={styles.section}>
-      <div style={styles.container}>
-        <div style={styles.intro}>
+    <section id="signature-preview" className="content-section" style={styles.section}>
+      <div className="content-section__container" style={styles.container}>
+        <div className="section-intro" style={styles.intro}>
           <p style={styles.eyebrow}>Come lavoro</p>
           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
           <p style={styles.description}>
@@ -121,9 +121,9 @@ export default function SignaturePreviewSection() {
           </p>
         </div>
 
-        <div style={styles.grid}>
+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
           {previewCards.map((card, index) => (
-            <article key={card.title} style={styles.card}>
+            <article className="cards-grid__item" key={card.title} style={styles.card}>
               <span aria-hidden="true" style={styles.cardIndex}>
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -133,7 +133,7 @@ export default function SignaturePreviewSection() {
           ))}
         </div>
 
-        <a href="#/menu" style={styles.action}>
+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
           Scopri i percorsi
         </a>
       </div>

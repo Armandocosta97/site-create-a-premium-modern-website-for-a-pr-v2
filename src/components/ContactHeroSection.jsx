@@ -123,12 +123,13 @@ export default function ContactHeroSection() {
   return (
     <section
       id="contact-hero"
+      className="hero-section hero-section--inner"
       aria-labelledby="contact-hero-title"
       style={styles.section}
     >
       <div aria-hidden="true" style={styles.background} />
 
-      <div style={styles.container}>
+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
         <div style={styles.content}>
           <p style={styles.eyebrow}>Contatti</p>
 
@@ -149,11 +150,12 @@ export default function ContactHeroSection() {
             essere davvero utile per la vostra realta.
           </p>
 
-          <div style={styles.actions}>
-            <a href="tel:+39011000000" style={styles.primaryLink}>
+          <div className="hero-section__actions" style={styles.actions}>
+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
               Chiama ora
             </a>
             <a
+              className="button-link button-link--secondary"
               href="mailto:ciao@equilibriocinofilo.it"
               style={styles.secondaryLink}
             >
@@ -162,7 +164,7 @@ export default function ContactHeroSection() {
           </div>
         </div>
 
-        <aside style={styles.panel}>
+        <aside className="surface-panel" style={styles.panel}>
           <p style={styles.panelLabel}>Come posso aiutarti</p>
           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
           <ul style={styles.list}>

@@ -108,10 +108,10 @@ const styles = {
 
 export default function PhilosophySection() {
   return (
-    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
-      <div style={styles.container}>
-        <div style={styles.layout}>
-          <div style={styles.content}>
+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
+      <div className="content-section__container" style={styles.container}>
+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
+          <div className="section-intro" style={styles.content}>
             <p style={styles.eyebrow}>Filosofia e metodo</p>
             <h2 id="philosophy-title" style={styles.title}>
               Un approccio rispettoso, leggibile e concreto
@@ -136,9 +136,9 @@ export default function PhilosophySection() {
             </div>
           </div>
 
-          <div style={styles.cards}>
+          <div className="stacked-cards" style={styles.cards}>
             {principles.map((principle) => (
-              <article key={principle.title} style={styles.card}>
+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
                 <h3 style={styles.cardTitle}>{principle.title}</h3>
                 <p style={styles.cardDescription}>{principle.description}</p>
               </article>

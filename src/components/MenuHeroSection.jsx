@@ -92,10 +92,10 @@ const styles = {
 
 export default function MenuHeroSection() {
   return (
-    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
       <div aria-hidden="true" style={styles.background} />
 
-      <div style={styles.container}>
+      <div className="hero-section__container" style={styles.container}>
         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
 
         <h1 id="menu-title" style={styles.title}>
@@ -109,19 +109,19 @@ export default function MenuHeroSection() {
           senza scorciatoie o promesse irrealistiche.
         </p>
 
-        <div style={styles.actions}>
-          <a href="#/contatti" style={styles.primaryLink}>
+        <div className="hero-section__actions" style={styles.actions}>
+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
             Richiedi informazioni
           </a>
-          <a href="#/chi-siamo" style={styles.secondaryLink}>
+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
             Scopri l&apos;approccio
           </a>
         </div>
 
-        <ul style={styles.highlights}>
-          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
         </ul>
       </div>
     </section>

@@ -146,11 +146,12 @@ export default function OpeningHoursSection() {
   return (
     <section
       id="opening-hours"
+      className="content-section"
       aria-labelledby="opening-hours-title"
       style={styles.section}
     >
-      <div style={styles.container}>
-        <div style={styles.intro}>
+      <div className="content-section__container" style={styles.container}>
+        <div className="section-intro" style={styles.intro}>
           <p style={styles.eyebrow}>Disponibilita</p>
           <h2 id="opening-hours-title" style={styles.title}>
             Orari chiari per organizzare il primo passo con calma
@@ -163,8 +164,8 @@ export default function OpeningHoursSection() {
           </p>
         </div>
 
-        <div style={styles.layout}>
-          <div style={styles.scheduleCard}>
+        <div className="split-layout split-layout--hours" style={styles.layout}>
+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
             <div style={styles.scheduleList}>
               {availabilityWindows.map((slot, index) => (
                 <div
@@ -187,7 +188,7 @@ export default function OpeningHoursSection() {
             </div>
           </div>
 
-          <aside style={styles.aside}>
+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
             <p style={styles.asideLabel}>Come funziona</p>
             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
             <p style={styles.asideText}>

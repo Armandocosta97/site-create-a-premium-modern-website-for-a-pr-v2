@@ -85,9 +85,10 @@ const styles = {
 
 export default function BrandStoryPreviewSection() {
   return (
-    <section id="brand-story-preview" style={styles.section}>
-      <div style={styles.container}>
+    <section id="brand-story-preview" className="content-section" style={styles.section}>
+      <div className="content-section__container" style={styles.container}>
         <div
+          className="split-layout split-layout--preview"
           style={{
             ...styles.contentGrid,
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -110,12 +111,12 @@ export default function BrandStoryPreviewSection() {
               stabili nella vita quotidiana.
             </p>
 
-            <a href="#/chi-siamo" style={styles.action}>
+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
               Conosci il mio approccio
             </a>
           </div>
 
-          <aside style={styles.panel}>
+          <aside className="surface-panel" style={styles.panel}>
             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
             <ul style={styles.list}>
               {storyHighlights.map((highlight) => (

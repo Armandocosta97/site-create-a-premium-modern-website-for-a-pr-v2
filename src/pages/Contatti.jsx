@@ -19,12 +19,12 @@ export default function Contatti() {
   }, [])
 
   return (
-    <main>
+    <div className="page-shell page-shell--contact">
       <ContactHeroSection />
       <ContactDetailsSection />
       <ContactPhoneCtaSection />
       <ContactWhatsAppCtaSection />
       <OpeningHoursSection />
-    </main>
+    </div>
   )
 }

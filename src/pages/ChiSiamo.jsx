@@ -17,12 +17,12 @@ export default function ChiSiamo() {
   }, [])
 
   return (
-    <main>
+    <div className="page-shell page-shell--about">
       <AboutHeroSection />
 
       <StorySection />
 
       <PhilosophySection />
-    </main>
+    </div>
   )
 }

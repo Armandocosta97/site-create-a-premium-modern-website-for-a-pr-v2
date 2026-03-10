@@ -97,10 +97,10 @@ export default function HeroSection({
   secondaryCta = defaultSecondaryCta,
 }) {
   return (
-    <section id="hero" style={styles.section}>
+    <section id="hero" className="hero-section" style={styles.section}>
       <div aria-hidden="true" style={styles.background} />
 
-      <div style={styles.container}>
+      <div className="hero-section__container" style={styles.container}>
         <p style={styles.eyebrow}>
           Educazione cinofila moderna, pratica e rispettosa
         </p>
@@ -114,16 +114,16 @@ export default function HeroSection({
           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
         </p>
 
-        <div style={styles.actions}>
-          <a href={primaryCta.href} style={styles.primaryLink}>
+        <div className="hero-section__actions" style={styles.actions}>
+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
             {primaryCta.label}
           </a>
-          <a href={secondaryCta.href} style={styles.secondaryLink}>
+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
             {secondaryCta.label}
           </a>
         </div>
 
-        <div style={styles.detailRow}>
+        <div className="hero-section__details" style={styles.detailRow}>
           <span>Torino e dintorni</span>
           <span>Sessioni individuali e consulenze online</span>
         </div>
