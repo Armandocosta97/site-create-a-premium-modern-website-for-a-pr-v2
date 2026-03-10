@@ -5,7 +5,12 @@ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <HeroSection
+        primaryCta={{
+          href: "#/menu",
+          label: "Prenota una consulenza",
+        }}
+      />
 
       <SignaturePreviewSection />
 

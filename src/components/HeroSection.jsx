@@ -82,7 +82,20 @@ const styles = {
   },
 }
 
-export default function HeroSection() {
+const defaultPrimaryCta = {
+  href: "#/menu",
+  label: "Prenota una consulenza",
+}
+
+const defaultSecondaryCta = {
+  href: "#/contatti",
+  label: "Contattami",
+}
+
+export default function HeroSection({
+  primaryCta = defaultPrimaryCta,
+  secondaryCta = defaultSecondaryCta,
+}) {
   return (
     <section id="hero" style={styles.section}>
       <div aria-hidden="true" style={styles.background} />
@@ -102,11 +115,11 @@ export default function HeroSection() {
         </p>
 
         <div style={styles.actions}>
-          <a href="#/menu" style={styles.primaryLink}>
-            Prenota una consulenza
+          <a href={primaryCta.href} style={styles.primaryLink}>
+            {primaryCta.label}
           </a>
-          <a href="#/contatti" style={styles.secondaryLink}>
-            Contattami
+          <a href={secondaryCta.href} style={styles.secondaryLink}>
+            {secondaryCta.label}
           </a>
         </div>
 
