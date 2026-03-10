@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "page-menu-shell",
+  "currentTaskId": "section-menu-menu-hero",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "cta-home-home-whatsapp",
+  "lastCompletedTaskId": "page-menu-shell",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -9,6 +9,7 @@
     "section-home-brand-story-preview",
     "cta-home-home-primary-cta",
     "cta-home-home-contact-cta",
-    "cta-home-home-whatsapp"
+    "cta-home-home-whatsapp",
+    "page-menu-shell"
   ]
 }

@@ -1208,41 +1208,32 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-cta-home-home-whatsapp
+page-menu-shell
 
 ## Current task title
-Add CTA home-whatsapp on home
+Create menu page shell
 
 ## Current task type
-cta
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "home",
-  "ctaId": "home-whatsapp",
-  "ctaKind": "external",
-  "destination": {
-    "type": "whatsapp",
-    "value": "whatsapp"
-  },
-  "placement": "floating"
+  "pageId": "menu"
 }
 ```
 
 ## Depends on
-- page-home-shell
+- none
 
 ## Files allowed
-- src/pages/Home.jsx
-- src/components
 - src/App.jsx
-- src/layout/Layout.jsx
+- src/pages/Menu.jsx
 
 ## Definition of done
-- CTA home-whatsapp exists on home
-- CTA home-whatsapp is visible in placement floating
-- CTA home-whatsapp points to a valid destination
+- page shell exists for menu
+- menu route is mounted if required
+- menu page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.
