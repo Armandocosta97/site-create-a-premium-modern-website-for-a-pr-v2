@@ -110,11 +110,18 @@ const styles = {
 
 export default function SignaturePreviewSection() {
   return (
-    <section id="signature-preview" className="content-section" style={styles.section}>
+    <section
+      id="signature-preview"
+      className="content-section"
+      aria-labelledby="signature-preview-title"
+      style={styles.section}
+    >
       <div className="content-section__container" style={styles.container}>
         <div className="section-intro" style={styles.intro}>
           <p style={styles.eyebrow}>Come lavoro</p>
-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+          <h2 id="signature-preview-title" style={styles.title}>
+            Un approccio chiaro, rispettoso e concreto
+          </h2>
           <p style={styles.description}>
             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
             relazione, sul contesto reale e su obiettivi utili nella quotidianita.

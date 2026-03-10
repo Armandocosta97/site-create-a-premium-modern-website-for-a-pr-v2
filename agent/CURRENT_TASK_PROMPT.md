@@ -1208,53 +1208,42 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-responsive-polish
+validation-prep
 
 ## Current task title
-Refine responsive layout and spacing
+Prepare site for final validation
 
 ## Current task type
-responsive
+validation-prep
 
 ## Current task target
 ```json
 {
-  "breakpoints": [
-    360,
-    768,
-    1024,
-    1440
+  "checks": [
+    "semantic-structure",
+    "navigation-integrity",
+    "cta-integrity",
+    "images-not-broken",
+    "responsive-layout",
+    "placeholder-content-absent"
   ]
 }
 ```
 
 ## Depends on
 - navigation-structure
-- section-home-hero
-- section-home-signature-preview
-- section-home-brand-story-preview
-- section-menu-menu-hero
-- section-menu-menu-categories
-- section-chi-siamo-about-hero
-- section-chi-siamo-story
-- section-chi-siamo-philosophy
-- section-contatti-contact-hero
-- section-contatti-contact-details
-- section-contatti-opening-hours
+- responsive-polish
+- seo-basics
 
 ## Files allowed
-- src/App.css
-- src/index.css
-- src/components
-- src/pages/Home.jsx
-- src/pages/Menu.jsx
-- src/pages/ChiSiamo.jsx
-- src/pages/Contatti.jsx
+- src
+- index.html
 
 ## Definition of done
-- layout works across required breakpoints
-- no horizontal overflow
-- spacing and hierarchy are coherent
+- required semantic structure exists
+- required CTA structure exists
+- required sections exist
+- site is ready for final validation
 
 ## Strict execution rules
 - Execute only this current task.

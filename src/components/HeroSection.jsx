@@ -97,7 +97,12 @@ export default function HeroSection({
   secondaryCta = defaultSecondaryCta,
 }) {
   return (
-    <section id="hero" className="hero-section" style={styles.section}>
+    <section
+      id="hero"
+      className="hero-section"
+      aria-labelledby="home-hero-title"
+      style={styles.section}
+    >
       <div aria-hidden="true" style={styles.background} />
 
       <div className="hero-section__container" style={styles.container}>
@@ -105,7 +110,7 @@ export default function HeroSection({
           Educazione cinofila moderna, pratica e rispettosa
         </p>
 
-        <h1 style={styles.title}>
+        <h1 id="home-hero-title" style={styles.title}>
           Aiuto concreto per costruire una relazione piu serena con il tuo cane
         </h1>
 

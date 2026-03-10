@@ -218,6 +218,16 @@ Waiting for validation.
 TASK section-chi-siamo-about-hero completed successfully.
 Build passed.
 
+Completed TASK `validation-prep`.
+- Strengthened the shared shell in `src/layout/Layout.jsx` with a semantic header, skip link, brand block, footer navigation, and real contact details so validation can verify structure and destination integrity.
+- Added missing section labelling in `src/components/HeroSection.jsx`, `src/components/SignaturePreviewSection.jsx`, and `src/components/BrandStoryPreviewSection.jsx` to make the required sections easier to validate semantically.
+- Removed the broken default favicon reference from `index.html` and updated `src/App.css` so the header, footer, navigation, CTAs, and fixed WhatsApp button remain stable across the required responsive breakpoints.
+
+TASK validation-prep executed by Codex.
+Waiting for validation.
+
+TASK validation-prep completed successfully.
+Build passed.
 Completed TASK `responsive-polish`.
 - Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
 - Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
@@ -461,4 +471,15 @@ TASK responsive-polish executed by Codex.
 Waiting for validation.
 
 TASK responsive-polish completed successfully.
+Build passed.
+Commit created for TASK responsive-polish.
+
+Prepared TASK validation-prep (Prepare site for final validation) for execution.
+
+Launching Codex for TASK validation-prep.
+
+TASK validation-prep executed by Codex.
+Waiting for validation.
+
+TASK validation-prep completed successfully.
 Build passed.

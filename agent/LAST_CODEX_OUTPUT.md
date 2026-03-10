@@ -1,20 +1,8 @@
-Modified files:
-- [src/index.css](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/index.css)
-- [src/App.css](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css)
-- [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx)
-- [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx)
-- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx)
-- `src/components/`: `HeroSection.jsx`, `SignaturePreviewSection.jsx`, `BrandStoryPreviewSection.jsx`, `MenuHeroSection.jsx`, `MenuCategoriesSection.jsx`, `AboutHeroSection.jsx`, `StorySection.jsx`, `PhilosophySection.jsx`, `ContactHeroSection.jsx`, `ContactDetailsSection.jsx`, `ContactPhoneCtaSection.jsx`, `ContactWhatsAppCtaSection.jsx`, `OpeningHoursSection.jsx`, `FloatingWhatsAppButton.jsx`
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modified files: [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx), [src/components/HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx), [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx), [src/components/BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx), [src/App.css](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css), [index.html](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/index.html), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-What was implemented:
-- Replaced the Vite starter global styles with a real site reset and layout system, including responsive nav/footer behavior, width constraints, overflow protection, and mobile-safe spacing.
-- Added responsive hooks to the allowed section components so hero CTAs, split layouts, card grids, contact panels, and the floating WhatsApp CTA adapt cleanly across `360`, `768`, `1024`, and `1440`.
-- Removed nested page-level `main` wrappers from the route pages to keep the layout semantically clean and easier to control responsively.
+Implemented: the shared site shell now has a semantic header/footer with real brand and contact content, valid footer navigation, and a skip link; the homepage and preview sections now expose explicit semantic labels for validation; the broken default favicon reference was removed; and the shell CSS was tightened so navigation, CTAs, footer, and the floating WhatsApp button stay stable across responsive breakpoints.
 
-Build result:
-- `npm run build` passed.
-- I did not run browser or Playwright validation in this pass.
+Build result: `npm run build` passed with Vite production build success. I did not run browser-based manual validation in this turn.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -25,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9f5-1a47-7e62-b7f1-473fb07eb5ae
+session id: 019cd9f8-cbd5-79e2-9374-1e1945974a0c
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1238,53 +1226,42 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-responsive-polish
+validation-prep
 
 ## Current task title
-Refine responsive layout and spacing
+Prepare site for final validation
 
 ## Current task type
-responsive
+validation-prep
 
 ## Current task target
 ```json
 {
-  "breakpoints": [
-    360,
-    768,
-    1024,
-    1440
+  "checks": [
+    "semantic-structure",
+    "navigation-integrity",
+    "cta-integrity",
+    "images-not-broken",
+    "responsive-layout",
+    "placeholder-content-absent"
   ]
 }
 ```
 
 ## Depends on
 - navigation-structure
-- section-home-hero
-- section-home-signature-preview
-- section-home-brand-story-preview
-- section-menu-menu-hero
-- section-menu-menu-categories
-- section-chi-siamo-about-hero
-- section-chi-siamo-story
-- section-chi-siamo-philosophy
-- section-contatti-contact-hero
-- section-contatti-contact-details
-- section-contatti-opening-hours
+- responsive-polish
+- seo-basics
 
 ## Files allowed
-- src/App.css
-- src/index.css
-- src/components
-- src/pages/Home.jsx
-- src/pages/Menu.jsx
-- src/pages/ChiSiamo.jsx
-- src/pages/Contatti.jsx
+- src
+- index.html
 
 ## Definition of done
-- layout works across required breakpoints
-- no horizontal overflow
-- spacing and hierarchy are coherent
+- required semantic structure exists
+- required CTA structure exists
+- required sections exist
+- site is ready for final validation
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1313,32 +1290,32 @@ responsive
 
 mcp startup: no servers
 codex
-I’m validating the current responsive implementation against the task scope first. I’ll read the source-of-truth files and the allowed page/style files, then tighten spacing and breakpoint behavior without touching routing or unrelated features.
+I’m checking the current implementation against the validation-prep task, then I’ll patch only the gaps that affect semantic structure, navigation, CTAs, images, responsiveness, or placeholder content.
 exec
-/bin/zsh -lc "sed -n '1,260p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' docs/DEVELOPMENT_METHOD.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "pwd && rg --files brief agent docs src | rg '"'^(brief/original-prompt.md|brief/brief-summary.md|docs/DEVELOPMENT_METHOD.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|agent/TASK_GRAPH.json|site-spec.json|src/App.css|src/index.css|src/pages/Home.jsx|src/pages/Menu.jsx|src/pages/ChiSiamo.jsx|src/pages/Contatti.jsx|src/components/)'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
-# Development Method
-
-All sites must follow these rules.
-
-## Objective
-- Generate production-ready static websites that are clear, stable, responsive, modular, and easy to validate.
-- Prioritize correctness before visual polish.
-- Prefer predictable implementation over improvisation.
-
-## Source of Truth
-- The human prompt is not the implementation source of truth.
-- `site-spec.json` is the only source of truth for pages, sections, navigation, routing, and required features.
-- If supported by the project architecture, `content.json` is the source of truth for copy, labels, CTA text, and contact details.
-- If supported by the project architecture, `theme.json` is the source of truth for colors, typography, spacing, radius, and visual tokens.
-- The implementation flow must be: `prompt -> site-spec.json -> tasks -> code`.
-- Never implement pages, routes, sections, navigation items, or features that are not defined in the spec.
-
-## Core Principles
-- Build for users first: clarity, speed, and clear actions.
-- Keep code modular: reusable components with clear responsibilities.
- succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' site-spec.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc 'pwd && rg --files src index.html agent/AGENT_REPORT.md brief/original-prompt.md brief/brief-summary.md site-spec.json docs/DEVELOPMENT_METHOD.md agent/CURRENT_TASK_PROMPT.md agent/TASK_STATE.json agent/TASK_GRAPH.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+{
+  "originalPrompt": "Create a premium modern website for a professional dog educator and behavior consultant called Equilibrio Cinofilo.\n\nThe business helps dog owners improve communication, behavior, daily management, and emotional balance with their dogs through ethical, practical, and modern education.\nThe approach must feel professional, calm, trustworthy, and deeply human.\nThis is not a flashy “alpha dog” brand.\nIt must communicate competence, empathy, structure, and real-world results.\n\nSERVICES OFFERED\nThe business offers:\n- puppy education\n- basic dog education\n- leash work and recall\n- behavioral consultations\n- support for reactivity, anxiety, and management issues\n- one-to-one sessions\n- educational walks\n- support for owners before and after adoption\n- optional group classes if useful\n- online consultation if suitable\n\nGOAL\nThe website must feel like a real premium service business that a client would trust with their dog.\nIt must not feel cheap, aggressive, or gimmicky.\nIt must avoid stereotypes like domination language, punitive energy, or “miracle training” tone.\nThe final result should feel modern, clean, grounded, emotionally intelligent, and professional.\n\nARCHITECTURE\nThis must be a real multi-page website.\nDo NOT build it as a single-page website with anchor links.\nDo NOT collapse all content into the homepage.\n\nCreate these real pages with real routes:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nRequired routes:\n- /\n- /services\n- /percorsi\n- /chi-siamo\n- /faq\n- /contatti\n\nNAVIGATION\nHeader navigation must include:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nNavigation must use real routes, not homepage anchors.\nEach navigation item must point to an actually existing page.\nThe mobile menu must work properly.\nNo broken links.\n\nGENERAL BRAND DIRECTION\nBrand name: Equilibrio Cinofilo\nTarget audience:\n- first-time dog owners\n- families with puppies\n- people with adolescent or adult dogs showing difficult behaviors\n- owners who want practical and respectful guidance\n- people who want help understanding their dog better\n\nBrand values:\n- trust\n- calm\n- respect\n- consistency\n- education\n- emotional balance\n- clarity\n- everyday practicality\n\nTONE OF VOICE\nThe copy must feel:\n- reassuring\n- competent\n- calm\n- clear\n- empathetic\n- realistic\n- never judgmental\n- never macho\n- never exaggerated\n\nAvoid:\n- aggressive dog training clichés\n- fake urgency\n- manipulative language\n- miracle promises\n- overcomplicated technical jargon\n\nVISUAL STYLE\nThe design must feel:\n- calm\n- elegant\n- natural\n- modern\n- clean\n- spacious\n- trustworthy\n- warm but professional\n\nInspiration:\n- premium wellness service websites\n- boutique consulting brands\n- nature-inspired modern service brands\n- behavior / care services with a calm visual identity\n\nCOLOR PALETTE\nUse a calm and refined palette such as:\n- warm off-white / sand background\n- muted sage or olive accents\n- charcoal or deep warm gray for text\n- soft earthy beige / taupe neutrals\n- optional dusty terracotta accent used sparingly\n\nTypography:\n- refined modern serif or elegant humanist heading font\n- clean sans serif for body copy\n- excellent readability\n- soft, premium hierarchy\n\nLAYOUT RULES\n- mobile first\n- clear visual hierarchy\n- spacious sections\n- no visual clutter\n- no cheap gradients\n- no noisy icons everywhere\n- premium use of whitespace\n- content blocks must feel balanced and easy to scan\n- all pages must feel coherent as one brand\n\nIMAGE DIRECTION\nUse high quality Unsplash images.\nSearch themes like:\n- dog owner outdoors\n- dog training positive reinforcement\n- person with dog in park\n- calm dog portrait\n- dog and human connection\n- puppy training\n- dog walking training\n- responsible dog education\n\nImages must:\n- feel natural and authentic\n- avoid cheesy stock-photo energy\n- use object-fit: cover\n- never be stretched\n- support a calm and trustworthy tone\n- show healthy and respectful dog-human interaction\n\nHOME PAGE\nThe homepage must be a true strategic overview, not a page that contains the whole site.\n\nInclude these sections:\n1. Hero\n2. Main services preview\n3. Why work with Equilibrio Cinofilo\n4. Percorsi preview\n5. Short about preview\n6. FAQ preview\n7. Final CTA\n\nHOME HERO\nLarge calm hero section with premium natural imagery.\n\nHero content:\nEyebrow:\n\"Educazione cinofila moderna, pratica e rispettosa\"\n\nMain title:\n\"Aiuto concreto per costruire una relazione più serena con il tuo cane\"\n\nSubtitle:\n\"Equilibrio Cinofilo accompagna cani e persone con percorsi educativi chiari, etici e personalizzati, pensati per la vita di tutti i giorni.\"\n\nPrimary CTA:\n\"Prenota una consulenza\"\n\nSecondary CTA:\n\"Scopri i percorsi\"\n\nSERVICES PAGE\nCreate a full dedicated Services page.\n\nInclude:\n- hero section\n- introduction to the service approach\n- clear service cards or structured blocks\n- puppy education\n- adolescent dog education\n- adult dog education\n- behavioral consultation\n- educational walks\n- pre-adoption support\n- post-adoption support\n- online consultation if suitable\n- CTA section\n\nEach service block should include:\n- service name\n- short practical description\n- who it is for\n- outcome or benefit\n\nThis page must feel helpful, concrete, and non-generic.\n\nPERCORSI PAGE\nCreate a dedicated Percorsi page.\nThis page should explain how the work is structured.\n\nInclude:\n- hero\n- intro explaining that every dog-owner pair is different\n- examples of educational paths such as:\n  - Cucciolo sereno\n  - Passeggiate senza tensione\n  - Richiamo e gestione in esterna\n  - Convivenza equilibrata\n  - Supporto per reattività e gestione emotiva\n- each path should have:\n  - title\n  - who it is for\n  - main goals\n  - tone focused on progress, not miracles\n- section explaining how a first consultation works\n- CTA to contact\n\nThis page should help the user understand structure and professionalism.\n\nCHI SIAMO PAGE\nCreate a dedicated About page.\n\nInclude:\n- hero\n- educator presentation\n- philosophy and method\n- values\n- relationship-centered approach\n- practical and respectful work style\n- trust-building content\n- image + text sections\n- closing CTA\n\nThis page should make the educator feel real, competent, and approachable.\nAvoid sounding self-important.\n\nFAQ PAGE\nCreate a dedicated FAQ page.\n\nInclude realistic and useful questions such as:\n- When should I contact a dog educator?\n- Is it too late if my dog is already an adult?\n- Do you also work with puppies?\n- Do you use force-free or respectful methods?\n- How many sessions are usually needed?\n- Can the whole family participate?\n- Do you offer home visits?\n- Can online sessions be useful?\n- Do you work with reactive dogs?\n\nAnswers must be realistic, reassuring, and professional.\n\nCONTACT PAGE\nCreate a real Contact page.\n\nInclude:\n- hero\n- short welcoming intro\n- contact info block\n- phone\n- email\n- WhatsApp CTA if suitable\n- city / service area\n- optional service availability\n- inquiry CTA or clean contact form block if appropriate\n\nUse realistic placeholder details such as:\nService area:\nTorino and surrounding areas\n\nPhone:\n+39 011 000000\n\nEmail:\nciao@equilibriocinofilo.it\n\nWhatsApp:\navailable as a CTA if it fits the design\n\nThe contact page should feel easy, calm, and inviting.\n\nCTA STRATEGY\nThe site must contain meaningful CTAs such as:\n- Prenota una consulenza\n- Scopri i percorsi\n- Richiedi informazioni\n- Contattami\n- Inizia da qui\n\nCTA style must be consistent across the site.\nButtons must feel elegant and clear.\nNo spammy conversion style.\n\nFOOTER\nCreate a refined footer with:\n- brand name\n- short brand line\n- navigation links\n- contact info\n- service area\n- social placeholder links if useful\n- copyright\n\nSEO / CONTENT\n- one clear H1 per page\n- polished realistic copy in Italian\n- no lorem ipsum\n- no placeholder feel\n- content should sound like a real premium dog education brand\n- page titles and meta descriptions should exist\n- heading structure must be logical\n- copy should be concise but warm and credible\n\nRESPONSIVE QUALITY\n- fully responsive\n- no horizontal scroll\n- balanced spacing at all key breakpoints\n- mobile navigation must work\n- sections must stack cleanly\n- cards must remain readable on mobile\n- forms and CTAs must be easy to use on mobile\n\nQUALITY EXPECTATION\nThe final website must feel like a real professional website for a modern dog educator.\nIt should be sellable to a real client.\nIt must look emotionally intelligent, calm, modern, and trustworthy.\nIt must not feel like a generic pet template.\nIt must not feel like a single-page site stretched into fake pages.\nEach page must have a real purpose and distinct content.",
+  "siteName": "site-create-a-premium-modern-website-for-a-pr",
+  "businessType": "generic-business",
+  "architecture": "multi-page",
+  "routing": {
+    "mode": "hash"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "landing",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero"
+        },
+        {
+          "id": "signature-preview",
+ succeeded in 52ms:
 # CURRENT TASK EXECUTION PROMPT
 
 You are the coding executor for this project.
@@ -1359,98 +1336,119 @@ site-create-a-premium-modern-website-for-a-pr
 # Development Method
 
 All sites must follow these rules.
- succeeded in 53ms:
+ succeeded in 52ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr
-docs/DEVELOPMENT_METHOD.md
-brief/brief-summary.md
-agent/TASK_STATE.json
-agent/CURRENT_TASK_PROMPT.md
+index.html
 agent/TASK_GRAPH.json
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
+docs/DEVELOPMENT_METHOD.md
+site-spec.json
+brief/brief-summary.md
 brief/original-prompt.md
+agent/AGENT_REPORT.md
 src/pages/Home.jsx
 src/pages/ChiSiamo.jsx
 src/pages/Contatti.jsx
 src/pages/Menu.jsx
+src/assets/react.svg
+src/App.jsx
+src/main.jsx
 src/components/FloatingWhatsAppButton.jsx
 src/components/AboutHeroSection.jsx
 src/components/StorySection.jsx
-src/components/BrandStoryPreviewSection.jsx
-src/components/PhilosophySection.jsx
-src/components/ContactWhatsAppCtaSection.jsx
-src/components/OpeningHoursSection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/ContactPhoneCtaSection.jsx
 codex
-I’ve confirmed the task scope and the allowed surface area. Next I’m reading the current page and component structure to find the actual breakpoint weaknesses before editing styles.
+I have the spec mismatch in view: the task prompt and `site-spec.json` define a smaller four-page hash-routed site, so I’m validating against that contract rather than the broader original brief. Next I’m reading the actual app structure to find any broken semantics, links, or placeholder content.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/App.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/index.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+import { NavLink } from "react-router-dom"
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+export default function Layout({ children, navigationItems = [] }) {
+  return (
+    <>
+      <header>
+        <nav aria-label="Main navigation">
+          {navigationItems.map((item) => (
+            <NavLink
+              key={item.target}
+              to={item.target}
+              end={item.target === "/"}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+      </header>
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+      <main>{children}</main>
+ succeeded in 52ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/ChiSiamo"
+import Contatti from "./pages/Contatti"
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
- succeeded in 53ms:
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+const navigationItems = [
+  { label: "Home", target: "/" },
+  { label: "Menu", target: "/menu" },
+  { label: "Chi siamo", target: "/chi-siamo" },
+  { label: "Contatti", target: "/contatti" },
+]
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
+const routes = [
+  { path: "/", element: <Home /> },
+  { path: "/menu", element: <Menu /> },
+  { path: "/chi-siamo", element: <ChiSiamo /> },
+  { path: "/contatti", element: <Contatti /> },
+]
  succeeded in 51ms:
 import { useEffect } from "react"
-import MenuHeroSection from "../components/MenuHeroSection"
-import MenuCategoriesSection from "../components/MenuCategoriesSection"
+import ContactHeroSection from "../components/ContactHeroSection"
+import ContactDetailsSection from "../components/ContactDetailsSection"
+import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+import OpeningHoursSection from "../components/OpeningHoursSection"
 
-export default function Menu() {
+export default function Contatti() {
   useEffect(() => {
-    document.title = "Servizi | Equilibrio Cinofilo"
+    document.title = "Contatti | Equilibrio Cinofilo"
 
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
+        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
+      )
+    }
+  }, [])
+
+ succeeded in 51ms:
+import { useEffect } from "react"
+import AboutHeroSection from "../components/AboutHeroSection"
+import PhilosophySection from "../components/PhilosophySection"
+import StorySection from "../components/StorySection"
+
+export default function ChiSiamo() {
+  useEffect(() => {
+    document.title = "Chi siamo | Equilibrio Cinofilo"
+
+    const metaDescription = document.querySelector('meta[name="description"]')
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
       )
     }
   }, [])
 
   return (
-    <main>
-      <MenuHeroSection />
+    <div className="page-shell page-shell--about">
  succeeded in 51ms:
 import { useEffect } from "react"
 import HeroSection from "../components/HeroSection"
@@ -1472,120 +1470,73 @@ export default function Home() {
     }
   }, [])
 
- succeeded in 50ms:
+ succeeded in 51ms:
 import { useEffect } from "react"
-import AboutHeroSection from "../components/AboutHeroSection"
-import PhilosophySection from "../components/PhilosophySection"
-import StorySection from "../components/StorySection"
+import MenuHeroSection from "../components/MenuHeroSection"
+import MenuCategoriesSection from "../components/MenuCategoriesSection"
 
-export default function ChiSiamo() {
+export default function Menu() {
   useEffect(() => {
-    document.title = "Chi siamo | Equilibrio Cinofilo"
+    document.title = "Servizi | Equilibrio Cinofilo"
 
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Conosci l'approccio di Equilibrio Cinofilo: educazione relazionale, ascolto, chiarezza e lavoro pratico per accompagnare cani e persone con rispetto.",
+        "Scopri i servizi di Equilibrio Cinofilo: percorsi per cuccioli, cani adolescenti e adulti, consulenze comportamentali e supporto educativo su misura.",
       )
     }
   }, [])
 
   return (
-    <main>
- succeeded in 50ms:
-import { useEffect } from "react"
-import ContactHeroSection from "../components/ContactHeroSection"
-import ContactDetailsSection from "../components/ContactDetailsSection"
-import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
-import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
-import OpeningHoursSection from "../components/OpeningHoursSection"
-
-export default function Contatti() {
-  useEffect(() => {
-    document.title = "Contatti | Equilibrio Cinofilo"
-
-    const metaDescription = document.querySelector('meta[name="description"]')
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Contatta Equilibrio Cinofilo per una consulenza educativa a Torino e dintorni: telefono, email, WhatsApp e disponibilita per iniziare con chiarezza.",
-      )
-    }
-  }, [])
-
-codex
-The global CSS is still close to Vite defaults, which is likely the main source of layout instability. I’m reading the actual section markup now so I can target only the classes already in use and avoid unnecessary JSX changes.
+    <div className="page-shell page-shell--menu">
+      <MenuHeroSection />
 exec
-/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/BrandStoryPreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,320p' src/components/MenuCategoriesSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,320p' src/components/AboutHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-const previewCards = [
-  {
-    title: "Percorsi educativi personalizzati",
-    description:
-      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
-  },
-  {
-    title: "Strumenti utili per la vita quotidiana",
-    description:
-      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
-  },
-  {
-    title: "Progressi realistici e rispettosi",
-    description:
-      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
-  },
-]
+/bin/zsh -lc "sed -n '1,260p' index.html" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,320p' src/index.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "for f in src/components/*.jsx; do echo 'FILE:' \""'$f"; sed -n '"'1,260p' \""'$f"; done' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
+@import "./App.css";
 
-const styles = {
-  section: {
- succeeded in 51ms:
-const storyHighlights = [
-  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
-  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
-  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
-]
+:root {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #2f312d;
+  background: #f8f3ea;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-const styles = {
-  section: {
-    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
-    backgroundColor: "#efe7db",
-    color: "#2f312d",
-  },
-  container: {
-    width: "min(100%, 72rem)",
-    margin: "0 auto",
-    display: "grid",
-    gap: "1.75rem",
-    alignItems: "center",
-  },
-  contentGrid: {
- succeeded in 52ms:
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-    backgroundColor: "#f3ede3",
-    color: "#2f312d",
-  },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  },
-  container: {
-    position: "relative",
-    zIndex: 1,
-    width: "min(100%, 40rem)",
- succeeded in 51ms:
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ succeeded in 53ms:
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Equilibrio Cinofilo offre educazione cinofila moderna e consulenze comportamentali a Torino e dintorni, con un approccio pratico, etico e rispettoso."
+    />
+    <title>Equilibrio Cinofilo | Educazione cinofila a Torino</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+ succeeded in 53ms:
+Total output lines: 1991
+
+FILE: src/components/AboutHeroSection.jsx
 const values = [
   "Lettura attenta del cane e del contesto familiare",
   "Indicazioni pratiche applicabili nella quotidianita",
@@ -1603,165 +1554,14 @@ const styles = {
   background: {
     position: "absolute",
     inset: 0,
-    backgroundImage:
-      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
- succeeded in 51ms:
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-    backgroundColor: "#f5efe5",
-    color: "#2e312b",
-  },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  },
-  container: {
-    position: "relative",
-    zIndex: 1,
-    display: "grid",
- succeeded in 51ms:
-const categories = [
-  {
-    title: "Educazione quotidiana",
-    description:
-      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
-    details: [
-      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
-      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
-    ],
-  },
-  {
-    title: "Passeggiata, richiamo e gestione in esterna",
-    description:
-      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
-    details: [
-      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
-      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
-    ],
-  },
-  {
+codex
+The app is mostly there, but the shell is still too bare for final validation. I’m checking the global layout, CTA targets, and any remaining accessibility or responsiveness issues before editing.
 exec
-/bin/zsh -lc "sed -n '1,320p' src/components/PhilosophySection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,320p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,320p' src/components/StorySection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/components/FloatingWhatsAppButton.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/ContactPhoneCtaSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/ContactWhatsAppCtaSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/OpeningHoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-const contactMethods = [
-  "Torino e dintorni",
-  "Primo confronto telefonico o via email",
-  "Consulenze in presenza e supporto online se utile",
-]
-
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-    backgroundColor: "#f4ede3",
-    color: "#2d302a",
-  },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(108deg, rgba(244, 237, 227, 0.97) 0%, rgba(244, 237, 227, 0.92) 36%, rgba(244, 237, 227, 0.62) 68%, rgba(244, 237, 227, 0.28) 100%), url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
- succeeded in 52ms:
-const principles = [
-  {
-    title: "Relazione prima della prestazione",
-    description:
-      "Il lavoro educativo parte dal capire come cane e famiglia stanno insieme, quali segnali si stanno perdendo e quali condizioni possono rendere la convivenza piu serena.",
-  },
-  {
-    title: "Strategie utili nella vita reale",
-    description:
-      "Ogni indicazione deve poter essere applicata a casa, in passeggiata e nei momenti delicati, con obiettivi leggibili e sostenibili per tutti i membri della famiglia.",
-  },
-  {
-    title: "Progressi costruiti con gradualita",
-    description:
-      "Non cerco risposte spettacolari o immediate: preferisco accompagnare cambiamenti stabili, rispettosi dei tempi del cane e davvero mantenibili nel tempo.",
-  },
-]
-
-const styles = {
-  section: {
- succeeded in 51ms:
-const storyPillars = [
-  {
-    title: "Da dove parte il percorso",
-    description:
-      "Ogni lavoro inizia ascoltando la storia del cane, le abitudini della famiglia e i momenti in cui la convivenza diventa piu faticosa o incerta.",
-  },
-  {
-    title: "Cosa cerco di costruire",
-    description:
-      "L'obiettivo non e ottenere risposte automatiche, ma aiutare cane e persone a capirsi meglio, con strategie chiare e sostenibili nella vita reale.",
-  },
-  {
-    title: "Come accompagno il cambiamento",
-    description:
-      "Osservazione, gestione pratica e indicazioni concrete procedono insieme, cosi che ogni progresso possa essere compreso, replicato e mantenuto nel tempo.",
-  },
-]
-
-const styles = {
-  section: {
- succeeded in 51ms:
-const contactCards = [
-  {
-    title: "Telefono",
-    detail: "+39 011 000000",
-    description:
-      "Per un primo confronto diretto su educazione, gestione quotidiana o difficolta specifiche.",
-    href: "tel:+39011000000",
-    action: "Chiama Equilibrio Cinofilo",
-  },
-  {
-    title: "Email",
-    detail: "ciao@equilibriocinofilo.it",
-    description:
-      "Utile se preferisci raccontare con calma la vostra situazione e ricevere un primo orientamento.",
-    href: "mailto:ciao@equilibriocinofilo.it",
-    action: "Scrivi una email",
-  },
-  {
-    title: "WhatsApp",
-    detail: "Messaggio diretto",
- succeeded in 51ms:
-const styles = {
-  section: {
-    padding: "0 1.5rem 4rem",
-    backgroundColor: "#fcf8f1",
-    color: "#2f312d",
-  },
-  container: {
-    width: "min(100%, 72rem)",
-    margin: "0 auto",
-  },
-  panel: {
-    display: "grid",
-    gap: "1rem",
-    padding: "1.75rem",
-    borderRadius: "1.75rem",
-    backgroundColor: "#f1e6d9",
-    border: "1px solid rgba(47, 49, 45, 0.08)",
-    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-  },
-  eyebrow: {
- succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,320p' src/components/MenuCategoriesSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,240p' src/components/FloatingWhatsAppButton.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,320p' src/App.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/ContactWhatsAppCtaSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
 const styles = {
   link: {
     position: "fixed",
@@ -1782,2995 +1582,49 @@ const styles = {
     fontSize: "0.98rem",
     fontWeight: 600,
     lineHeight: 1,
- succeeded in 51ms:
+ succeeded in 53ms:
 const styles = {
   section: {
-    padding: "0 1.5rem 4rem",
-    backgroundColor: "#fcf8f1",
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
+    backgroundColor: "#f3ede3",
     color: "#2f312d",
   },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
   container: {
-    width: "min(100%, 72rem)",
-    margin: "0 auto",
+    position: "relative",
+    zIndex: 1,
+    width: "min(100%, 40rem)",
+ succeeded in 53ms:
+const categories = [
+  {
+    title: "Educazione quotidiana",
+    description:
+      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
+    details: [
+      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
+      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
+    ],
   },
-  panel: {
-    display: "grid",
-    gap: "1rem",
-    padding: "1.75rem",
-    borderRadius: "1.75rem",
-    backgroundColor: "#e8efe2",
-    border: "1px solid rgba(47, 49, 45, 0.08)",
-    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
+  {
+    title: "Passeggiata, richiamo e gestione in esterna",
+    description:
+      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
+    details: [
+      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
+      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
+    ],
   },
-  eyebrow: {
+  {
  succeeded in 51ms:
-const availabilityWindows = [
-  {
-    label: "Lunedi - Venerdi",
-    value: "9:00 - 19:00",
-    note: "Consulenze, sessioni individuali e risposte ai nuovi contatti.",
-  },
-  {
-    label: "Sabato",
-    value: "9:00 - 13:00",
-    note: "Disponibilita dedicata a incontri programmati e uscite educative.",
-  },
-  {
-    label: "Domenica",
-    value: "Su richiesta",
-    note: "Valutata solo per situazioni specifiche o necessita organizzative.",
-  },
-]
-
-const processSteps = [
-  "Risposta ai messaggi entro 24 ore lavorative.",
-codex
-I have enough context to make the responsive pass. The work is mostly global CSS normalization plus a few targeted component constraints so the existing sections stop inheriting Vite demo behavior and hold together cleanly from `360px` through `1440px`.
-
-Plan:
-1. Replace the Vite starter global styles in `src/index.css` and `src/App.css` with site-level layout rules.
-2. Add responsive guards in the affected components for button stacking, card/grid minimums, and max-width behavior where the current inline styles can still pinch on small screens.
-3. Run a build check, then update `agent/AGENT_REPORT.md` with the task summary.
-exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
-{
-  "name": "site-create-a-premium-modern-website-for-a-pr",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
- succeeded in 53ms:
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK `page-home-shell`.
-- Replaced home placeholder content with a semantic homepage shell in `src/pages/Home.jsx`.
-- Kept required section ids: `hero`, `signature-preview`, and `brand-story-preview`.
-- Added valid homepage CTAs targeting `#/menu`, `#/contatti`, and WhatsApp to match the current spec.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
-Commit created for TASK page-home-shell.
-
-codex
-I’m narrowing edits to the smallest stable set. Most section markup is fine; the problem is inline layout values that need breakpoint-specific overrides, so I’m going to add targeted `id`/`class` hooks and CSS media rules rather than rewrite section structure.
-exec
-/bin/zsh -lc "sed -n '1,260p' src/main.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
- succeeded in 53ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Contatti from "./pages/Contatti"
-
-const navigationItems = [
-  { label: "Home", target: "/" },
-  { label: "Menu", target: "/menu" },
-  { label: "Chi siamo", target: "/chi-siamo" },
-  { label: "Contatti", target: "/contatti" },
-]
-
-const routes = [
-  { path: "/", element: <Home /> },
-  { path: "/menu", element: <Menu /> },
-  { path: "/chi-siamo", element: <ChiSiamo /> },
-  { path: "/contatti", element: <Contatti /> },
-]
-exec
-/bin/zsh -lc "sed -n '1,320p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-import { NavLink } from "react-router-dom"
-
-export default function Layout({ children, navigationItems = [] }) {
-  return (
-    <>
-      <header>
-        <nav aria-label="Main navigation">
-          {navigationItems.map((item) => (
-            <NavLink
-              key={item.target}
-              to={item.target}
-              end={item.target === "/"}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-      </header>
-
-      <main>{children}</main>
-codex
-I’m editing now. The changes are limited to adding responsive hooks and replacing the starter global styles; I’m also removing nested page-level `<main>` wrappers in the route components so the layout stays semantically clean and easier to control responsively.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuCategoriesSection.jsx
-@@ -139,2 +139,3 @@
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-@@ -142,4 +143,4 @@
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-@@ -155,5 +156,5 @@
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-@@ -172,3 +173,3 @@
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
-@@ -112,5 +112,5 @@
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-@@ -123,5 +123,5 @@
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-@@ -135,3 +135,3 @@
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx
-@@ -87,5 +87,6 @@
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-@@ -112,3 +113,3 @@
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-@@ -117,3 +118,3 @@
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/FloatingWhatsAppButton.jsx
-@@ -30,2 +30,3 @@
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/PhilosophySection.jsx
-@@ -110,6 +110,6 @@
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-@@ -138,5 +138,5 @@
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/StorySection.jsx
-@@ -101,6 +101,6 @@
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-@@ -125,5 +125,5 @@
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx
-@@ -99,6 +99,6 @@
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-@@ -116,7 +116,7 @@
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-@@ -125,3 +125,3 @@
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx
-@@ -148,2 +148,3 @@
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-@@ -151,4 +152,4 @@
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-@@ -165,4 +166,4 @@
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-@@ -189,3 +190,3 @@
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
-@@ -21,3 +21,3 @@
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-@@ -27,3 +27,3 @@
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactDetailsSection.jsx
-@@ -166,2 +166,3 @@
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-@@ -169,4 +170,4 @@
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-@@ -183,6 +184,6 @@
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-@@ -193,2 +194,3 @@
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-@@ -202,3 +204,3 @@
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx
-@@ -19,3 +19,3 @@
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
-@@ -25,3 +25,3 @@
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx
-@@ -58,5 +58,5 @@
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-@@ -72,2 +72,3 @@
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/AboutHeroSection.jsx
-@@ -114,2 +114,3 @@
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-@@ -119,3 +120,3 @@
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-@@ -140,6 +141,6 @@
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-@@ -147,3 +148,3 @@
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx
-@@ -18,6 +18,6 @@
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactHeroSection.jsx
-@@ -125,2 +125,3 @@
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-@@ -130,3 +131,3 @@
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-@@ -151,4 +152,4 @@
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-@@ -156,2 +157,3 @@
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-@@ -164,3 +166,3 @@
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactPhoneCtaSection.jsx
-@@ -58,5 +58,5 @@
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-@@ -68,3 +68,3 @@
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx
-@@ -94,6 +94,6 @@
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
-@@ -111,7 +111,7 @@
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-@@ -120,6 +120,6 @@
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-apply_patch(auto_approved=true) exited 0 in 170ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuCategoriesSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/AboutHeroSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/StorySection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/PhilosophySection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactHeroSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactDetailsSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactPhoneCtaSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/OpeningHoursSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/FloatingWhatsAppButton.jsx
-file update:
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
-   secondaryCta = defaultSecondaryCta,
- }) {
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-           Educazione cinofila moderna, pratica e rispettosa
-         </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
---- a/src/components/SignaturePreviewSection.jsx
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
- 
- export default function SignaturePreviewSection() {
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-           <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
-
-file update:
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
-   secondaryCta = defaultSecondaryCta,
- }) {
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-           Educazione cinofila moderna, pratica e rispettosa
-         </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
---- a/src/components/SignaturePreviewSection.jsx
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
- 
- export default function SignaturePreviewSection() {
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-           <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
-
-file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/index.css
-:root {
-  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #2f312d;
-  background: #f8f3ea;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background: #f8f3ea;
-  color: #2f312d;
-  overflow-x: hidden;
-}
-
-body,
-h1,
-h2,
-h3,
-p,
-ul {
-  margin: 0;
-}
-
-img,
-picture {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-:focus-visible {
-  outline: 3px solid rgba(95, 122, 87, 0.38);
-  outline-offset: 3px;
-}
-apply_patch(auto_approved=true) exited 0 in 180ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/index.css
-D /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/index.css
-file update:
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
-   secondaryCta = defaultSecondaryCta,
- }) {
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-           Educazione cinofila moderna, pratica e rispettosa
-         </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
---- a/src/components/SignaturePreviewSection.jsx
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
- 
- export default function SignaturePreviewSection() {
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-           <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..a13746ab85867cf5db88ef6ada54a7fb35ad98a6
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,67 @@
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
-+
-+html {
-+  scroll-behavior: smooth;
- }
- 
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
- 
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
-+
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
-+}
-+
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
-+
-+button {
-+  cursor: pointer;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
-
-file update:
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
-   secondaryCta = defaultSecondaryCta,
- }) {
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-           Educazione cinofila moderna, pratica e rispettosa
-         </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
---- a/src/components/SignaturePreviewSection.jsx
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
- 
- export default function SignaturePreviewSection() {
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-           <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..a13746ab85867cf5db88ef6ada54a7fb35ad98a6
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,67 @@
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
-+
-+html {
-+  scroll-behavior: smooth;
- }
- 
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
- 
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
-+
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
-+}
-+
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
-+
-+button {
-+  cursor: pointer;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
-
-file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css
 #root {
   min-height: 100vh;
   width: 100%;
@@ -4791,4075 +1645,2989 @@ nav[aria-label="Main navigation"] {
   padding: 0.5rem;
   border: 1px solid rgba(47, 49, 45, 0.08);
   border-radius: 999px;
-  background: rgba(255, 252, 246, 0.88);
-  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-}
+ succeeded in 52ms:
+const styles = {
+  section: {
+    padding: "0 1.5rem 4rem",
+    backgroundColor: "#fcf8f1",
+    color: "#2f312d",
+  },
+  container: {
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
+  },
+  panel: {
+    display: "grid",
+    gap: "1rem",
+    padding: "1.75rem",
+    borderRadius: "1.75rem",
+    backgroundColor: "#e8efe2",
+    border: "1px solid rgba(47, 49, 45, 0.08)",
+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
+  },
+  eyebrow: {
+codex
+I’m patching the site shell now. The main validation gap is the placeholder header/footer structure, plus a few sections that need explicit labelling for cleaner semantics and safer validation.
+exec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
+Total output lines: 220
 
-nav[aria-label="Main navigation"] a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.8rem;
-  padding: 0.65rem 1rem;
-  border-radius: 999px;
-  color: #4b5047;
-  text-decoration: none;
-  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-}
+# AGENT REPORT
 
-nav[aria-label="Main navigation"] a:hover,
-nav[aria-label="Main navigation"] a[aria-current="page"] {
-  background: #6a7761;
-  color: #f8f3ea;
-}
+Project created.
 
-main {
-  width: 100%;
-}
+Prepared TASK page-home-shell (Create home page shell) for execution.
 
-footer {
-  padding: 1.75rem 1rem 2.5rem;
-  background: #23251f;
-  color: rgba(248, 243, 234, 0.78);
-}
+Launching Codex for TASK page-home-shell.
 
-footer p {
-  width: min(100%, 72rem);
-  margin: 0 auto;
-  font-size: 0.95rem;
-}
+Completed TASK `page-home-shell`.
+- Replaced home placeholder content with a semantic homepage shell in `src/pages/Home.jsx`.
+- Kept required section ids: `hero`, `signature-preview`, and `brand-story-preview`.
+- Added valid homepage CTAs targeting `#/menu`, `#/contatti`, and WhatsApp to match the current spec.
 
-.page-shell {
-  width: 100%;
-}
+TASK page-home-shell executed by Codex.
+Waiting for validation.
 
-.content-section,
-.hero-section {
-  width: 100%;
-}
-
-.content-section__container,
-.hero-section__container {
-  width: min(100%, 72rem) !important;
-  margin: 0 auto !important;
-}
-
-.hero-section__container {
-  justify-items: start;
-}
-
-.hero-section__container--split {
-  align-items: start !important;
-}
-
-.section-intro,
-.hero-section__container > div:first-child,
-.hero-section__container > aside:first-child {
-  min-width: 0;
-}
-
-.split-layout,
-.cards-grid,
-.stacked-cards {
-  min-width: 0;
-}
-
-.cards-grid__item,
-.stacked-cards__item,
-.surface-panel,
-.cta-panel,
-.content-note,
-.opening-hours__schedule,
-.opening-hours__aside,
-.contact-details__aside {
-  min-width: 0;
-}
-
-.button-link {
-  max-width: 100%;
-  text-align: center;
-  white-space: normal;
-}
-
-.hero-section__details,
-.hero-section__details--pills {
-  min-width: 0;
-}
-
-.floating-whatsapp-button {
-  max-width: calc(100vw - 2rem);
-}
-
-@media (max-width: 767px) {
-  header {
-    padding: 0.75rem 0.75rem 0;
-  }
-
-  nav[aria-label="Main navigation"] {
-    border-radius: 1.4rem;
-    justify-content: stretch;
-  }
-
-  nav[aria-label="Main navigation"] a {
-    flex: 1 1 calc(50% - 0.4rem);
-    min-width: 0;
-  }
-
-  #hero,
-  #menu-hero,
-  #about-hero,
-  #contact-hero {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  .hero-section__container,
-  .content-section__container {
-    gap: 1.5rem !important;
-  }
-
-  .hero-section__actions,
-  #contact-hero .hero-section__actions {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    align-items: stretch !important;
-  }
-
-  .hero-section__actions .button-link,
-  .cta-panel .button-link,
-  .cards-grid__item .button-link {
-    width: 100% !important;
-  }
-
-  .hero-section__details {
-    gap: 0.75rem !important;
-  }
-
-  .hero-section__details--pills {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  .split-layout--contact-details,
-  .split-layout--hours {
-    grid-template-columns: 1fr !important;
-  }
-
-  .cards-grid--contact,
-  .cards-grid--menu,
-  .cards-grid--signature {
-    grid-template-columns: 1fr !important;
-  }
-
-  .floating-whatsapp-button {
-    right: 0.75rem !important;
-    bottom: 0.75rem !important;
-    min-height: 3.25rem !important;
-    padding: 0.9rem 1rem !important;
-    font-size: 0.95rem !important;
-  }
-
-  #opening-hours {
-    padding-bottom: 6.5rem !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  nav[aria-label="Main navigation"] {
-    justify-content: center;
-  }
-
-  .hero-section__container--split {
-    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-  }
-
-  .split-layout--contact-details,
-  .split-layout--hours {
-    grid-template-columns: 1fr !important;
-  }
-
-  .cards-grid--contact {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  header {
-    padding-top: 1.25rem;
-  }
-
-  .hero-section {
-    min-height: min(78vh, 54rem);
-    display: grid;
-    align-items: center;
-  }
-
-  #hero .hero-section__container,
-  #menu-hero .hero-section__container {
-    width: min(100%, 72rem) !important;
-  }
-
-  .hero-section__container--split {
-    gap: 2rem !important;
-  }
-
-  .split-layout--story,
-  .split-layout--philosophy {
-    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-  }
-
-  .split-layout--contact-details {
-    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-  }
-
-  .split-layout--hours {
-    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-  }
-}
-
-@media (min-width: 1440px) {
-  nav[aria-label="Main navigation"] {
-    padding: 0.65rem;
-  }
-
-  #hero,
-  #menu-hero,
-  #about-hero,
-  #contact-hero {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-  }
-}
-apply_patch(auto_approved=true) exited 0 in 185ms:
+TASK page-home-shell completed successfully.
+Build passed.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx
+@@ -5,20 +5,64 @@
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+apply_patch(auto_approved=true) exited 0 in 47ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css
-D /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx
 file update:
-diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
---- a/src/App.css
-+++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
-+  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
-+  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-+}
-+
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
-+  color: #f8f3ea;
-+}
-+
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
-+  color: rgba(248, 243, 234, 0.78);
-+}
-+
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
-+}
-+
-+.page-shell {
-+  width: 100%;
-+}
-+
-+.content-section,
-+.hero-section {
-+  width: 100%;
-+}
-+
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
- }
- 
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
- }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
- 
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
-   }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
-   }
- }
- 
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
-+    align-items: center;
-+  }
-+
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
- }
- 
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
-+  }
- }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update:
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
+   return (
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx
+@@ -99,3 +99,8 @@
+   return (
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
+@@ -107,3 +112,3 @@
  
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+apply_patch(auto_approved=true) exited 0 in 48ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx
+file update:
 diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
 --- a/src/components/HeroSection.jsx
 +++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
+@@ -97,7 +97,12 @@
    secondaryCta = defaultSecondaryCta,
  }) {
    return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
            Educazione cinofila moderna, pratica e rispettosa
          </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
  
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
  
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
  
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
  
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update:
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
    return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
          </p>
  
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
  
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
-     <section
-       id="opening-hours"
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
+@@ -112,3 +112,8 @@
+   return (
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
 +      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+@@ -116,3 +121,5 @@
+           <p style={styles.eyebrow}>Come lavoro</p>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
+           <p style={styles.description}>
+apply_patch(auto_approved=true) exited 0 in 55ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
+file update:
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
    return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
+       <div aria-hidden="true" style={styles.background} />
  
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
+         </p>
+ 
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
+ 
 diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
 --- a/src/components/SignaturePreviewSection.jsx
 +++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
+@@ -110,11 +110,18 @@
  
  export default function SignaturePreviewSection() {
    return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
            <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
            <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..a13746ab85867cf5db88ef6ada54a7fb35ad98a6
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,67 @@
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
 +
-+html {
-+  scroll-behavior: smooth;
- }
- 
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
- 
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
 +
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update:
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
+   return (
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
+       <div aria-hidden="true" style={styles.background} />
+ 
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
+         </p>
+ 
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
+ 
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
+--- a/src/components/SignaturePreviewSection.jsx
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -110,11 +110,18 @@
+ 
+ export default function SignaturePreviewSection() {
+   return (
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
+           <p style={styles.eyebrow}>Come lavoro</p>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
+           <p style={styles.description}>
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
+   return (
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx
+@@ -87,3 +87,8 @@
+   return (
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
++      className="content-section"
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+@@ -98,3 +103,3 @@
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+apply_patch(auto_approved=true) exited 0 in 67ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx
+file update:
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
+--- a/src/components/BrandStoryPreviewSection.jsx
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -85,7 +85,12 @@
+ 
+ export default function BrandStoryPreviewSection() {
+   return (
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
++      className="content-section"
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
+   return (
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
+       <div aria-hidden="true" style={styles.background} />
+ 
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
+         </p>
+ 
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
+ 
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
+--- a/src/components/SignaturePreviewSection.jsx
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -110,11 +110,18 @@
+ 
+ export default function SignaturePreviewSection() {
+   return (
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
+           <p style={styles.eyebrow}>Come lavoro</p>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
+           <p style={styles.description}>
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
+   return (
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update:
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
+--- a/src/components/BrandStoryPreviewSection.jsx
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -85,7 +85,12 @@
+ 
+ export default function BrandStoryPreviewSection() {
+   return (
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
++      className="content-section"
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
+   return (
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
+       <div aria-hidden="true" style={styles.background} />
+ 
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
+         </p>
+ 
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
+ 
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
+--- a/src/components/SignaturePreviewSection.jsx
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -110,11 +110,18 @@
+ 
+ export default function SignaturePreviewSection() {
+   return (
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
+           <p style={styles.eyebrow}>Come lavoro</p>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
+           <p style={styles.description}>
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
+   return (
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css
+@@ -5,3 +5,20 @@
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
++  border-radius: 999px;
++  background: #23251f;
++  color: #f8f3ea;
++  text-decoration: none;
++  transition: top 160ms ease;
 +}
 +
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
++.skip-link:focus {
++  top: 1rem;
++}
 +
-+button {
-+  cursor: pointer;
++.site-header {
+   position: sticky;
+@@ -14,5 +31,30 @@
+ 
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+@@ -29,3 +71,3 @@
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+@@ -41,4 +83,4 @@
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+@@ -51,3 +93,3 @@
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+@@ -57,6 +99,49 @@
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #f8f3ea;
++}
++
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
++  color: rgba(248, 243, 234, 0.78);
++}
++
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
++}
++
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
++}
++
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
++}
++
++.site-footer__contact {
++  font-style: normal;
+ }
+@@ -125,3 +210,3 @@
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
+@@ -129,3 +214,3 @@
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+@@ -134,3 +219,3 @@
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+@@ -199,3 +284,7 @@
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
++    align-items: center;
++  }
++
++  .site-nav {
+     justify-content: center;
+@@ -218,3 +307,3 @@
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+@@ -222,2 +311,16 @@
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
++  }
++
++  .site-nav {
++    justify-content: flex-end;
++  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+@@ -252,3 +355,3 @@
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+apply_patch(auto_approved=true) exited 0 in 72ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css
+file update:
+diff --git a/src/App.css b/src/App.css
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
+--- a/src/App.css
++++ b/src/App.css
+@@ -3,7 +3,24 @@
+   width: 100%;
  }
  
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
++  border-radius: 999px;
++  background: #23251f;
++  color: #f8f3ea;
++  text-decoration: none;
++  transition: top 160ms ease;
++}
++
++.skip-link:focus {
++  top: 1rem;
++}
++
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
  }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
  
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
+ }
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #f8f3ea;
++}
++
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
++  color: rgba(248, 243, 234, 0.78);
++}
++
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
++}
++
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
++}
++
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
++}
++
++.site-footer__contact {
++  font-style: normal;
+ }
+ 
+ .page-shell {
+@@ -123,16 +208,16 @@
+ }
+ 
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
+   }
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
+   }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
+ }
+ 
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
++    align-items: center;
++  }
++
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
+ }
+ 
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
++  }
++
++  .site-nav {
++    justify-content: flex-end;
++  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
+ }
+ 
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
+ 
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
+--- a/src/components/BrandStoryPreviewSection.jsx
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -85,7 +85,12 @@
+ 
+ export default function BrandStoryPreviewSection() {
    return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
++      className="content-section"
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
    return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
+       <div aria-hidden="true" style={styles.background} />
  
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
+         </p>
+ 
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
+ 
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
+--- a/src/components/SignaturePreviewSection.jsx
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -110,11 +110,18 @@
+ 
+ export default function SignaturePreviewSection() {
    return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
+           <p style={styles.eyebrow}>Come lavoro</p>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
+           <p style={styles.description}>
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
+   return (
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
    )
- }
 
 file update:
 diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
 --- a/src/App.css
 +++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
+@@ -3,7 +3,24 @@
+   width: 100%;
+ }
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
 +  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
++  background: #23251f;
++  color: #f8f3ea;
 +  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
++  transition: top 160ms ease;
 +}
 +
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
++.skip-link:focus {
++  top: 1rem;
++}
++
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
+ }
+ 
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
+ }
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
 +  color: #f8f3ea;
 +}
 +
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
 +  color: rgba(248, 243, 234, 0.78);
 +}
 +
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
 +}
 +
-+.page-shell {
-+  width: 100%;
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
 +}
 +
-+.content-section,
-+.hero-section {
-+  width: 100%;
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
 +}
 +
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
++.site-footer__contact {
++  font-style: normal;
  }
  
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
+ .page-shell {
+@@ -123,16 +208,16 @@
  }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
  
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
    }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
    }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
  }
  
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
 +    align-items: center;
 +  }
 +
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
  }
  
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
 +  }
 +
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
++  .site-nav {
++    justify-content: flex-end;
 +  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
  }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
  
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
 diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
 --- a/src/components/BrandStoryPreviewSection.jsx
 +++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
+@@ -85,7 +85,12 @@
  
  export default function BrandStoryPreviewSection() {
    return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
 +      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
 diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
 --- a/src/components/HeroSection.jsx
 +++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
+@@ -97,7 +97,12 @@
    secondaryCta = defaultSecondaryCta,
  }) {
    return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
            Educazione cinofila moderna, pratica e rispettosa
          </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
  
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
  
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
 diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
 --- a/src/components/SignaturePreviewSection.jsx
 +++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
+@@ -110,11 +110,18 @@
  
  export default function SignaturePreviewSection() {
    return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
            <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
            <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..a13746ab85867cf5db88ef6ada54a7fb35ad98a6
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,67 @@
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
 +
-+html {
-+  scroll-behavior: smooth;
- }
- 
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
- 
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
 +
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
+
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/index.html
+@@ -4,3 +4,2 @@
+     <meta charset="UTF-8" />
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+apply_patch(auto_approved=true) exited 0 in 83ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/index.html
+file update:
+diff --git a/index.html b/index.html
+index 229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31..7e971742816fbf0c083399a66a58e1a8a7609519
+--- a/index.html
++++ b/index.html
+@@ -2,7 +2,6 @@
+ <html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta
+       name="description"
+diff --git a/src/App.css b/src/App.css
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
+--- a/src/App.css
++++ b/src/App.css
+@@ -3,7 +3,24 @@
+   width: 100%;
+ }
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
++  border-radius: 999px;
++  background: #23251f;
++  color: #f8f3ea;
++  text-decoration: none;
++  transition: top 160ms ease;
 +}
 +
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
++.skip-link:focus {
++  top: 1rem;
++}
 +
-+button {
-+  cursor: pointer;
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
  }
  
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
  }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
  
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #f8f3ea;
++}
++
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
++  color: rgba(248, 243, 234, 0.78);
++}
++
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
++}
++
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
++}
++
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
++}
++
++.site-footer__contact {
++  font-style: normal;
+ }
+ 
+ .page-shell {
+@@ -123,16 +208,16 @@
+ }
+ 
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
+   }
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
+   }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
+ }
+ 
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
++    align-items: center;
++  }
++
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
+ }
+ 
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
++  }
++
++  .site-nav {
++    justify-content: flex-end;
++  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
+ }
+ 
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
+ 
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
+--- a/src/components/BrandStoryPreviewSection.jsx
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -85,7 +85,12 @@
+ 
+ export default function BrandStoryPreviewSection() {
    return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
++      className="content-section"
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
    return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
+       <div aria-hidden="true" style={styles.background} />
  
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
+         </p>
+ 
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
+ 
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
+--- a/src/components/SignaturePreviewSection.jsx
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -110,11 +110,18 @@
+ 
+ export default function SignaturePreviewSection() {
    return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
+           <p style={styles.eyebrow}>Come lavoro</p>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
+           <p style={styles.description}>
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
+   return (
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
    )
+
+file update:
+diff --git a/index.html b/index.html
+index 229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31..7e971742816fbf0c083399a66a58e1a8a7609519
+--- a/index.html
++++ b/index.html
+@@ -2,7 +2,6 @@
+ <html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta
+       name="description"
+diff --git a/src/App.css b/src/App.css
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
+--- a/src/App.css
++++ b/src/App.css
+@@ -3,7 +3,24 @@
+   width: 100%;
  }
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
++  border-radius: 999px;
++  background: #23251f;
++  color: #f8f3ea;
++  text-decoration: none;
++  transition: top 160ms ease;
++}
++
++.skip-link:focus {
++  top: 1rem;
++}
++
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
+ }
+ 
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
+ }
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #f8f3ea;
++}
++
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
++  color: rgba(248, 243, 234, 0.78);
++}
++
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
++}
++
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
++}
++
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
++}
++
++.site-footer__contact {
++  font-style: normal;
+ }
+ 
+ .page-shell {
+@@ -123,16 +208,16 @@
+ }
+ 
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
+   }
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
+   }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
+ }
+ 
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
++    align-items: center;
++  }
++
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
+ }
+ 
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
++  }
++
++  .site-nav {
++    justify-content: flex-end;
++  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
+ }
+ 
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
+ 
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
+--- a/src/components/BrandStoryPreviewSection.jsx
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -85,7 +85,12 @@
+ 
+ export default function BrandStoryPreviewSection() {
+   return (
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
++      className="content-section"
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -97,7 +97,12 @@
+   secondaryCta = defaultSecondaryCta,
+ }) {
+   return (
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
+       <div aria-hidden="true" style={styles.background} />
+ 
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
+           Educazione cinofila moderna, pratica e rispettosa
+         </p>
+ 
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
+ 
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
+--- a/src/components/SignaturePreviewSection.jsx
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -110,11 +110,18 @@
+ 
+ export default function SignaturePreviewSection() {
+   return (
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
+           <p style={styles.eyebrow}>Come lavoro</p>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
+           <p style={styles.description}>
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
+   return (
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
++
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
++
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
+ 
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
+ 
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
++
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
++
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
+   )
 
 codex
-The responsive rules are in place, but the app currently doesn’t load `App.css` through `App.jsx`. I’m fixing that through `src/index.css` to stay inside the allowed file set and keep build integrity intact.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/index.css
-@@ -1 +1,3 @@
-+@import "./App.css";
-+
- :root {
-apply_patch(auto_approved=true) exited 0 in 202ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/index.css
-file update:
-diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
---- a/src/App.css
-+++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
-+  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
-+  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-+}
-+
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
-+  color: #f8f3ea;
-+}
-+
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
-+  color: rgba(248, 243, 234, 0.78);
-+}
-+
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
-+}
-+
-+.page-shell {
-+  width: 100%;
-+}
-+
-+.content-section,
-+.hero-section {
-+  width: 100%;
-+}
-+
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
- }
- 
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
- }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
- 
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
-   }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
-   }
- }
- 
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
-+    align-items: center;
-+  }
-+
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
- }
- 
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
-+  }
- }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
-   secondaryCta = defaultSecondaryCta,
- }) {
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-           Educazione cinofila moderna, pratica e rispettosa
-         </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
---- a/src/components/SignaturePreviewSection.jsx
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
- 
- export default function SignaturePreviewSection() {
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-           <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..15f920ae50b8bbcc6f0dcddd5eeb0840ce20dec8
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,69 @@
-+@import "./App.css";
-+
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
-+
-+html {
-+  scroll-behavior: smooth;
- }
- 
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
- 
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
-+
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
-+
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+button {
-+  cursor: pointer;
-+}
-+
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
-
-file update:
-diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
---- a/src/App.css
-+++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
-+  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
-+  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-+}
-+
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
-+  color: #f8f3ea;
-+}
-+
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
-+  color: rgba(248, 243, 234, 0.78);
-+}
-+
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
-+}
-+
-+.page-shell {
-+  width: 100%;
-+}
-+
-+.content-section,
-+.hero-section {
-+  width: 100%;
-+}
-+
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
- }
- 
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
- }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
- 
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
-   }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
-   }
- }
- 
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
-+    align-items: center;
-+  }
-+
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
- }
- 
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
-+  }
- }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
-   secondaryCta = defaultSecondaryCta,
- }) {
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-           Educazione cinofila moderna, pratica e rispettosa
-         </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
---- a/src/components/SignaturePreviewSection.jsx
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
- 
- export default function SignaturePreviewSection() {
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-           <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..15f920ae50b8bbcc6f0dcddd5eeb0840ce20dec8
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,69 @@
-+@import "./App.css";
-+
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
-+
-+html {
-+  scroll-behavior: smooth;
- }
- 
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
- 
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
-+
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
-+
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+button {
-+  cursor: pointer;
-+}
-+
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
-
+The structural edits are in place. I’m running a build now to catch any regressions before I update the task report.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 926ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 963ms:
 
 > site-create-a-premium-modern-website-for-a-pr@0.0.0 build
 > vite build
@@ -8869,4923 +4637,1686 @@ transforming...
 ✓ 60 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   0.71 kB │ gzip:  0.41 kB
-dist/assets/index-BBGjyx9f.css    4.76 kB │ gzip:  1.60 kB
-dist/assets/index-BZexrCWP.js   276.08 kB │ gzip: 82.87 kB
-✓ built in 642ms
+dist/index.html                   0.65 kB │ gzip:  0.38 kB
+dist/assets/index-DW47WRcW.css    5.87 kB │ gzip:  1.83 kB
+dist/assets/index-CckmcOtr.js   277.56 kB │ gzip: 83.15 kB
+✓ built in 694ms
 file update:
+diff --git a/index.html b/index.html
+index 229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31..7e971742816fbf0c083399a66a58e1a8a7609519
+--- a/index.html
++++ b/index.html
+@@ -2,7 +2,6 @@
+ <html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta
+       name="description"
 diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
 --- a/src/App.css
 +++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
+@@ -3,7 +3,24 @@
+   width: 100%;
+ }
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
 +  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
++  background: #23251f;
++  color: #f8f3ea;
 +  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
++  transition: top 160ms ease;
 +}
 +
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
++.skip-link:focus {
++  top: 1rem;
++}
++
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
+ }
+ 
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
+ }
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
 +  color: #f8f3ea;
 +}
 +
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
 +  color: rgba(248, 243, 234, 0.78);
 +}
 +
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
 +}
 +
-+.page-shell {
-+  width: 100%;
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
 +}
 +
-+.content-section,
-+.hero-section {
-+  width: 100%;
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
 +}
 +
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
++.site-footer__contact {
++  font-style: normal;
  }
  
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
+ .page-shell {
+@@ -123,16 +208,16 @@
  }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
  
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
    }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
    }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
  }
  
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
 +    align-items: center;
 +  }
 +
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
  }
  
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
 +  }
 +
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
++  .site-nav {
++    justify-content: flex-end;
 +  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
  }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
  
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
 diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
 --- a/src/components/BrandStoryPreviewSection.jsx
 +++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
+@@ -85,7 +85,12 @@
  
  export default function BrandStoryPreviewSection() {
    return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
 +      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
 diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
 --- a/src/components/HeroSection.jsx
 +++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
+@@ -97,7 +97,12 @@
    secondaryCta = defaultSecondaryCta,
  }) {
    return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
            Educazione cinofila moderna, pratica e rispettosa
          </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
  
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
  
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
 diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
 --- a/src/components/SignaturePreviewSection.jsx
 +++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
+@@ -110,11 +110,18 @@
  
  export default function SignaturePreviewSection() {
    return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
            <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
            <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..15f920ae50b8bbcc6f0dcddd5eeb0840ce20dec8
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,69 @@
-+@import "./App.css";
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
 +
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
 +
-+html {
-+  scroll-behavior: smooth;
- }
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
  
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
  
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
 +
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
 +
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+button {
-+  cursor: pointer;
-+}
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
 +
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
    )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
 
 codex
-The build passes. I’m adding the required task entry to `agent/AGENT_REPORT.md` now, keeping it short and limited to the responsive work that was just completed.
+The build passed. I’m adding the required task note to `agent/AGENT_REPORT.md`, keeping it limited to this validation-prep work.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -220,2 +220,13 @@
+@@ -220,2 +220,12 @@
  
-+Completed TASK `responsive-polish`.
-+- Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
-+- Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
-+- Removed nested page-level `main` wrappers from the route pages and kept the existing routing/navigation structure intact while improving spacing coherence and preventing horizontal overflow.
++Completed TASK `validation-prep`.
++- Strengthened the shared shell in `src/layout/Layout.jsx` with a semantic header, skip link, brand block, footer navigation, and real contact details so validation can verify structure and destination integrity.
++- Added missing section labelling in `src/components/HeroSection.jsx`, `src/components/SignaturePreviewSection.jsx`, and `src/components/BrandStoryPreviewSection.jsx` to make the required sections easier to validate semantically.
++- Removed the broken default favicon reference from `index.html` and updated `src/App.css` so the header, footer, navigation, CTAs, and fixed WhatsApp button remain stable across the required responsive breakpoints.
 +
-+TASK responsive-polish executed by Codex.
++TASK validation-prep executed by Codex.
 +Waiting for validation.
 +
-+TASK responsive-polish completed successfully.
++TASK validation-prep completed successfully.
 +Build passed.
-+
- Completed TASK `navigation-structure`.
-apply_patch(auto_approved=true) exited 0 in 209ms:
+ Completed TASK `responsive-polish`.
+apply_patch(auto_approved=true) exited 0 in 102ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index f7a157489996398a6eed7153e386a788a74b2cae..04ec6baf9196234ff0010b1d88a344b2b5ecd5f7
+index 9601e7fa192d1830ba147f8db2d34682f6cb3db6..90aea4727f487fbee35b710e30b113f686ed271d
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
+@@ -218,6 +218,16 @@
  TASK section-chi-siamo-about-hero completed successfully.
  Build passed.
  
-+Completed TASK `responsive-polish`.
-+- Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
-+- Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
-+- Removed nested page-level `main` wrappers from the route pages and kept the existing routing/navigation structure intact while improving spacing coherence and preventing horizontal overflow.
++Completed TASK `validation-prep`.
++- Strengthened the shared shell in `src/layout/Layout.jsx` with a semantic header, skip link, brand block, footer navigation, and real contact details so validation can verify structure and destination integrity.
++- Added missing section labelling in `src/components/HeroSection.jsx`, `src/components/SignaturePreviewSection.jsx`, and `src/components/BrandStoryPreviewSection.jsx` to make the required sections easier to validate semantically.
++- Removed the broken default favicon reference from `index.html` and updated `src/App.css` so the header, footer, navigation, CTAs, and fixed WhatsApp button remain stable across the required responsive breakpoints.
 +
-+TASK responsive-polish executed by Codex.
++TASK validation-prep executed by Codex.
 +Waiting for validation.
 +
-+TASK responsive-polish completed successfully.
++TASK validation-prep completed successfully.
 +Build passed.
-+
- Completed TASK `navigation-structure`.
- - Centralized the spec navigation items and route definitions in `src/App.jsx`.
- - Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
+ Completed TASK `responsive-polish`.
+ - Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
+ - Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
+diff --git a/index.html b/index.html
+index 229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31..7e971742816fbf0c083399a66a58e1a8a7609519
+--- a/index.html
++++ b/index.html
+@@ -2,7 +2,6 @@
+ <html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta
+       name="description"
 diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
 --- a/src/App.css
 +++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
+@@ -3,7 +3,24 @@
+   width: 100%;
+ }
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
 +  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
++  background: #23251f;
++  color: #f8f3ea;
 +  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
++  transition: top 160ms ease;
 +}
 +
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
++.skip-link:focus {
++  top: 1rem;
++}
++
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
+ }
+ 
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
+ }
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
 +  color: #f8f3ea;
 +}
 +
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
 +  color: rgba(248, 243, 234, 0.78);
 +}
 +
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
 +}
 +
-+.page-shell {
-+  width: 100%;
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
 +}
 +
-+.content-section,
-+.hero-section {
-+  width: 100%;
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
 +}
 +
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
++.site-footer__contact {
++  font-style: normal;
  }
  
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
+ .page-shell {
+@@ -123,16 +208,16 @@
  }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
  
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
    }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
    }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
  }
  
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
 +    align-items: center;
 +  }
 +
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
  }
  
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
 +  }
 +
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
++  .site-nav {
++    justify-content: flex-end;
 +  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
  }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
  
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
 diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
 --- a/src/components/BrandStoryPreviewSection.jsx
 +++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
+@@ -85,7 +85,12 @@
  
  export default function BrandStoryPreviewSection() {
    return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
 +      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
 diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
 --- a/src/components/HeroSection.jsx
 +++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
+@@ -97,7 +97,12 @@
    secondaryCta = defaultSecondaryCta,
  }) {
    return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
            Educazione cinofila moderna, pratica e rispettosa
          </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
  
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
  
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
 diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
 --- a/src/components/SignaturePreviewSection.jsx
 +++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
+@@ -110,11 +110,18 @@
  
  export default function SignaturePreviewSection() {
    return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
            <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
            <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..15f920ae50b8bbcc6f0dcddd5eeb0840ce20dec8
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,69 @@
-+@import "./App.css";
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
 +
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
 +
-+html {
-+  scroll-behavior: smooth;
- }
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
  
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
  
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
 +
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
 +
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+button {
-+  cursor: pointer;
-+}
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
 +
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
    )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index f7a157489996398a6eed7153e386a788a74b2cae..04ec6baf9196234ff0010b1d88a344b2b5ecd5f7
+index 9601e7fa192d1830ba147f8db2d34682f6cb3db6..90aea4727f487fbee35b710e30b113f686ed271d
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
+@@ -218,6 +218,16 @@
  TASK section-chi-siamo-about-hero completed successfully.
  Build passed.
  
-+Completed TASK `responsive-polish`.
-+- Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
-+- Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
-+- Removed nested page-level `main` wrappers from the route pages and kept the existing routing/navigation structure intact while improving spacing coherence and preventing horizontal overflow.
++Completed TASK `validation-prep`.
++- Strengthened the shared shell in `src/layout/Layout.jsx` with a semantic header, skip link, brand block, footer navigation, and real contact details so validation can verify structure and destination integrity.
++- Added missing section labelling in `src/components/HeroSection.jsx`, `src/components/SignaturePreviewSection.jsx`, and `src/components/BrandStoryPreviewSection.jsx` to make the required sections easier to validate semantically.
++- Removed the broken default favicon reference from `index.html` and updated `src/App.css` so the header, footer, navigation, CTAs, and fixed WhatsApp button remain stable across the required responsive breakpoints.
 +
-+TASK responsive-polish executed by Codex.
++TASK validation-prep executed by Codex.
 +Waiting for validation.
 +
-+TASK responsive-polish completed successfully.
++TASK validation-prep completed successfully.
 +Build passed.
-+
- Completed TASK `navigation-structure`.
- - Centralized the spec navigation items and route definitions in `src/App.jsx`.
- - Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
+ Completed TASK `responsive-polish`.
+ - Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
+ - Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
+diff --git a/index.html b/index.html
+index 229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31..7e971742816fbf0c083399a66a58e1a8a7609519
+--- a/index.html
++++ b/index.html
+@@ -2,7 +2,6 @@
+ <html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta
+       name="description"
 diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
 --- a/src/App.css
 +++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
+@@ -3,7 +3,24 @@
+   width: 100%;
+ }
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
 +  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
++  background: #23251f;
++  color: #f8f3ea;
 +  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
++  transition: top 160ms ease;
 +}
 +
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
++.skip-link:focus {
++  top: 1rem;
++}
++
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
+ }
+ 
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
+ }
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
 +  color: #f8f3ea;
 +}
 +
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
 +  color: rgba(248, 243, 234, 0.78);
 +}
 +
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
-+}
-+
-+.page-shell {
-+  width: 100%;
-+}
-+
-+.content-section,
-+.hero-section {
-+  width: 100%;
-+}
-+
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
- }
- 
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
- }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
- 
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
-   }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
-   }
- }
- 
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
-+    align-items: center;
-+  }
-+
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
- }
- 
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
-+  }
- }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
- 
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
---- a/src/components/BrandStoryPreviewSection.jsx
-+++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
- 
- export default function BrandStoryPreviewSection() {
-   return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
-+      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
-   secondaryCta = defaultSecondaryCta,
- }) {
-   return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
-           Educazione cinofila moderna, pratica e rispettosa
-         </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
- 
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
---- a/src/components/SignaturePreviewSection.jsx
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
- 
- export default function SignaturePreviewSection() {
-   return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
-           <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
-   return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..15f920ae50b8bbcc6f0dcddd5eeb0840ce20dec8
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,69 @@
-+@import "./App.css";
-+
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
-+
-+html {
-+  scroll-behavior: smooth;
- }
- 
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
- 
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
-+
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
-+
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+button {
-+  cursor: pointer;
-+}
-+
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
-
-exec
-/bin/zsh -lc 'git diff --stat -- src/index.css src/App.css src/components src/pages/Menu.jsx src/pages/ChiSiamo.jsx src/pages/Contatti.jsx agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
- agent/AGENT_REPORT.md                        |  16 ++
- src/App.css                                  | 270 ++++++++++++++++++++++++---
- src/components/AboutHeroSection.jsx          |  13 +-
- src/components/BrandStoryPreviewSection.jsx  |   9 +-
- src/components/ContactDetailsSection.jsx     |  14 +-
- src/components/ContactHeroSection.jsx        |  10 +-
- src/components/ContactPhoneCtaSection.jsx    |   8 +-
- src/components/ContactWhatsAppCtaSection.jsx |   7 +-
- src/components/FloatingWhatsAppButton.jsx    |   1 +
- src/components/HeroSection.jsx               |  12 +-
- src/components/MenuCategoriesSection.jsx     |  11 +-
- src/components/MenuHeroSection.jsx           |  18 +-
- src/components/OpeningHoursSection.jsx       |  11 +-
- src/components/PhilosophySection.jsx         |  12 +-
- src/components/SignaturePreviewSection.jsx   |  12 +-
- src/components/StorySection.jsx              |  12 +-
- src/index.css                                |  87 ++++-----
- src/pages/ChiSiamo.jsx                       |   4 +-
- src/pages/Contatti.jsx                       |   4 +-
- src/pages/Menu.jsx                           |   4 +-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index f7a157489996398a6eed7153e386a788a74b2cae..04ec6baf9196234ff0010b1d88a344b2b5ecd5f7
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
- TASK section-chi-siamo-about-hero completed successfully.
- Build passed.
- 
-+Completed TASK `responsive-polish`.
-+- Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
-+- Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
-+- Removed nested page-level `main` wrappers from the route pages and kept the existing routing/navigation structure intact while improving spacing coherence and preventing horizontal overflow.
-+
-+TASK responsive-polish executed by Codex.
-+Waiting for validation.
-+
-+TASK responsive-polish completed successfully.
-+Build passed.
-+
- Completed TASK `navigation-structure`.
- - Centralized the spec navigation items and route definitions in `src/App.jsx`.
- - Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
-diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
---- a/src/App.css
-+++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
-+  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
++.site-footer__nav {
 +  display: flex;
 +  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
++  gap: 0.75rem 1rem;
 +}
 +
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
-+  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-+}
-+
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
++.site-footer__nav a {
 +  color: #f8f3ea;
++  text-decoration: none;
 +}
 +
-+main {
-+  width: 100%;
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
 +}
 +
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
-+  color: rgba(248, 243, 234, 0.78);
-+}
-+
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
-+}
-+
-+.page-shell {
-+  width: 100%;
-+}
-+
-+.content-section,
-+.hero-section {
-+  width: 100%;
-+}
-+
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
++.site-footer__contact {
++  font-style: normal;
  }
  
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
+ .page-shell {
+@@ -123,16 +208,16 @@
  }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
  
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
    }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
    }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
  }
  
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
 +    align-items: center;
 +  }
 +
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
  }
  
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
 +  }
 +
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
++  .site-nav {
++    justify-content: flex-end;
 +  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
  }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
  
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
 diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
 --- a/src/components/BrandStoryPreviewSection.jsx
 +++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
+@@ -85,7 +85,12 @@
  
  export default function BrandStoryPreviewSection() {
    return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
 +      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
 diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
 --- a/src/components/HeroSection.jsx
 +++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
+@@ -97,7 +97,12 @@
    secondaryCta = defaultSecondaryCta,
  }) {
    return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
            Educazione cinofila moderna, pratica e rispettosa
          </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
  
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
  
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
 diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
 --- a/src/components/SignaturePreviewSection.jsx
 +++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
+@@ -110,11 +110,18 @@
  
  export default function SignaturePreviewSection() {
    return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
            <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
            <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..15f920ae50b8bbcc6f0dcddd5eeb0840ce20dec8
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,69 @@
-+@import "./App.css";
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
 +
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
 +
-+html {
-+  scroll-behavior: smooth;
- }
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
  
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
  
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
 +
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
 +
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+button {
-+  cursor: pointer;
-+}
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
 +
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
    )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
 
 codex
-Modified files:
-- [src/index.css](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/index.css)
-- [src/App.css](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css)
-- [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx)
-- [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx)
-- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx)
-- `src/components/`: `HeroSection.jsx`, `SignaturePreviewSection.jsx`, `BrandStoryPreviewSection.jsx`, `MenuHeroSection.jsx`, `MenuCategoriesSection.jsx`, `AboutHeroSection.jsx`, `StorySection.jsx`, `PhilosophySection.jsx`, `ContactHeroSection.jsx`, `ContactDetailsSection.jsx`, `ContactPhoneCtaSection.jsx`, `ContactWhatsAppCtaSection.jsx`, `OpeningHoursSection.jsx`, `FloatingWhatsAppButton.jsx`
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modified files: [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/layout/Layout.jsx), [src/components/HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx), [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx), [src/components/BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/BrandStoryPreviewSection.jsx), [src/App.css](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.css), [index.html](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/index.html), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-What was implemented:
-- Replaced the Vite starter global styles with a real site reset and layout system, including responsive nav/footer behavior, width constraints, overflow protection, and mobile-safe spacing.
-- Added responsive hooks to the allowed section components so hero CTAs, split layouts, card grids, contact panels, and the floating WhatsApp CTA adapt cleanly across `360`, `768`, `1024`, and `1440`.
-- Removed nested page-level `main` wrappers from the route pages to keep the layout semantically clean and easier to control responsively.
+Implemented: the shared site shell now has a semantic header/footer with real brand and contact content, valid footer navigation, and a skip link; the homepage and preview sections now expose explicit semantic labels for validation; the broken default favicon reference was removed; and the shell CSS was tightened so navigation, CTAs, footer, and the floating WhatsApp button stay stable across responsive breakpoints.
 
-Build result:
-- `npm run build` passed.
-- I did not run browser or Playwright validation in this pass.
+Build result: `npm run build` passed with Vite production build success. I did not run browser-based manual validation in this turn.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index f7a157489996398a6eed7153e386a788a74b2cae..04ec6baf9196234ff0010b1d88a344b2b5ecd5f7
+index 9601e7fa192d1830ba147f8db2d34682f6cb3db6..90aea4727f487fbee35b710e30b113f686ed271d
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
+@@ -218,6 +218,16 @@
  TASK section-chi-siamo-about-hero completed successfully.
  Build passed.
  
-+Completed TASK `responsive-polish`.
-+- Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
-+- Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
-+- Removed nested page-level `main` wrappers from the route pages and kept the existing routing/navigation structure intact while improving spacing coherence and preventing horizontal overflow.
++Completed TASK `validation-prep`.
++- Strengthened the shared shell in `src/layout/Layout.jsx` with a semantic header, skip link, brand block, footer navigation, and real contact details so validation can verify structure and destination integrity.
++- Added missing section labelling in `src/components/HeroSection.jsx`, `src/components/SignaturePreviewSection.jsx`, and `src/components/BrandStoryPreviewSection.jsx` to make the required sections easier to validate semantically.
++- Removed the broken default favicon reference from `index.html` and updated `src/App.css` so the header, footer, navigation, CTAs, and fixed WhatsApp button remain stable across the required responsive breakpoints.
 +
-+TASK responsive-polish executed by Codex.
++TASK validation-prep executed by Codex.
 +Waiting for validation.
 +
-+TASK responsive-polish completed successfully.
++TASK validation-prep completed successfully.
 +Build passed.
-+
- Completed TASK `navigation-structure`.
- - Centralized the spec navigation items and route definitions in `src/App.jsx`.
- - Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
+ Completed TASK `responsive-polish`.
+ - Replaced the Vite starter global CSS with site-wide layout, reset, navigation, footer, and breakpoint rules in `src/index.css` and `src/App.css`.
+ - Added targeted responsive hooks to the allowed section components so hero actions, split layouts, card grids, and floating WhatsApp CTA behave cleanly across `360px`, `768px`, `1024px`, and `1440px`.
+diff --git a/index.html b/index.html
+index 229ea1aa36ec7dca723ba6fbcc71bc8f41dfec31..7e971742816fbf0c083399a66a58e1a8a7609519
+--- a/index.html
++++ b/index.html
+@@ -2,7 +2,6 @@
+ <html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta
+       name="description"
 diff --git a/src/App.css b/src/App.css
-index b9d355df2a5956b526c004531b7b0ffe412461e0..5ac1aa92641041100456bcb9e85a126982c7fa6e
+index 5ac1aa92641041100456bcb9e85a126982c7fa6e..a8d02b246b7a76b58b2834b51ad76c5a26e9aab6
 --- a/src/App.css
 +++ b/src/App.css
-@@ -1,42 +1,264 @@
- #root {
--  max-width: 1280px;
-+  min-height: 100vh;
-+  width: 100%;
-+}
-+
-+header {
-+  position: sticky;
-+  top: 0;
-+  z-index: 40;
-+  padding: 1rem 1rem 0;
-+  background: linear-gradient(180deg, rgba(248, 243, 234, 0.95), rgba(248, 243, 234, 0.78) 72%, rgba(248, 243, 234, 0));
-+  backdrop-filter: blur(12px);
-+}
-+
-+nav[aria-label="Main navigation"] {
-+  width: min(100%, 72rem);
-+  margin: 0 auto;
-+  padding: 0.5rem;
-+  border: 1px solid rgba(47, 49, 45, 0.08);
+@@ -3,7 +3,24 @@
+   width: 100%;
+ }
+ 
+-header {
++.skip-link {
++  position: absolute;
++  left: 1rem;
++  top: -3rem;
++  z-index: 100;
++  padding: 0.75rem 1rem;
 +  border-radius: 999px;
-+  background: rgba(255, 252, 246, 0.88);
-+  box-shadow: 0 12px 30px rgba(62, 52, 42, 0.08);
-+  display: flex;
-+  flex-wrap: wrap;
-+  align-items: center;
-+  justify-content: center;
-+  gap: 0.4rem;
-+}
-+
-+nav[aria-label="Main navigation"] a {
-+  display: inline-flex;
-+  align-items: center;
-+  justify-content: center;
-+  min-height: 2.8rem;
-+  padding: 0.65rem 1rem;
-+  border-radius: 999px;
-+  color: #4b5047;
++  background: #23251f;
++  color: #f8f3ea;
 +  text-decoration: none;
-+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
++  transition: top 160ms ease;
 +}
 +
-+nav[aria-label="Main navigation"] a:hover,
-+nav[aria-label="Main navigation"] a[aria-current="page"] {
-+  background: #6a7761;
++.skip-link:focus {
++  top: 1rem;
++}
++
++.site-header {
+   position: sticky;
+   top: 0;
+   z-index: 40;
+@@ -12,9 +29,34 @@
+   backdrop-filter: blur(12px);
+ }
+ 
+-nav[aria-label="Main navigation"] {
++.site-header__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 0.75rem;
++}
++
++.site-brand {
++  display: grid;
++  gap: 0.1rem;
++  width: fit-content;
++  text-decoration: none;
++}
++
++.site-brand__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  color: #23251f;
++}
++
++.site-brand__tagline {
++  font-size: 0.92rem;
++  color: #5e635a;
++}
++
++.site-nav {
+   padding: 0.5rem;
+   border: 1px solid rgba(47, 49, 45, 0.08);
+   border-radius: 999px;
+@@ -27,7 +69,7 @@
+   gap: 0.4rem;
+ }
+ 
+-nav[aria-label="Main navigation"] a {
++.site-nav a {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+@@ -39,8 +81,8 @@
+   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+ }
+ 
+-nav[aria-label="Main navigation"] a:hover,
+-nav[aria-label="Main navigation"] a[aria-current="page"] {
++.site-nav a:hover,
++.site-nav a[aria-current="page"] {
+   background: #6a7761;
+   color: #f8f3ea;
+ }
+@@ -49,16 +91,59 @@
+   width: 100%;
+ }
+ 
+-footer {
++.site-footer {
+   padding: 1.75rem 1rem 2.5rem;
+   background: #23251f;
+   color: rgba(248, 243, 234, 0.78);
+ }
+ 
+-footer p {
++.site-footer__inner {
+   width: min(100%, 72rem);
+   margin: 0 auto;
++  display: grid;
++  gap: 1.5rem;
++}
++
++.site-footer__brand,
++.site-footer__contact {
++  display: grid;
++  gap: 0.45rem;
++}
++
++.site-footer__name {
++  font-size: 1rem;
++  font-weight: 700;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
 +  color: #f8f3ea;
 +}
 +
-+main {
-+  width: 100%;
-+}
-+
-+footer {
-+  padding: 1.75rem 1rem 2.5rem;
-+  background: #23251f;
++.site-footer__tagline,
++.site-footer__copyright,
++.site-footer__contact,
++.site-footer__contact a {
+   font-size: 0.95rem;
++  line-height: 1.7;
 +  color: rgba(248, 243, 234, 0.78);
 +}
 +
-+footer p {
-+  width: min(100%, 72rem);
-   margin: 0 auto;
--  padding: 2rem;
-+  font-size: 0.95rem;
++.site-footer__nav {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 0.75rem 1rem;
 +}
 +
-+.page-shell {
-+  width: 100%;
++.site-footer__nav a {
++  color: #f8f3ea;
++  text-decoration: none;
 +}
 +
-+.content-section,
-+.hero-section {
-+  width: 100%;
++.site-footer__nav a[aria-current="page"] {
++  color: #c7d3bb;
 +}
 +
-+.content-section__container,
-+.hero-section__container {
-+  width: min(100%, 72rem) !important;
-+  margin: 0 auto !important;
-+}
-+
-+.hero-section__container {
-+  justify-items: start;
-+}
-+
-+.hero-section__container--split {
-+  align-items: start !important;
-+}
-+
-+.section-intro,
-+.hero-section__container > div:first-child,
-+.hero-section__container > aside:first-child {
-+  min-width: 0;
-+}
-+
-+.split-layout,
-+.cards-grid,
-+.stacked-cards {
-+  min-width: 0;
-+}
-+
-+.cards-grid__item,
-+.stacked-cards__item,
-+.surface-panel,
-+.cta-panel,
-+.content-note,
-+.opening-hours__schedule,
-+.opening-hours__aside,
-+.contact-details__aside {
-+  min-width: 0;
-+}
-+
-+.button-link {
-+  max-width: 100%;
-   text-align: center;
-+  white-space: normal;
++.site-footer__contact {
++  font-style: normal;
  }
  
--.logo {
--  height: 6em;
--  padding: 1.5em;
--  will-change: filter;
--  transition: filter 300ms;
-+.hero-section__details,
-+.hero-section__details--pills {
-+  min-width: 0;
+ .page-shell {
+@@ -123,16 +208,16 @@
  }
--.logo:hover {
--  filter: drop-shadow(0 0 2em #646cffaa);
-+
-+.floating-whatsapp-button {
-+  max-width: calc(100vw - 2rem);
- }
--.logo.react:hover {
--  filter: drop-shadow(0 0 2em #61dafbaa);
--}
  
--@keyframes logo-spin {
--  from {
--    transform: rotate(0deg);
-+@media (max-width: 767px) {
-+  header {
-+    padding: 0.75rem 0.75rem 0;
-+  }
-+
-+  nav[aria-label="Main navigation"] {
-+    border-radius: 1.4rem;
-+    justify-content: stretch;
-+  }
-+
-+  nav[aria-label="Main navigation"] a {
-+    flex: 1 1 calc(50% - 0.4rem);
-+    min-width: 0;
-+  }
-+
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 1rem !important;
-+    padding-right: 1rem !important;
-+  }
-+
-+  .hero-section__container,
-+  .content-section__container {
-+    gap: 1.5rem !important;
-+  }
-+
-+  .hero-section__actions,
-+  #contact-hero .hero-section__actions {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+    align-items: stretch !important;
-+  }
-+
-+  .hero-section__actions .button-link,
-+  .cta-panel .button-link,
-+  .cards-grid__item .button-link {
-+    width: 100% !important;
-+  }
-+
-+  .hero-section__details {
-+    gap: 0.75rem !important;
-+  }
-+
-+  .hero-section__details--pills {
-+    display: grid !important;
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact,
-+  .cards-grid--menu,
-+  .cards-grid--signature {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .floating-whatsapp-button {
-+    right: 0.75rem !important;
-+    bottom: 0.75rem !important;
-+    min-height: 3.25rem !important;
-+    padding: 0.9rem 1rem !important;
-+    font-size: 0.95rem !important;
+ @media (max-width: 767px) {
+-  header {
++  .site-header {
+     padding: 0.75rem 0.75rem 0;
    }
--  to {
--    transform: rotate(360deg);
-+
-+  #opening-hours {
-+    padding-bottom: 6.5rem !important;
+ 
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     border-radius: 1.4rem;
+     justify-content: stretch;
    }
+ 
+-  nav[aria-label="Main navigation"] a {
++  .site-nav a {
+     flex: 1 1 calc(50% - 0.4rem);
+     min-width: 0;
+   }
+@@ -197,7 +282,11 @@
  }
  
--@media (prefers-reduced-motion: no-preference) {
--  a:nth-of-type(2) .logo {
--    animation: logo-spin infinite 20s linear;
-+@media (min-width: 768px) and (max-width: 1023px) {
-+  nav[aria-label="Main navigation"] {
-+    justify-content: center;
-+  }
-+
-+  .hero-section__container--split {
-+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr) !important;
-+  }
-+
-+  .split-layout--contact-details,
-+  .split-layout--hours {
-+    grid-template-columns: 1fr !important;
-+  }
-+
-+  .cards-grid--contact {
-+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-   }
- }
- 
--.card {
--  padding: 2em;
-+@media (min-width: 1024px) {
-+  header {
-+    padding-top: 1.25rem;
-+  }
-+
-+  .hero-section {
-+    min-height: min(78vh, 54rem);
-+    display: grid;
+ @media (min-width: 768px) and (max-width: 1023px) {
+-  nav[aria-label="Main navigation"] {
++  .site-header__inner {
 +    align-items: center;
 +  }
 +
-+  #hero .hero-section__container,
-+  #menu-hero .hero-section__container {
-+    width: min(100%, 72rem) !important;
-+  }
-+
-+  .hero-section__container--split {
-+    gap: 2rem !important;
-+  }
-+
-+  .split-layout--story,
-+  .split-layout--philosophy {
-+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--contact-details {
-+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr) !important;
-+  }
-+
-+  .split-layout--hours {
-+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
-+  }
++  .site-nav {
+     justify-content: center;
+   }
+ 
+@@ -216,10 +305,24 @@
  }
  
--.read-the-docs {
--  color: #888;
-+@media (min-width: 1440px) {
-+  nav[aria-label="Main navigation"] {
-+    padding: 0.65rem;
+ @media (min-width: 1024px) {
+-  header {
++  .site-header {
+     padding-top: 1.25rem;
+   }
+ 
++  .site-header__inner {
++    grid-template-columns: auto minmax(0, 1fr);
++    align-items: center;
 +  }
 +
-+  #hero,
-+  #menu-hero,
-+  #about-hero,
-+  #contact-hero {
-+    padding-left: 2rem !important;
-+    padding-right: 2rem !important;
++  .site-nav {
++    justify-content: flex-end;
 +  }
++
++  .site-footer__inner {
++    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
++    align-items: start;
++  }
++
+   .hero-section {
+     min-height: min(78vh, 54rem);
+     display: grid;
+@@ -250,7 +353,7 @@
  }
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-index 9c33f7f100809784e5f920a5de047625bdea33b8..43d9b4a175560c365902cd545f15e0fc40445a02
---- a/src/components/AboutHeroSection.jsx
-+++ b/src/components/AboutHeroSection.jsx
-@@ -112,12 +112,13 @@
-   return (
-     <section
-       id="about-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="about-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Chi sono</p>
+ @media (min-width: 1440px) {
+-  nav[aria-label="Main navigation"] {
++  .site-nav {
+     padding: 0.65rem;
+   }
  
-@@ -138,14 +139,14 @@
-             difficolta di tutti i giorni in occasioni di crescita concreta.
-           </p>
- 
--          <ul style={styles.meta}>
--            <li style={styles.metaItem}>Torino e dintorni</li>
--            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
--            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-+          <ul className="hero-section__details hero-section__details--pills" style={styles.meta}>
-+            <li className="hero-section__pill" style={styles.metaItem}>Torino e dintorni</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
-+            <li className="hero-section__pill" style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
-           </ul>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
-           <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
-           <ul style={styles.list}>
 diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
-index 57657c4ccbb63e5329189b31b3f9268f32c8b659..799c4f666a3b7eb759ea8ba5d43508c396c6f295
+index 799c4f666a3b7eb759ea8ba5d43508c396c6f295..65ccbc98406a2d3dd71a1e798c7b1174a3bca7c9
 --- a/src/components/BrandStoryPreviewSection.jsx
 +++ b/src/components/BrandStoryPreviewSection.jsx
-@@ -85,9 +85,10 @@
+@@ -85,7 +85,12 @@
  
  export default function BrandStoryPreviewSection() {
    return (
--    <section id="brand-story-preview" style={styles.section}>
--      <div style={styles.container}>
-+    <section id="brand-story-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-         <div
-+          className="split-layout split-layout--preview"
-           style={{
-             ...styles.contentGrid,
-             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-@@ -110,12 +111,12 @@
-               stabili nella vita quotidiana.
-             </p>
- 
--            <a href="#/chi-siamo" style={styles.action}>
-+            <a className="button-link button-link--primary" href="#/chi-siamo" style={styles.action}>
-               Conosci il mio approccio
-             </a>
-           </div>
- 
--          <aside style={styles.panel}>
-+          <aside className="surface-panel" style={styles.panel}>
-             <h3 style={styles.panelTitle}>Cosa troverai nel percorso</h3>
-             <ul style={styles.list}>
-               {storyHighlights.map((highlight) => (
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-index 1d99c485c22ba8d8a7d264330f52b40720ba5b32..414f23b8d1a8551a2b3829a6645cec5264c82086
---- a/src/components/ContactDetailsSection.jsx
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -164,11 +164,12 @@
-   return (
-     <section
-       id="contact-details"
+-    <section id="brand-story-preview" className="content-section" style={styles.section}>
++    <section
++      id="brand-story-preview"
 +      className="content-section"
-       aria-labelledby="contact-details-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Riferimenti</p>
-           <h2 id="contact-details-title" style={styles.title}>
-             Contatti semplici, chiari e adatti alla vostra situazione
-@@ -181,16 +182,17 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.cardsGrid}>
-+        <div className="split-layout split-layout--contact-details" style={styles.layout}>
-+          <div className="cards-grid cards-grid--contact" style={styles.cardsGrid}>
-             {contactCards.map((card) => (
--              <article key={card.title} style={styles.card}>
-+              <article className="cards-grid__item" key={card.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{card.title}</h3>
-                 <p style={styles.cardDetail}>{card.detail}</p>
-                 <p style={styles.cardDescription}>{card.description}</p>
-                 <a
-                   href={card.href}
-                   rel={card.title === "WhatsApp" ? "noreferrer" : undefined}
-+                  className="button-link button-link--primary"
-                   style={styles.cardAction}
-                   target={card.title === "WhatsApp" ? "_blank" : undefined}
-                 >
-@@ -200,7 +202,7 @@
-             ))}
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel contact-details__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Area e disponibilita</p>
-             <h3 style={styles.asideTitle}>Un supporto costruito sulla vita reale</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
-index f7f1bf5ec987074cea81b5f38f30cce02180e19e..6aaa2764cd19618fc0b37d059f3a0b95d346e0c7
---- a/src/components/ContactHeroSection.jsx
-+++ b/src/components/ContactHeroSection.jsx
-@@ -123,12 +123,13 @@
-   return (
-     <section
-       id="contact-hero"
-+      className="hero-section hero-section--inner"
-       aria-labelledby="contact-hero-title"
-       style={styles.section}
-     >
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container hero-section__container--split" style={styles.container}>
-         <div style={styles.content}>
-           <p style={styles.eyebrow}>Contatti</p>
- 
-@@ -149,11 +150,12 @@
-             essere davvero utile per la vostra realta.
-           </p>
- 
--          <div style={styles.actions}>
--            <a href="tel:+39011000000" style={styles.primaryLink}>
-+          <div className="hero-section__actions" style={styles.actions}>
-+            <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.primaryLink}>
-               Chiama ora
-             </a>
-             <a
-+              className="button-link button-link--secondary"
-               href="mailto:ciao@equilibriocinofilo.it"
-               style={styles.secondaryLink}
-             >
-@@ -162,7 +164,7 @@
-           </div>
-         </div>
- 
--        <aside style={styles.panel}>
-+        <aside className="surface-panel" style={styles.panel}>
-           <p style={styles.panelLabel}>Come posso aiutarti</p>
-           <h2 style={styles.panelTitle}>Un confronto orientato alla quotidianita</h2>
-           <ul style={styles.list}>
-diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
-index 265dc18a97c23380df7fe4e55461340967429695..ccada71c3fb2c68a737cd909b60c7b930e58fcb7
---- a/src/components/ContactPhoneCtaSection.jsx
-+++ b/src/components/ContactPhoneCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactPhoneCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto telefonico">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto telefonico">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>Telefono</p>
-           <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
-           <p style={styles.description}>
-@@ -66,7 +66,7 @@
-             contattarmi telefonicamente per un primo confronto pratico su bisogni,
-             priorita e disponibilita.
-           </p>
--          <a href="tel:+39011000000" style={styles.action}>
-+          <a className="button-link button-link--primary" href="tel:+39011000000" style={styles.action}>
-             Chiama +39 011 000000
-           </a>
-         </div>
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-index 24ed4b9ada0cc46ddb54e567244b0f4343b6e272..e918102e649b9b83f7860c183769a6a0b37b76ca
---- a/src/components/ContactWhatsAppCtaSection.jsx
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -56,9 +56,9 @@
- 
- export default function ContactWhatsAppCtaSection() {
-   return (
--    <section style={styles.section} aria-label="Contatto WhatsApp">
--      <div style={styles.container}>
--        <div style={styles.panel}>
-+    <section className="content-section content-section--compact" style={styles.section} aria-label="Contatto WhatsApp">
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="surface-panel cta-panel" style={styles.panel}>
-           <p style={styles.eyebrow}>WhatsApp</p>
-           <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-           <p style={styles.description}>
-@@ -70,6 +70,7 @@
-             href="https://wa.me/39011000000"
-             target="_blank"
-             rel="noreferrer"
-+            className="button-link button-link--primary"
-             style={styles.action}
-           >
-             Scrivi su WhatsApp
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-index 785c3b66900e268c14bbd190aff298132683d072..7c4249c14f8bea63e52d143b4d12724333267d62
---- a/src/components/FloatingWhatsAppButton.jsx
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -28,6 +28,7 @@
-   return (
-     <a
-       aria-label="Scrivi su WhatsApp a Equilibrio Cinofilo"
-+      className="floating-whatsapp-button"
-       href={href}
-       rel="noreferrer"
-       style={styles.link}
++      aria-labelledby="brand-story-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div
+           className="split-layout split-layout--preview"
+@@ -96,7 +101,7 @@
+         >
+           <div style={styles.textColumn}>
+             <p style={styles.eyebrow}>Chi sono</p>
+-            <h2 style={styles.title}>
++            <h2 id="brand-story-preview-title" style={styles.title}>
+               Un supporto educativo che parte dalla relazione
+             </h2>
+             <p style={styles.description}>
 diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index 340a830c1f2e1fc623fc3f6e56a33d8f2233473b..44fcb20afc482c01652a3012a8b14ee92b60d5ef
+index 44fcb20afc482c01652a3012a8b14ee92b60d5ef..0f2473543b698b30aee6f6f7703cfb5aba58ea55
 --- a/src/components/HeroSection.jsx
 +++ b/src/components/HeroSection.jsx
-@@ -97,10 +97,10 @@
+@@ -97,7 +97,12 @@
    secondaryCta = defaultSecondaryCta,
  }) {
    return (
--    <section id="hero" style={styles.section}>
-+    <section id="hero" className="hero-section" style={styles.section}>
+-    <section id="hero" className="hero-section" style={styles.section}>
++    <section
++      id="hero"
++      className="hero-section"
++      aria-labelledby="home-hero-title"
++      style={styles.section}
++    >
        <div aria-hidden="true" style={styles.background} />
  
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>
+       <div className="hero-section__container" style={styles.container}>
+@@ -105,7 +110,7 @@
            Educazione cinofila moderna, pratica e rispettosa
          </p>
-@@ -114,16 +114,16 @@
-           chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-         </p>
  
--        <div style={styles.actions}>
--          <a href={primaryCta.href} style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href={primaryCta.href} style={styles.primaryLink}>
-             {primaryCta.label}
-           </a>
--          <a href={secondaryCta.href} style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href={secondaryCta.href} style={styles.secondaryLink}>
-             {secondaryCta.label}
-           </a>
-         </div>
+-        <h1 style={styles.title}>
++        <h1 id="home-hero-title" style={styles.title}>
+           Aiuto concreto per costruire una relazione piu serena con il tuo cane
+         </h1>
  
--        <div style={styles.detailRow}>
-+        <div className="hero-section__details" style={styles.detailRow}>
-           <span>Torino e dintorni</span>
-           <span>Sessioni individuali e consulenze online</span>
-         </div>
-diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
-index 4dd60490a0074267a0d9588070725dea61b09e07..0a5b78f1fa6e170cc9f19855d4cb51954e50fbce
---- a/src/components/MenuCategoriesSection.jsx
-+++ b/src/components/MenuCategoriesSection.jsx
-@@ -137,11 +137,12 @@
-   return (
-     <section
-       id="menu-categories"
-+      className="content-section"
-       aria-labelledby="menu-categories-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Aree di lavoro</p>
-           <h2 id="menu-categories-title" style={styles.title}>
-             Una panoramica chiara delle principali tipologie di supporto
-@@ -153,9 +154,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--menu" style={styles.grid}>
-           {categories.map((category, index) => (
--            <article key={category.title} style={styles.card}>
-+            <article className="cards-grid__item" key={category.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.index}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -170,7 +171,7 @@
-           ))}
-         </div>
- 
--        <p style={styles.note}>
-+        <p className="content-note" style={styles.note}>
-           Se non sai quale area sia piu adatta alla tua situazione, il primo
-           confronto serve proprio a fare chiarezza e a definire un percorso
-           realistico, rispettoso e sostenibile nel tempo.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
-index 5b0e336f4b1130a6af53ca52241409d5f1a031c9..12218557acdeca1368c9853344ee1d93ef210d71
---- a/src/components/MenuHeroSection.jsx
-+++ b/src/components/MenuHeroSection.jsx
-@@ -92,10 +92,10 @@
- 
- export default function MenuHeroSection() {
-   return (
--    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+    <section id="menu-hero" className="hero-section hero-section--inner" aria-labelledby="menu-title" style={styles.section}>
-       <div aria-hidden="true" style={styles.background} />
- 
--      <div style={styles.container}>
-+      <div className="hero-section__container" style={styles.container}>
-         <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
- 
-         <h1 id="menu-title" style={styles.title}>
-@@ -109,19 +109,19 @@
-           senza scorciatoie o promesse irrealistiche.
-         </p>
- 
--        <div style={styles.actions}>
--          <a href="#/contatti" style={styles.primaryLink}>
-+        <div className="hero-section__actions" style={styles.actions}>
-+          <a className="button-link button-link--primary" href="#/contatti" style={styles.primaryLink}>
-             Richiedi informazioni
-           </a>
--          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+          <a className="button-link button-link--secondary" href="#/chi-siamo" style={styles.secondaryLink}>
-             Scopri l&apos;approccio
-           </a>
-         </div>
- 
--        <ul style={styles.highlights}>
--          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
--          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
--          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        <ul className="hero-section__details hero-section__details--pills" style={styles.highlights}>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li className="hero-section__pill" style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-         </ul>
-       </div>
-     </section>
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-index 975da4d13bf9d65b6a438271744eaa16bed3203e..5b6f84b096c989372165193bd850111a15cea129
---- a/src/components/OpeningHoursSection.jsx
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -146,11 +146,12 @@
-   return (
-     <section
-       id="opening-hours"
-+      className="content-section"
-       aria-labelledby="opening-hours-title"
-       style={styles.section}
-     >
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
-           <p style={styles.eyebrow}>Disponibilita</p>
-           <h2 id="opening-hours-title" style={styles.title}>
-             Orari chiari per organizzare il primo passo con calma
-@@ -163,8 +164,8 @@
-           </p>
-         </div>
- 
--        <div style={styles.layout}>
--          <div style={styles.scheduleCard}>
-+        <div className="split-layout split-layout--hours" style={styles.layout}>
-+          <div className="surface-panel opening-hours__schedule" style={styles.scheduleCard}>
-             <div style={styles.scheduleList}>
-               {availabilityWindows.map((slot, index) => (
-                 <div
-@@ -187,7 +188,7 @@
-             </div>
-           </div>
- 
--          <aside style={styles.aside}>
-+          <aside className="surface-panel opening-hours__aside" style={styles.aside}>
-             <p style={styles.asideLabel}>Come funziona</p>
-             <h3 style={styles.asideTitle}>Tempi di risposta e organizzazione</h3>
-             <p style={styles.asideText}>
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-index 19d673d2e5ad727a03c89a031b43e886bc21208f..9d23edbb195e7e217c4252d8c3394b251b854682
---- a/src/components/PhilosophySection.jsx
-+++ b/src/components/PhilosophySection.jsx
-@@ -108,10 +108,10 @@
- 
- export default function PhilosophySection() {
-   return (
--    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.content}>
-+    <section id="philosophy" className="content-section" aria-labelledby="philosophy-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--philosophy" style={styles.layout}>
-+          <div className="section-intro" style={styles.content}>
-             <p style={styles.eyebrow}>Filosofia e metodo</p>
-             <h2 id="philosophy-title" style={styles.title}>
-               Un approccio rispettoso, leggibile e concreto
-@@ -136,9 +136,9 @@
-             </div>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {principles.map((principle) => (
--              <article key={principle.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={principle.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{principle.title}</h3>
-                 <p style={styles.cardDescription}>{principle.description}</p>
-               </article>
 diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-index aa8c64c982464223dd687acec50ce969dda93bbe..f0f739376d5423282e27ec8a8be73f8a23d950c1
+index f0f739376d5423282e27ec8a8be73f8a23d950c1..841393f9e58fc093e3c5f0b0209d229e24abecbb
 --- a/src/components/SignaturePreviewSection.jsx
 +++ b/src/components/SignaturePreviewSection.jsx
-@@ -110,9 +110,9 @@
+@@ -110,11 +110,18 @@
  
  export default function SignaturePreviewSection() {
    return (
--    <section id="signature-preview" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.intro}>
-+    <section id="signature-preview" className="content-section" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="section-intro" style={styles.intro}>
+-    <section id="signature-preview" className="content-section" style={styles.section}>
++    <section
++      id="signature-preview"
++      className="content-section"
++      aria-labelledby="signature-preview-title"
++      style={styles.section}
++    >
+       <div className="content-section__container" style={styles.container}>
+         <div className="section-intro" style={styles.intro}>
            <p style={styles.eyebrow}>Come lavoro</p>
-           <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+-          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <h2 id="signature-preview-title" style={styles.title}>
++            Un approccio chiaro, rispettoso e concreto
++          </h2>
            <p style={styles.description}>
-@@ -121,9 +121,9 @@
-           </p>
-         </div>
- 
--        <div style={styles.grid}>
-+        <div className="cards-grid cards-grid--signature" style={styles.grid}>
-           {previewCards.map((card, index) => (
--            <article key={card.title} style={styles.card}>
-+            <article className="cards-grid__item" key={card.title} style={styles.card}>
-               <span aria-hidden="true" style={styles.cardIndex}>
-                 {String(index + 1).padStart(2, "0")}
-               </span>
-@@ -133,7 +133,7 @@
-           ))}
-         </div>
- 
--        <a href="#/menu" style={styles.action}>
-+        <a className="button-link button-link--primary" href="#/menu" style={styles.action}>
-           Scopri i percorsi
-         </a>
-       </div>
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
-index 8b85401675d766fc8c78776f9daf8f8b9c63a072..8042ff9548a5110381d563a6ff3da63cd6fa6b64
---- a/src/components/StorySection.jsx
-+++ b/src/components/StorySection.jsx
-@@ -99,10 +99,10 @@
- 
- export default function StorySection() {
+             Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+             relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
+index 5550c15a8943c6cd5619d56a9986e6c9ef338246..f4970c3819adf36eacc6dd1c46b7e37e6c62a4a8
+--- a/src/layout/Layout.jsx
++++ b/src/layout/Layout.jsx
+@@ -3,24 +3,68 @@
+ export default function Layout({ children, navigationItems = [] }) {
    return (
--    <section id="story" aria-labelledby="story-title" style={styles.section}>
--      <div style={styles.container}>
--        <div style={styles.layout}>
--          <div style={styles.intro}>
-+    <section id="story" className="content-section" aria-labelledby="story-title" style={styles.section}>
-+      <div className="content-section__container" style={styles.container}>
-+        <div className="split-layout split-layout--story" style={styles.layout}>
-+          <div className="section-intro" style={styles.intro}>
-             <p style={styles.eyebrow}>La mia storia</p>
-             <h2 id="story-title" style={styles.title}>
-               Equilibrio Cinofilo nasce per rendere l&apos;educazione piu chiara e abitabile
-@@ -123,9 +123,9 @@
-             </p>
-           </div>
- 
--          <div style={styles.cards}>
-+          <div className="stacked-cards" style={styles.cards}>
-             {storyPillars.map((pillar) => (
--              <article key={pillar.title} style={styles.card}>
-+              <article className="stacked-cards__item" key={pillar.title} style={styles.card}>
-                 <h3 style={styles.cardTitle}>{pillar.title}</h3>
-                 <p style={styles.cardDescription}>{pillar.description}</p>
-               </article>
-diff --git a/src/index.css b/src/index.css
-index 08a3ac9e1e5c44ce374f782d7c4fa3aa70e4c1ff..15f920ae50b8bbcc6f0dcddd5eeb0840ce20dec8
---- a/src/index.css
-+++ b/src/index.css
-@@ -1,68 +1,69 @@
-+@import "./App.css";
+     <>
+-      <header>
+-        <nav aria-label="Main navigation">
+-          {navigationItems.map((item) => (
+-            <NavLink
+-              key={item.target}
+-              to={item.target}
+-              end={item.target === "/"}
+-            >
+-              {item.label}
+-            </NavLink>
+-          ))}
+-        </nav>
++      <a className="skip-link" href="#main-content">
++        Vai al contenuto
++      </a>
 +
- :root {
--  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
--
--  color-scheme: light dark;
--  color: rgba(255, 255, 255, 0.87);
--  background-color: #242424;
--
-+  color: #2f312d;
-+  background: #f8f3ea;
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
- }
- 
--a {
--  font-weight: 500;
--  color: #646cff;
--  text-decoration: inherit;
-+*,
-+*::before,
-+*::after {
-+  box-sizing: border-box;
- }
--a:hover {
--  color: #535bf2;
++      <header className="site-header">
++        <div className="site-header__inner">
++          <NavLink className="site-brand" to="/" end>
++            <span className="site-brand__name">Equilibrio Cinofilo</span>
++            <span className="site-brand__tagline">
++              Educazione cinofila moderna e rispettosa
++            </span>
++          </NavLink>
 +
-+html {
-+  scroll-behavior: smooth;
- }
++          <nav aria-label="Main navigation" className="site-nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={item.target}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
++        </div>
+       </header>
  
- body {
-   margin: 0;
--  display: flex;
--  place-items: center;
-   min-width: 320px;
-   min-height: 100vh;
-+  background: #f8f3ea;
-+  color: #2f312d;
-+  overflow-x: hidden;
- }
+-      <main>{children}</main>
++      <main id="main-content">{children}</main>
  
--h1 {
--  font-size: 3.2em;
--  line-height: 1.1;
-+body,
-+h1,
-+h2,
-+h3,
-+p,
-+ul {
-+  margin: 0;
- }
- 
--button {
--  border-radius: 8px;
--  border: 1px solid transparent;
--  padding: 0.6em 1.2em;
--  font-size: 1em;
--  font-weight: 500;
--  font-family: inherit;
--  background-color: #1a1a1a;
--  cursor: pointer;
--  transition: border-color 0.25s;
-+img,
-+picture {
-+  display: block;
-+  max-width: 100%;
- }
--button:hover {
--  border-color: #646cff;
+-      <footer>
+-        <p>© Website</p>
++      <footer className="site-footer">
++        <div className="site-footer__inner">
++          <div className="site-footer__brand">
++            <p className="site-footer__name">Equilibrio Cinofilo</p>
++            <p className="site-footer__tagline">
++              Percorsi educativi pratici, rispettosi e costruiti sulla vita reale.
++            </p>
++          </div>
 +
-+a {
-+  color: inherit;
-+  text-decoration-thickness: 0.08em;
-+  text-underline-offset: 0.18em;
- }
--button:focus,
--button:focus-visible {
--  outline: 4px auto -webkit-focus-ring-color;
++          <nav aria-label="Footer navigation" className="site-footer__nav">
++            {navigationItems.map((item) => (
++              <NavLink
++                key={`footer-${item.target}`}
++                to={item.target}
++                end={item.target === "/"}
++              >
++                {item.label}
++              </NavLink>
++            ))}
++          </nav>
 +
-+button,
-+input,
-+textarea,
-+select {
-+  font: inherit;
- }
- 
--@media (prefers-color-scheme: light) {
--  :root {
--    color: #213547;
--    background-color: #ffffff;
--  }
--  a:hover {
--    color: #747bff;
--  }
--  button {
--    background-color: #f9f9f9;
--  }
-+button {
-+  cursor: pointer;
-+}
++          <address className="site-footer__contact">
++            <a href="tel:+39011000000">+39 011 000000</a>
++            <a href="mailto:ciao@equilibriocinofilo.it">
++              ciao@equilibriocinofilo.it
++            </a>
++            <span>Torino e dintorni</span>
++          </address>
 +
-+:focus-visible {
-+  outline: 3px solid rgba(95, 122, 87, 0.38);
-+  outline-offset: 3px;
- }
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 86f0f93cc4a0fd8bb7da1d729ef2ae0dc415e649..52878b9ae3085de6a01d593d0a5bd6eb195e6ae7
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -17,12 +17,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--about">
-       <AboutHeroSection />
- 
-       <StorySection />
- 
-       <PhilosophySection />
--    </main>
-+    </div>
++          <p className="site-footer__copyright">
++            © Equilibrio Cinofilo
++          </p>
++        </div>
+       </footer>
+     </>
    )
- }
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index a7ec3060c74e8ae786ff7cdf151a7c23c81b0aa3..ddf520051f6daa6f7619c976d918f37f26a41612
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -19,12 +19,12 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--contact">
-       <ContactHeroSection />
-       <ContactDetailsSection />
-       <ContactPhoneCtaSection />
-       <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
--    </main>
-+    </div>
-   )
- }
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 22c5b72197a4c0560fc899957fafb84c92781d10..6693ad17eabf8c25d7f3b4b353025717b755ceec
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -16,9 +16,9 @@
-   }, [])
- 
-   return (
--    <main>
-+    <div className="page-shell page-shell--menu">
-       <MenuHeroSection />
-       <MenuCategoriesSection />
--    </main>
-+    </div>
-   )
- }
 
 tokens used
-40.752
+47.085

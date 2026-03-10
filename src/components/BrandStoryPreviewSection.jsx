@@ -85,7 +85,12 @@ const styles = {
 
 export default function BrandStoryPreviewSection() {
   return (
-    <section id="brand-story-preview" className="content-section" style={styles.section}>
+    <section
+      id="brand-story-preview"
+      className="content-section"
+      aria-labelledby="brand-story-preview-title"
+      style={styles.section}
+    >
       <div className="content-section__container" style={styles.container}>
         <div
           className="split-layout split-layout--preview"
@@ -96,7 +101,7 @@ export default function BrandStoryPreviewSection() {
         >
           <div style={styles.textColumn}>
             <p style={styles.eyebrow}>Chi sono</p>
-            <h2 style={styles.title}>
+            <h2 id="brand-story-preview-title" style={styles.title}>
               Un supporto educativo che parte dalla relazione
             </h2>
             <p style={styles.description}>
