@@ -1,23 +1,12 @@
 import HeroSection from "../components/HeroSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
 
 export default function Home() {
   return (
     <>
       <HeroSection />
 
-      <section id="signature-preview">
-        <h2>Un approccio chiaro, rispettoso e concreto</h2>
-        <p>
-          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
-          familiare e dagli obiettivi reali della convivenza quotidiana.
-        </p>
-        <ul>
-          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
-          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
-          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
-        </ul>
-        <a href="#/menu">Scopri i percorsi</a>
-      </section>
+      <SignaturePreviewSection />
 
       <section id="brand-story-preview">
         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>

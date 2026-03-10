@@ -35,3 +35,19 @@ Waiting for validation.
 
 TASK section-home-hero completed successfully.
 Build passed.
+Commit created for TASK section-home-hero.
+
+Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+
+Launching Codex for TASK section-home-signature-preview.
+
+Completed TASK `section-home-signature-preview`.
+- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
+- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
+- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
+
+TASK section-home-signature-preview executed by Codex.
+Waiting for validation.
+
+TASK section-home-signature-preview completed successfully.
+Build passed.

@@ -1,8 +1,8 @@
-Modified files: [src/components/HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx), [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modificati [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx) e [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-Implemented the home hero as a dedicated reusable component and rendered it at the top of the homepage. The hero now contains the required eyebrow, `h1`, supporting copy, and the two existing route-based CTAs, with a fuller premium presentation using a responsive background image and mobile-friendly layout.
+Ho implementato la `signature-preview` della home come componente riutilizzabile `SignaturePreviewSection`, con struttura `grid-cards-preview`: intro editoriale, tre card tematiche coerenti col brand e CTA verso `#/menu`. In [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx) la sezione inline è stata sostituita dal nuovo componente, mantenendo l’id richiesto `signature-preview`.
 
-Build result: `npm run build` passed successfully.
+Build result: `npm run build` completato con successo tramite Vite.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9e0-7909-70a2-9d9d-e51a85ee3a6a
+session id: 019cd9e1-7e70-7911-be77-2bc711959300
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1226,10 +1226,10 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-section-home-hero
+section-home-signature-preview
 
 ## Current task title
-Create hero section on home
+Create signature-preview section on home
 
 ## Current task type
 section
@@ -1238,8 +1238,8 @@ section
 ```json
 {
   "pageId": "home",
-  "sectionId": "hero",
-  "sectionType": "hero"
+  "sectionId": "signature-preview",
+  "sectionType": "grid-cards-preview"
 }
 ```
 
@@ -1248,13 +1248,13 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/HeroSection.jsx
+- src/components/SignaturePreviewSection.jsx
 - src/components
 
 ## Definition of done
-- section hero exists on home
-- section hero matches type hero
-- section hero is rendered in page home
+- section signature-preview exists on home
+- section signature-preview matches type grid-cards-preview
+- section signature-preview is rendered in page home
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1283,33 +1283,90 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing only the home hero for the current task, then I’ll run a build check and update the agent report as required.
+Sto verificando la struttura corrente della home e i componenti disponibili per aggiungere solo la `signature-preview` senza toccare il resto del sito.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc 'rg --files .' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+/bin/zsh -lc "pwd && rg --files src agent | rg 'Home\\.jsx|AGENT_REPORT\\.md|src/components'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "rg -n \"export default|function |const .* = \\(\" src/components -g '*.jsx'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+import HeroSection from "../components/HeroSection"
+
 export default function Home() {
   return (
     <>
-      <section id="hero">
-        <p>Educazione cinofila moderna, pratica e rispettosa</p>
-        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
-        <p>
-          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-        </p>
-        <div>
-          <a href="#/menu">Prenota una consulenza</a>
-          <a href="#/contatti">Contattami</a>
-        </div>
-      </section>
+      <HeroSection />
 
       <section id="signature-preview">
         <h2>Un approccio chiaro, rispettoso e concreto</h2>
         <p>
           Ogni intervento parte dall&apos;osservazione del cane, dal contesto
+          familiare e dagli obiettivi reali della convivenza quotidiana.
+        </p>
+        <ul>
+          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
+          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
+          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
+        </ul>
+        <a href="#/menu">Scopri i percorsi</a>
+      </section>
  succeeded in 51ms:
+src/components/HeroSection.jsx:85:export default function HeroSection() {
+ succeeded in 51ms:
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr
+agent/AGENT_REPORT.md
+src/pages/Home.jsx
+src/components/HeroSection.jsx
+codex
+Ho trovato una `signature-preview` già presente ma ancora inline e molto basilare dentro la home. Ora leggo il `HeroSection` per allineare tono, markup e livello di finitura del nuovo componente senza introdurre refactor fuori task.
+exec
+/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "rg -n \"font|background|section|main|max-width|container|style=|className=\" src -g '*.jsx' -g '*.css'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
+    backgroundColor: "#f3ede3",
+    color: "#2f312d",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  container: {
+    position: "relative",
+    zIndex: 1,
+    width: "min(100%, 40rem)",
+ succeeded in 51ms:
+src/pages/Home.jsx:8:      <section id="signature-preview">
+src/pages/Home.jsx:20:      </section>
+src/pages/Home.jsx:22:      <section id="brand-story-preview">
+src/pages/Home.jsx:34:      </section>
+src/pages/ChiSiamo.jsx:4:      <section id="about-hero">
+src/pages/ChiSiamo.jsx:7:      </section>
+src/pages/ChiSiamo.jsx:8:      <section id="story">
+src/pages/ChiSiamo.jsx:11:      </section>
+src/pages/ChiSiamo.jsx:12:      <section id="philosophy">
+src/pages/ChiSiamo.jsx:15:      </section>
+src/pages/Contatti.jsx:4:      <section id="contact-hero">
+src/pages/Contatti.jsx:7:      </section>
+src/pages/Contatti.jsx:8:      <section id="contact-details">
+src/pages/Contatti.jsx:11:      </section>
+src/pages/Contatti.jsx:12:      <section id="opening-hours">
+src/pages/Contatti.jsx:15:      </section>
+src/components/HeroSection.jsx:2:  section: {
+src/components/HeroSection.jsx:6:    backgroundColor: "#f3ede3",
+src/components/HeroSection.jsx:9:  background: {
+src/components/HeroSection.jsx:12:    backgroundImage:
+codex
+Sto passando all’implementazione: estraggo la sezione in un componente dedicato, la rendo un vero `grid-cards-preview` più coerente con il tono premium del progetto, poi aggiorno la home a usarlo e faccio il build check.
+exec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
 # AGENT REPORT
 
 Project created.
@@ -1330,55 +1387,7 @@ TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
 
- succeeded in 51ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-premium-modern-website-for-a-pr
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- succeeded in 51ms:
-./src/pages/Home.jsx
-./src/pages/ChiSiamo.jsx
-./src/pages/Contatti.jsx
-./src/pages/Menu.jsx
-./src/assets/react.svg
-./src/App.jsx
-./src/main.jsx
-./src/index.css
-./src/App.css
-./src/layout/Layout.jsx
-./AGENTS.md
-./eslint.config.js
-./brief/brief-summary.md
-./brief/original-prompt.md
-./package.json
-./package-lock.json
-./public/vite.svg
-./README.md
-./docs/DEVELOPMENT_METHOD.md
-./vite.config.js
-codex
-I’ve confirmed the current home page has a plain inline hero inside `Home.jsx`. Next I’m extracting that section into a dedicated `HeroSection` component and keeping the rest of the page untouched.
-exec
-/bin/zsh -lc "sed -n '1,240p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,240p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc 'ls -la src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/index.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+ succeeded in 50ms:
 import { HashRouter, Routes, Route } from "react-router-dom"
 import Layout from "./layout/Layout"
 import Home from "./pages/Home"
@@ -1399,27 +1408,6 @@ export default function App() {
       </Layout>
     </HashRouter>
   )
- succeeded in 50ms:
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
  succeeded in 51ms:
 export default function Layout({ children }) {
   return (
@@ -1441,90 +1429,111 @@ export default function Layout({ children }) {
     </>
   )
 }
- succeeded in 50ms:
-total 0
-drwxr-xr-x   2 armandocosta  staff   64 Mar 10 23:28 .
-drwxr-xr-x  10 armandocosta  staff  320 Mar 10 23:28 ..
 codex
-I have the implementation boundary now: only `Home.jsx` and a new component under `src/components`. I’m editing those files to make the hero modular and visually complete without touching the rest of the page shell.
+Sto applicando le modifiche ai file consentiti e al report agente: nuova sezione modulare, home aggiornata a renderizzarla, nota finale nel report.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
-@@ -1 +1,3 @@
-+import HeroSection from "../components/HeroSection"
-+
- export default function Home() {
-@@ -3,14 +5,3 @@
-     <>
--      <section id="hero">
--        <p>Educazione cinofila moderna, pratica e rispettosa</p>
--        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
--        <p>
--          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
--          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
--        </p>
--        <div>
--          <a href="#/menu">Prenota una consulenza</a>
--          <a href="#/contatti">Contattami</a>
--        </div>
--      </section>
-+      <HeroSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
+const previewCards = [
+  {
+    title: "Percorsi educativi personalizzati",
+    description:
+      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
+  },
+  {
+    title: "Strumenti utili per la vita quotidiana",
+    description:
+      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
+  },
+  {
+    title: "Progressi realistici e rispettosi",
+    description:
+      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
+  },
+]
+
 const styles = {
   section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-    backgroundColor: "#f3ede3",
+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
+    backgroundColor: "#f8f3ea",
     color: "#2f312d",
   },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  },
   container: {
-    position: "relative",
-    zIndex: 1,
-    width: "min(100%, 40rem)",
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
     display: "grid",
-    gap: "1.5rem",
+    gap: "2rem",
+  },
+  intro: {
+    display: "grid",
+    gap: "1rem",
+    maxWidth: "44rem",
   },
   eyebrow: {
     margin: 0,
-    fontSize: "0.8rem",
+    fontSize: "0.78rem",
     fontWeight: 700,
-    letterSpacing: "0.18em",
+    letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "#667061",
+    color: "#7d695a",
   },
   title: {
     margin: 0,
-    fontSize: "clamp(2.75rem, 8vw, 5rem)",
-    lineHeight: 0.95,
-    maxWidth: "12ch",
+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
+    lineHeight: 1,
     color: "#23251f",
+    maxWidth: "12ch",
   },
   description: {
     margin: 0,
-    maxWidth: "34rem",
-    fontSize: "1.05rem",
-    lineHeight: 1.7,
+    fontSize: "1rem",
+    lineHeight: 1.75,
     color: "#4b5047",
+    maxWidth: "40rem",
   },
-  actions: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "0.875rem",
-    alignItems: "center",
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: "1rem",
   },
-  primaryLink: {
+  card: {
+    display: "grid",
+    gap: "1rem",
+    minHeight: "100%",
+    padding: "1.5rem",
+    borderRadius: "1.5rem",
+    backgroundColor: "#fffdf9",
+    border: "1px solid rgba(47, 49, 45, 0.08)",
+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
+  },
+  cardIndex: {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
+    width: "2.5rem",
+    height: "2.5rem",
+    borderRadius: "999px",
+    backgroundColor: "#e6ded1",
+    color: "#5c6455",
+    fontSize: "0.9rem",
+    fontWeight: 700,
+  },
+  cardTitle: {
+    margin: 0,
+    fontSize: "1.25rem",
+    lineHeight: 1.3,
+    color: "#23251f",
+  },
+  cardDescription: {
+    margin: 0,
+    fontSize: "0.98rem",
+    lineHeight: 1.7,
+    color: "#53584f",
+  },
+  action: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "fit-content",
     minHeight: "3.25rem",
     padding: "0.85rem 1.4rem",
     borderRadius: "999px",
@@ -1532,130 +1541,196 @@ const styles = {
     color: "#f8f3ea",
     textDecoration: "none",
   },
-  secondaryLink: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "3.25rem",
-    padding: "0.85rem 1.4rem",
-    borderRadius: "999px",
-    border: "1px solid rgba(47, 49, 45, 0.18)",
-    color: "#2f312d",
-    backgroundColor: "rgba(255, 255, 255, 0.35)",
-    textDecoration: "none",
-    backdropFilter: "blur(10px)",
-  },
-  detailRow: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "1rem",
-    color: "#4b5047",
-    fontSize: "0.95rem",
-  },
 }
 
-export default function HeroSection() {
+export default function SignaturePreviewSection() {
   return (
-    <section id="hero" style={styles.section}>
-      <div aria-hidden="true" style={styles.background} />
-
+    <section id="signature-preview" style={styles.section}>
       <div style={styles.container}>
-        <p style={styles.eyebrow}>
-          Educazione cinofila moderna, pratica e rispettosa
-        </p>
-
-        <h1 style={styles.title}>
-          Aiuto concreto per costruire una relazione piu serena con il tuo cane
-        </h1>
-
-        <p style={styles.description}>
-          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-        </p>
-
-        <div style={styles.actions}>
-          <a href="#/menu" style={styles.primaryLink}>
-            Prenota una consulenza
-          </a>
-          <a href="#/contatti" style={styles.secondaryLink}>
-            Contattami
-          </a>
+        <div style={styles.intro}>
+          <p style={styles.eyebrow}>Come lavoro</p>
+          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
+          <p style={styles.description}>
+            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
+            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
+          </p>
         </div>
 
-        <div style={styles.detailRow}>
-          <span>Torino e dintorni</span>
-          <span>Sessioni individuali e consulenze online</span>
+        <div style={styles.grid}>
+          {previewCards.map((card, index) => (
+            <article key={card.title} style={styles.card}>
+              <span aria-hidden="true" style={styles.cardIndex}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 style={styles.cardTitle}>{card.title}</h3>
+              <p style={styles.cardDescription}>{card.description}</p>
+            </article>
+          ))}
         </div>
+
+        <a href="#/menu" style={styles.action}>
+          Scopri i percorsi
+        </a>
       </div>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 42ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
+@@ -1,2 +1,3 @@
+ import HeroSection from "../components/HeroSection"
++import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ 
+@@ -7,15 +8,3 @@
+ 
+-      <section id="signature-preview">
+-        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-        <p>
+-          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
+-          familiare e dagli obiettivi reali della convivenza quotidiana.
+-        </p>
+-        <ul>
+-          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
+-          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
+-          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
+-        </ul>
+-        <a href="#/menu">Scopri i percorsi</a>
+-      </section>
++      <SignaturePreviewSection />
+ 
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+@@ -42 +42,6 @@
+ Launching Codex for TASK section-home-signature-preview.
++
++Completed TASK `section-home-signature-preview`.
++- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
++- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
++- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
+apply_patch(auto_approved=true) exited 0 in 47ms:
+Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
 file update:
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -40,3 +40,8 @@
+ Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-signature-preview.
++
++Completed TASK `section-home-signature-preview`.
++- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
++- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
++- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf03240cdcc81
+index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
 --- /dev/null
-+++ b/src/components/HeroSection.jsx
-@@ -0,0 +1,120 @@
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -0,0 +1,142 @@
++const previewCards = [
++  {
++    title: "Percorsi educativi personalizzati",
++    description:
++      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
++  },
++  {
++    title: "Strumenti utili per la vita quotidiana",
++    description:
++      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
++  },
++  {
++    title: "Progressi realistici e rispettosi",
++    description:
++      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-+    backgroundColor: "#f3ede3",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#f8f3ea",
 +    color: "#2f312d",
 +  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
-+  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
-+    width: "min(100%, 40rem)",
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
-+    letterSpacing: "0.18em",
++    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#667061",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.75rem, 8vw, 5rem)",
-+    lineHeight: 0.95,
-+    maxWidth: "12ch",
++    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    lineHeight: 1,
 +    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    maxWidth: "34rem",
-+    fontSize: "1.05rem",
-+    lineHeight: 1.7,
++    fontSize: "1rem",
++    lineHeight: 1.75,
 +    color: "#4b5047",
++    maxWidth: "40rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
-+    alignItems: "center",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    minHeight: "100%",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  cardIndex: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
++    width: "2.5rem",
++    height: "2.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#e6ded1",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
++  },
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
 +    minHeight: "3.25rem",
 +    padding: "0.85rem 1.4rem",
 +    borderRadius: "999px",
@@ -1663,153 +1738,192 @@ index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf032
 +    color: "#f8f3ea",
 +    textDecoration: "none",
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(47, 49, 45, 0.18)",
-+    color: "#2f312d",
-+    backgroundColor: "rgba(255, 255, 255, 0.35)",
-+    textDecoration: "none",
-+    backdropFilter: "blur(10px)",
-+  },
-+  detailRow: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "1rem",
-+    color: "#4b5047",
-+    fontSize: "0.95rem",
-+  },
 +}
 +
-+export default function HeroSection() {
++export default function SignaturePreviewSection() {
 +  return (
-+    <section id="hero" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section id="signature-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>
-+          Educazione cinofila moderna, pratica e rispettosa
-+        </p>
-+
-+        <h1 style={styles.title}>
-+          Aiuto concreto per costruire una relazione piu serena con il tuo cane
-+        </h1>
-+
-+        <p style={styles.description}>
-+          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-+          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/menu" style={styles.primaryLink}>
-+            Prenota una consulenza
-+          </a>
-+          <a href="#/contatti" style={styles.secondaryLink}>
-+            Contattami
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Come lavoro</p>
++          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <p style={styles.description}>
++            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
++            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
++          </p>
 +        </div>
 +
-+        <div style={styles.detailRow}>
-+          <span>Torino e dintorni</span>
-+          <span>Sessioni individuali e consulenze online</span>
++        <div style={styles.grid}>
++          {previewCards.map((card, index) => (
++            <article key={card.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.cardIndex}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{card.title}</h3>
++              <p style={styles.cardDescription}>{card.description}</p>
++            </article>
++          ))}
 +        </div>
++
++        <a href="#/menu" style={styles.action}>
++          Scopri i percorsi
++        </a>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ea55e7d6b459596daa4fcbae4fb143742ffb48d6..fefe6e032c7aa0d8a40126a0f60c7c879fdd280e
+index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,9 @@
-+import HeroSection from "../components/HeroSection"
-+
+@@ -1,23 +1,12 @@
+ import HeroSection from "../components/HeroSection"
++import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ 
  export default function Home() {
    return (
      <>
--      <section id="hero">
--        <p>Educazione cinofila moderna, pratica e rispettosa</p>
--        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
--        <p>
--          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
--          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
--        </p>
--        <div>
--          <a href="#/menu">Prenota una consulenza</a>
--          <a href="#/contatti">Contattami</a>
--        </div>
--      </section>
-+      <HeroSection />
+       <HeroSection />
  
-       <section id="signature-preview">
-         <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-      <section id="signature-preview">
+-        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-        <p>
+-          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
+-          familiare e dagli obiettivi reali della convivenza quotidiana.
+-        </p>
+-        <ul>
+-          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
+-          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
+-          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
+-        </ul>
+-        <a href="#/menu">Scopri i percorsi</a>
+-      </section>
++      <SignaturePreviewSection />
+ 
+       <section id="brand-story-preview">
+         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 
 file update:
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -40,3 +40,8 @@
+ Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-signature-preview.
++
++Completed TASK `section-home-signature-preview`.
++- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
++- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
++- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf03240cdcc81
+index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
 --- /dev/null
-+++ b/src/components/HeroSection.jsx
-@@ -0,0 +1,120 @@
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -0,0 +1,142 @@
++const previewCards = [
++  {
++    title: "Percorsi educativi personalizzati",
++    description:
++      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
++  },
++  {
++    title: "Strumenti utili per la vita quotidiana",
++    description:
++      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
++  },
++  {
++    title: "Progressi realistici e rispettosi",
++    description:
++      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-+    backgroundColor: "#f3ede3",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#f8f3ea",
 +    color: "#2f312d",
 +  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
-+  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
-+    width: "min(100%, 40rem)",
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
-+    letterSpacing: "0.18em",
++    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#667061",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.75rem, 8vw, 5rem)",
-+    lineHeight: 0.95,
-+    maxWidth: "12ch",
++    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    lineHeight: 1,
 +    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    maxWidth: "34rem",
-+    fontSize: "1.05rem",
-+    lineHeight: 1.7,
++    fontSize: "1rem",
++    lineHeight: 1.75,
 +    color: "#4b5047",
++    maxWidth: "40rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
-+    alignItems: "center",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    minHeight: "100%",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  cardIndex: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
++    width: "2.5rem",
++    height: "2.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#e6ded1",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
++  },
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
 +    minHeight: "3.25rem",
 +    padding: "0.85rem 1.4rem",
 +    borderRadius: "999px",
@@ -1817,192 +1931,209 @@ index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf032
 +    color: "#f8f3ea",
 +    textDecoration: "none",
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(47, 49, 45, 0.18)",
-+    color: "#2f312d",
-+    backgroundColor: "rgba(255, 255, 255, 0.35)",
-+    textDecoration: "none",
-+    backdropFilter: "blur(10px)",
-+  },
-+  detailRow: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "1rem",
-+    color: "#4b5047",
-+    fontSize: "0.95rem",
-+  },
 +}
 +
-+export default function HeroSection() {
++export default function SignaturePreviewSection() {
 +  return (
-+    <section id="hero" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section id="signature-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>
-+          Educazione cinofila moderna, pratica e rispettosa
-+        </p>
-+
-+        <h1 style={styles.title}>
-+          Aiuto concreto per costruire una relazione piu serena con il tuo cane
-+        </h1>
-+
-+        <p style={styles.description}>
-+          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-+          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/menu" style={styles.primaryLink}>
-+            Prenota una consulenza
-+          </a>
-+          <a href="#/contatti" style={styles.secondaryLink}>
-+            Contattami
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Come lavoro</p>
++          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <p style={styles.description}>
++            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
++            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
++          </p>
 +        </div>
 +
-+        <div style={styles.detailRow}>
-+          <span>Torino e dintorni</span>
-+          <span>Sessioni individuali e consulenze online</span>
++        <div style={styles.grid}>
++          {previewCards.map((card, index) => (
++            <article key={card.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.cardIndex}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{card.title}</h3>
++              <p style={styles.cardDescription}>{card.description}</p>
++            </article>
++          ))}
 +        </div>
++
++        <a href="#/menu" style={styles.action}>
++          Scopri i percorsi
++        </a>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ea55e7d6b459596daa4fcbae4fb143742ffb48d6..fefe6e032c7aa0d8a40126a0f60c7c879fdd280e
+index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,9 @@
-+import HeroSection from "../components/HeroSection"
-+
+@@ -1,23 +1,12 @@
+ import HeroSection from "../components/HeroSection"
++import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ 
  export default function Home() {
    return (
      <>
--      <section id="hero">
--        <p>Educazione cinofila moderna, pratica e rispettosa</p>
--        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
--        <p>
--          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
--          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
--        </p>
--        <div>
--          <a href="#/menu">Prenota una consulenza</a>
--          <a href="#/contatti">Contattami</a>
--        </div>
--      </section>
-+      <HeroSection />
+       <HeroSection />
  
-       <section id="signature-preview">
-         <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-      <section id="signature-preview">
+-        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-        <p>
+-          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
+-          familiare e dagli obiettivi reali della convivenza quotidiana.
+-        </p>
+-        <ul>
+-          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
+-          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
+-          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
+-        </ul>
+-        <a href="#/menu">Scopri i percorsi</a>
+-      </section>
++      <SignaturePreviewSection />
+ 
+       <section id="brand-story-preview">
+         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 
 codex
-The hero component is in place and wired into the home page. I’m running the project build now, then I’ll append the task summary to `agent/AGENT_REPORT.md`.
+La sezione è stata estratta e resa un componente dedicato; ora verifico che il progetto compili senza regressioni.
 exec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-{
-  "name": "site-create-a-premium-modern-website-for-a-pr",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
-exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 911ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 873ms:
 
 > site-create-a-premium-modern-website-for-a-pr@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 47 modules transformed.
+✓ 48 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-BI1Az07B.js   235.36 kB │ gzip: 75.41 kB
-✓ built in 574ms
+dist/assets/index-BBXbQ5EV.js   237.53 kB │ gzip: 75.98 kB
+✓ built in 548ms
 file update:
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -40,3 +40,8 @@
+ Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-signature-preview.
++
++Completed TASK `section-home-signature-preview`.
++- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
++- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
++- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf03240cdcc81
+index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
 --- /dev/null
-+++ b/src/components/HeroSection.jsx
-@@ -0,0 +1,120 @@
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -0,0 +1,142 @@
++const previewCards = [
++  {
++    title: "Percorsi educativi personalizzati",
++    description:
++      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
++  },
++  {
++    title: "Strumenti utili per la vita quotidiana",
++    description:
++      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
++  },
++  {
++    title: "Progressi realistici e rispettosi",
++    description:
++      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-+    backgroundColor: "#f3ede3",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#f8f3ea",
 +    color: "#2f312d",
 +  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
-+  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
-+    width: "min(100%, 40rem)",
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
-+    letterSpacing: "0.18em",
++    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#667061",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.75rem, 8vw, 5rem)",
-+    lineHeight: 0.95,
-+    maxWidth: "12ch",
++    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    lineHeight: 1,
 +    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    maxWidth: "34rem",
-+    fontSize: "1.05rem",
-+    lineHeight: 1.7,
++    fontSize: "1rem",
++    lineHeight: 1.75,
 +    color: "#4b5047",
++    maxWidth: "40rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
-+    alignItems: "center",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    minHeight: "100%",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  cardIndex: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
++    width: "2.5rem",
++    height: "2.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#e6ded1",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
++  },
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
 +    minHeight: "3.25rem",
 +    padding: "0.85rem 1.4rem",
 +    borderRadius: "999px",
@@ -2010,186 +2141,198 @@ index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf032
 +    color: "#f8f3ea",
 +    textDecoration: "none",
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(47, 49, 45, 0.18)",
-+    color: "#2f312d",
-+    backgroundColor: "rgba(255, 255, 255, 0.35)",
-+    textDecoration: "none",
-+    backdropFilter: "blur(10px)",
-+  },
-+  detailRow: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "1rem",
-+    color: "#4b5047",
-+    fontSize: "0.95rem",
-+  },
 +}
 +
-+export default function HeroSection() {
++export default function SignaturePreviewSection() {
 +  return (
-+    <section id="hero" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section id="signature-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>
-+          Educazione cinofila moderna, pratica e rispettosa
-+        </p>
-+
-+        <h1 style={styles.title}>
-+          Aiuto concreto per costruire una relazione piu serena con il tuo cane
-+        </h1>
-+
-+        <p style={styles.description}>
-+          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-+          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/menu" style={styles.primaryLink}>
-+            Prenota una consulenza
-+          </a>
-+          <a href="#/contatti" style={styles.secondaryLink}>
-+            Contattami
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Come lavoro</p>
++          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <p style={styles.description}>
++            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
++            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
++          </p>
 +        </div>
 +
-+        <div style={styles.detailRow}>
-+          <span>Torino e dintorni</span>
-+          <span>Sessioni individuali e consulenze online</span>
++        <div style={styles.grid}>
++          {previewCards.map((card, index) => (
++            <article key={card.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.cardIndex}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{card.title}</h3>
++              <p style={styles.cardDescription}>{card.description}</p>
++            </article>
++          ))}
 +        </div>
++
++        <a href="#/menu" style={styles.action}>
++          Scopri i percorsi
++        </a>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ea55e7d6b459596daa4fcbae4fb143742ffb48d6..fefe6e032c7aa0d8a40126a0f60c7c879fdd280e
+index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,9 @@
-+import HeroSection from "../components/HeroSection"
-+
+@@ -1,23 +1,12 @@
+ import HeroSection from "../components/HeroSection"
++import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ 
  export default function Home() {
    return (
      <>
--      <section id="hero">
--        <p>Educazione cinofila moderna, pratica e rispettosa</p>
--        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
--        <p>
--          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
--          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
--        </p>
--        <div>
--          <a href="#/menu">Prenota una consulenza</a>
--          <a href="#/contatti">Contattami</a>
--        </div>
--      </section>
-+      <HeroSection />
+       <HeroSection />
  
-       <section id="signature-preview">
-         <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-      <section id="signature-preview">
+-        <h2>Un approccio chiaro, rispettoso e concreto</h2>
+-        <p>
+-          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
+-          familiare e dagli obiettivi reali della convivenza quotidiana.
+-        </p>
+-        <ul>
+-          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
+-          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
+-          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
+-        </ul>
+-        <a href="#/menu">Scopri i percorsi</a>
+-      </section>
++      <SignaturePreviewSection />
+ 
+       <section id="brand-story-preview">
+         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 
 codex
-The build passed cleanly. I’m adding the required task note to `agent/AGENT_REPORT.md` and then I’ll close with the modified files and build result.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -23 +23,9 @@
- Launching Codex for TASK section-home-hero.
-+
-+Completed TASK `section-home-hero`.
-+- Created a reusable `HeroSection` component in `src/components/HeroSection.jsx`.
-+- Rendered the new hero component at the top of `src/pages/Home.jsx`.
-+- Implemented the homepage hero copy and CTA links required by the current task with a premium, responsive presentation.
-+
-+TASK section-home-hero executed by Codex.
-+Waiting for validation.
-apply_patch(auto_approved=true) exited 0 in 57ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+Modificati [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/SignaturePreviewSection.jsx) e [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
+
+Ho implementato la `signature-preview` della home come componente riutilizzabile `SignaturePreviewSection`, con struttura `grid-cards-preview`: intro editoriale, tre card tematiche coerenti col brand e CTA verso `#/menu`. In [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx) la sezione inline è stata sostituita dal nuovo componente, mantenendo l’id richiesto `signature-preview`.
+
+Build result: `npm run build` completato con successo tramite Vite.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 45498a84b37ae0d09d6d48bb3b8051a170875846..6a85d1357e0606bb0f34946ace95e14cb4252706
+index d78b49f67f88f325e5e5436995e2afc48b8cf960..1446c07fac1c6bf93275aea80c3bda28b04fbd2a
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -21,3 +21,11 @@
- Prepared TASK section-home-hero (Create hero section on home) for execution.
+@@ -40,3 +40,8 @@
+ Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
  
- Launching Codex for TASK section-home-hero.
+ Launching Codex for TASK section-home-signature-preview.
 +
-+Completed TASK `section-home-hero`.
-+- Created a reusable `HeroSection` component in `src/components/HeroSection.jsx`.
-+- Rendered the new hero component at the top of `src/pages/Home.jsx`.
-+- Implemented the homepage hero copy and CTA links required by the current task with a premium, responsive presentation.
-+
-+TASK section-home-hero executed by Codex.
-+Waiting for validation.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
++Completed TASK `section-home-signature-preview`.
++- Created a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
++- Replaced the inline `signature-preview` markup in `src/pages/Home.jsx` with the new grid-cards-preview section component.
++- Added three preview cards and a CTA to `#/menu`, keeping the required `signature-preview` section id on the homepage.
+diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf03240cdcc81
+index 0000000000000000000000000000000000000000..aa8c64c982464223dd687acec50ce969dda93bbe
 --- /dev/null
-+++ b/src/components/HeroSection.jsx
-@@ -0,0 +1,120 @@
++++ b/src/components/SignaturePreviewSection.jsx
+@@ -0,0 +1,142 @@
++const previewCards = [
++  {
++    title: "Percorsi educativi personalizzati",
++    description:
++      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
++  },
++  {
++    title: "Strumenti utili per la vita quotidiana",
++    description:
++      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
++  },
++  {
++    title: "Progressi realistici e rispettosi",
++    description:
++      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-+    backgroundColor: "#f3ede3",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#f8f3ea",
 +    color: "#2f312d",
 +  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
-+  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
-+    width: "min(100%, 40rem)",
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "44rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
-+    letterSpacing: "0.18em",
++    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#667061",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.75rem, 8vw, 5rem)",
-+    lineHeight: 0.95,
-+    maxWidth: "12ch",
++    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    lineHeight: 1,
 +    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    maxWidth: "34rem",
-+    fontSize: "1.05rem",
-+    lineHeight: 1.7,
++    fontSize: "1rem",
++    lineHeight: 1.75,
 +    color: "#4b5047",
++    maxWidth: "40rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
-+    alignItems: "center",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    minHeight: "100%",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  cardIndex: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
++    width: "2.5rem",
++    height: "2.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#e6ded1",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
++  },
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  action: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
 +    minHeight: "3.25rem",
 +    padding: "0.85rem 1.4rem",
 +    borderRadius: "999px",
@@ -2197,436 +2340,70 @@ index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf032
 +    color: "#f8f3ea",
 +    textDecoration: "none",
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(47, 49, 45, 0.18)",
-+    color: "#2f312d",
-+    backgroundColor: "rgba(255, 255, 255, 0.35)",
-+    textDecoration: "none",
-+    backdropFilter: "blur(10px)",
-+  },
-+  detailRow: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "1rem",
-+    color: "#4b5047",
-+    fontSize: "0.95rem",
-+  },
 +}
 +
-+export default function HeroSection() {
++export default function SignaturePreviewSection() {
 +  return (
-+    <section id="hero" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section id="signature-preview" style={styles.section}>
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>
-+          Educazione cinofila moderna, pratica e rispettosa
-+        </p>
-+
-+        <h1 style={styles.title}>
-+          Aiuto concreto per costruire una relazione piu serena con il tuo cane
-+        </h1>
-+
-+        <p style={styles.description}>
-+          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-+          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/menu" style={styles.primaryLink}>
-+            Prenota una consulenza
-+          </a>
-+          <a href="#/contatti" style={styles.secondaryLink}>
-+            Contattami
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Come lavoro</p>
++          <h2 style={styles.title}>Un approccio chiaro, rispettoso e concreto</h2>
++          <p style={styles.description}>
++            Equilibrio Cinofilo propone un lavoro educativo costruito sulla
++            relazione, sul contesto reale e su obiettivi utili nella quotidianita.
++          </p>
 +        </div>
 +
-+        <div style={styles.detailRow}>
-+          <span>Torino e dintorni</span>
-+          <span>Sessioni individuali e consulenze online</span>
++        <div style={styles.grid}>
++          {previewCards.map((card, index) => (
++            <article key={card.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.cardIndex}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{card.title}</h3>
++              <p style={styles.cardDescription}>{card.description}</p>
++            </article>
++          ))}
 +        </div>
++
++        <a href="#/menu" style={styles.action}>
++          Scopri i percorsi
++        </a>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ea55e7d6b459596daa4fcbae4fb143742ffb48d6..fefe6e032c7aa0d8a40126a0f60c7c879fdd280e
+index fefe6e032c7aa0d8a40126a0f60c7c879fdd280e..1ed04cfe4c7d49c38b55beda9504f671fe7e53b3
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,9 @@
-+import HeroSection from "../components/HeroSection"
-+
+@@ -1,23 +1,12 @@
+ import HeroSection from "../components/HeroSection"
++import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ 
  export default function Home() {
    return (
      <>
--      <section id="hero">
--        <p>Educazione cinofila moderna, pratica e rispettosa</p>
--        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
+       <HeroSection />
+ 
+-      <section id="signature-preview">
+-        <h2>Un approccio chiaro, rispettoso e concreto</h2>
 -        <p>
--          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
--          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
+-          Ogni intervento parte dall&apos;osservazione del cane, dal contesto
+-          familiare e dagli obiettivi reali della convivenza quotidiana.
 -        </p>
--        <div>
--          <a href="#/menu">Prenota una consulenza</a>
--          <a href="#/contatti">Contattami</a>
--        </div>
+-        <ul>
+-          <li>Percorsi educativi personalizzati per cuccioli, adolescenti e cani adulti.</li>
+-          <li>Supporto pratico per passeggiate, gestione quotidiana e comunicazione.</li>
+-          <li>Consulenze orientate a progressi sostenibili, senza promesse irrealistiche.</li>
+-        </ul>
+-        <a href="#/menu">Scopri i percorsi</a>
 -      </section>
-+      <HeroSection />
++      <SignaturePreviewSection />
  
-       <section id="signature-preview">
-         <h2>Un approccio chiaro, rispettoso e concreto</h2>
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 45498a84b37ae0d09d6d48bb3b8051a170875846..6a85d1357e0606bb0f34946ace95e14cb4252706
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -21,3 +21,11 @@
- Prepared TASK section-home-hero (Create hero section on home) for execution.
- 
- Launching Codex for TASK section-home-hero.
-+
-+Completed TASK `section-home-hero`.
-+- Created a reusable `HeroSection` component in `src/components/HeroSection.jsx`.
-+- Rendered the new hero component at the top of `src/pages/Home.jsx`.
-+- Implemented the homepage hero copy and CTA links required by the current task with a premium, responsive presentation.
-+
-+TASK section-home-hero executed by Codex.
-+Waiting for validation.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf03240cdcc81
---- /dev/null
-+++ b/src/components/HeroSection.jsx
-@@ -0,0 +1,120 @@
-+const styles = {
-+  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-+    backgroundColor: "#f3ede3",
-+    color: "#2f312d",
-+  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
-+  },
-+  container: {
-+    position: "relative",
-+    zIndex: 1,
-+    width: "min(100%, 40rem)",
-+    display: "grid",
-+    gap: "1.5rem",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.8rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#667061",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.75rem, 8vw, 5rem)",
-+    lineHeight: 0.95,
-+    maxWidth: "12ch",
-+    color: "#23251f",
-+  },
-+  description: {
-+    margin: 0,
-+    maxWidth: "34rem",
-+    fontSize: "1.05rem",
-+    lineHeight: 1.7,
-+    color: "#4b5047",
-+  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
-+    alignItems: "center",
-+  },
-+  primaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#6a7761",
-+    color: "#f8f3ea",
-+    textDecoration: "none",
-+  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(47, 49, 45, 0.18)",
-+    color: "#2f312d",
-+    backgroundColor: "rgba(255, 255, 255, 0.35)",
-+    textDecoration: "none",
-+    backdropFilter: "blur(10px)",
-+  },
-+  detailRow: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "1rem",
-+    color: "#4b5047",
-+    fontSize: "0.95rem",
-+  },
-+}
-+
-+export default function HeroSection() {
-+  return (
-+    <section id="hero" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
-+      <div style={styles.container}>
-+        <p style={styles.eyebrow}>
-+          Educazione cinofila moderna, pratica e rispettosa
-+        </p>
-+
-+        <h1 style={styles.title}>
-+          Aiuto concreto per costruire una relazione piu serena con il tuo cane
-+        </h1>
-+
-+        <p style={styles.description}>
-+          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-+          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/menu" style={styles.primaryLink}>
-+            Prenota una consulenza
-+          </a>
-+          <a href="#/contatti" style={styles.secondaryLink}>
-+            Contattami
-+          </a>
-+        </div>
-+
-+        <div style={styles.detailRow}>
-+          <span>Torino e dintorni</span>
-+          <span>Sessioni individuali e consulenze online</span>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ea55e7d6b459596daa4fcbae4fb143742ffb48d6..fefe6e032c7aa0d8a40126a0f60c7c879fdd280e
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,18 +1,9 @@
-+import HeroSection from "../components/HeroSection"
-+
- export default function Home() {
-   return (
-     <>
--      <section id="hero">
--        <p>Educazione cinofila moderna, pratica e rispettosa</p>
--        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
--        <p>
--          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
--          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
--        </p>
--        <div>
--          <a href="#/menu">Prenota una consulenza</a>
--          <a href="#/contatti">Contattami</a>
--        </div>
--      </section>
-+      <HeroSection />
- 
-       <section id="signature-preview">
-         <h2>Un approccio chiaro, rispettoso e concreto</h2>
-
-codex
-Modified files: [src/components/HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/HeroSection.jsx), [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Home.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
-
-Implemented the home hero as a dedicated reusable component and rendered it at the top of the homepage. The hero now contains the required eyebrow, `h1`, supporting copy, and the two existing route-based CTAs, with a fuller premium presentation using a responsive background image and mobile-friendly layout.
-
-Build result: `npm run build` passed successfully.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 45498a84b37ae0d09d6d48bb3b8051a170875846..6a85d1357e0606bb0f34946ace95e14cb4252706
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -21,3 +21,11 @@
- Prepared TASK section-home-hero (Create hero section on home) for execution.
- 
- Launching Codex for TASK section-home-hero.
-+
-+Completed TASK `section-home-hero`.
-+- Created a reusable `HeroSection` component in `src/components/HeroSection.jsx`.
-+- Rendered the new hero component at the top of `src/pages/Home.jsx`.
-+- Implemented the homepage hero copy and CTA links required by the current task with a premium, responsive presentation.
-+
-+TASK section-home-hero executed by Codex.
-+Waiting for validation.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..942e834448d68fee83e989b45d7cf03240cdcc81
---- /dev/null
-+++ b/src/components/HeroSection.jsx
-@@ -0,0 +1,120 @@
-+const styles = {
-+  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-+    backgroundColor: "#f3ede3",
-+    color: "#2f312d",
-+  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
-+  },
-+  container: {
-+    position: "relative",
-+    zIndex: 1,
-+    width: "min(100%, 40rem)",
-+    display: "grid",
-+    gap: "1.5rem",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.8rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#667061",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.75rem, 8vw, 5rem)",
-+    lineHeight: 0.95,
-+    maxWidth: "12ch",
-+    color: "#23251f",
-+  },
-+  description: {
-+    margin: 0,
-+    maxWidth: "34rem",
-+    fontSize: "1.05rem",
-+    lineHeight: 1.7,
-+    color: "#4b5047",
-+  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
-+    alignItems: "center",
-+  },
-+  primaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#6a7761",
-+    color: "#f8f3ea",
-+    textDecoration: "none",
-+  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(47, 49, 45, 0.18)",
-+    color: "#2f312d",
-+    backgroundColor: "rgba(255, 255, 255, 0.35)",
-+    textDecoration: "none",
-+    backdropFilter: "blur(10px)",
-+  },
-+  detailRow: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "1rem",
-+    color: "#4b5047",
-+    fontSize: "0.95rem",
-+  },
-+}
-+
-+export default function HeroSection() {
-+  return (
-+    <section id="hero" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
-+      <div style={styles.container}>
-+        <p style={styles.eyebrow}>
-+          Educazione cinofila moderna, pratica e rispettosa
-+        </p>
-+
-+        <h1 style={styles.title}>
-+          Aiuto concreto per costruire una relazione piu serena con il tuo cane
-+        </h1>
-+
-+        <p style={styles.description}>
-+          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
-+          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/menu" style={styles.primaryLink}>
-+            Prenota una consulenza
-+          </a>
-+          <a href="#/contatti" style={styles.secondaryLink}>
-+            Contattami
-+          </a>
-+        </div>
-+
-+        <div style={styles.detailRow}>
-+          <span>Torino e dintorni</span>
-+          <span>Sessioni individuali e consulenze online</span>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ea55e7d6b459596daa4fcbae4fb143742ffb48d6..fefe6e032c7aa0d8a40126a0f60c7c879fdd280e
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,18 +1,9 @@
-+import HeroSection from "../components/HeroSection"
-+
- export default function Home() {
-   return (
-     <>
--      <section id="hero">
--        <p>Educazione cinofila moderna, pratica e rispettosa</p>
--        <h1>Aiuto concreto per costruire una relazione piu serena con il tuo cane</h1>
--        <p>
--          Equilibrio Cinofilo accompagna cani e persone con percorsi educativi
--          chiari, etici e personalizzati, pensati per la vita di tutti i giorni.
--        </p>
--        <div>
--          <a href="#/menu">Prenota una consulenza</a>
--          <a href="#/contatti">Contattami</a>
--        </div>
--      </section>
-+      <HeroSection />
- 
-       <section id="signature-preview">
-         <h2>Un approccio chiaro, rispettoso e concreto</h2>
+       <section id="brand-story-preview">
+         <h2>Professione, empatia e lavoro costruito sul quotidiano</h2>
 
 tokens used
-18.833
+18.536
