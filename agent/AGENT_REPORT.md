@@ -141,3 +141,19 @@ Waiting for validation.
 
 TASK page-menu-shell completed successfully.
 Build passed.
+Commit created for TASK page-menu-shell.
+
+Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
+
+Launching Codex for TASK section-menu-menu-hero.
+
+Completed TASK `section-menu-menu-hero`.
+- Created a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
+- Replaced the inline `menu-hero` markup in `src/pages/Menu.jsx` with the new dedicated hero section component.
+- Added brand-aligned hero copy, valid hash-route CTAs, and a visually dominant layout while preserving the required `menu-hero` section id and page `h1`.
+
+TASK section-menu-menu-hero executed by Codex.
+Waiting for validation.
+
+TASK section-menu-menu-hero completed successfully.
+Build passed.

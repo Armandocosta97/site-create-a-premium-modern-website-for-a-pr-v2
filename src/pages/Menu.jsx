@@ -1,17 +1,9 @@
+import MenuHeroSection from "../components/MenuHeroSection"
+
 export default function Menu() {
   return (
     <main>
-      <section id="menu-hero" aria-labelledby="menu-title">
-        <div>
-          <p>Servizi educativi per cani e persone</p>
-          <h1 id="menu-title">Percorsi chiari, rispettosi e costruiti sulla vita reale</h1>
-          <p>
-            In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
-            Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
-            obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza.
-          </p>
-        </div>
-      </section>
+      <MenuHeroSection />
 
       <section id="menu-categories" aria-labelledby="menu-categories-title">
         <div>

@@ -1208,32 +1208,35 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-page-menu-shell
+section-menu-menu-hero
 
 ## Current task title
-Create menu page shell
+Create menu-hero section on menu
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "menu"
+  "pageId": "menu",
+  "sectionId": "menu-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-menu-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Menu.jsx
+- src/components/MenuHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for menu
-- menu route is mounted if required
-- menu page renders without crashing
+- section menu-hero exists on menu
+- section menu-hero matches type hero
+- section menu-hero is rendered in page menu
 
 ## Strict execution rules
 - Execute only this current task.
