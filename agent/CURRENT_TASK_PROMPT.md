@@ -1208,10 +1208,10 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-cta-contatti-contatti-whatsapp
+cta-contatti-contatti-phone
 
 ## Current task title
-Add CTA contatti-whatsapp on contatti
+Add CTA contatti-phone on contatti
 
 ## Current task type
 cta
@@ -1220,11 +1220,11 @@ cta
 ```json
 {
   "pageId": "contatti",
-  "ctaId": "contatti-whatsapp",
+  "ctaId": "contatti-phone",
   "ctaKind": "external",
   "destination": {
-    "type": "whatsapp",
-    "value": "whatsapp"
+    "type": "phone",
+    "value": "phone"
   },
   "placement": "body"
 }
@@ -1238,9 +1238,9 @@ cta
 - src/components
 
 ## Definition of done
-- CTA contatti-whatsapp exists on contatti
-- CTA contatti-whatsapp is visible in placement body
-- CTA contatti-whatsapp points to a valid destination
+- CTA contatti-phone exists on contatti
+- CTA contatti-phone is visible in placement body
+- CTA contatti-phone points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.

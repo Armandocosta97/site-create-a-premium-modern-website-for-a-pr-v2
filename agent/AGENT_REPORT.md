@@ -240,6 +240,12 @@ Completed TASK `section-contatti-contact-hero`.
 TASK section-contatti-contact-hero executed by Codex.
 Waiting for validation.
 
+Completed TASK `cta-contatti-contatti-phone`.
+- Added a dedicated `ContactPhoneCtaSection` component in `src/components/ContactPhoneCtaSection.jsx`.
+- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and WhatsApp CTA sections.
+- Connected the CTA to the valid phone destination `tel:+39011000000`.
+Waiting for validation.
+
 TASK section-contatti-contact-hero completed successfully.
 Build passed.
 
@@ -378,4 +384,15 @@ TASK cta-contatti-contatti-whatsapp executed by Codex.
 Waiting for validation.
 
 TASK cta-contatti-contatti-whatsapp completed successfully.
+Build passed.
+Commit created for TASK cta-contatti-contatti-whatsapp.
+
+Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-phone.
+
+TASK cta-contatti-contatti-phone executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-phone completed successfully.
 Build passed.

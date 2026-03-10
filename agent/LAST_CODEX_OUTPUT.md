@@ -1,11 +1,8 @@
-Modified files:
-- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx)
-- [src/components/ContactWhatsAppCtaSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modified files: [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx), [ContactPhoneCtaSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactPhoneCtaSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
 
-What was implemented: the `contatti-whatsapp` CTA now exists as a dedicated body callout on the contact page, rendered between the contact details and opening hours sections. It links to the valid WhatsApp destination `https://wa.me/39011000000` and opens externally with `target="_blank"` and `rel="noreferrer"`.
+Implemented the `contatti-phone` CTA on the Contatti page body by adding a dedicated phone CTA section and rendering it between the contact details block and the WhatsApp CTA. The CTA is visible in body placement and points to the valid destination `tel:+39011000000`.
 
-Build result: `npm run build` passed successfully with a production Vite build.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -16,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9f1-c457-76c3-a3f0-d26a892d7152
+session id: 019cd9f2-b496-7f53-a2d1-81065dcebb5b
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1229,10 +1226,10 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-cta-contatti-contatti-whatsapp
+cta-contatti-contatti-phone
 
 ## Current task title
-Add CTA contatti-whatsapp on contatti
+Add CTA contatti-phone on contatti
 
 ## Current task type
 cta
@@ -1241,11 +1238,11 @@ cta
 ```json
 {
   "pageId": "contatti",
-  "ctaId": "contatti-whatsapp",
+  "ctaId": "contatti-phone",
   "ctaKind": "external",
   "destination": {
-    "type": "whatsapp",
-    "value": "whatsapp"
+    "type": "phone",
+    "value": "phone"
   },
   "placement": "body"
 }
@@ -1259,9 +1256,9 @@ cta
 - src/components
 
 ## Definition of done
-- CTA contatti-whatsapp exists on contatti
-- CTA contatti-whatsapp is visible in placement body
-- CTA contatti-whatsapp points to a valid destination
+- CTA contatti-phone exists on contatti
+- CTA contatti-phone is visible in placement body
+- CTA contatti-phone points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1290,13 +1287,14 @@ cta
 
 mcp startup: no servers
 codex
-I’m executing the current task only: add the `contatti-whatsapp` body CTA on the contact page, then run a build check and update the agent report. First I’m reading the task source files and the current `Contatti` implementation to keep the change minimal.
+I’m executing the `cta-contatti-contatti-phone` task only. First I’m checking the current Contatti page and related components to add the phone CTA without touching unrelated routes or sections.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "pwd && rg --files src agent brief docs | rg 'Contatti\\.jsx|AGENT_REPORT\\.md|CURRENT_TASK_PROMPT\\.md|TASK_STATE\\.json|TASK_GRAPH\\.json|site-spec\\.json|DEVELOPMENT_METHOD\\.md'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,240p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,240p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "rg --files src agent | rg 'Contatti\\.jsx|components|AGENT_REPORT\\.md"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
 import ContactHeroSection from "../components/ContactHeroSection"
 import ContactDetailsSection from "../components/ContactDetailsSection"
+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
 import OpeningHoursSection from "../components/OpeningHoursSection"
 
 export default function Contatti() {
@@ -1304,13 +1302,12 @@ export default function Contatti() {
     <main>
       <ContactHeroSection />
       <ContactDetailsSection />
+      <ContactWhatsAppCtaSection />
       <OpeningHoursSection />
     </main>
   )
 }
  succeeded in 51ms:
-Total output lines: 220
-
 # AGENT REPORT
 
 Project created.
@@ -1329,42 +1326,31 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
+Commit created for TASK page-home-shell.
+
  succeeded in 52ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr
-docs/DEVELOPMENT_METHOD.md
-agent/TASK_GRAPH.json
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
 agent/AGENT_REPORT.md
 src/pages/Contatti.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/AboutHeroSection.jsx
+src/components/StorySection.jsx
+src/components/BrandStoryPreviewSection.jsx
+src/components/PhilosophySection.jsx
+src/components/ContactWhatsAppCtaSection.jsx
+src/components/OpeningHoursSection.jsx
+src/components/MenuCategoriesSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/ContactHeroSection.jsx
+src/components/MenuHeroSection.jsx
+src/components/HeroSection.jsx
+src/components/ContactDetailsSection.jsx
 codex
-The contact page shell is minimal, so I’m checking the existing contact components and button/link patterns before editing. That keeps the WhatsApp CTA consistent with the rest of the site and avoids touching unrelated layout.
+The contact page shell is already in place and there is an existing WhatsApp body CTA. I’m checking the contact-specific components now to place the required phone CTA in the page body without duplicating invalid patterns.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,260p' src/components/OpeningHoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
 /bin/zsh -lc "sed -n '1,260p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc 'rg -n "whatsapp|wa.me|api.whatsapp|Prenota|Richiedi|Contatt" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-const contactCards = [
-  {
-    title: "Telefono",
-    detail: "+39 011 000000",
-    description:
-      "Per un primo confronto diretto su educazione, gestione quotidiana o difficolta specifiche.",
-    href: "tel:+39011000000",
-    action: "Chiama Equilibrio Cinofilo",
-  },
-  {
-    title: "Email",
-    detail: "ciao@equilibriocinofilo.it",
-    description:
-      "Utile se preferisci raccontare con calma la vostra situazione e ricevere un primo orientamento.",
-    href: "mailto:ciao@equilibriocinofilo.it",
-    action: "Scrivi una email",
-  },
-  {
-    title: "WhatsApp",
-    detail: "Messaggio diretto",
- succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/OpeningHoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/ContactWhatsAppCtaSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
 const availabilityWindows = [
   {
     label: "Lunedi - Venerdi",
@@ -1385,52 +1371,28 @@ const availabilityWindows = [
 
 const processSteps = [
   "Risposta ai messaggi entro 24 ore lavorative.",
- succeeded in 51ms:
-const contactMethods = [
-  "Torino e dintorni",
-  "Primo confronto telefonico o via email",
-  "Consulenze in presenza e supporto online se utile",
-]
-
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-    backgroundColor: "#f4ede3",
-    color: "#2d302a",
-  },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(108deg, rgba(244, 237, 227, 0.97) 0%, rgba(244, 237, 227, 0.92) 36%, rgba(244, 237, 227, 0.62) 68%, rgba(244, 237, 227, 0.28) 100%), url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
  succeeded in 52ms:
-src/pages/Home.jsx:12:          label: "Prenota una consulenza",
-src/pages/Home.jsx:16:          label: "Contattami",
-src/pages/Home.jsx:24:      <FloatingWhatsAppButton href="https://wa.me/39011000000" />
-src/components/FloatingWhatsAppButton.jsx:25:  href = "https://wa.me/39011000000",
-src/pages/Contatti.jsx:5:export default function Contatti() {
-src/components/ContactHeroSection.jsx:133:          <p style={styles.eyebrow}>Contatti</p>
-src/components/MenuHeroSection.jsx:114:            Richiedi informazioni
-src/components/HeroSection.jsx:87:  label: "Prenota una consulenza",
-src/components/HeroSection.jsx:92:  label: "Contattami",
-src/components/ContactDetailsSection.jsx:23:    href: "https://wa.me/39011000000",
-src/components/ContactDetailsSection.jsx:174:            Contatti semplici, chiari e adatti alla vostra situazione
-codex
-I found a WhatsApp action inside the contact cards, but to satisfy this task cleanly as a dedicated body CTA, I’m adding a standalone WhatsApp callout component on `Contatti`. That keeps the task explicit without redesigning the rest of the page.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
-@@ -2,2 +2,3 @@
- import ContactDetailsSection from "../components/ContactDetailsSection"
-+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
- import OpeningHoursSection from "../components/OpeningHoursSection"
-@@ -9,2 +10,3 @@
-       <ContactDetailsSection />
-+      <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx
+const contactCards = [
+  {
+    title: "Telefono",
+    detail: "+39 011 000000",
+    description:
+      "Per un primo confronto diretto su educazione, gestione quotidiana o difficolta specifiche.",
+    href: "tel:+39011000000",
+    action: "Chiama Equilibrio Cinofilo",
+  },
+  {
+    title: "Email",
+    detail: "ciao@equilibriocinofilo.it",
+    description:
+      "Utile se preferisci raccontare con calma la vostra situazione e ricevere un primo orientamento.",
+    href: "mailto:ciao@equilibriocinofilo.it",
+    action: "Scrivi una email",
+  },
+  {
+    title: "WhatsApp",
+    detail: "Messaggio diretto",
+ succeeded in 52ms:
 const styles = {
   section: {
     padding: "0 1.5rem 4rem",
@@ -1451,19 +1413,83 @@ const styles = {
     boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
   },
   eyebrow: {
+ succeeded in 52ms:
+const contactMethods = [
+  "Torino e dintorni",
+  "Primo confronto telefonico o via email",
+  "Consulenze in presenza e supporto online se utile",
+]
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
+    backgroundColor: "#f4ede3",
+    color: "#2d302a",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(108deg, rgba(244, 237, 227, 0.97) 0%, rgba(244, 237, 227, 0.92) 36%, rgba(244, 237, 227, 0.62) 68%, rgba(244, 237, 227, 0.28) 100%), url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+codex
+I found a phone link already in the hero and in the contact cards, but the task specifically requires the `contatti-phone` CTA in the page body. I’m adding a dedicated body CTA component and wiring it into `Contatti.jsx`, then I’ll run the build and append the agent report entry.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
+@@ -2,2 +2,3 @@
+ import ContactDetailsSection from "../components/ContactDetailsSection"
++import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+ import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
+@@ -10,2 +11,3 @@
+       <ContactDetailsSection />
++      <ContactPhoneCtaSection />
+       <ContactWhatsAppCtaSection />
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+@@ -242,2 +242,8 @@
+ 
++Completed TASK `cta-contatti-contatti-phone`.
++- Added a dedicated `ContactPhoneCtaSection` component in `src/components/ContactPhoneCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and WhatsApp CTA sections.
++- Connected the CTA to the valid phone destination `tel:+39011000000`.
++Waiting for validation.
++
+ TASK section-contatti-contact-hero completed successfully.
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactPhoneCtaSection.jsx
+const styles = {
+  section: {
+    padding: "0 1.5rem 4rem",
+    backgroundColor: "#fcf8f1",
+    color: "#2f312d",
+  },
+  container: {
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
+  },
+  panel: {
+    display: "grid",
+    gap: "1rem",
+    padding: "1.75rem",
+    borderRadius: "1.75rem",
+    backgroundColor: "#f1e6d9",
+    border: "1px solid rgba(47, 49, 45, 0.08)",
+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
+  },
+  eyebrow: {
     margin: 0,
     fontSize: "0.78rem",
     fontWeight: 700,
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "#5f6d55",
+    color: "#7a6b5d",
   },
   title: {
     margin: 0,
     fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
     lineHeight: 1.1,
     color: "#23251f",
-    maxWidth: "16ch",
+    maxWidth: "15ch",
   },
   description: {
     margin: 0,
@@ -1487,42 +1513,55 @@ const styles = {
   },
 }
 
-export default function ContactWhatsAppCtaSection() {
+export default function ContactPhoneCtaSection() {
   return (
-    <section style={styles.section} aria-label="Contatto WhatsApp">
+    <section style={styles.section} aria-label="Contatto telefonico">
       <div style={styles.container}>
         <div style={styles.panel}>
-          <p style={styles.eyebrow}>WhatsApp</p>
-          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
+          <p style={styles.eyebrow}>Telefono</p>
+          <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
           <p style={styles.description}>
-            Se preferisci un contatto immediato per disponibilita, zona di
-            intervento o prime informazioni pratiche, puoi inviare un messaggio
-            diretto e ricevere una risposta orientativa con chiarezza.
+            Se preferisci spiegare a voce la situazione del tuo cane, puoi
+            contattarmi telefonicamente per un primo confronto pratico su bisogni,
+            priorita e disponibilita.
           </p>
-          <a
-            href="https://wa.me/39011000000"
-            target="_blank"
-            rel="noreferrer"
-            style={styles.action}
-          >
-            Scrivi su WhatsApp
+          <a href="tel:+39011000000" style={styles.action}>
+            Chiama +39 011 000000
           </a>
         </div>
       </div>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 45ms:
+apply_patch(auto_approved=true) exited 0 in 49ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactPhoneCtaSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
 file update:
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index fa7d5d7059fa946f973e13d5a782d4f1a65d744b..321f9c42ac6e098f5a622f61401bc4391ea77bb6
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -240,6 +240,12 @@
+ TASK section-contatti-contact-hero executed by Codex.
+ Waiting for validation.
+ 
++Completed TASK `cta-contatti-contatti-phone`.
++- Added a dedicated `ContactPhoneCtaSection` component in `src/components/ContactPhoneCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and WhatsApp CTA sections.
++- Connected the CTA to the valid phone destination `tel:+39011000000`.
++Waiting for validation.
++
+ TASK section-contatti-contact-hero completed successfully.
+ Build passed.
+ 
+diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
+index 0000000000000000000000000000000000000000..265dc18a97c23380df7fe4e55461340967429695
 --- /dev/null
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -0,0 +1,81 @@
++++ b/src/components/ContactPhoneCtaSection.jsx
+@@ -0,0 +1,76 @@
 +const styles = {
 +  section: {
 +    padding: "0 1.5rem 4rem",
@@ -1538,7 +1577,7 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    gap: "1rem",
 +    padding: "1.75rem",
 +    borderRadius: "1.75rem",
-+    backgroundColor: "#e8efe2",
++    backgroundColor: "#f1e6d9",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
@@ -1548,14 +1587,14 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#5f6d55",
++    color: "#7a6b5d",
 +  },
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
 +    lineHeight: 1.1,
 +    color: "#23251f",
-+    maxWidth: "16ch",
++    maxWidth: "15ch",
 +  },
 +  description: {
 +    margin: 0,
@@ -1579,25 +1618,20 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  },
 +}
 +
-+export default function ContactWhatsAppCtaSection() {
++export default function ContactPhoneCtaSection() {
 +  return (
-+    <section style={styles.section} aria-label="Contatto WhatsApp">
++    <section style={styles.section} aria-label="Contatto telefonico">
 +      <div style={styles.container}>
 +        <div style={styles.panel}>
-+          <p style={styles.eyebrow}>WhatsApp</p>
-+          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
++          <p style={styles.eyebrow}>Telefono</p>
++          <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
 +          <p style={styles.description}>
-+            Se preferisci un contatto immediato per disponibilita, zona di
-+            intervento o prime informazioni pratiche, puoi inviare un messaggio
-+            diretto e ricevere una risposta orientativa con chiarezza.
++            Se preferisci spiegare a voce la situazione del tuo cane, puoi
++            contattarmi telefonicamente per un primo confronto pratico su bisogni,
++            priorita e disponibilita.
 +          </p>
-+          <a
-+            href="https://wa.me/39011000000"
-+            target="_blank"
-+            rel="noreferrer"
-+            style={styles.action}
-+          >
-+            Scrivi su WhatsApp
++          <a href="tel:+39011000000" style={styles.action}>
++            Chiama +39 011 000000
 +          </a>
 +        </div>
 +      </div>
@@ -1605,32 +1639,49 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
+index 6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a..4c38d39de4d5056b9f2e4f2e87bded3400d14d7b
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from "../components/ContactHeroSection"
  import ContactDetailsSection from "../components/ContactDetailsSection"
-+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
++import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+ import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
  import OpeningHoursSection from "../components/OpeningHoursSection"
  
- export default function Contatti() {
-@@ -7,6 +8,7 @@
+@@ -8,6 +9,7 @@
      <main>
        <ContactHeroSection />
        <ContactDetailsSection />
-+      <ContactWhatsAppCtaSection />
++      <ContactPhoneCtaSection />
+       <ContactWhatsAppCtaSection />
        <OpeningHoursSection />
      </main>
-   )
 
 file update:
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index fa7d5d7059fa946f973e13d5a782d4f1a65d744b..321f9c42ac6e098f5a622f61401bc4391ea77bb6
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -240,6 +240,12 @@
+ TASK section-contatti-contact-hero executed by Codex.
+ Waiting for validation.
+ 
++Completed TASK `cta-contatti-contatti-phone`.
++- Added a dedicated `ContactPhoneCtaSection` component in `src/components/ContactPhoneCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and WhatsApp CTA sections.
++- Connected the CTA to the valid phone destination `tel:+39011000000`.
++Waiting for validation.
++
+ TASK section-contatti-contact-hero completed successfully.
+ Build passed.
+ 
+diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
+index 0000000000000000000000000000000000000000..265dc18a97c23380df7fe4e55461340967429695
 --- /dev/null
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -0,0 +1,81 @@
++++ b/src/components/ContactPhoneCtaSection.jsx
+@@ -0,0 +1,76 @@
 +const styles = {
 +  section: {
 +    padding: "0 1.5rem 4rem",
@@ -1646,7 +1697,7 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    gap: "1rem",
 +    padding: "1.75rem",
 +    borderRadius: "1.75rem",
-+    backgroundColor: "#e8efe2",
++    backgroundColor: "#f1e6d9",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
@@ -1656,14 +1707,14 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#5f6d55",
++    color: "#7a6b5d",
 +  },
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
 +    lineHeight: 1.1,
 +    color: "#23251f",
-+    maxWidth: "16ch",
++    maxWidth: "15ch",
 +  },
 +  description: {
 +    margin: 0,
@@ -1687,25 +1738,20 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  },
 +}
 +
-+export default function ContactWhatsAppCtaSection() {
++export default function ContactPhoneCtaSection() {
 +  return (
-+    <section style={styles.section} aria-label="Contatto WhatsApp">
++    <section style={styles.section} aria-label="Contatto telefonico">
 +      <div style={styles.container}>
 +        <div style={styles.panel}>
-+          <p style={styles.eyebrow}>WhatsApp</p>
-+          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
++          <p style={styles.eyebrow}>Telefono</p>
++          <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
 +          <p style={styles.description}>
-+            Se preferisci un contatto immediato per disponibilita, zona di
-+            intervento o prime informazioni pratiche, puoi inviare un messaggio
-+            diretto e ricevere una risposta orientativa con chiarezza.
++            Se preferisci spiegare a voce la situazione del tuo cane, puoi
++            contattarmi telefonicamente per un primo confronto pratico su bisogni,
++            priorita e disponibilita.
 +          </p>
-+          <a
-+            href="https://wa.me/39011000000"
-+            target="_blank"
-+            rel="noreferrer"
-+            style={styles.action}
-+          >
-+            Scrivi su WhatsApp
++          <a href="tel:+39011000000" style={styles.action}>
++            Chiama +39 011 000000
 +          </a>
 +        </div>
 +      </div>
@@ -1713,64 +1759,66 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
+index 6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a..4c38d39de4d5056b9f2e4f2e87bded3400d14d7b
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from "../components/ContactHeroSection"
  import ContactDetailsSection from "../components/ContactDetailsSection"
-+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
++import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+ import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
  import OpeningHoursSection from "../components/OpeningHoursSection"
  
- export default function Contatti() {
-@@ -7,6 +8,7 @@
+@@ -8,6 +9,7 @@
      <main>
        <ContactHeroSection />
        <ContactDetailsSection />
-+      <ContactWhatsAppCtaSection />
++      <ContactPhoneCtaSection />
+       <ContactWhatsAppCtaSection />
        <OpeningHoursSection />
      </main>
-   )
 
 codex
-The CTA is now explicit in the contact page body with a direct `wa.me` destination. I’m running the project build next, then I’ll append the required task summary to the agent report.
+The body phone CTA is in place. I’m running the required build check now to verify the new component integrates cleanly and doesn’t break the existing contact page.
 exec
-/bin/zsh -lc ls in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
-AGENTS.md
-README.md
-agent
-brief
-dist
-docs
-eslint.config.js
-index.html
-node_modules
-package-lock.json
-package.json
-playwright.config.js
-public
-site-spec.json
-src
-tests
-vite.config.js
-exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 802ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 834ms:
+
+> site-create-a-premium-modern-website-for-a-pr@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 59 modules transformed.
+✓ 60 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   0.50 kB │ gzip:  0.32 kB
+dist/index.html                   0.50 kB │ gzip:  0.31 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-C1GpqdvF.js   270.03 kB │ gzip: 82.05 kB
-✓ built in 572ms
+dist/assets/index-lRllT9-U.js   271.54 kB │ gzip: 82.20 kB
+✓ built in 579ms
 file update:
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index fa7d5d7059fa946f973e13d5a782d4f1a65d744b..321f9c42ac6e098f5a622f61401bc4391ea77bb6
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -240,6 +240,12 @@
+ TASK section-contatti-contact-hero executed by Codex.
+ Waiting for validation.
+ 
++Completed TASK `cta-contatti-contatti-phone`.
++- Added a dedicated `ContactPhoneCtaSection` component in `src/components/ContactPhoneCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and WhatsApp CTA sections.
++- Connected the CTA to the valid phone destination `tel:+39011000000`.
++Waiting for validation.
++
+ TASK section-contatti-contact-hero completed successfully.
+ Build passed.
+ 
+diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
+index 0000000000000000000000000000000000000000..265dc18a97c23380df7fe4e55461340967429695
 --- /dev/null
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -0,0 +1,81 @@
++++ b/src/components/ContactPhoneCtaSection.jsx
+@@ -0,0 +1,76 @@
 +const styles = {
 +  section: {
 +    padding: "0 1.5rem 4rem",
@@ -1786,7 +1834,7 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    gap: "1rem",
 +    padding: "1.75rem",
 +    borderRadius: "1.75rem",
-+    backgroundColor: "#e8efe2",
++    backgroundColor: "#f1e6d9",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
@@ -1796,14 +1844,14 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#5f6d55",
++    color: "#7a6b5d",
 +  },
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
 +    lineHeight: 1.1,
 +    color: "#23251f",
-+    maxWidth: "16ch",
++    maxWidth: "15ch",
 +  },
 +  description: {
 +    margin: 0,
@@ -1827,25 +1875,20 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  },
 +}
 +
-+export default function ContactWhatsAppCtaSection() {
++export default function ContactPhoneCtaSection() {
 +  return (
-+    <section style={styles.section} aria-label="Contatto WhatsApp">
++    <section style={styles.section} aria-label="Contatto telefonico">
 +      <div style={styles.container}>
 +        <div style={styles.panel}>
-+          <p style={styles.eyebrow}>WhatsApp</p>
-+          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
++          <p style={styles.eyebrow}>Telefono</p>
++          <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
 +          <p style={styles.description}>
-+            Se preferisci un contatto immediato per disponibilita, zona di
-+            intervento o prime informazioni pratiche, puoi inviare un messaggio
-+            diretto e ricevere una risposta orientativa con chiarezza.
++            Se preferisci spiegare a voce la situazione del tuo cane, puoi
++            contattarmi telefonicamente per un primo confronto pratico su bisogni,
++            priorita e disponibilita.
 +          </p>
-+          <a
-+            href="https://wa.me/39011000000"
-+            target="_blank"
-+            rel="noreferrer"
-+            style={styles.action}
-+          >
-+            Scrivi su WhatsApp
++          <a href="tel:+39011000000" style={styles.action}>
++            Chiama +39 011 000000
 +          </a>
 +        </div>
 +      </div>
@@ -1853,73 +1896,55 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
+index 6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a..4c38d39de4d5056b9f2e4f2e87bded3400d14d7b
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from "../components/ContactHeroSection"
  import ContactDetailsSection from "../components/ContactDetailsSection"
-+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
++import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+ import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
  import OpeningHoursSection from "../components/OpeningHoursSection"
  
- export default function Contatti() {
-@@ -7,6 +8,7 @@
+@@ -8,6 +9,7 @@
      <main>
        <ContactHeroSection />
        <ContactDetailsSection />
-+      <ContactWhatsAppCtaSection />
++      <ContactPhoneCtaSection />
+       <ContactWhatsAppCtaSection />
        <OpeningHoursSection />
      </main>
-   )
 
 codex
-The build passed. I’m making the required report update now, with only this task’s implementation summary and result.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -220,2 +220,12 @@
- 
-+Completed TASK `cta-contatti-contatti-whatsapp`.
-+- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
-+- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
-+- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
-+
-+TASK cta-contatti-contatti-whatsapp executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-contatti-contatti-whatsapp completed successfully.
-+Build passed.
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
-apply_patch(auto_approved=true) exited 0 in 57ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+Modified files: [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx), [ContactPhoneCtaSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactPhoneCtaSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+
+Implemented the `contatti-phone` CTA on the Contatti page body by adding a dedicated phone CTA section and rendering it between the contact details block and the WhatsApp CTA. The CTA is visible in body placement and points to the valid destination `tel:+39011000000`.
+
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index a522d9d12db45dc001cd025115d10806dd3161fc..142359d94cacde741ad61d3a3363ea834b704fb2
+index fa7d5d7059fa946f973e13d5a782d4f1a65d744b..321f9c42ac6e098f5a622f61401bc4391ea77bb6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,16 @@
- TASK section-chi-siamo-about-hero completed successfully.
- Build passed.
+@@ -240,6 +240,12 @@
+ TASK section-contatti-contact-hero executed by Codex.
+ Waiting for validation.
  
-+Completed TASK `cta-contatti-contatti-whatsapp`.
-+- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
-+- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
-+- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
-+
-+TASK cta-contatti-contatti-whatsapp executed by Codex.
++Completed TASK `cta-contatti-contatti-phone`.
++- Added a dedicated `ContactPhoneCtaSection` component in `src/components/ContactPhoneCtaSection.jsx`.
++- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and WhatsApp CTA sections.
++- Connected the CTA to the valid phone destination `tel:+39011000000`.
 +Waiting for validation.
 +
-+TASK cta-contatti-contatti-whatsapp completed successfully.
-+Build passed.
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+ TASK section-contatti-contact-hero completed successfully.
+ Build passed.
  
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
+diff --git a/src/components/ContactPhoneCtaSection.jsx b/src/components/ContactPhoneCtaSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
+index 0000000000000000000000000000000000000000..265dc18a97c23380df7fe4e55461340967429695
 --- /dev/null
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -0,0 +1,81 @@
++++ b/src/components/ContactPhoneCtaSection.jsx
+@@ -0,0 +1,76 @@
 +const styles = {
 +  section: {
 +    padding: "0 1.5rem 4rem",
@@ -1935,7 +1960,7 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    gap: "1rem",
 +    padding: "1.75rem",
 +    borderRadius: "1.75rem",
-+    backgroundColor: "#e8efe2",
++    backgroundColor: "#f1e6d9",
 +    border: "1px solid rgba(47, 49, 45, 0.08)",
 +    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
 +  },
@@ -1945,14 +1970,14 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#5f6d55",
++    color: "#7a6b5d",
 +  },
 +  title: {
 +    margin: 0,
 +    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
 +    lineHeight: 1.1,
 +    color: "#23251f",
-+    maxWidth: "16ch",
++    maxWidth: "15ch",
 +  },
 +  description: {
 +    margin: 0,
@@ -1976,25 +2001,20 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  },
 +}
 +
-+export default function ContactWhatsAppCtaSection() {
++export default function ContactPhoneCtaSection() {
 +  return (
-+    <section style={styles.section} aria-label="Contatto WhatsApp">
++    <section style={styles.section} aria-label="Contatto telefonico">
 +      <div style={styles.container}>
 +        <div style={styles.panel}>
-+          <p style={styles.eyebrow}>WhatsApp</p>
-+          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
++          <p style={styles.eyebrow}>Telefono</p>
++          <h2 style={styles.title}>Parliamone con una chiamata semplice e diretta</h2>
 +          <p style={styles.description}>
-+            Se preferisci un contatto immediato per disponibilita, zona di
-+            intervento o prime informazioni pratiche, puoi inviare un messaggio
-+            diretto e ricevere una risposta orientativa con chiarezza.
++            Se preferisci spiegare a voce la situazione del tuo cane, puoi
++            contattarmi telefonicamente per un primo confronto pratico su bisogni,
++            priorita e disponibilita.
 +          </p>
-+          <a
-+            href="https://wa.me/39011000000"
-+            target="_blank"
-+            rel="noreferrer"
-+            style={styles.action}
-+          >
-+            Scrivi su WhatsApp
++          <a href="tel:+39011000000" style={styles.action}>
++            Chiama +39 011 000000
 +          </a>
 +        </div>
 +      </div>
@@ -2002,291 +2022,24 @@ index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f43
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
+index 6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a..4c38d39de4d5056b9f2e4f2e87bded3400d14d7b
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from "../components/ContactHeroSection"
  import ContactDetailsSection from "../components/ContactDetailsSection"
-+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
++import ContactPhoneCtaSection from "../components/ContactPhoneCtaSection"
+ import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
  import OpeningHoursSection from "../components/OpeningHoursSection"
  
- export default function Contatti() {
-@@ -7,6 +8,7 @@
+@@ -8,6 +9,7 @@
      <main>
        <ContactHeroSection />
        <ContactDetailsSection />
-+      <ContactWhatsAppCtaSection />
++      <ContactPhoneCtaSection />
+       <ContactWhatsAppCtaSection />
        <OpeningHoursSection />
      </main>
-   )
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index a522d9d12db45dc001cd025115d10806dd3161fc..142359d94cacde741ad61d3a3363ea834b704fb2
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,16 @@
- TASK section-chi-siamo-about-hero completed successfully.
- Build passed.
- 
-+Completed TASK `cta-contatti-contatti-whatsapp`.
-+- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
-+- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
-+- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
-+
-+TASK cta-contatti-contatti-whatsapp executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-contatti-contatti-whatsapp completed successfully.
-+Build passed.
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
---- /dev/null
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -0,0 +1,81 @@
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 4rem",
-+    backgroundColor: "#fcf8f1",
-+    color: "#2f312d",
-+  },
-+  container: {
-+    width: "min(100%, 72rem)",
-+    margin: "0 auto",
-+  },
-+  panel: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.75rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#e8efe2",
-+    border: "1px solid rgba(47, 49, 45, 0.08)",
-+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.16em",
-+    textTransform: "uppercase",
-+    color: "#5f6d55",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
-+    lineHeight: 1.1,
-+    color: "#23251f",
-+    maxWidth: "16ch",
-+  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.75,
-+    color: "#4b5047",
-+    maxWidth: "42rem",
-+  },
-+  action: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    width: "fit-content",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.35rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#6b7760",
-+    color: "#f8f4ec",
-+    textDecoration: "none",
-+    fontWeight: 600,
-+  },
-+}
-+
-+export default function ContactWhatsAppCtaSection() {
-+  return (
-+    <section style={styles.section} aria-label="Contatto WhatsApp">
-+      <div style={styles.container}>
-+        <div style={styles.panel}>
-+          <p style={styles.eyebrow}>WhatsApp</p>
-+          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-+          <p style={styles.description}>
-+            Se preferisci un contatto immediato per disponibilita, zona di
-+            intervento o prime informazioni pratiche, puoi inviare un messaggio
-+            diretto e ricevere una risposta orientativa con chiarezza.
-+          </p>
-+          <a
-+            href="https://wa.me/39011000000"
-+            target="_blank"
-+            rel="noreferrer"
-+            style={styles.action}
-+          >
-+            Scrivi su WhatsApp
-+          </a>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,5 +1,6 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
-+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
- import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-@@ -7,6 +8,7 @@
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
-+      <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
-     </main>
-   )
-
-codex
-Modified files:
-- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Contatti.jsx)
-- [src/components/ContactWhatsAppCtaSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/ContactWhatsAppCtaSection.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
-
-What was implemented: the `contatti-whatsapp` CTA now exists as a dedicated body callout on the contact page, rendered between the contact details and opening hours sections. It links to the valid WhatsApp destination `https://wa.me/39011000000` and opens externally with `target="_blank"` and `rel="noreferrer"`.
-
-Build result: `npm run build` passed successfully with a production Vite build.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index a522d9d12db45dc001cd025115d10806dd3161fc..142359d94cacde741ad61d3a3363ea834b704fb2
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,16 @@
- TASK section-chi-siamo-about-hero completed successfully.
- Build passed.
- 
-+Completed TASK `cta-contatti-contatti-whatsapp`.
-+- Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
-+- Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
-+- Connected the CTA to a valid WhatsApp destination at `https://wa.me/39011000000` with external-link attributes.
-+
-+TASK cta-contatti-contatti-whatsapp executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-contatti-contatti-whatsapp completed successfully.
-+Build passed.
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/ContactWhatsAppCtaSection.jsx b/src/components/ContactWhatsAppCtaSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..24ed4b9ada0cc46ddb54e567244b0f4343b6e272
---- /dev/null
-+++ b/src/components/ContactWhatsAppCtaSection.jsx
-@@ -0,0 +1,81 @@
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 4rem",
-+    backgroundColor: "#fcf8f1",
-+    color: "#2f312d",
-+  },
-+  container: {
-+    width: "min(100%, 72rem)",
-+    margin: "0 auto",
-+  },
-+  panel: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.75rem",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#e8efe2",
-+    border: "1px solid rgba(47, 49, 45, 0.08)",
-+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.16em",
-+    textTransform: "uppercase",
-+    color: "#5f6d55",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(1.7rem, 4vw, 2.4rem)",
-+    lineHeight: 1.1,
-+    color: "#23251f",
-+    maxWidth: "16ch",
-+  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.75,
-+    color: "#4b5047",
-+    maxWidth: "42rem",
-+  },
-+  action: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    width: "fit-content",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.35rem",
-+    borderRadius: "999px",
-+    backgroundColor: "#6b7760",
-+    color: "#f8f4ec",
-+    textDecoration: "none",
-+    fontWeight: 600,
-+  },
-+}
-+
-+export default function ContactWhatsAppCtaSection() {
-+  return (
-+    <section style={styles.section} aria-label="Contatto WhatsApp">
-+      <div style={styles.container}>
-+        <div style={styles.panel}>
-+          <p style={styles.eyebrow}>WhatsApp</p>
-+          <h2 style={styles.title}>Scrivimi su WhatsApp per un primo confronto rapido</h2>
-+          <p style={styles.description}>
-+            Se preferisci un contatto immediato per disponibilita, zona di
-+            intervento o prime informazioni pratiche, puoi inviare un messaggio
-+            diretto e ricevere una risposta orientativa con chiarezza.
-+          </p>
-+          <a
-+            href="https://wa.me/39011000000"
-+            target="_blank"
-+            rel="noreferrer"
-+            style={styles.action}
-+          >
-+            Scrivi su WhatsApp
-+          </a>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 45f7ff857f0af04da85926b2097eb7e62469c4fe..6f93e421118eddf9aa72d2afcfe0c3ab3496aa1a
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,5 +1,6 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
-+import ContactWhatsAppCtaSection from "../components/ContactWhatsAppCtaSection"
- import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-@@ -7,6 +8,7 @@
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
-+      <ContactWhatsAppCtaSection />
-       <OpeningHoursSection />
-     </main>
-   )
 
 tokens used
-21.645
+21.958
