@@ -1,14 +1,9 @@
+import AboutHeroSection from "../components/AboutHeroSection"
+
 export default function ChiSiamo() {
   return (
     <main>
-      <section id="about-hero">
-        <p>Equilibrio Cinofilo</p>
-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-        <p>
-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-        </p>
-      </section>
+      <AboutHeroSection />
 
       <section id="story">
         <h2>Chi sono</h2>

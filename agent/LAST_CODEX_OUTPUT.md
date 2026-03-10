@@ -1,15 +1,8 @@
-Modified files:
-- [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modified files: [ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx), [AboutHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/AboutHeroSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-What was implemented:
-- Replaced the placeholder `chi-siamo` page with a semantic shell in [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx), using `main` plus the required section ids: `about-hero`, `story`, and `philosophy`.
-- Added real, brand-aligned Italian copy so the page renders cleanly without placeholder text.
-- Verified that the `/chi-siamo` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.jsx), so no route change was needed.
-- Updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with the task summary.
+Implemented the `about-hero` section for `chi-siamo` by adding a reusable `AboutHeroSection` component and rendering it at the top of the page. The new hero preserves the required `about-hero` section id, provides the page `h1`, and uses calm, premium Italian copy with a responsive two-column editorial layout and image-backed presentation aligned with the brief.
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -20,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9e8-7b56-71e2-8dd8-a346803ffe39
+session id: 019cd9e9-4709-78d3-97a9-02e7de566913
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1233,32 +1226,35 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-page-chi-siamo-shell
+section-chi-siamo-about-hero
 
 ## Current task title
-Create chi-siamo page shell
+Create about-hero section on chi-siamo
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "chi-siamo"
+  "pageId": "chi-siamo",
+  "sectionId": "about-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-chi-siamo-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/ChiSiamo.jsx
+- src/components/AboutHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for chi-siamo
-- chi-siamo route is mounted if required
-- chi-siamo page renders without crashing
+- section about-hero exists on chi-siamo
+- section about-hero matches type hero
+- section about-hero is rendered in page chi-siamo
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1287,51 +1283,54 @@ page-shell
 
 mcp startup: no servers
 codex
-Sto verificando lo stato attuale di `src/App.jsx` e `src/pages/ChiSiamo.jsx` per montare solo la shell della pagina `chi-siamo`, senza toccare lavoro fuori scope.
+I’m checking the current `chi-siamo` page shell and the relevant source-of-truth files first so I can add only the `about-hero` section without drifting into later tasks.
 exec
+/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
 /bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,240p' site-spec.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "rg --files brief agent docs src | rg '"'^(brief/original-prompt'"\\.md|brief/brief-summary\\.md|docs/DEVELOPMENT_METHOD\\.md|agent/CURRENT_TASK_PROMPT\\.md|agent/TASK_STATE\\.json|agent/TASK_GRAPH\\.json|site-spec\\.json|src/pages/ChiSiamo\\.jsx|src/components/.+|agent/AGENT_REPORT\\.md)"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
 export default function ChiSiamo() {
   return (
-    <>
+    <main>
       <section id="about-hero">
-        <h1>About Hero</h1>
-        <p>Content for about-hero will be generated by tasks</p>
+        <p>Equilibrio Cinofilo</p>
+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+        <p>
+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+        </p>
       </section>
-      <section id="story">
-        <h2>Story</h2>
-        <p>Content for story will be generated by tasks</p>
-      </section>
-      <section id="philosophy">
-        <h2>Philosophy</h2>
-        <p>Content for philosophy will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 53ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Contatti from "./pages/Contatti"
 
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-      </Layout>
-    </HashRouter>
-  )
- succeeded in 53ms:
+      <section id="story">
+        <h2>Chi sono</h2>
+        <p>
+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
+          giorno.
+        </p>
+        <p>
+ succeeded in 52ms:
+{
+  "originalPrompt": "Create a premium modern website for a professional dog educator and behavior consultant called Equilibrio Cinofilo.\n\nThe business helps dog owners improve communication, behavior, daily management, and emotional balance with their dogs through ethical, practical, and modern education.\nThe approach must feel professional, calm, trustworthy, and deeply human.\nThis is not a flashy “alpha dog” brand.\nIt must communicate competence, empathy, structure, and real-world results.\n\nSERVICES OFFERED\nThe business offers:\n- puppy education\n- basic dog education\n- leash work and recall\n- behavioral consultations\n- support for reactivity, anxiety, and management issues\n- one-to-one sessions\n- educational walks\n- support for owners before and after adoption\n- optional group classes if useful\n- online consultation if suitable\n\nGOAL\nThe website must feel like a real premium service business that a client would trust with their dog.\nIt must not feel cheap, aggressive, or gimmicky.\nIt must avoid stereotypes like domination language, punitive energy, or “miracle training” tone.\nThe final result should feel modern, clean, grounded, emotionally intelligent, and professional.\n\nARCHITECTURE\nThis must be a real multi-page website.\nDo NOT build it as a single-page website with anchor links.\nDo NOT collapse all content into the homepage.\n\nCreate these real pages with real routes:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nRequired routes:\n- /\n- /services\n- /percorsi\n- /chi-siamo\n- /faq\n- /contatti\n\nNAVIGATION\nHeader navigation must include:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nNavigation must use real routes, not homepage anchors.\nEach navigation item must point to an actually existing page.\nThe mobile menu must work properly.\nNo broken links.\n\nGENERAL BRAND DIRECTION\nBrand name: Equilibrio Cinofilo\nTarget audience:\n- first-time dog owners\n- families with puppies\n- people with adolescent or adult dogs showing difficult behaviors\n- owners who want practical and respectful guidance\n- people who want help understanding their dog better\n\nBrand values:\n- trust\n- calm\n- respect\n- consistency\n- education\n- emotional balance\n- clarity\n- everyday practicality\n\nTONE OF VOICE\nThe copy must feel:\n- reassuring\n- competent\n- calm\n- clear\n- empathetic\n- realistic\n- never judgmental\n- never macho\n- never exaggerated\n\nAvoid:\n- aggressive dog training clichés\n- fake urgency\n- manipulative language\n- miracle promises\n- overcomplicated technical jargon\n\nVISUAL STYLE\nThe design must feel:\n- calm\n- elegant\n- natural\n- modern\n- clean\n- spacious\n- trustworthy\n- warm but professional\n\nInspiration:\n- premium wellness service websites\n- boutique consulting brands\n- nature-inspired modern service brands\n- behavior / care services with a calm visual identity\n\nCOLOR PALETTE\nUse a calm and refined palette such as:\n- warm off-white / sand background\n- muted sage or olive accents\n- charcoal or deep warm gray for text\n- soft earthy beige / taupe neutrals\n- optional dusty terracotta accent used sparingly\n\nTypography:\n- refined modern serif or elegant humanist heading font\n- clean sans serif for body copy\n- excellent readability\n- soft, premium hierarchy\n\nLAYOUT RULES\n- mobile first\n- clear visual hierarchy\n- spacious sections\n- no visual clutter\n- no cheap gradients\n- no noisy icons everywhere\n- premium use of whitespace\n- content blocks must feel balanced and easy to scan\n- all pages must feel coherent as one brand\n\nIMAGE DIRECTION\nUse high quality Unsplash images.\nSearch themes like:\n- dog owner outdoors\n- dog training positive reinforcement\n- person with dog in park\n- calm dog portrait\n- dog and human connection\n- puppy training\n- dog walking training\n- responsible dog education\n\nImages must:\n- feel natural and authentic\n- avoid cheesy stock-photo energy\n- use object-fit: cover\n- never be stretched\n- support a calm and trustworthy tone\n- show healthy and respectful dog-human interaction\n\nHOME PAGE\nThe homepage must be a true strategic overview, not a page that contains the whole site.\n\nInclude these sections:\n1. Hero\n2. Main services preview\n3. Why work with Equilibrio Cinofilo\n4. Percorsi preview\n5. Short about preview\n6. FAQ preview\n7. Final CTA\n\nHOME HERO\nLarge calm hero section with premium natural imagery.\n\nHero content:\nEyebrow:\n\"Educazione cinofila moderna, pratica e rispettosa\"\n\nMain title:\n\"Aiuto concreto per costruire una relazione più serena con il tuo cane\"\n\nSubtitle:\n\"Equilibrio Cinofilo accompagna cani e persone con percorsi educativi chiari, etici e personalizzati, pensati per la vita di tutti i giorni.\"\n\nPrimary CTA:\n\"Prenota una consulenza\"\n\nSecondary CTA:\n\"Scopri i percorsi\"\n\nSERVICES PAGE\nCreate a full dedicated Services page.\n\nInclude:\n- hero section\n- introduction to the service approach\n- clear service cards or structured blocks\n- puppy education\n- adolescent dog education\n- adult dog education\n- behavioral consultation\n- educational walks\n- pre-adoption support\n- post-adoption support\n- online consultation if suitable\n- CTA section\n\nEach service block should include:\n- service name\n- short practical description\n- who it is for\n- outcome or benefit\n\nThis page must feel helpful, concrete, and non-generic.\n\nPERCORSI PAGE\nCreate a dedicated Percorsi page.\nThis page should explain how the work is structured.\n\nInclude:\n- hero\n- intro explaining that every dog-owner pair is different\n- examples of educational paths such as:\n  - Cucciolo sereno\n  - Passeggiate senza tensione\n  - Richiamo e gestione in esterna\n  - Convivenza equilibrata\n  - Supporto per reattività e gestione emotiva\n- each path should have:\n  - title\n  - who it is for\n  - main goals\n  - tone focused on progress, not miracles\n- section explaining how a first consultation works\n- CTA to contact\n\nThis page should help the user understand structure and professionalism.\n\nCHI SIAMO PAGE\nCreate a dedicated About page.\n\nInclude:\n- hero\n- educator presentation\n- philosophy and method\n- values\n- relationship-centered approach\n- practical and respectful work style\n- trust-building content\n- image + text sections\n- closing CTA\n\nThis page should make the educator feel real, competent, and approachable.\nAvoid sounding self-important.\n\nFAQ PAGE\nCreate a dedicated FAQ page.\n\nInclude realistic and useful questions such as:\n- When should I contact a dog educator?\n- Is it too late if my dog is already an adult?\n- Do you also work with puppies?\n- Do you use force-free or respectful methods?\n- How many sessions are usually needed?\n- Can the whole family participate?\n- Do you offer home visits?\n- Can online sessions be useful?\n- Do you work with reactive dogs?\n\nAnswers must be realistic, reassuring, and professional.\n\nCONTACT PAGE\nCreate a real Contact page.\n\nInclude:\n- hero\n- short welcoming intro\n- contact info block\n- phone\n- email\n- WhatsApp CTA if suitable\n- city / service area\n- optional service availability\n- inquiry CTA or clean contact form block if appropriate\n\nUse realistic placeholder details such as:\nService area:\nTorino and surrounding areas\n\nPhone:\n+39 011 000000\n\nEmail:\nciao@equilibriocinofilo.it\n\nWhatsApp:\navailable as a CTA if it fits the design\n\nThe contact page should feel easy, calm, and inviting.\n\nCTA STRATEGY\nThe site must contain meaningful CTAs such as:\n- Prenota una consulenza\n- Scopri i percorsi\n- Richiedi informazioni\n- Contattami\n- Inizia da qui\n\nCTA style must be consistent across the site.\nButtons must feel elegant and clear.\nNo spammy conversion style.\n\nFOOTER\nCreate a refined footer with:\n- brand name\n- short brand line\n- navigation links\n- contact info\n- service area\n- social placeholder links if useful\n- copyright\n\nSEO / CONTENT\n- one clear H1 per page\n- polished realistic copy in Italian\n- no lorem ipsum\n- no placeholder feel\n- content should sound like a real premium dog education brand\n- page titles and meta descriptions should exist\n- heading structure must be logical\n- copy should be concise but warm and credible\n\nRESPONSIVE QUALITY\n- fully responsive\n- no horizontal scroll\n- balanced spacing at all key breakpoints\n- mobile navigation must work\n- sections must stack cleanly\n- cards must remain readable on mobile\n- forms and CTAs must be easy to use on mobile\n\nQUALITY EXPECTATION\nThe final website must feel like a real professional website for a modern dog educator.\nIt should be sellable to a real client.\nIt must look emotionally intelligent, calm, modern, and trustworthy.\nIt must not feel like a generic pet template.\nIt must not feel like a single-page site stretched into fake pages.\nEach page must have a real purpose and distinct content.",
+  "siteName": "site-create-a-premium-modern-website-for-a-pr",
+  "businessType": "generic-business",
+  "architecture": "multi-page",
+  "routing": {
+    "mode": "hash"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "landing",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero"
+        },
+        {
+          "id": "signature-preview",
+ succeeded in 52ms:
 # CURRENT TASK EXECUTION PROMPT
 
 You are the coding executor for this project.
@@ -1352,11 +1351,116 @@ site-create-a-premium-modern-website-for-a-pr
 # Development Method
 
 All sites must follow these rules.
+ succeeded in 53ms:
+brief/brief-summary.md
+brief/original-prompt.md
+agent/TASK_GRAPH.json
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
+agent/AGENT_REPORT.md
+src/pages/ChiSiamo.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/BrandStoryPreviewSection.jsx
+src/components/MenuCategoriesSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/MenuHeroSection.jsx
+src/components/HeroSection.jsx
+docs/DEVELOPMENT_METHOD.md
 codex
-La route `/chi-siamo` è già montata in `src/App.jsx`. Sto sostituendo il placeholder in `src/pages/ChiSiamo.jsx` con una shell semantica e reale, mantenendo i tre section id richiesti dal task.
+The page shell already has placeholder copy for all three sections. I’m replacing only the `about-hero` block with a modular hero component and leaving the later `story` and `philosophy` sections structurally intact.
 exec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,220p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' src/components/BrandStoryPreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,220p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
+const storyHighlights = [
+  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
+  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
+  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
+]
+
+const styles = {
+  section: {
+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
+    backgroundColor: "#efe7db",
+    color: "#2f312d",
+  },
+  container: {
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
+    display: "grid",
+    gap: "1.75rem",
+    alignItems: "center",
+  },
+  contentGrid: {
+ succeeded in 53ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
+    backgroundColor: "#f5efe5",
+    color: "#2e312b",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  container: {
+    position: "relative",
+    zIndex: 1,
+    display: "grid",
+ succeeded in 51ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
+    backgroundColor: "#f3ede3",
+    color: "#2f312d",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  container: {
+    position: "relative",
+    zIndex: 1,
+    width: "min(100%, 40rem)",
+ succeeded in 53ms:
+const previewCards = [
+  {
+    title: "Percorsi educativi personalizzati",
+    description:
+      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
+  },
+  {
+    title: "Strumenti utili per la vita quotidiana",
+    description:
+      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
+  },
+  {
+    title: "Progressi realistici e rispettosi",
+    description:
+      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
+  },
+]
+
+const styles = {
+  section: {
+codex
+I’ve got the component patterns now. Next I’m matching that style language for `chi-siamo` and checking the existing report/build setup so the change lands cleanly and verifies in one pass.
+exec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
 {
   "name": "site-create-a-premium-modern-website-for-a-pr",
   "private": true,
@@ -1399,543 +1503,1429 @@ Build passed.
 Commit created for TASK page-home-shell.
 
 codex
-Sto allineando la shell di `ChiSiamo` al tono e alla struttura già usati nelle altre pagine, così non introduco markup incoerente o placeholder.
-exec
-/bin/zsh -lc "sed -n '1,240p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,240p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
-import MenuHeroSection from "../components/MenuHeroSection"
-import MenuCategoriesSection from "../components/MenuCategoriesSection"
+I’m editing two implementation files now: a new `AboutHeroSection` component and the `ChiSiamo` page so the hero is modular, visually dominant, and still constrained to this single section task.
+file update
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/AboutHeroSection.jsx
+const values = [
+  "Lettura attenta del cane e del contesto familiare",
+  "Indicazioni pratiche applicabili nella quotidianita",
+  "Un lavoro rispettoso, progressivo e senza scorciatoie",
+]
 
-export default function Menu() {
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem",
+    backgroundColor: "#f6f0e7",
+    color: "#2d302a",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  container: {
+    position: "relative",
+    zIndex: 1,
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
+    display: "grid",
+    gap: "1.75rem",
+    alignItems: "start",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  },
+  content: {
+    display: "grid",
+    gap: "1.25rem",
+    maxWidth: "40rem",
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: "0.8rem",
+    fontWeight: 700,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    color: "#6b7465",
+  },
+  title: {
+    margin: 0,
+    fontSize: "clamp(2.5rem, 7vw, 4.7rem)",
+    lineHeight: 0.97,
+    maxWidth: "11ch",
+    color: "#20231d",
+  },
+  lead: {
+    margin: 0,
+    fontSize: "1.06rem",
+    lineHeight: 1.8,
+    color: "#4d5349",
+    maxWidth: "38rem",
+  },
+  meta: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "0.75rem",
+    margin: 0,
+    padding: 0,
+    listStyle: "none",
+    color: "#545a50",
+    fontSize: "0.95rem",
+  },
+  metaItem: {
+    padding: "0.5rem 0.9rem",
+    borderRadius: "999px",
+    backgroundColor: "rgba(255, 255, 255, 0.45)",
+    border: "1px solid rgba(45, 48, 42, 0.08)",
+    backdropFilter: "blur(8px)",
+  },
+  panel: {
+    display: "grid",
+    gap: "1rem",
+    padding: "1.5rem",
+    alignSelf: "end",
+    borderRadius: "1.75rem",
+    backgroundColor: "rgba(255, 253, 249, 0.84)",
+    border: "1px solid rgba(45, 48, 42, 0.08)",
+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
+  },
+  panelLabel: {
+    margin: 0,
+    fontSize: "0.78rem",
+    fontWeight: 700,
+    letterSpacing: "0.14em",
+    textTransform: "uppercase",
+    color: "#7a695c",
+  },
+  panelTitle: {
+    margin: 0,
+    fontSize: "1.5rem",
+    lineHeight: 1.2,
+    color: "#23261f",
+  },
+  list: {
+    margin: 0,
+    paddingLeft: "1.1rem",
+    display: "grid",
+    gap: "0.8rem",
+    color: "#50564c",
+    lineHeight: 1.7,
+  },
+}
+
+export default function AboutHeroSection() {
   return (
-    <main>
-      <MenuHeroSection />
-      <MenuCategoriesSection />
-    </main>
+    <section
+      id="about-hero"
+      aria-labelledby="about-hero-title"
+      style={styles.section}
+    >
+      <div aria-hidden="true" style={styles.background} />
+
+      <div style={styles.container}>
+        <div style={styles.content}>
+          <p style={styles.eyebrow}>Chi sono</p>
+
+          <h1 id="about-hero-title" style={styles.title}>
+            Un lavoro educativo che mette al centro relazione, ascolto e vita reale
+          </h1>
+
+          <p style={styles.lead}>
+            Equilibrio Cinofilo nasce per accompagnare persone e cani con un
+            approccio pratico, etico e profondamente umano. Il mio obiettivo e
+            aiutare ogni famiglia a costruire maggiore serenita nella quotidianita,
+            con indicazioni chiare e sostenibili nel tempo.
+          </p>
+
+          <p style={styles.lead}>
+            Ogni percorso parte dall&apos;osservazione, dalla comprensione del
+            contesto e dal rispetto dei tempi del cane, per trasformare le
+            difficolta di tutti i giorni in occasioni di crescita concreta.
+          </p>
+
+          <ul style={styles.meta}>
+            <li style={styles.metaItem}>Torino e dintorni</li>
+            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
+            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
+          </ul>
+        </div>
+
+        <aside style={styles.panel}>
+          <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
+          <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
+          <ul style={styles.list}>
+            {values.map((value) => (
+              <li key={value}>{value}</li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </section>
   )
 }
- succeeded in 52ms:
-import HeroSection from "../components/HeroSection"
-import SignaturePreviewSection from "../components/SignaturePreviewSection"
-import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
-import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
-
-export default function Home() {
-  return (
-    <>
-      <HeroSection
-        primaryCta={{
-          href: "#/menu",
-          label: "Prenota una consulenza",
-        }}
-        secondaryCta={{
-          href: "#/contatti",
-          label: "Contattami",
-        }}
-      />
-
-      <SignaturePreviewSection />
-codex
-Sto modificando `src/pages/ChiSiamo.jsx` con una shell completa ma minimale: `main`, tre sezioni con gli id richiesti e copy reale coerente col brand, senza anticipare componenti futuri.
-file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx
-@@ -2,16 +2,37 @@
-   return (
--    <>
-+    <main>
-       <section id="about-hero">
--        <h1>About Hero</h1>
--        <p>Content for about-hero will be generated by tasks</p>
-+        <p>Equilibrio Cinofilo</p>
-+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-+        <p>
-+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-+        </p>
-       </section>
+@@ -1 +1,3 @@
++import AboutHeroSection from "../components/AboutHeroSection"
 +
-       <section id="story">
--        <h2>Story</h2>
--        <p>Content for story will be generated by tasks</p>
-+        <h2>Chi sono</h2>
-+        <p>
-+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-+          giorno.
-+        </p>
-+        <p>
-+          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-+          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-+        </p>
-       </section>
-+
-       <section id="philosophy">
--        <h2>Philosophy</h2>
--        <p>Content for philosophy will be generated by tasks</p>
-+        <h2>Come lavoro</h2>
-+        <p>
-+          Il percorso educativo parte dall&apos;osservazione del contesto, dalla comunicazione tra cane e
-+          famiglia e da obiettivi realistici, utili nella vita di tutti i giorni.
-+        </p>
-+        <p>
-+          La pagina e pronta per ospitare i prossimi blocchi dedicati a filosofia, valori e stile di
-+          lavoro, senza cambiare la struttura richiesta dalla spec.
-+        </p>
-       </section>
--    </>
-+    </main>
-   )
-apply_patch(auto_approved=true) exited 0 in 38ms:
+ export default function ChiSiamo() {
+@@ -3,10 +5,3 @@
+     <main>
+-      <section id="about-hero">
+-        <p>Equilibrio Cinofilo</p>
+-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+-        <p>
+-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+-        </p>
+-      </section>
++      <AboutHeroSection />
+ 
+apply_patch(auto_approved=true) exited 0 in 41ms:
 Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/AboutHeroSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx
 file update:
+diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c33f7f100809784e5f920a5de047625bdea33b8
+--- /dev/null
++++ b/src/components/AboutHeroSection.jsx
+@@ -0,0 +1,160 @@
++const values = [
++  "Lettura attenta del cane e del contesto familiare",
++  "Indicazioni pratiche applicabili nella quotidianita",
++  "Un lavoro rispettoso, progressivo e senza scorciatoie",
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem",
++    backgroundColor: "#f6f0e7",
++    color: "#2d302a",
++  },
++  background: {
++    position: "absolute",
++    inset: 0,
++    backgroundImage:
++      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
++    backgroundPosition: "center",
++    backgroundSize: "cover",
++  },
++  container: {
++    position: "relative",
++    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.75rem",
++    alignItems: "start",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "40rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#6b7465",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2.5rem, 7vw, 4.7rem)",
++    lineHeight: 0.97,
++    maxWidth: "11ch",
++    color: "#20231d",
++  },
++  lead: {
++    margin: 0,
++    fontSize: "1.06rem",
++    lineHeight: 1.8,
++    color: "#4d5349",
++    maxWidth: "38rem",
++  },
++  meta: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "0.75rem",
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    color: "#545a50",
++    fontSize: "0.95rem",
++  },
++  metaItem: {
++    padding: "0.5rem 0.9rem",
++    borderRadius: "999px",
++    backgroundColor: "rgba(255, 255, 255, 0.45)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    backdropFilter: "blur(8px)",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    alignSelf: "end",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.84)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.14em",
++    textTransform: "uppercase",
++    color: "#7a695c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "1.5rem",
++    lineHeight: 1.2,
++    color: "#23261f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.8rem",
++    color: "#50564c",
++    lineHeight: 1.7,
++  },
++}
++
++export default function AboutHeroSection() {
++  return (
++    <section
++      id="about-hero"
++      aria-labelledby="about-hero-title"
++      style={styles.section}
++    >
++      <div aria-hidden="true" style={styles.background} />
++
++      <div style={styles.container}>
++        <div style={styles.content}>
++          <p style={styles.eyebrow}>Chi sono</p>
++
++          <h1 id="about-hero-title" style={styles.title}>
++            Un lavoro educativo che mette al centro relazione, ascolto e vita reale
++          </h1>
++
++          <p style={styles.lead}>
++            Equilibrio Cinofilo nasce per accompagnare persone e cani con un
++            approccio pratico, etico e profondamente umano. Il mio obiettivo e
++            aiutare ogni famiglia a costruire maggiore serenita nella quotidianita,
++            con indicazioni chiare e sostenibili nel tempo.
++          </p>
++
++          <p style={styles.lead}>
++            Ogni percorso parte dall&apos;osservazione, dalla comprensione del
++            contesto e dal rispetto dei tempi del cane, per trasformare le
++            difficolta di tutti i giorni in occasioni di crescita concreta.
++          </p>
++
++          <ul style={styles.meta}>
++            <li style={styles.metaItem}>Torino e dintorni</li>
++            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
++            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
++          </ul>
++        </div>
++
++        <aside style={styles.panel}>
++          <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
++          <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
++          <ul style={styles.list}>
++            {values.map((value) => (
++              <li key={value}>{value}</li>
++            ))}
++          </ul>
++        </aside>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 691d945c005221eca43cb93ac5b87886078c2551..0548d605cb902a0d405b80b1cc43562df7b38a4f
+index 0548d605cb902a0d405b80b1cc43562df7b38a4f..b48973cfa607833ec03be49c2cb6d20f5e6e4569
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,18 +1,39 @@
+@@ -1,14 +1,9 @@
++import AboutHeroSection from "../components/AboutHeroSection"
++
  export default function ChiSiamo() {
    return (
--    <>
-+    <main>
-       <section id="about-hero">
--        <h1>About Hero</h1>
--        <p>Content for about-hero will be generated by tasks</p>
-+        <p>Equilibrio Cinofilo</p>
-+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-+        <p>
-+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-+        </p>
-       </section>
-+
+     <main>
+-      <section id="about-hero">
+-        <p>Equilibrio Cinofilo</p>
+-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+-        <p>
+-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+-        </p>
+-      </section>
++      <AboutHeroSection />
+ 
        <section id="story">
--        <h2>Story</h2>
--        <p>Content for story will be generated by tasks</p>
-+        <h2>Chi sono</h2>
-+        <p>
-+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-+          giorno.
-+        </p>
-+        <p>
-+          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-+          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-+        </p>
-       </section>
-+
-       <section id="philosophy">
--        <h2>Philosophy</h2>
--        <p>Content for philosophy will be generated by tasks</p>
-+        <h2>Come lavoro</h2>
-+        <p>
-+          Il percorso educativo parte dall&apos;osservazione del contesto, dalla comunicazione tra cane e
-+          famiglia e da obiettivi realistici, utili nella vita di tutti i giorni.
-+        </p>
-+        <p>
-+          La pagina e pronta per ospitare i prossimi blocchi dedicati a filosofia, valori e stile di
-+          lavoro, senza cambiare la struttura richiesta dalla spec.
-+        </p>
-       </section>
--    </>
-+    </main>
-   )
- }
+         <h2>Chi sono</h2>
 
 file update:
+diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c33f7f100809784e5f920a5de047625bdea33b8
+--- /dev/null
++++ b/src/components/AboutHeroSection.jsx
+@@ -0,0 +1,160 @@
++const values = [
++  "Lettura attenta del cane e del contesto familiare",
++  "Indicazioni pratiche applicabili nella quotidianita",
++  "Un lavoro rispettoso, progressivo e senza scorciatoie",
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem",
++    backgroundColor: "#f6f0e7",
++    color: "#2d302a",
++  },
++  background: {
++    position: "absolute",
++    inset: 0,
++    backgroundImage:
++      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
++    backgroundPosition: "center",
++    backgroundSize: "cover",
++  },
++  container: {
++    position: "relative",
++    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.75rem",
++    alignItems: "start",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "40rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#6b7465",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2.5rem, 7vw, 4.7rem)",
++    lineHeight: 0.97,
++    maxWidth: "11ch",
++    color: "#20231d",
++  },
++  lead: {
++    margin: 0,
++    fontSize: "1.06rem",
++    lineHeight: 1.8,
++    color: "#4d5349",
++    maxWidth: "38rem",
++  },
++  meta: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "0.75rem",
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    color: "#545a50",
++    fontSize: "0.95rem",
++  },
++  metaItem: {
++    padding: "0.5rem 0.9rem",
++    borderRadius: "999px",
++    backgroundColor: "rgba(255, 255, 255, 0.45)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    backdropFilter: "blur(8px)",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    alignSelf: "end",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.84)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.14em",
++    textTransform: "uppercase",
++    color: "#7a695c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "1.5rem",
++    lineHeight: 1.2,
++    color: "#23261f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.8rem",
++    color: "#50564c",
++    lineHeight: 1.7,
++  },
++}
++
++export default function AboutHeroSection() {
++  return (
++    <section
++      id="about-hero"
++      aria-labelledby="about-hero-title"
++      style={styles.section}
++    >
++      <div aria-hidden="true" style={styles.background} />
++
++      <div style={styles.container}>
++        <div style={styles.content}>
++          <p style={styles.eyebrow}>Chi sono</p>
++
++          <h1 id="about-hero-title" style={styles.title}>
++            Un lavoro educativo che mette al centro relazione, ascolto e vita reale
++          </h1>
++
++          <p style={styles.lead}>
++            Equilibrio Cinofilo nasce per accompagnare persone e cani con un
++            approccio pratico, etico e profondamente umano. Il mio obiettivo e
++            aiutare ogni famiglia a costruire maggiore serenita nella quotidianita,
++            con indicazioni chiare e sostenibili nel tempo.
++          </p>
++
++          <p style={styles.lead}>
++            Ogni percorso parte dall&apos;osservazione, dalla comprensione del
++            contesto e dal rispetto dei tempi del cane, per trasformare le
++            difficolta di tutti i giorni in occasioni di crescita concreta.
++          </p>
++
++          <ul style={styles.meta}>
++            <li style={styles.metaItem}>Torino e dintorni</li>
++            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
++            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
++          </ul>
++        </div>
++
++        <aside style={styles.panel}>
++          <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
++          <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
++          <ul style={styles.list}>
++            {values.map((value) => (
++              <li key={value}>{value}</li>
++            ))}
++          </ul>
++        </aside>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 691d945c005221eca43cb93ac5b87886078c2551..0548d605cb902a0d405b80b1cc43562df7b38a4f
+index 0548d605cb902a0d405b80b1cc43562df7b38a4f..b48973cfa607833ec03be49c2cb6d20f5e6e4569
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,18 +1,39 @@
+@@ -1,14 +1,9 @@
++import AboutHeroSection from "../components/AboutHeroSection"
++
  export default function ChiSiamo() {
    return (
--    <>
-+    <main>
-       <section id="about-hero">
--        <h1>About Hero</h1>
--        <p>Content for about-hero will be generated by tasks</p>
-+        <p>Equilibrio Cinofilo</p>
-+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-+        <p>
-+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-+        </p>
-       </section>
-+
+     <main>
+-      <section id="about-hero">
+-        <p>Equilibrio Cinofilo</p>
+-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+-        <p>
+-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+-        </p>
+-      </section>
++      <AboutHeroSection />
+ 
        <section id="story">
--        <h2>Story</h2>
--        <p>Content for story will be generated by tasks</p>
-+        <h2>Chi sono</h2>
-+        <p>
-+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-+          giorno.
-+        </p>
-+        <p>
-+          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-+          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-+        </p>
-       </section>
-+
-       <section id="philosophy">
--        <h2>Philosophy</h2>
--        <p>Content for philosophy will be generated by tasks</p>
-+        <h2>Come lavoro</h2>
-+        <p>
-+          Il percorso educativo parte dall&apos;osservazione del contesto, dalla comunicazione tra cane e
-+          famiglia e da obiettivi realistici, utili nella vita di tutti i giorni.
-+        </p>
-+        <p>
-+          La pagina e pronta per ospitare i prossimi blocchi dedicati a filosofia, valori e stile di
-+          lavoro, senza cambiare la struttura richiesta dalla spec.
-+        </p>
-       </section>
--    </>
-+    </main>
-   )
- }
+         <h2>Chi sono</h2>
 
 codex
-La shell è in posto. Ora eseguo il build per verificare che la pagina `chi-siamo` renderizzi senza errori e poi aggiorno il report agente richiesto dal flusso.
+The section code is in place. I’m running a build check now, then I’ll append the task summary to `agent/AGENT_REPORT.md` as required.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
-export default function ChiSiamo() {
-  return (
-    <main>
-      <section id="about-hero">
-        <p>Equilibrio Cinofilo</p>
-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-        <p>
-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-        </p>
-      </section>
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 830ms:
 
-      <section id="story">
-        <h2>Chi sono</h2>
-        <p>
-          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-          giorno.
-        </p>
-        <p>
-exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 737ms:
+> site-create-a-premium-modern-website-for-a-pr@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 52 modules transformed.
+✓ 53 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-H7Z-Flie.js   248.12 kB │ gzip: 78.31 kB
-✓ built in 550ms
+dist/assets/index-RHFirY5K.js   251.29 kB │ gzip: 78.82 kB
+✓ built in 563ms
 file update:
+diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c33f7f100809784e5f920a5de047625bdea33b8
+--- /dev/null
++++ b/src/components/AboutHeroSection.jsx
+@@ -0,0 +1,160 @@
++const values = [
++  "Lettura attenta del cane e del contesto familiare",
++  "Indicazioni pratiche applicabili nella quotidianita",
++  "Un lavoro rispettoso, progressivo e senza scorciatoie",
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem",
++    backgroundColor: "#f6f0e7",
++    color: "#2d302a",
++  },
++  background: {
++    position: "absolute",
++    inset: 0,
++    backgroundImage:
++      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
++    backgroundPosition: "center",
++    backgroundSize: "cover",
++  },
++  container: {
++    position: "relative",
++    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.75rem",
++    alignItems: "start",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "40rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#6b7465",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2.5rem, 7vw, 4.7rem)",
++    lineHeight: 0.97,
++    maxWidth: "11ch",
++    color: "#20231d",
++  },
++  lead: {
++    margin: 0,
++    fontSize: "1.06rem",
++    lineHeight: 1.8,
++    color: "#4d5349",
++    maxWidth: "38rem",
++  },
++  meta: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "0.75rem",
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    color: "#545a50",
++    fontSize: "0.95rem",
++  },
++  metaItem: {
++    padding: "0.5rem 0.9rem",
++    borderRadius: "999px",
++    backgroundColor: "rgba(255, 255, 255, 0.45)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    backdropFilter: "blur(8px)",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    alignSelf: "end",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.84)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.14em",
++    textTransform: "uppercase",
++    color: "#7a695c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "1.5rem",
++    lineHeight: 1.2,
++    color: "#23261f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.8rem",
++    color: "#50564c",
++    lineHeight: 1.7,
++  },
++}
++
++export default function AboutHeroSection() {
++  return (
++    <section
++      id="about-hero"
++      aria-labelledby="about-hero-title"
++      style={styles.section}
++    >
++      <div aria-hidden="true" style={styles.background} />
++
++      <div style={styles.container}>
++        <div style={styles.content}>
++          <p style={styles.eyebrow}>Chi sono</p>
++
++          <h1 id="about-hero-title" style={styles.title}>
++            Un lavoro educativo che mette al centro relazione, ascolto e vita reale
++          </h1>
++
++          <p style={styles.lead}>
++            Equilibrio Cinofilo nasce per accompagnare persone e cani con un
++            approccio pratico, etico e profondamente umano. Il mio obiettivo e
++            aiutare ogni famiglia a costruire maggiore serenita nella quotidianita,
++            con indicazioni chiare e sostenibili nel tempo.
++          </p>
++
++          <p style={styles.lead}>
++            Ogni percorso parte dall&apos;osservazione, dalla comprensione del
++            contesto e dal rispetto dei tempi del cane, per trasformare le
++            difficolta di tutti i giorni in occasioni di crescita concreta.
++          </p>
++
++          <ul style={styles.meta}>
++            <li style={styles.metaItem}>Torino e dintorni</li>
++            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
++            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
++          </ul>
++        </div>
++
++        <aside style={styles.panel}>
++          <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
++          <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
++          <ul style={styles.list}>
++            {values.map((value) => (
++              <li key={value}>{value}</li>
++            ))}
++          </ul>
++        </aside>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 691d945c005221eca43cb93ac5b87886078c2551..0548d605cb902a0d405b80b1cc43562df7b38a4f
+index 0548d605cb902a0d405b80b1cc43562df7b38a4f..b48973cfa607833ec03be49c2cb6d20f5e6e4569
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,18 +1,39 @@
+@@ -1,14 +1,9 @@
++import AboutHeroSection from "../components/AboutHeroSection"
++
  export default function ChiSiamo() {
    return (
--    <>
-+    <main>
-       <section id="about-hero">
--        <h1>About Hero</h1>
--        <p>Content for about-hero will be generated by tasks</p>
-+        <p>Equilibrio Cinofilo</p>
-+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-+        <p>
-+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-+        </p>
-       </section>
-+
+     <main>
+-      <section id="about-hero">
+-        <p>Equilibrio Cinofilo</p>
+-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+-        <p>
+-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+-        </p>
+-      </section>
++      <AboutHeroSection />
+ 
        <section id="story">
--        <h2>Story</h2>
--        <p>Content for story will be generated by tasks</p>
-+        <h2>Chi sono</h2>
-+        <p>
-+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-+          giorno.
-+        </p>
-+        <p>
-+          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-+          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-+        </p>
-       </section>
-+
-       <section id="philosophy">
--        <h2>Philosophy</h2>
--        <p>Content for philosophy will be generated by tasks</p>
-+        <h2>Come lavoro</h2>
-+        <p>
-+          Il percorso educativo parte dall&apos;osservazione del contesto, dalla comunicazione tra cane e
-+          famiglia e da obiettivi realistici, utili nella vita di tutti i giorni.
-+        </p>
-+        <p>
-+          La pagina e pronta per ospitare i prossimi blocchi dedicati a filosofia, valori e stile di
-+          lavoro, senza cambiare la struttura richiesta dalla spec.
-+        </p>
-       </section>
--    </>
-+    </main>
-   )
- }
+         <h2>Chi sono</h2>
 
 codex
-Il build è passato. Sto registrando il task in `agent/AGENT_REPORT.md` con un aggiornamento minimale, come richiesto dal progetto.
+The build passed. I’m only touching the report now to log exactly what was implemented for `section-chi-siamo-about-hero`, without changing task state or unrelated files.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -186 +186,12 @@
- Launching Codex for TASK page-chi-siamo-shell.
+@@ -208 +208,12 @@
+ Launching Codex for TASK section-chi-siamo-about-hero.
 +
-+Completed TASK `page-chi-siamo-shell`.
-+- Replaced the placeholder content in `src/pages/ChiSiamo.jsx` with a semantic page shell using the required `about-hero`, `story`, and `philosophy` section ids.
-+- Preserved the existing `/chi-siamo` route in `src/App.jsx`, which was already mounted correctly under `HashRouter`.
-+- Added stable, brand-aligned introductory copy so the page renders cleanly while leaving detailed section implementation to later tasks.
++Completed TASK `section-chi-siamo-about-hero`.
++- Created a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
++- Replaced the inline `about-hero` placeholder in `src/pages/ChiSiamo.jsx` with the new dedicated hero section component.
++- Implemented a visually dominant about hero with brand-aligned Italian copy, a responsive editorial layout, and the required `about-hero` section id and page `h1`.
 +
-+TASK page-chi-siamo-shell executed by Codex.
++TASK section-chi-siamo-about-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-chi-siamo-shell completed successfully.
++TASK section-chi-siamo-about-hero completed successfully.
 +Build passed.
-apply_patch(auto_approved=true) exited 0 in 48ms:
+apply_patch(auto_approved=true) exited 0 in 61ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 686cd7021a219d035f1ae1a1c7f423ccd8d98d5b..29e5c71ef40347d055b7df8b42f3b91cfb22eb47
+index 46b8a3b172d2a4271fadca209b5c838fab664368..e3b1900cdc9495fa2864bba866289c1624cb6297
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -184,3 +184,14 @@
- Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+@@ -206,3 +206,14 @@
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
- Launching Codex for TASK page-chi-siamo-shell.
+ Launching Codex for TASK section-chi-siamo-about-hero.
 +
-+Completed TASK `page-chi-siamo-shell`.
-+- Replaced the placeholder content in `src/pages/ChiSiamo.jsx` with a semantic page shell using the required `about-hero`, `story`, and `philosophy` section ids.
-+- Preserved the existing `/chi-siamo` route in `src/App.jsx`, which was already mounted correctly under `HashRouter`.
-+- Added stable, brand-aligned introductory copy so the page renders cleanly while leaving detailed section implementation to later tasks.
++Completed TASK `section-chi-siamo-about-hero`.
++- Created a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
++- Replaced the inline `about-hero` placeholder in `src/pages/ChiSiamo.jsx` with the new dedicated hero section component.
++- Implemented a visually dominant about hero with brand-aligned Italian copy, a responsive editorial layout, and the required `about-hero` section id and page `h1`.
 +
-+TASK page-chi-siamo-shell executed by Codex.
++TASK section-chi-siamo-about-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-chi-siamo-shell completed successfully.
++TASK section-chi-siamo-about-hero completed successfully.
 +Build passed.
+diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c33f7f100809784e5f920a5de047625bdea33b8
+--- /dev/null
++++ b/src/components/AboutHeroSection.jsx
+@@ -0,0 +1,160 @@
++const values = [
++  "Lettura attenta del cane e del contesto familiare",
++  "Indicazioni pratiche applicabili nella quotidianita",
++  "Un lavoro rispettoso, progressivo e senza scorciatoie",
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem",
++    backgroundColor: "#f6f0e7",
++    color: "#2d302a",
++  },
++  background: {
++    position: "absolute",
++    inset: 0,
++    backgroundImage:
++      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
++    backgroundPosition: "center",
++    backgroundSize: "cover",
++  },
++  container: {
++    position: "relative",
++    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.75rem",
++    alignItems: "start",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "40rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#6b7465",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2.5rem, 7vw, 4.7rem)",
++    lineHeight: 0.97,
++    maxWidth: "11ch",
++    color: "#20231d",
++  },
++  lead: {
++    margin: 0,
++    fontSize: "1.06rem",
++    lineHeight: 1.8,
++    color: "#4d5349",
++    maxWidth: "38rem",
++  },
++  meta: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "0.75rem",
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    color: "#545a50",
++    fontSize: "0.95rem",
++  },
++  metaItem: {
++    padding: "0.5rem 0.9rem",
++    borderRadius: "999px",
++    backgroundColor: "rgba(255, 255, 255, 0.45)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    backdropFilter: "blur(8px)",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    alignSelf: "end",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.84)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.14em",
++    textTransform: "uppercase",
++    color: "#7a695c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "1.5rem",
++    lineHeight: 1.2,
++    color: "#23261f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.8rem",
++    color: "#50564c",
++    lineHeight: 1.7,
++  },
++}
++
++export default function AboutHeroSection() {
++  return (
++    <section
++      id="about-hero"
++      aria-labelledby="about-hero-title"
++      style={styles.section}
++    >
++      <div aria-hidden="true" style={styles.background} />
++
++      <div style={styles.container}>
++        <div style={styles.content}>
++          <p style={styles.eyebrow}>Chi sono</p>
++
++          <h1 id="about-hero-title" style={styles.title}>
++            Un lavoro educativo che mette al centro relazione, ascolto e vita reale
++          </h1>
++
++          <p style={styles.lead}>
++            Equilibrio Cinofilo nasce per accompagnare persone e cani con un
++            approccio pratico, etico e profondamente umano. Il mio obiettivo e
++            aiutare ogni famiglia a costruire maggiore serenita nella quotidianita,
++            con indicazioni chiare e sostenibili nel tempo.
++          </p>
++
++          <p style={styles.lead}>
++            Ogni percorso parte dall&apos;osservazione, dalla comprensione del
++            contesto e dal rispetto dei tempi del cane, per trasformare le
++            difficolta di tutti i giorni in occasioni di crescita concreta.
++          </p>
++
++          <ul style={styles.meta}>
++            <li style={styles.metaItem}>Torino e dintorni</li>
++            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
++            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
++          </ul>
++        </div>
++
++        <aside style={styles.panel}>
++          <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
++          <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
++          <ul style={styles.list}>
++            {values.map((value) => (
++              <li key={value}>{value}</li>
++            ))}
++          </ul>
++        </aside>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 691d945c005221eca43cb93ac5b87886078c2551..0548d605cb902a0d405b80b1cc43562df7b38a4f
+index 0548d605cb902a0d405b80b1cc43562df7b38a4f..b48973cfa607833ec03be49c2cb6d20f5e6e4569
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,18 +1,39 @@
+@@ -1,14 +1,9 @@
++import AboutHeroSection from "../components/AboutHeroSection"
++
  export default function ChiSiamo() {
    return (
--    <>
-+    <main>
-       <section id="about-hero">
--        <h1>About Hero</h1>
--        <p>Content for about-hero will be generated by tasks</p>
-+        <p>Equilibrio Cinofilo</p>
-+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-+        <p>
-+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-+        </p>
-       </section>
-+
+     <main>
+-      <section id="about-hero">
+-        <p>Equilibrio Cinofilo</p>
+-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+-        <p>
+-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+-        </p>
+-      </section>
++      <AboutHeroSection />
+ 
        <section id="story">
--        <h2>Story</h2>
--        <p>Content for story will be generated by tasks</p>
-+        <h2>Chi sono</h2>
-+        <p>
-+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-+          giorno.
-+        </p>
-+        <p>
-+          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-+          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-+        </p>
-       </section>
-+
-       <section id="philosophy">
--        <h2>Philosophy</h2>
--        <p>Content for philosophy will be generated by tasks</p>
-+        <h2>Come lavoro</h2>
-+        <p>
-+          Il percorso educativo parte dall&apos;osservazione del contesto, dalla comunicazione tra cane e
-+          famiglia e da obiettivi realistici, utili nella vita di tutti i giorni.
-+        </p>
-+        <p>
-+          La pagina e pronta per ospitare i prossimi blocchi dedicati a filosofia, valori e stile di
-+          lavoro, senza cambiare la struttura richiesta dalla spec.
-+        </p>
-       </section>
--    </>
-+    </main>
-   )
- }
+         <h2>Chi sono</h2>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 686cd7021a219d035f1ae1a1c7f423ccd8d98d5b..29e5c71ef40347d055b7df8b42f3b91cfb22eb47
+index 46b8a3b172d2a4271fadca209b5c838fab664368..e3b1900cdc9495fa2864bba866289c1624cb6297
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -184,3 +184,14 @@
- Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+@@ -206,3 +206,14 @@
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
- Launching Codex for TASK page-chi-siamo-shell.
+ Launching Codex for TASK section-chi-siamo-about-hero.
 +
-+Completed TASK `page-chi-siamo-shell`.
-+- Replaced the placeholder content in `src/pages/ChiSiamo.jsx` with a semantic page shell using the required `about-hero`, `story`, and `philosophy` section ids.
-+- Preserved the existing `/chi-siamo` route in `src/App.jsx`, which was already mounted correctly under `HashRouter`.
-+- Added stable, brand-aligned introductory copy so the page renders cleanly while leaving detailed section implementation to later tasks.
++Completed TASK `section-chi-siamo-about-hero`.
++- Created a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
++- Replaced the inline `about-hero` placeholder in `src/pages/ChiSiamo.jsx` with the new dedicated hero section component.
++- Implemented a visually dominant about hero with brand-aligned Italian copy, a responsive editorial layout, and the required `about-hero` section id and page `h1`.
 +
-+TASK page-chi-siamo-shell executed by Codex.
++TASK section-chi-siamo-about-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-chi-siamo-shell completed successfully.
++TASK section-chi-siamo-about-hero completed successfully.
 +Build passed.
+diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c33f7f100809784e5f920a5de047625bdea33b8
+--- /dev/null
++++ b/src/components/AboutHeroSection.jsx
+@@ -0,0 +1,160 @@
++const values = [
++  "Lettura attenta del cane e del contesto familiare",
++  "Indicazioni pratiche applicabili nella quotidianita",
++  "Un lavoro rispettoso, progressivo e senza scorciatoie",
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem",
++    backgroundColor: "#f6f0e7",
++    color: "#2d302a",
++  },
++  background: {
++    position: "absolute",
++    inset: 0,
++    backgroundImage:
++      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
++    backgroundPosition: "center",
++    backgroundSize: "cover",
++  },
++  container: {
++    position: "relative",
++    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.75rem",
++    alignItems: "start",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "40rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#6b7465",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2.5rem, 7vw, 4.7rem)",
++    lineHeight: 0.97,
++    maxWidth: "11ch",
++    color: "#20231d",
++  },
++  lead: {
++    margin: 0,
++    fontSize: "1.06rem",
++    lineHeight: 1.8,
++    color: "#4d5349",
++    maxWidth: "38rem",
++  },
++  meta: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "0.75rem",
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    color: "#545a50",
++    fontSize: "0.95rem",
++  },
++  metaItem: {
++    padding: "0.5rem 0.9rem",
++    borderRadius: "999px",
++    backgroundColor: "rgba(255, 255, 255, 0.45)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    backdropFilter: "blur(8px)",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    alignSelf: "end",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.84)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.14em",
++    textTransform: "uppercase",
++    color: "#7a695c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "1.5rem",
++    lineHeight: 1.2,
++    color: "#23261f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.8rem",
++    color: "#50564c",
++    lineHeight: 1.7,
++  },
++}
++
++export default function AboutHeroSection() {
++  return (
++    <section
++      id="about-hero"
++      aria-labelledby="about-hero-title"
++      style={styles.section}
++    >
++      <div aria-hidden="true" style={styles.background} />
++
++      <div style={styles.container}>
++        <div style={styles.content}>
++          <p style={styles.eyebrow}>Chi sono</p>
++
++          <h1 id="about-hero-title" style={styles.title}>
++            Un lavoro educativo che mette al centro relazione, ascolto e vita reale
++          </h1>
++
++          <p style={styles.lead}>
++            Equilibrio Cinofilo nasce per accompagnare persone e cani con un
++            approccio pratico, etico e profondamente umano. Il mio obiettivo e
++            aiutare ogni famiglia a costruire maggiore serenita nella quotidianita,
++            con indicazioni chiare e sostenibili nel tempo.
++          </p>
++
++          <p style={styles.lead}>
++            Ogni percorso parte dall&apos;osservazione, dalla comprensione del
++            contesto e dal rispetto dei tempi del cane, per trasformare le
++            difficolta di tutti i giorni in occasioni di crescita concreta.
++          </p>
++
++          <ul style={styles.meta}>
++            <li style={styles.metaItem}>Torino e dintorni</li>
++            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
++            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
++          </ul>
++        </div>
++
++        <aside style={styles.panel}>
++          <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
++          <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
++          <ul style={styles.list}>
++            {values.map((value) => (
++              <li key={value}>{value}</li>
++            ))}
++          </ul>
++        </aside>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 691d945c005221eca43cb93ac5b87886078c2551..0548d605cb902a0d405b80b1cc43562df7b38a4f
+index 0548d605cb902a0d405b80b1cc43562df7b38a4f..b48973cfa607833ec03be49c2cb6d20f5e6e4569
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,18 +1,39 @@
+@@ -1,14 +1,9 @@
++import AboutHeroSection from "../components/AboutHeroSection"
++
  export default function ChiSiamo() {
    return (
--    <>
-+    <main>
-       <section id="about-hero">
--        <h1>About Hero</h1>
--        <p>Content for about-hero will be generated by tasks</p>
-+        <p>Equilibrio Cinofilo</p>
-+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-+        <p>
-+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-+        </p>
-       </section>
-+
+     <main>
+-      <section id="about-hero">
+-        <p>Equilibrio Cinofilo</p>
+-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+-        <p>
+-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+-        </p>
+-      </section>
++      <AboutHeroSection />
+ 
        <section id="story">
--        <h2>Story</h2>
--        <p>Content for story will be generated by tasks</p>
-+        <h2>Chi sono</h2>
-+        <p>
-+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-+          giorno.
-+        </p>
-+        <p>
-+          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-+          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-+        </p>
-       </section>
-+
-       <section id="philosophy">
--        <h2>Philosophy</h2>
--        <p>Content for philosophy will be generated by tasks</p>
-+        <h2>Come lavoro</h2>
-+        <p>
-+          Il percorso educativo parte dall&apos;osservazione del contesto, dalla comunicazione tra cane e
-+          famiglia e da obiettivi realistici, utili nella vita di tutti i giorni.
-+        </p>
-+        <p>
-+          La pagina e pronta per ospitare i prossimi blocchi dedicati a filosofia, valori e stile di
-+          lavoro, senza cambiare la struttura richiesta dalla spec.
-+        </p>
-       </section>
--    </>
-+    </main>
-   )
- }
+         <h2>Chi sono</h2>
 
 codex
-Modified files:
-- [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Modified files: [ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx), [AboutHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/AboutHeroSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md).
 
-What was implemented:
-- Replaced the placeholder `chi-siamo` page with a semantic shell in [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/ChiSiamo.jsx), using `main` plus the required section ids: `about-hero`, `story`, and `philosophy`.
-- Added real, brand-aligned Italian copy so the page renders cleanly without placeholder text.
-- Verified that the `/chi-siamo` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/App.jsx), so no route change was needed.
-- Updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with the task summary.
+Implemented the `about-hero` section for `chi-siamo` by adding a reusable `AboutHeroSection` component and rendering it at the top of the page. The new hero preserves the required `about-hero` section id, provides the page `h1`, and uses calm, premium Italian copy with a responsive two-column editorial layout and image-backed presentation aligned with the brief.
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 686cd7021a219d035f1ae1a1c7f423ccd8d98d5b..29e5c71ef40347d055b7df8b42f3b91cfb22eb47
+index 46b8a3b172d2a4271fadca209b5c838fab664368..e3b1900cdc9495fa2864bba866289c1624cb6297
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -184,3 +184,14 @@
- Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+@@ -206,3 +206,14 @@
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
- Launching Codex for TASK page-chi-siamo-shell.
+ Launching Codex for TASK section-chi-siamo-about-hero.
 +
-+Completed TASK `page-chi-siamo-shell`.
-+- Replaced the placeholder content in `src/pages/ChiSiamo.jsx` with a semantic page shell using the required `about-hero`, `story`, and `philosophy` section ids.
-+- Preserved the existing `/chi-siamo` route in `src/App.jsx`, which was already mounted correctly under `HashRouter`.
-+- Added stable, brand-aligned introductory copy so the page renders cleanly while leaving detailed section implementation to later tasks.
++Completed TASK `section-chi-siamo-about-hero`.
++- Created a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
++- Replaced the inline `about-hero` placeholder in `src/pages/ChiSiamo.jsx` with the new dedicated hero section component.
++- Implemented a visually dominant about hero with brand-aligned Italian copy, a responsive editorial layout, and the required `about-hero` section id and page `h1`.
 +
-+TASK page-chi-siamo-shell executed by Codex.
++TASK section-chi-siamo-about-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-chi-siamo-shell completed successfully.
++TASK section-chi-siamo-about-hero completed successfully.
 +Build passed.
+diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9c33f7f100809784e5f920a5de047625bdea33b8
+--- /dev/null
++++ b/src/components/AboutHeroSection.jsx
+@@ -0,0 +1,160 @@
++const values = [
++  "Lettura attenta del cane e del contesto familiare",
++  "Indicazioni pratiche applicabili nella quotidianita",
++  "Un lavoro rispettoso, progressivo e senza scorciatoie",
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem",
++    backgroundColor: "#f6f0e7",
++    color: "#2d302a",
++  },
++  background: {
++    position: "absolute",
++    inset: 0,
++    backgroundImage:
++      "linear-gradient(105deg, rgba(246, 240, 231, 0.97) 0%, rgba(246, 240, 231, 0.92) 34%, rgba(246, 240, 231, 0.7) 58%, rgba(246, 240, 231, 0.3) 100%), url('https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1600&q=80')",
++    backgroundPosition: "center",
++    backgroundSize: "cover",
++  },
++  container: {
++    position: "relative",
++    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.75rem",
++    alignItems: "start",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "40rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#6b7465",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2.5rem, 7vw, 4.7rem)",
++    lineHeight: 0.97,
++    maxWidth: "11ch",
++    color: "#20231d",
++  },
++  lead: {
++    margin: 0,
++    fontSize: "1.06rem",
++    lineHeight: 1.8,
++    color: "#4d5349",
++    maxWidth: "38rem",
++  },
++  meta: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "0.75rem",
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    color: "#545a50",
++    fontSize: "0.95rem",
++  },
++  metaItem: {
++    padding: "0.5rem 0.9rem",
++    borderRadius: "999px",
++    backgroundColor: "rgba(255, 255, 255, 0.45)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    backdropFilter: "blur(8px)",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    alignSelf: "end",
++    borderRadius: "1.75rem",
++    backgroundColor: "rgba(255, 253, 249, 0.84)",
++    border: "1px solid rgba(45, 48, 42, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.14em",
++    textTransform: "uppercase",
++    color: "#7a695c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "1.5rem",
++    lineHeight: 1.2,
++    color: "#23261f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.8rem",
++    color: "#50564c",
++    lineHeight: 1.7,
++  },
++}
++
++export default function AboutHeroSection() {
++  return (
++    <section
++      id="about-hero"
++      aria-labelledby="about-hero-title"
++      style={styles.section}
++    >
++      <div aria-hidden="true" style={styles.background} />
++
++      <div style={styles.container}>
++        <div style={styles.content}>
++          <p style={styles.eyebrow}>Chi sono</p>
++
++          <h1 id="about-hero-title" style={styles.title}>
++            Un lavoro educativo che mette al centro relazione, ascolto e vita reale
++          </h1>
++
++          <p style={styles.lead}>
++            Equilibrio Cinofilo nasce per accompagnare persone e cani con un
++            approccio pratico, etico e profondamente umano. Il mio obiettivo e
++            aiutare ogni famiglia a costruire maggiore serenita nella quotidianita,
++            con indicazioni chiare e sostenibili nel tempo.
++          </p>
++
++          <p style={styles.lead}>
++            Ogni percorso parte dall&apos;osservazione, dalla comprensione del
++            contesto e dal rispetto dei tempi del cane, per trasformare le
++            difficolta di tutti i giorni in occasioni di crescita concreta.
++          </p>
++
++          <ul style={styles.meta}>
++            <li style={styles.metaItem}>Torino e dintorni</li>
++            <li style={styles.metaItem}>Percorsi individuali e consulenze mirate</li>
++            <li style={styles.metaItem}>Metodo rispettoso e orientato alla relazione</li>
++          </ul>
++        </div>
++
++        <aside style={styles.panel}>
++          <p style={styles.panelLabel}>Cosa guida il mio lavoro</p>
++          <h2 style={styles.panelTitle}>Competenza leggibile, supporto concreto</h2>
++          <ul style={styles.list}>
++            {values.map((value) => (
++              <li key={value}>{value}</li>
++            ))}
++          </ul>
++        </aside>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index 691d945c005221eca43cb93ac5b87886078c2551..0548d605cb902a0d405b80b1cc43562df7b38a4f
+index 0548d605cb902a0d405b80b1cc43562df7b38a4f..b48973cfa607833ec03be49c2cb6d20f5e6e4569
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,18 +1,39 @@
+@@ -1,14 +1,9 @@
++import AboutHeroSection from "../components/AboutHeroSection"
++
  export default function ChiSiamo() {
    return (
--    <>
-+    <main>
-       <section id="about-hero">
--        <h1>About Hero</h1>
--        <p>Content for about-hero will be generated by tasks</p>
-+        <p>Equilibrio Cinofilo</p>
-+        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
-+        <p>
-+          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
-+          della famiglia, senza scorciatoie e senza promesse irrealistiche.
-+        </p>
-       </section>
-+
+     <main>
+-      <section id="about-hero">
+-        <p>Equilibrio Cinofilo</p>
+-        <h1>Un approccio educativo che mette al centro relazione, chiarezza e vita quotidiana</h1>
+-        <p>
+-          Accompagno persone e cani con un lavoro concreto, rispettoso e costruito sulle esigenze reali
+-          della famiglia, senza scorciatoie e senza promesse irrealistiche.
+-        </p>
+-      </section>
++      <AboutHeroSection />
+ 
        <section id="story">
--        <h2>Story</h2>
--        <p>Content for story will be generated by tasks</p>
-+        <h2>Chi sono</h2>
-+        <p>
-+          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-+          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-+          giorno.
-+        </p>
-+        <p>
-+          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-+          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-+        </p>
-       </section>
-+
-       <section id="philosophy">
--        <h2>Philosophy</h2>
--        <p>Content for philosophy will be generated by tasks</p>
-+        <h2>Come lavoro</h2>
-+        <p>
-+          Il percorso educativo parte dall&apos;osservazione del contesto, dalla comunicazione tra cane e
-+          famiglia e da obiettivi realistici, utili nella vita di tutti i giorni.
-+        </p>
-+        <p>
-+          La pagina e pronta per ospitare i prossimi blocchi dedicati a filosofia, valori e stile di
-+          lavoro, senza cambiare la struttura richiesta dalla spec.
-+        </p>
-       </section>
--    </>
-+    </main>
-   )
- }
+         <h2>Chi sono</h2>
 
 tokens used
-8958
+29.921

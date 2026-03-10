@@ -1208,32 +1208,35 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-page-chi-siamo-shell
+section-chi-siamo-about-hero
 
 ## Current task title
-Create chi-siamo page shell
+Create about-hero section on chi-siamo
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "chi-siamo"
+  "pageId": "chi-siamo",
+  "sectionId": "about-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-chi-siamo-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/ChiSiamo.jsx
+- src/components/AboutHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for chi-siamo
-- chi-siamo route is mounted if required
-- chi-siamo page renders without crashing
+- section about-hero exists on chi-siamo
+- section about-hero matches type hero
+- section about-hero is rendered in page chi-siamo
 
 ## Strict execution rules
 - Execute only this current task.
