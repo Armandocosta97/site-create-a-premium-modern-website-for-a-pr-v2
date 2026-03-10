@@ -1,0 +1,175 @@
+{
+  "businessType": "generic-business",
+  "architectureMode": "multi-page",
+  "features": {
+    "gallery": false,
+    "whatsappCta": true,
+    "phoneCta": true,
+    "bookingCta": true,
+    "menuPage": true,
+    "servicesPage": true
+  },
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "landing",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero"
+        },
+        {
+          "id": "signature-preview",
+          "type": "grid-cards-preview"
+        },
+        {
+          "id": "brand-story-preview",
+          "type": "split-content-preview"
+        }
+      ],
+      "ctas": [
+        {
+          "id": "home-primary-cta",
+          "kind": "internal",
+          "placement": "hero",
+          "target": {
+            "type": "route",
+            "value": "/menu"
+          }
+        },
+        {
+          "id": "home-contact-cta",
+          "kind": "internal",
+          "placement": "hero",
+          "target": {
+            "type": "route",
+            "value": "/contatti"
+          }
+        },
+        {
+          "id": "home-whatsapp",
+          "kind": "external",
+          "placement": "floating",
+          "target": {
+            "type": "whatsapp",
+            "value": "whatsapp"
+          }
+        }
+      ]
+    },
+    {
+      "id": "menu",
+      "route": "/menu",
+      "role": "core",
+      "sections": [
+        {
+          "id": "menu-hero",
+          "type": "hero"
+        },
+        {
+          "id": "menu-categories",
+          "type": "menu-categories"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "id": "chi-siamo",
+      "route": "/chi-siamo",
+      "role": "content",
+      "sections": [
+        {
+          "id": "about-hero",
+          "type": "hero"
+        },
+        {
+          "id": "story",
+          "type": "editorial-content"
+        },
+        {
+          "id": "philosophy",
+          "type": "split-content"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "id": "contatti",
+      "route": "/contatti",
+      "role": "conversion",
+      "sections": [
+        {
+          "id": "contact-hero",
+          "type": "hero"
+        },
+        {
+          "id": "contact-details",
+          "type": "contact-block"
+        },
+        {
+          "id": "opening-hours",
+          "type": "hours-block"
+        }
+      ],
+      "ctas": [
+        {
+          "id": "contatti-whatsapp",
+          "kind": "external",
+          "placement": "body",
+          "target": {
+            "type": "whatsapp",
+            "value": "whatsapp"
+          }
+        },
+        {
+          "id": "contatti-phone",
+          "kind": "external",
+          "placement": "body",
+          "target": {
+            "type": "phone",
+            "value": "phone"
+          }
+        }
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "label": "Home",
+      "type": "route",
+      "target": "/"
+    },
+    {
+      "label": "Menu",
+      "type": "route",
+      "target": "/menu"
+    },
+    {
+      "label": "Chi siamo",
+      "type": "route",
+      "target": "/chi-siamo"
+    },
+    {
+      "label": "Contatti",
+      "type": "route",
+      "target": "/contatti"
+    }
+  ],
+  "validation": {
+    "breakpoints": [
+      360,
+      768,
+      1024,
+      1440
+    ],
+    "checks": [
+      "semantic-structure",
+      "navigation-integrity",
+      "cta-integrity",
+      "images-not-broken",
+      "responsive-layout",
+      "placeholder-content-absent"
+    ]
+  }
+}

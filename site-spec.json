@@ -1,0 +1,183 @@
+{
+  "originalPrompt": "Create a premium modern website for a professional dog educator and behavior consultant called Equilibrio Cinofilo.\n\nThe business helps dog owners improve communication, behavior, daily management, and emotional balance with their dogs through ethical, practical, and modern education.\nThe approach must feel professional, calm, trustworthy, and deeply human.\nThis is not a flashy “alpha dog” brand.\nIt must communicate competence, empathy, structure, and real-world results.\n\nSERVICES OFFERED\nThe business offers:\n- puppy education\n- basic dog education\n- leash work and recall\n- behavioral consultations\n- support for reactivity, anxiety, and management issues\n- one-to-one sessions\n- educational walks\n- support for owners before and after adoption\n- optional group classes if useful\n- online consultation if suitable\n\nGOAL\nThe website must feel like a real premium service business that a client would trust with their dog.\nIt must not feel cheap, aggressive, or gimmicky.\nIt must avoid stereotypes like domination language, punitive energy, or “miracle training” tone.\nThe final result should feel modern, clean, grounded, emotionally intelligent, and professional.\n\nARCHITECTURE\nThis must be a real multi-page website.\nDo NOT build it as a single-page website with anchor links.\nDo NOT collapse all content into the homepage.\n\nCreate these real pages with real routes:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nRequired routes:\n- /\n- /services\n- /percorsi\n- /chi-siamo\n- /faq\n- /contatti\n\nNAVIGATION\nHeader navigation must include:\n- Home\n- Services\n- Percorsi\n- Chi siamo\n- FAQ\n- Contatti\n\nNavigation must use real routes, not homepage anchors.\nEach navigation item must point to an actually existing page.\nThe mobile menu must work properly.\nNo broken links.\n\nGENERAL BRAND DIRECTION\nBrand name: Equilibrio Cinofilo\nTarget audience:\n- first-time dog owners\n- families with puppies\n- people with adolescent or adult dogs showing difficult behaviors\n- owners who want practical and respectful guidance\n- people who want help understanding their dog better\n\nBrand values:\n- trust\n- calm\n- respect\n- consistency\n- education\n- emotional balance\n- clarity\n- everyday practicality\n\nTONE OF VOICE\nThe copy must feel:\n- reassuring\n- competent\n- calm\n- clear\n- empathetic\n- realistic\n- never judgmental\n- never macho\n- never exaggerated\n\nAvoid:\n- aggressive dog training clichés\n- fake urgency\n- manipulative language\n- miracle promises\n- overcomplicated technical jargon\n\nVISUAL STYLE\nThe design must feel:\n- calm\n- elegant\n- natural\n- modern\n- clean\n- spacious\n- trustworthy\n- warm but professional\n\nInspiration:\n- premium wellness service websites\n- boutique consulting brands\n- nature-inspired modern service brands\n- behavior / care services with a calm visual identity\n\nCOLOR PALETTE\nUse a calm and refined palette such as:\n- warm off-white / sand background\n- muted sage or olive accents\n- charcoal or deep warm gray for text\n- soft earthy beige / taupe neutrals\n- optional dusty terracotta accent used sparingly\n\nTypography:\n- refined modern serif or elegant humanist heading font\n- clean sans serif for body copy\n- excellent readability\n- soft, premium hierarchy\n\nLAYOUT RULES\n- mobile first\n- clear visual hierarchy\n- spacious sections\n- no visual clutter\n- no cheap gradients\n- no noisy icons everywhere\n- premium use of whitespace\n- content blocks must feel balanced and easy to scan\n- all pages must feel coherent as one brand\n\nIMAGE DIRECTION\nUse high quality Unsplash images.\nSearch themes like:\n- dog owner outdoors\n- dog training positive reinforcement\n- person with dog in park\n- calm dog portrait\n- dog and human connection\n- puppy training\n- dog walking training\n- responsible dog education\n\nImages must:\n- feel natural and authentic\n- avoid cheesy stock-photo energy\n- use object-fit: cover\n- never be stretched\n- support a calm and trustworthy tone\n- show healthy and respectful dog-human interaction\n\nHOME PAGE\nThe homepage must be a true strategic overview, not a page that contains the whole site.\n\nInclude these sections:\n1. Hero\n2. Main services preview\n3. Why work with Equilibrio Cinofilo\n4. Percorsi preview\n5. Short about preview\n6. FAQ preview\n7. Final CTA\n\nHOME HERO\nLarge calm hero section with premium natural imagery.\n\nHero content:\nEyebrow:\n\"Educazione cinofila moderna, pratica e rispettosa\"\n\nMain title:\n\"Aiuto concreto per costruire una relazione più serena con il tuo cane\"\n\nSubtitle:\n\"Equilibrio Cinofilo accompagna cani e persone con percorsi educativi chiari, etici e personalizzati, pensati per la vita di tutti i giorni.\"\n\nPrimary CTA:\n\"Prenota una consulenza\"\n\nSecondary CTA:\n\"Scopri i percorsi\"\n\nSERVICES PAGE\nCreate a full dedicated Services page.\n\nInclude:\n- hero section\n- introduction to the service approach\n- clear service cards or structured blocks\n- puppy education\n- adolescent dog education\n- adult dog education\n- behavioral consultation\n- educational walks\n- pre-adoption support\n- post-adoption support\n- online consultation if suitable\n- CTA section\n\nEach service block should include:\n- service name\n- short practical description\n- who it is for\n- outcome or benefit\n\nThis page must feel helpful, concrete, and non-generic.\n\nPERCORSI PAGE\nCreate a dedicated Percorsi page.\nThis page should explain how the work is structured.\n\nInclude:\n- hero\n- intro explaining that every dog-owner pair is different\n- examples of educational paths such as:\n  - Cucciolo sereno\n  - Passeggiate senza tensione\n  - Richiamo e gestione in esterna\n  - Convivenza equilibrata\n  - Supporto per reattività e gestione emotiva\n- each path should have:\n  - title\n  - who it is for\n  - main goals\n  - tone focused on progress, not miracles\n- section explaining how a first consultation works\n- CTA to contact\n\nThis page should help the user understand structure and professionalism.\n\nCHI SIAMO PAGE\nCreate a dedicated About page.\n\nInclude:\n- hero\n- educator presentation\n- philosophy and method\n- values\n- relationship-centered approach\n- practical and respectful work style\n- trust-building content\n- image + text sections\n- closing CTA\n\nThis page should make the educator feel real, competent, and approachable.\nAvoid sounding self-important.\n\nFAQ PAGE\nCreate a dedicated FAQ page.\n\nInclude realistic and useful questions such as:\n- When should I contact a dog educator?\n- Is it too late if my dog is already an adult?\n- Do you also work with puppies?\n- Do you use force-free or respectful methods?\n- How many sessions are usually needed?\n- Can the whole family participate?\n- Do you offer home visits?\n- Can online sessions be useful?\n- Do you work with reactive dogs?\n\nAnswers must be realistic, reassuring, and professional.\n\nCONTACT PAGE\nCreate a real Contact page.\n\nInclude:\n- hero\n- short welcoming intro\n- contact info block\n- phone\n- email\n- WhatsApp CTA if suitable\n- city / service area\n- optional service availability\n- inquiry CTA or clean contact form block if appropriate\n\nUse realistic placeholder details such as:\nService area:\nTorino and surrounding areas\n\nPhone:\n+39 011 000000\n\nEmail:\nciao@equilibriocinofilo.it\n\nWhatsApp:\navailable as a CTA if it fits the design\n\nThe contact page should feel easy, calm, and inviting.\n\nCTA STRATEGY\nThe site must contain meaningful CTAs such as:\n- Prenota una consulenza\n- Scopri i percorsi\n- Richiedi informazioni\n- Contattami\n- Inizia da qui\n\nCTA style must be consistent across the site.\nButtons must feel elegant and clear.\nNo spammy conversion style.\n\nFOOTER\nCreate a refined footer with:\n- brand name\n- short brand line\n- navigation links\n- contact info\n- service area\n- social placeholder links if useful\n- copyright\n\nSEO / CONTENT\n- one clear H1 per page\n- polished realistic copy in Italian\n- no lorem ipsum\n- no placeholder feel\n- content should sound like a real premium dog education brand\n- page titles and meta descriptions should exist\n- heading structure must be logical\n- copy should be concise but warm and credible\n\nRESPONSIVE QUALITY\n- fully responsive\n- no horizontal scroll\n- balanced spacing at all key breakpoints\n- mobile navigation must work\n- sections must stack cleanly\n- cards must remain readable on mobile\n- forms and CTAs must be easy to use on mobile\n\nQUALITY EXPECTATION\nThe final website must feel like a real professional website for a modern dog educator.\nIt should be sellable to a real client.\nIt must look emotionally intelligent, calm, modern, and trustworthy.\nIt must not feel like a generic pet template.\nIt must not feel like a single-page site stretched into fake pages.\nEach page must have a real purpose and distinct content.",
+  "siteName": "site-create-a-premium-modern-website-for-a-pr",
+  "businessType": "generic-business",
+  "architecture": "multi-page",
+  "routing": {
+    "mode": "hash"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "landing",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero"
+        },
+        {
+          "id": "signature-preview",
+          "type": "grid-cards-preview"
+        },
+        {
+          "id": "brand-story-preview",
+          "type": "split-content-preview"
+        }
+      ],
+      "ctas": [
+        {
+          "id": "home-primary-cta",
+          "kind": "internal",
+          "placement": "hero",
+          "target": {
+            "type": "route",
+            "value": "/menu"
+          }
+        },
+        {
+          "id": "home-contact-cta",
+          "kind": "internal",
+          "placement": "hero",
+          "target": {
+            "type": "route",
+            "value": "/contatti"
+          }
+        },
+        {
+          "id": "home-whatsapp",
+          "kind": "external",
+          "placement": "floating",
+          "target": {
+            "type": "whatsapp",
+            "value": "whatsapp"
+          }
+        }
+      ]
+    },
+    {
+      "id": "menu",
+      "route": "/menu",
+      "role": "core",
+      "sections": [
+        {
+          "id": "menu-hero",
+          "type": "hero"
+        },
+        {
+          "id": "menu-categories",
+          "type": "menu-categories"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "id": "chi-siamo",
+      "route": "/chi-siamo",
+      "role": "content",
+      "sections": [
+        {
+          "id": "about-hero",
+          "type": "hero"
+        },
+        {
+          "id": "story",
+          "type": "editorial-content"
+        },
+        {
+          "id": "philosophy",
+          "type": "split-content"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "id": "contatti",
+      "route": "/contatti",
+      "role": "conversion",
+      "sections": [
+        {
+          "id": "contact-hero",
+          "type": "hero"
+        },
+        {
+          "id": "contact-details",
+          "type": "contact-block"
+        },
+        {
+          "id": "opening-hours",
+          "type": "hours-block"
+        }
+      ],
+      "ctas": [
+        {
+          "id": "contatti-whatsapp",
+          "kind": "external",
+          "placement": "body",
+          "target": {
+            "type": "whatsapp",
+            "value": "whatsapp"
+          }
+        },
+        {
+          "id": "contatti-phone",
+          "kind": "external",
+          "placement": "body",
+          "target": {
+            "type": "phone",
+            "value": "phone"
+          }
+        }
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "label": "Home",
+      "type": "route",
+      "target": "/"
+    },
+    {
+      "label": "Menu",
+      "type": "route",
+      "target": "/menu"
+    },
+    {
+      "label": "Chi siamo",
+      "type": "route",
+      "target": "/chi-siamo"
+    },
+    {
+      "label": "Contatti",
+      "type": "route",
+      "target": "/contatti"
+    }
+  ],
+  "theme": {
+    "mode": "derived-from-prompt"
+  },
+  "validation": {
+    "breakpoints": [
+      360,
+      768,
+      1024,
+      1440
+    ],
+    "checks": [
+      "semantic-structure",
+      "navigation-integrity",
+      "cta-integrity",
+      "images-not-broken",
+      "responsive-layout",
+      "placeholder-content-absent"
+    ]
+  },
+  "features": {
+    "gallery": false,
+    "whatsappCta": true,
+    "phoneCta": true,
+    "bookingCta": true,
+    "menuPage": true,
+    "servicesPage": true
+  }
+}

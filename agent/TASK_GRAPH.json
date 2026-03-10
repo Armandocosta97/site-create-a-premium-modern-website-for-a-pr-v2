@@ -1,0 +1,622 @@
+[
+  {
+    "id": "page-home-shell",
+    "type": "page-shell",
+    "title": "Create home page shell",
+    "target": {
+      "pageId": "home"
+    },
+    "dependsOn": [],
+    "filesAllowed": [
+      "src/App.jsx",
+      "src/pages/Home.jsx"
+    ],
+    "done": [
+      "page shell exists for home",
+      "home route is mounted if required",
+      "home page renders without crashing"
+    ]
+  },
+  {
+    "id": "section-home-hero",
+    "type": "section",
+    "title": "Create hero section on home",
+    "target": {
+      "pageId": "home",
+      "sectionId": "hero",
+      "sectionType": "hero"
+    },
+    "dependsOn": [
+      "page-home-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Home.jsx",
+      "src/components/HeroSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section hero exists on home",
+      "section hero matches type hero",
+      "section hero is rendered in page home"
+    ]
+  },
+  {
+    "id": "section-home-signature-preview",
+    "type": "section",
+    "title": "Create signature-preview section on home",
+    "target": {
+      "pageId": "home",
+      "sectionId": "signature-preview",
+      "sectionType": "grid-cards-preview"
+    },
+    "dependsOn": [
+      "page-home-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Home.jsx",
+      "src/components/SignaturePreviewSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section signature-preview exists on home",
+      "section signature-preview matches type grid-cards-preview",
+      "section signature-preview is rendered in page home"
+    ]
+  },
+  {
+    "id": "section-home-brand-story-preview",
+    "type": "section",
+    "title": "Create brand-story-preview section on home",
+    "target": {
+      "pageId": "home",
+      "sectionId": "brand-story-preview",
+      "sectionType": "split-content-preview"
+    },
+    "dependsOn": [
+      "page-home-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Home.jsx",
+      "src/components/BrandStoryPreviewSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section brand-story-preview exists on home",
+      "section brand-story-preview matches type split-content-preview",
+      "section brand-story-preview is rendered in page home"
+    ]
+  },
+  {
+    "id": "cta-home-home-primary-cta",
+    "type": "cta",
+    "title": "Add CTA home-primary-cta on home",
+    "target": {
+      "pageId": "home",
+      "ctaId": "home-primary-cta",
+      "ctaKind": "internal",
+      "destination": {
+        "type": "route",
+        "value": "/menu"
+      },
+      "placement": "hero"
+    },
+    "dependsOn": [
+      "page-home-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Home.jsx",
+      "src/components"
+    ],
+    "done": [
+      "CTA home-primary-cta exists on home",
+      "CTA home-primary-cta is visible in placement hero",
+      "CTA home-primary-cta points to a valid destination"
+    ]
+  },
+  {
+    "id": "cta-home-home-contact-cta",
+    "type": "cta",
+    "title": "Add CTA home-contact-cta on home",
+    "target": {
+      "pageId": "home",
+      "ctaId": "home-contact-cta",
+      "ctaKind": "internal",
+      "destination": {
+        "type": "route",
+        "value": "/contatti"
+      },
+      "placement": "hero"
+    },
+    "dependsOn": [
+      "page-home-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Home.jsx",
+      "src/components"
+    ],
+    "done": [
+      "CTA home-contact-cta exists on home",
+      "CTA home-contact-cta is visible in placement hero",
+      "CTA home-contact-cta points to a valid destination"
+    ]
+  },
+  {
+    "id": "cta-home-home-whatsapp",
+    "type": "cta",
+    "title": "Add CTA home-whatsapp on home",
+    "target": {
+      "pageId": "home",
+      "ctaId": "home-whatsapp",
+      "ctaKind": "external",
+      "destination": {
+        "type": "whatsapp",
+        "value": "whatsapp"
+      },
+      "placement": "floating"
+    },
+    "dependsOn": [
+      "page-home-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Home.jsx",
+      "src/components",
+      "src/App.jsx",
+      "src/layout/Layout.jsx"
+    ],
+    "done": [
+      "CTA home-whatsapp exists on home",
+      "CTA home-whatsapp is visible in placement floating",
+      "CTA home-whatsapp points to a valid destination"
+    ]
+  },
+  {
+    "id": "page-menu-shell",
+    "type": "page-shell",
+    "title": "Create menu page shell",
+    "target": {
+      "pageId": "menu"
+    },
+    "dependsOn": [],
+    "filesAllowed": [
+      "src/App.jsx",
+      "src/pages/Menu.jsx"
+    ],
+    "done": [
+      "page shell exists for menu",
+      "menu route is mounted if required",
+      "menu page renders without crashing"
+    ]
+  },
+  {
+    "id": "section-menu-menu-hero",
+    "type": "section",
+    "title": "Create menu-hero section on menu",
+    "target": {
+      "pageId": "menu",
+      "sectionId": "menu-hero",
+      "sectionType": "hero"
+    },
+    "dependsOn": [
+      "page-menu-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Menu.jsx",
+      "src/components/MenuHeroSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section menu-hero exists on menu",
+      "section menu-hero matches type hero",
+      "section menu-hero is rendered in page menu"
+    ]
+  },
+  {
+    "id": "section-menu-menu-categories",
+    "type": "section",
+    "title": "Create menu-categories section on menu",
+    "target": {
+      "pageId": "menu",
+      "sectionId": "menu-categories",
+      "sectionType": "menu-categories"
+    },
+    "dependsOn": [
+      "page-menu-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Menu.jsx",
+      "src/components/MenuCategoriesSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section menu-categories exists on menu",
+      "section menu-categories matches type menu-categories",
+      "section menu-categories is rendered in page menu"
+    ]
+  },
+  {
+    "id": "page-chi-siamo-shell",
+    "type": "page-shell",
+    "title": "Create chi-siamo page shell",
+    "target": {
+      "pageId": "chi-siamo"
+    },
+    "dependsOn": [],
+    "filesAllowed": [
+      "src/App.jsx",
+      "src/pages/ChiSiamo.jsx"
+    ],
+    "done": [
+      "page shell exists for chi-siamo",
+      "chi-siamo route is mounted if required",
+      "chi-siamo page renders without crashing"
+    ]
+  },
+  {
+    "id": "section-chi-siamo-about-hero",
+    "type": "section",
+    "title": "Create about-hero section on chi-siamo",
+    "target": {
+      "pageId": "chi-siamo",
+      "sectionId": "about-hero",
+      "sectionType": "hero"
+    },
+    "dependsOn": [
+      "page-chi-siamo-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/ChiSiamo.jsx",
+      "src/components/AboutHeroSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section about-hero exists on chi-siamo",
+      "section about-hero matches type hero",
+      "section about-hero is rendered in page chi-siamo"
+    ]
+  },
+  {
+    "id": "section-chi-siamo-story",
+    "type": "section",
+    "title": "Create story section on chi-siamo",
+    "target": {
+      "pageId": "chi-siamo",
+      "sectionId": "story",
+      "sectionType": "editorial-content"
+    },
+    "dependsOn": [
+      "page-chi-siamo-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/ChiSiamo.jsx",
+      "src/components/StorySection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section story exists on chi-siamo",
+      "section story matches type editorial-content",
+      "section story is rendered in page chi-siamo"
+    ]
+  },
+  {
+    "id": "section-chi-siamo-philosophy",
+    "type": "section",
+    "title": "Create philosophy section on chi-siamo",
+    "target": {
+      "pageId": "chi-siamo",
+      "sectionId": "philosophy",
+      "sectionType": "split-content"
+    },
+    "dependsOn": [
+      "page-chi-siamo-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/ChiSiamo.jsx",
+      "src/components/PhilosophySection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section philosophy exists on chi-siamo",
+      "section philosophy matches type split-content",
+      "section philosophy is rendered in page chi-siamo"
+    ]
+  },
+  {
+    "id": "page-contatti-shell",
+    "type": "page-shell",
+    "title": "Create contatti page shell",
+    "target": {
+      "pageId": "contatti"
+    },
+    "dependsOn": [],
+    "filesAllowed": [
+      "src/App.jsx",
+      "src/pages/Contatti.jsx"
+    ],
+    "done": [
+      "page shell exists for contatti",
+      "contatti route is mounted if required",
+      "contatti page renders without crashing"
+    ]
+  },
+  {
+    "id": "section-contatti-contact-hero",
+    "type": "section",
+    "title": "Create contact-hero section on contatti",
+    "target": {
+      "pageId": "contatti",
+      "sectionId": "contact-hero",
+      "sectionType": "hero"
+    },
+    "dependsOn": [
+      "page-contatti-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Contatti.jsx",
+      "src/components/ContactHeroSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section contact-hero exists on contatti",
+      "section contact-hero matches type hero",
+      "section contact-hero is rendered in page contatti"
+    ]
+  },
+  {
+    "id": "section-contatti-contact-details",
+    "type": "section",
+    "title": "Create contact-details section on contatti",
+    "target": {
+      "pageId": "contatti",
+      "sectionId": "contact-details",
+      "sectionType": "contact-block"
+    },
+    "dependsOn": [
+      "page-contatti-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Contatti.jsx",
+      "src/components/ContactDetailsSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section contact-details exists on contatti",
+      "section contact-details matches type contact-block",
+      "section contact-details is rendered in page contatti"
+    ]
+  },
+  {
+    "id": "section-contatti-opening-hours",
+    "type": "section",
+    "title": "Create opening-hours section on contatti",
+    "target": {
+      "pageId": "contatti",
+      "sectionId": "opening-hours",
+      "sectionType": "hours-block"
+    },
+    "dependsOn": [
+      "page-contatti-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Contatti.jsx",
+      "src/components/OpeningHoursSection.jsx",
+      "src/components"
+    ],
+    "done": [
+      "section opening-hours exists on contatti",
+      "section opening-hours matches type hours-block",
+      "section opening-hours is rendered in page contatti"
+    ]
+  },
+  {
+    "id": "cta-contatti-contatti-whatsapp",
+    "type": "cta",
+    "title": "Add CTA contatti-whatsapp on contatti",
+    "target": {
+      "pageId": "contatti",
+      "ctaId": "contatti-whatsapp",
+      "ctaKind": "external",
+      "destination": {
+        "type": "whatsapp",
+        "value": "whatsapp"
+      },
+      "placement": "body"
+    },
+    "dependsOn": [
+      "page-contatti-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Contatti.jsx",
+      "src/components"
+    ],
+    "done": [
+      "CTA contatti-whatsapp exists on contatti",
+      "CTA contatti-whatsapp is visible in placement body",
+      "CTA contatti-whatsapp points to a valid destination"
+    ]
+  },
+  {
+    "id": "cta-contatti-contatti-phone",
+    "type": "cta",
+    "title": "Add CTA contatti-phone on contatti",
+    "target": {
+      "pageId": "contatti",
+      "ctaId": "contatti-phone",
+      "ctaKind": "external",
+      "destination": {
+        "type": "phone",
+        "value": "phone"
+      },
+      "placement": "body"
+    },
+    "dependsOn": [
+      "page-contatti-shell"
+    ],
+    "filesAllowed": [
+      "src/pages/Contatti.jsx",
+      "src/components"
+    ],
+    "done": [
+      "CTA contatti-phone exists on contatti",
+      "CTA contatti-phone is visible in placement body",
+      "CTA contatti-phone points to a valid destination"
+    ]
+  },
+  {
+    "id": "navigation-structure",
+    "type": "navigation",
+    "title": "Build navigation from spec",
+    "target": {
+      "navigation": [
+        {
+          "label": "Home",
+          "type": "route",
+          "target": "/"
+        },
+        {
+          "label": "Menu",
+          "type": "route",
+          "target": "/menu"
+        },
+        {
+          "label": "Chi siamo",
+          "type": "route",
+          "target": "/chi-siamo"
+        },
+        {
+          "label": "Contatti",
+          "type": "route",
+          "target": "/contatti"
+        }
+      ],
+      "routingMode": "hash"
+    },
+    "dependsOn": [
+      "page-home-shell",
+      "page-menu-shell",
+      "page-chi-siamo-shell",
+      "page-contatti-shell",
+      "section-home-hero",
+      "section-home-signature-preview",
+      "section-home-brand-story-preview",
+      "section-menu-menu-hero",
+      "section-menu-menu-categories",
+      "section-chi-siamo-about-hero",
+      "section-chi-siamo-story",
+      "section-chi-siamo-philosophy",
+      "section-contatti-contact-hero",
+      "section-contatti-contact-details",
+      "section-contatti-opening-hours"
+    ],
+    "filesAllowed": [
+      "src/App.jsx",
+      "src/layout/Layout.jsx"
+    ],
+    "done": [
+      "all navigation items are rendered",
+      "all navigation links point to valid pages or sections",
+      "navigation is compatible with routing mode"
+    ]
+  },
+  {
+    "id": "seo-basics",
+    "type": "seo",
+    "title": "Add baseline SEO structure",
+    "target": {
+      "pages": [
+        "home",
+        "menu",
+        "chi-siamo",
+        "contatti"
+      ]
+    },
+    "dependsOn": [
+      "page-home-shell",
+      "page-menu-shell",
+      "page-chi-siamo-shell",
+      "page-contatti-shell"
+    ],
+    "filesAllowed": [
+      "index.html",
+      "src/pages/Home.jsx",
+      "src/pages/Menu.jsx",
+      "src/pages/ChiSiamo.jsx",
+      "src/pages/Contatti.jsx"
+    ],
+    "done": [
+      "title exists",
+      "meta description exists",
+      "one meaningful h1 per page exists"
+    ]
+  },
+  {
+    "id": "responsive-polish",
+    "type": "responsive",
+    "title": "Refine responsive layout and spacing",
+    "target": {
+      "breakpoints": [
+        360,
+        768,
+        1024,
+        1440
+      ]
+    },
+    "dependsOn": [
+      "navigation-structure",
+      "section-home-hero",
+      "section-home-signature-preview",
+      "section-home-brand-story-preview",
+      "section-menu-menu-hero",
+      "section-menu-menu-categories",
+      "section-chi-siamo-about-hero",
+      "section-chi-siamo-story",
+      "section-chi-siamo-philosophy",
+      "section-contatti-contact-hero",
+      "section-contatti-contact-details",
+      "section-contatti-opening-hours"
+    ],
+    "filesAllowed": [
+      "src/App.css",
+      "src/index.css",
+      "src/components",
+      "src/pages/Home.jsx",
+      "src/pages/Menu.jsx",
+      "src/pages/ChiSiamo.jsx",
+      "src/pages/Contatti.jsx"
+    ],
+    "done": [
+      "layout works across required breakpoints",
+      "no horizontal overflow",
+      "spacing and hierarchy are coherent"
+    ]
+  },
+  {
+    "id": "validation-prep",
+    "type": "validation-prep",
+    "title": "Prepare site for final validation",
+    "target": {
+      "checks": [
+        "semantic-structure",
+        "navigation-integrity",
+        "cta-integrity",
+        "images-not-broken",
+        "responsive-layout",
+        "placeholder-content-absent"
+      ]
+    },
+    "dependsOn": [
+      "navigation-structure",
+      "responsive-polish",
+      "seo-basics"
+    ],
+    "filesAllowed": [
+      "src",
+      "index.html"
+    ],
+    "done": [
+      "required semantic structure exists",
+      "required CTA structure exists",
+      "required sections exist",
+      "site is ready for final validation"
+    ]
+  }
+]
