@@ -1,9 +1,6 @@
-Implemented the `menu-hero` task by extracting the inline hero from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx) into a dedicated [src/components/MenuHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx). The new section keeps the required `menu-hero` id and page `h1`, adds premium brand-aligned copy, and includes valid hash-route CTAs to `#/contatti` and `#/chi-siamo`. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with the task summary.
+Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx), [src/components/MenuCategoriesSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuCategoriesSection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
 
-Modified files:
-- [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx)
-- [src/components/MenuHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+Implemented the `menu-categories` section on the menu page by extracting the inline placeholder into a reusable `MenuCategoriesSection` component and rendering it from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx). The new section uses the required `menu-categories` id, includes a structured intro, and presents four responsive service-category cards with concrete Italian copy aligned to the brand tone.
 
 Build result: `npm run build` passed successfully.
 
@@ -16,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd9e6-4055-71b3-80a9-dfb0c5dba6d7
+session id: 019cd9e7-43c5-77b3-a574-1e241f65db6e
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1229,10 +1226,10 @@ Each page must have a real purpose and distinct content.
 ```
 
 ## Current task id
-section-menu-menu-hero
+section-menu-menu-categories
 
 ## Current task title
-Create menu-hero section on menu
+Create menu-categories section on menu
 
 ## Current task type
 section
@@ -1241,8 +1238,8 @@ section
 ```json
 {
   "pageId": "menu",
-  "sectionId": "menu-hero",
-  "sectionType": "hero"
+  "sectionId": "menu-categories",
+  "sectionType": "menu-categories"
 }
 ```
 
@@ -1251,13 +1248,13 @@ section
 
 ## Files allowed
 - src/pages/Menu.jsx
-- src/components/MenuHeroSection.jsx
+- src/components/MenuCategoriesSection.jsx
 - src/components
 
 ## Definition of done
-- section menu-hero exists on menu
-- section menu-hero matches type hero
-- section menu-hero is rendered in page menu
+- section menu-categories exists on menu
+- section menu-categories matches type menu-categories
+- section menu-categories is rendered in page menu
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1286,32 +1283,31 @@ section
 
 mcp startup: no servers
 codex
-I’m executing the `section-menu-menu-hero` task only. First I’ll inspect the current menu page, related components, and the task/source-of-truth files so the hero section fits the existing structure without spilling into future work.
+I’m implementing the `menu-categories` section on the menu page and will first inspect the current page/component structure so the change stays within the allowed files and matches the existing design system.
 exec
 /bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc 'rg --files .' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc 'rg -n "Hero|hero|MenuHero|Section" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+/bin/zsh -lc "pwd && rg --files src agent | rg 'Menu|menu|AGENT_REPORT|components'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 52ms:
+import MenuHeroSection from "../components/MenuHeroSection"
+
 export default function Menu() {
   return (
     <main>
-      <section id="menu-hero" aria-labelledby="menu-title">
-        <div>
-          <p>Servizi educativi per cani e persone</p>
-          <h1 id="menu-title">Percorsi chiari, rispettosi e costruiti sulla vita reale</h1>
-          <p>
-            In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
-            Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
-            obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza.
-          </p>
-        </div>
-      </section>
+      <MenuHeroSection />
 
       <section id="menu-categories" aria-labelledby="menu-categories-title">
         <div>
           <h2 id="menu-categories-title">Aree di lavoro</h2>
           <p>
             La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+            ora, questa pagina definisce il contenitore corretto per la futura
+            organizzazione dell&apos;offerta.
+          </p>
+          <div>
+            <article>
+              <h3>Educazione di base</h3>
+              <p>
+                Supporto per comunicazione, gestione quotidiana e competenze utili nella
  succeeded in 52ms:
 # CURRENT TASK EXECUTION PROMPT
 
@@ -1334,71 +1330,63 @@ site-create-a-premium-modern-website-for-a-pr
 
 All sites must follow these rules.
  succeeded in 51ms:
-./src/pages/Home.jsx
-./src/pages/ChiSiamo.jsx
-./src/pages/Contatti.jsx
-./src/pages/Menu.jsx
-./src/assets/react.svg
-./src/App.jsx
-./src/main.jsx
-./src/components/FloatingWhatsAppButton.jsx
-./src/components/BrandStoryPreviewSection.jsx
-./src/components/SignaturePreviewSection.jsx
-./src/components/HeroSection.jsx
-./src/index.css
-./src/App.css
-./src/layout/Layout.jsx
-./AGENTS.md
-./eslint.config.js
-./brief/brief-summary.md
-./brief/original-prompt.md
-./package.json
-./package-lock.json
- succeeded in 50ms:
-src/pages/Menu.jsx:4:      <section id="menu-hero" aria-labelledby="menu-title">
-src/components/SignaturePreviewSection.jsx:111:export default function SignaturePreviewSection() {
-src/pages/Contatti.jsx:4:      <section id="contact-hero">
-src/pages/Contatti.jsx:5:        <h1>Contact Hero</h1>
-src/pages/Contatti.jsx:6:        <p>Content for contact-hero will be generated by tasks</p>
-src/pages/Home.jsx:1:import HeroSection from "../components/HeroSection"
-src/pages/Home.jsx:2:import SignaturePreviewSection from "../components/SignaturePreviewSection"
-src/pages/Home.jsx:3:import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
-src/pages/Home.jsx:9:      <HeroSection
-src/pages/Home.jsx:20:      <SignaturePreviewSection />
-src/pages/Home.jsx:22:      <BrandStoryPreviewSection />
-src/components/HeroSection.jsx:95:export default function HeroSection({
-src/components/HeroSection.jsx:100:    <section id="hero" style={styles.section}>
-src/components/BrandStoryPreviewSection.jsx:86:export default function BrandStoryPreviewSection() {
-src/pages/ChiSiamo.jsx:4:      <section id="about-hero">
-src/pages/ChiSiamo.jsx:5:        <h1>About Hero</h1>
-src/pages/ChiSiamo.jsx:6:        <p>Content for about-hero will be generated by tasks</p>
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr
+agent/AGENT_REPORT.md
+src/pages/Menu.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/BrandStoryPreviewSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/MenuHeroSection.jsx
+src/components/HeroSection.jsx
 codex
-The menu page already contains an inline placeholder hero. I’m checking the shared home hero and the current report format, then I’ll replace the inline block with a dedicated `MenuHeroSection` component and keep the rest of the page untouched.
+I found a placeholder section already embedded in `Menu.jsx`. I’m checking the existing component patterns now so I can replace that stub with a proper reusable `MenuCategoriesSection` without drifting into unrelated work.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,240p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
-import HeroSection from "../components/HeroSection"
-import SignaturePreviewSection from "../components/SignaturePreviewSection"
-import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
-import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
-
-export default function Home() {
-  return (
-    <>
-      <HeroSection
-        primaryCta={{
-          href: "#/menu",
-          label: "Prenota una consulenza",
-        }}
-        secondaryCta={{
-          href: "#/contatti",
-          label: "Contattami",
-        }}
-      />
-
-      <SignaturePreviewSection />
+/bin/zsh -lc "sed -n '1,240p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,200p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-prexec
+/bin/zsh -lc "sed -n '1,260p' src/components/BrandStoryPreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 51ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
+    backgroundColor: "#f5efe5",
+    color: "#2e312b",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  container: {
+    position: "relative",
+    zIndex: 1,
+    display: "grid",
  succeeded in 51ms:
+const previewCards = [
+  {
+    title: "Percorsi educativi personalizzati",
+    description:
+      "Ogni proposta parte dall'osservazione del cane, dalle abitudini di casa e dagli obiettivi concreti della famiglia.",
+  },
+  {
+    title: "Strumenti utili per la vita quotidiana",
+    description:
+      "Lavoriamo su passeggiate, gestione, comunicazione e lettura del comportamento con indicazioni chiare e applicabili.",
+  },
+  {
+    title: "Progressi realistici e rispettosi",
+    description:
+      "Il focus e sui cambiamenti sostenibili nel tempo, senza scorciatoie, forzature o promesse irrealistiche.",
+  },
+]
+
+const styles = {
+  section: {
+ succeeded in 52ms:
 # AGENT REPORT
 
 Project created.
@@ -1420,917 +1408,1813 @@ Build passed.
 Commit created for TASK page-home-shell.
 
  succeeded in 51ms:
+const storyHighlights = [
+  "Lettura del comportamento e del contesto prima di ogni proposta operativa.",
+  "Indicazioni pratiche pensate per casa, passeggiata e momenti di difficolta reale.",
+  "Un percorso costruito insieme, con obiettivi sostenibili e rispettosi dei tempi del cane.",
+]
+
 const styles = {
   section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 6rem) 1.5rem",
-    backgroundColor: "#f3ede3",
+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
+    backgroundColor: "#efe7db",
     color: "#2f312d",
   },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(90deg, rgba(243, 237, 227, 0.96) 0%, rgba(243, 237, 227, 0.9) 42%, rgba(243, 237, 227, 0.55) 70%, rgba(243, 237, 227, 0.2) 100%), url('https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  },
   container: {
-    position: "relative",
-    zIndex: 1,
-    width: "min(100%, 40rem)",
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
+    display: "grid",
+    gap: "1.75rem",
+    alignItems: "center",
+  },
+  contentGrid: {
 codex
-I have enough context. I’m replacing the inline menu hero with a dedicated component that preserves the required section id and `h1`, uses route-safe CTAs, and keeps the rest of the page shell intact.
+I have enough context. Next I’m replacing the inline placeholder with a dedicated `MenuCategoriesSection` component and giving the section concrete, production-ready service groupings that fit the current menu-page task without spilling into future pages.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
-@@ -148 +148,6 @@
- Launching Codex for TASK section-menu-menu-hero.
-+
-+Completed TASK `section-menu-menu-hero`.
-+- Created a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
-+- Replaced the inline `menu-hero` markup in `src/pages/Menu.jsx` with the new dedicated hero section component.
-+- Added brand-aligned hero copy, valid hash-route CTAs, and a visually dominant layout while preserving the required `menu-hero` section id and page `h1`.
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuCategoriesSection.jsx
+const categories = [
+  {
+    title: "Educazione quotidiana",
+    description:
+      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
+    details: [
+      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
+      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
+    ],
+  },
+  {
+    title: "Passeggiata, richiamo e gestione in esterna",
+    description:
+      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
+    details: [
+      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
+      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
+    ],
+  },
+  {
+    title: "Consulenze comportamentali e supporto emotivo",
+    description:
+      "Spazi di osservazione e orientamento per difficolta piu complesse, sempre con un approccio rispettoso e progressivo.",
+    details: [
+      "Utile in presenza di reattivita, ansia, difficolta di gestione, cambiamenti familiari o fasi delicate.",
+      "Il lavoro parte dalla comprensione del quadro generale per costruire passi realistici e ben guidati.",
+    ],
+  },
+  {
+    title: "Affiancamento nelle fasi di cambiamento",
+    description:
+      "Supporto prima e dopo l'adozione, incontri individuali ed eventuali consulenze online quando sono realmente adatte.",
+    details: [
+      "Pensato per chi desidera prepararsi con maggiore consapevolezza o affrontare una nuova convivenza con piu struttura.",
+      "Ogni proposta viene calibrata sul contesto familiare, sull'ambiente e sugli obiettivi davvero utili.",
+    ],
+  },
+]
+
 const styles = {
   section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-    backgroundColor: "#f5efe5",
-    color: "#2e312b",
-  },
-  background: {
-    position: "absolute",
-    inset: 0,
-    backgroundImage:
-      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
+    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
+    backgroundColor: "#fcf8f1",
+    color: "#2f312d",
   },
   container: {
-    position: "relative",
-    zIndex: 1,
+    width: "min(100%, 72rem)",
+    margin: "0 auto",
     display: "grid",
-    gap: "1.5rem",
-    width: "min(100%, 44rem)",
+    gap: "2rem",
+  },
+  intro: {
+    display: "grid",
+    gap: "1rem",
+    maxWidth: "46rem",
   },
   eyebrow: {
     margin: 0,
-    fontSize: "0.8rem",
+    fontSize: "0.78rem",
     fontWeight: 700,
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "#6a7464",
+    color: "#7d695a",
   },
   title: {
     margin: 0,
-    fontSize: "clamp(2.6rem, 8vw, 4.8rem)",
-    lineHeight: 0.97,
-    maxWidth: "11ch",
-    color: "#22251f",
+    fontSize: "clamp(2rem, 5vw, 3.2rem)",
+    lineHeight: 1.02,
+    color: "#23251f",
+    maxWidth: "12ch",
   },
   description: {
     margin: 0,
-    fontSize: "1.05rem",
+    fontSize: "1rem",
     lineHeight: 1.75,
-    maxWidth: "38rem",
-    color: "#4d524a",
+    color: "#4b5047",
+    maxWidth: "41rem",
   },
-  actions: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "0.875rem",
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "1rem",
   },
-  primaryLink: {
+  card: {
+    display: "grid",
+    gap: "1rem",
+    padding: "1.5rem",
+    borderRadius: "1.5rem",
+    backgroundColor: "#fffdf9",
+    border: "1px solid rgba(47, 49, 45, 0.08)",
+    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
+    alignContent: "start",
+  },
+  index: {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: "3.25rem",
-    padding: "0.85rem 1.4rem",
+    width: "2.5rem",
+    height: "2.5rem",
     borderRadius: "999px",
-    backgroundColor: "#6b7760",
-    color: "#f8f4ec",
-    textDecoration: "none",
+    backgroundColor: "#e7dfd3",
+    color: "#5c6455",
+    fontSize: "0.9rem",
+    fontWeight: 700,
   },
-  secondaryLink: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "3.25rem",
-    padding: "0.85rem 1.4rem",
-    borderRadius: "999px",
-    border: "1px solid rgba(46, 49, 43, 0.16)",
-    backgroundColor: "rgba(255, 255, 255, 0.34)",
-    color: "#2e312b",
-    textDecoration: "none",
-    backdropFilter: "blur(8px)",
-  },
-  highlights: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "0.75rem",
+  cardTitle: {
     margin: 0,
-    padding: 0,
-    listStyle: "none",
-    color: "#52574f",
-    fontSize: "0.95rem",
+    fontSize: "1.25rem",
+    lineHeight: 1.3,
+    color: "#23251f",
   },
-  highlightItem: {
-    padding: "0.45rem 0.8rem",
-    borderRadius: "999px",
-    backgroundColor: "rgba(255, 255, 255, 0.42)",
-    border: "1px solid rgba(46, 49, 43, 0.08)",
+  cardDescription: {
+    margin: 0,
+    fontSize: "0.98rem",
+    lineHeight: 1.7,
+    color: "#53584f",
+  },
+  list: {
+    margin: 0,
+    paddingLeft: "1.1rem",
+    display: "grid",
+    gap: "0.7rem",
+    color: "#53584f",
+    lineHeight: 1.65,
+  },
+  note: {
+    padding: "1.25rem 1.5rem",
+    borderRadius: "1.5rem",
+    backgroundColor: "#efe7db",
+    color: "#454a42",
+    lineHeight: 1.7,
+    maxWidth: "52rem",
   },
 }
 
-export default function MenuHeroSection() {
+export default function MenuCategoriesSection() {
   return (
-    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-      <div aria-hidden="true" style={styles.background} />
-
+    <section
+      id="menu-categories"
+      aria-labelledby="menu-categories-title"
+      style={styles.section}
+    >
       <div style={styles.container}>
-        <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
-
-        <h1 id="menu-title" style={styles.title}>
-          Percorsi chiari, rispettosi e costruiti sulla vita reale
-        </h1>
-
-        <p style={styles.description}>
-          In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
-          Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
-          obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza,
-          senza scorciatoie o promesse irrealistiche.
-        </p>
-
-        <div style={styles.actions}>
-          <a href="#/contatti" style={styles.primaryLink}>
-            Richiedi informazioni
-          </a>
-          <a href="#/chi-siamo" style={styles.secondaryLink}>
-            Scopri l&apos;approccio
-          </a>
+        <div style={styles.intro}>
+          <p style={styles.eyebrow}>Aree di lavoro</p>
+          <h2 id="menu-categories-title" style={styles.title}>
+            Una panoramica chiara delle principali tipologie di supporto
+          </h2>
+          <p style={styles.description}>
+            Ogni intervento nasce dall&apos;incontro tra storia del cane, bisogni
+            della famiglia e obiettivi concreti. Qui trovi le macro aree su cui
+            lavoro piu spesso, per aiutarti a capire da dove si puo iniziare.
+          </p>
         </div>
 
-        <ul style={styles.highlights}>
-          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-        </ul>
+        <div style={styles.grid}>
+          {categories.map((category, index) => (
+            <article key={category.title} style={styles.card}>
+              <span aria-hidden="true" style={styles.index}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 style={styles.cardTitle}>{category.title}</h3>
+              <p style={styles.cardDescription}>{category.description}</p>
+              <ul style={styles.list}>
+                {category.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <p style={styles.note}>
+          Se non sai quale area sia piu adatta alla tua situazione, il primo
+          confronto serve proprio a fare chiarezza e a definire un percorso
+          realistico, rispettoso e sostenibile nel tempo.
+        </p>
       </div>
     </section>
   )
 }
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx
-@@ -1 +1,3 @@
-+import MenuHeroSection from "../components/MenuHeroSection"
-+
- export default function Menu() {
-@@ -3,13 +5,3 @@
-     <main>
--      <section id="menu-hero" aria-labelledby="menu-title">
+@@ -1,2 +1,3 @@
+ import MenuHeroSection from "../components/MenuHeroSection"
++import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+@@ -6,36 +7,3 @@
+       <MenuHeroSection />
+-
+-      <section id="menu-categories" aria-labelledby="menu-categories-title">
 -        <div>
--          <p>Servizi educativi per cani e persone</p>
--          <h1 id="menu-title">Percorsi chiari, rispettosi e costruiti sulla vita reale</h1>
+-          <h2 id="menu-categories-title">Aree di lavoro</h2>
 -          <p>
--            In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
--            Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
--            obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza.
+-            La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+-            ora, questa pagina definisce il contenitore corretto per la futura
+-            organizzazione dell&apos;offerta.
 -          </p>
+-          <div>
+-            <article>
+-              <h3>Educazione di base</h3>
+-              <p>
+-                Supporto per comunicazione, gestione quotidiana e competenze utili nella
+-                vita di tutti i giorni.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Consulenze comportamentali</h3>
+-              <p>
+-                Un primo orientamento per leggere difficolta, contesto e bisogni del cane
+-                con maggiore chiarezza.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Percorsi personalizzati</h3>
+-              <p>
+-                Interventi calibrati su eta, storia, ambiente e obiettivi concreti della
+-                famiglia.
+-              </p>
+-            </article>
+-          </div>
 -        </div>
 -      </section>
-+      <MenuHeroSection />
- 
-apply_patch(auto_approved=true) exited 0 in 48ms:
++      <MenuCategoriesSection />
+     </main>
+apply_patch(auto_approved=true) exited 0 in 67ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuCategoriesSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e7cc1a060f492a8ed938d4b279ed7c29b1c062c1..a5c24df05ad08ce2d731a0a0868acf7b8fe1ba52
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -146,3 +146,8 @@
- Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
- 
- Launching Codex for TASK section-menu-menu-hero.
-+
-+Completed TASK `section-menu-menu-hero`.
-+- Created a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
-+- Replaced the inline `menu-hero` markup in `src/pages/Menu.jsx` with the new dedicated hero section component.
-+- Added brand-aligned hero copy, valid hash-route CTAs, and a visually dominant layout while preserving the required `menu-hero` section id and page `h1`.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
+diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..5b0e336f4b1130a6af53ca52241409d5f1a031c9
+index 0000000000000000000000000000000000000000..4dd60490a0074267a0d9588070725dea61b09e07
 --- /dev/null
-+++ b/src/components/MenuHeroSection.jsx
-@@ -0,0 +1,129 @@
++++ b/src/components/MenuCategoriesSection.jsx
+@@ -0,0 +1,181 @@
++const categories = [
++  {
++    title: "Educazione quotidiana",
++    description:
++      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
++    details: [
++      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
++      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
++    ],
++  },
++  {
++    title: "Passeggiata, richiamo e gestione in esterna",
++    description:
++      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
++    details: [
++      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
++      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
++    ],
++  },
++  {
++    title: "Consulenze comportamentali e supporto emotivo",
++    description:
++      "Spazi di osservazione e orientamento per difficolta piu complesse, sempre con un approccio rispettoso e progressivo.",
++    details: [
++      "Utile in presenza di reattivita, ansia, difficolta di gestione, cambiamenti familiari o fasi delicate.",
++      "Il lavoro parte dalla comprensione del quadro generale per costruire passi realistici e ben guidati.",
++    ],
++  },
++  {
++    title: "Affiancamento nelle fasi di cambiamento",
++    description:
++      "Supporto prima e dopo l'adozione, incontri individuali ed eventuali consulenze online quando sono realmente adatte.",
++    details: [
++      "Pensato per chi desidera prepararsi con maggiore consapevolezza o affrontare una nuova convivenza con piu struttura.",
++      "Ogni proposta viene calibrata sul contesto familiare, sull'ambiente e sugli obiettivi davvero utili.",
++    ],
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-+    backgroundColor: "#f5efe5",
-+    color: "#2e312b",
-+  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
 +  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
-+    width: "min(100%, 44rem)",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "46rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#6a7464",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.6rem, 8vw, 4.8rem)",
-+    lineHeight: 0.97,
-+    maxWidth: "11ch",
-+    color: "#22251f",
++    fontSize: "clamp(2rem, 5vw, 3.2rem)",
++    lineHeight: 1.02,
++    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    fontSize: "1.05rem",
++    fontSize: "1rem",
 +    lineHeight: 1.75,
-+    maxWidth: "38rem",
-+    color: "#4d524a",
++    color: "#4b5047",
++    maxWidth: "41rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++    alignContent: "start",
++  },
++  index: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
++    width: "2.5rem",
++    height: "2.5rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#6b7760",
-+    color: "#f8f4ec",
-+    textDecoration: "none",
++    backgroundColor: "#e7dfd3",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(46, 49, 43, 0.16)",
-+    backgroundColor: "rgba(255, 255, 255, 0.34)",
-+    color: "#2e312b",
-+    textDecoration: "none",
-+    backdropFilter: "blur(8px)",
-+  },
-+  highlights: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.75rem",
++  cardTitle: {
 +    margin: 0,
-+    padding: 0,
-+    listStyle: "none",
-+    color: "#52574f",
-+    fontSize: "0.95rem",
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
 +  },
-+  highlightItem: {
-+    padding: "0.45rem 0.8rem",
-+    borderRadius: "999px",
-+    backgroundColor: "rgba(255, 255, 255, 0.42)",
-+    border: "1px solid rgba(46, 49, 43, 0.08)",
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.7rem",
++    color: "#53584f",
++    lineHeight: 1.65,
++  },
++  note: {
++    padding: "1.25rem 1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#efe7db",
++    color: "#454a42",
++    lineHeight: 1.7,
++    maxWidth: "52rem",
 +  },
 +}
 +
-+export default function MenuHeroSection() {
++export default function MenuCategoriesSection() {
 +  return (
-+    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section
++      id="menu-categories"
++      aria-labelledby="menu-categories-title"
++      style={styles.section}
++    >
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
-+
-+        <h1 id="menu-title" style={styles.title}>
-+          Percorsi chiari, rispettosi e costruiti sulla vita reale
-+        </h1>
-+
-+        <p style={styles.description}>
-+          In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
-+          Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
-+          obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza,
-+          senza scorciatoie o promesse irrealistiche.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/contatti" style={styles.primaryLink}>
-+            Richiedi informazioni
-+          </a>
-+          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+            Scopri l&apos;approccio
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Aree di lavoro</p>
++          <h2 id="menu-categories-title" style={styles.title}>
++            Una panoramica chiara delle principali tipologie di supporto
++          </h2>
++          <p style={styles.description}>
++            Ogni intervento nasce dall&apos;incontro tra storia del cane, bisogni
++            della famiglia e obiettivi concreti. Qui trovi le macro aree su cui
++            lavoro piu spesso, per aiutarti a capire da dove si puo iniziare.
++          </p>
 +        </div>
 +
-+        <ul style={styles.highlights}>
-+          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        </ul>
++        <div style={styles.grid}>
++          {categories.map((category, index) => (
++            <article key={category.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.index}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{category.title}</h3>
++              <p style={styles.cardDescription}>{category.description}</p>
++              <ul style={styles.list}>
++                {category.details.map((detail) => (
++                  <li key={detail}>{detail}</li>
++                ))}
++              </ul>
++            </article>
++          ))}
++        </div>
++
++        <p style={styles.note}>
++          Se non sai quale area sia piu adatta alla tua situazione, il primo
++          confronto serve proprio a fare chiarezza e a definire un percorso
++          realistico, rispettoso e sostenibile nel tempo.
++        </p>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 109162308e8134402e9e23fdc2460b1b2b3545d2..f28d10909c31769ac52f5b9376bf2022efaced5a
+index f28d10909c31769ac52f5b9376bf2022efaced5a..b0d4ebf5a36062ea077fae7ffa0286a0571e13ab
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,17 +1,9 @@
-+import MenuHeroSection from "../components/MenuHeroSection"
-+
+@@ -1,43 +1,11 @@
+ import MenuHeroSection from "../components/MenuHeroSection"
++import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
  export default function Menu() {
    return (
      <main>
--      <section id="menu-hero" aria-labelledby="menu-title">
+       <MenuHeroSection />
+-
+-      <section id="menu-categories" aria-labelledby="menu-categories-title">
 -        <div>
--          <p>Servizi educativi per cani e persone</p>
--          <h1 id="menu-title">Percorsi chiari, rispettosi e costruiti sulla vita reale</h1>
+-          <h2 id="menu-categories-title">Aree di lavoro</h2>
 -          <p>
--            In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
--            Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
--            obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza.
+-            La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+-            ora, questa pagina definisce il contenitore corretto per la futura
+-            organizzazione dell&apos;offerta.
 -          </p>
+-          <div>
+-            <article>
+-              <h3>Educazione di base</h3>
+-              <p>
+-                Supporto per comunicazione, gestione quotidiana e competenze utili nella
+-                vita di tutti i giorni.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Consulenze comportamentali</h3>
+-              <p>
+-                Un primo orientamento per leggere difficolta, contesto e bisogni del cane
+-                con maggiore chiarezza.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Percorsi personalizzati</h3>
+-              <p>
+-                Interventi calibrati su eta, storia, ambiente e obiettivi concreti della
+-                famiglia.
+-              </p>
+-            </article>
+-          </div>
 -        </div>
 -      </section>
-+      <MenuHeroSection />
- 
-       <section id="menu-categories" aria-labelledby="menu-categories-title">
-         <div>
++      <MenuCategoriesSection />
+     </main>
+   )
+ }
 
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e7cc1a060f492a8ed938d4b279ed7c29b1c062c1..a5c24df05ad08ce2d731a0a0868acf7b8fe1ba52
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -146,3 +146,8 @@
- Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
- 
- Launching Codex for TASK section-menu-menu-hero.
-+
-+Completed TASK `section-menu-menu-hero`.
-+- Created a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
-+- Replaced the inline `menu-hero` markup in `src/pages/Menu.jsx` with the new dedicated hero section component.
-+- Added brand-aligned hero copy, valid hash-route CTAs, and a visually dominant layout while preserving the required `menu-hero` section id and page `h1`.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
+diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..5b0e336f4b1130a6af53ca52241409d5f1a031c9
+index 0000000000000000000000000000000000000000..4dd60490a0074267a0d9588070725dea61b09e07
 --- /dev/null
-+++ b/src/components/MenuHeroSection.jsx
-@@ -0,0 +1,129 @@
++++ b/src/components/MenuCategoriesSection.jsx
+@@ -0,0 +1,181 @@
++const categories = [
++  {
++    title: "Educazione quotidiana",
++    description:
++      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
++    details: [
++      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
++      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
++    ],
++  },
++  {
++    title: "Passeggiata, richiamo e gestione in esterna",
++    description:
++      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
++    details: [
++      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
++      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
++    ],
++  },
++  {
++    title: "Consulenze comportamentali e supporto emotivo",
++    description:
++      "Spazi di osservazione e orientamento per difficolta piu complesse, sempre con un approccio rispettoso e progressivo.",
++    details: [
++      "Utile in presenza di reattivita, ansia, difficolta di gestione, cambiamenti familiari o fasi delicate.",
++      "Il lavoro parte dalla comprensione del quadro generale per costruire passi realistici e ben guidati.",
++    ],
++  },
++  {
++    title: "Affiancamento nelle fasi di cambiamento",
++    description:
++      "Supporto prima e dopo l'adozione, incontri individuali ed eventuali consulenze online quando sono realmente adatte.",
++    details: [
++      "Pensato per chi desidera prepararsi con maggiore consapevolezza o affrontare una nuova convivenza con piu struttura.",
++      "Ogni proposta viene calibrata sul contesto familiare, sull'ambiente e sugli obiettivi davvero utili.",
++    ],
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-+    backgroundColor: "#f5efe5",
-+    color: "#2e312b",
-+  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
 +  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
-+    width: "min(100%, 44rem)",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "46rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#6a7464",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.6rem, 8vw, 4.8rem)",
-+    lineHeight: 0.97,
-+    maxWidth: "11ch",
-+    color: "#22251f",
++    fontSize: "clamp(2rem, 5vw, 3.2rem)",
++    lineHeight: 1.02,
++    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    fontSize: "1.05rem",
++    fontSize: "1rem",
 +    lineHeight: 1.75,
-+    maxWidth: "38rem",
-+    color: "#4d524a",
++    color: "#4b5047",
++    maxWidth: "41rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++    alignContent: "start",
++  },
++  index: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
++    width: "2.5rem",
++    height: "2.5rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#6b7760",
-+    color: "#f8f4ec",
-+    textDecoration: "none",
++    backgroundColor: "#e7dfd3",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(46, 49, 43, 0.16)",
-+    backgroundColor: "rgba(255, 255, 255, 0.34)",
-+    color: "#2e312b",
-+    textDecoration: "none",
-+    backdropFilter: "blur(8px)",
-+  },
-+  highlights: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.75rem",
++  cardTitle: {
 +    margin: 0,
-+    padding: 0,
-+    listStyle: "none",
-+    color: "#52574f",
-+    fontSize: "0.95rem",
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
 +  },
-+  highlightItem: {
-+    padding: "0.45rem 0.8rem",
-+    borderRadius: "999px",
-+    backgroundColor: "rgba(255, 255, 255, 0.42)",
-+    border: "1px solid rgba(46, 49, 43, 0.08)",
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.7rem",
++    color: "#53584f",
++    lineHeight: 1.65,
++  },
++  note: {
++    padding: "1.25rem 1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#efe7db",
++    color: "#454a42",
++    lineHeight: 1.7,
++    maxWidth: "52rem",
 +  },
 +}
 +
-+export default function MenuHeroSection() {
++export default function MenuCategoriesSection() {
 +  return (
-+    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section
++      id="menu-categories"
++      aria-labelledby="menu-categories-title"
++      style={styles.section}
++    >
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
-+
-+        <h1 id="menu-title" style={styles.title}>
-+          Percorsi chiari, rispettosi e costruiti sulla vita reale
-+        </h1>
-+
-+        <p style={styles.description}>
-+          In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
-+          Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
-+          obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza,
-+          senza scorciatoie o promesse irrealistiche.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/contatti" style={styles.primaryLink}>
-+            Richiedi informazioni
-+          </a>
-+          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+            Scopri l&apos;approccio
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Aree di lavoro</p>
++          <h2 id="menu-categories-title" style={styles.title}>
++            Una panoramica chiara delle principali tipologie di supporto
++          </h2>
++          <p style={styles.description}>
++            Ogni intervento nasce dall&apos;incontro tra storia del cane, bisogni
++            della famiglia e obiettivi concreti. Qui trovi le macro aree su cui
++            lavoro piu spesso, per aiutarti a capire da dove si puo iniziare.
++          </p>
 +        </div>
 +
-+        <ul style={styles.highlights}>
-+          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        </ul>
++        <div style={styles.grid}>
++          {categories.map((category, index) => (
++            <article key={category.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.index}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{category.title}</h3>
++              <p style={styles.cardDescription}>{category.description}</p>
++              <ul style={styles.list}>
++                {category.details.map((detail) => (
++                  <li key={detail}>{detail}</li>
++                ))}
++              </ul>
++            </article>
++          ))}
++        </div>
++
++        <p style={styles.note}>
++          Se non sai quale area sia piu adatta alla tua situazione, il primo
++          confronto serve proprio a fare chiarezza e a definire un percorso
++          realistico, rispettoso e sostenibile nel tempo.
++        </p>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 109162308e8134402e9e23fdc2460b1b2b3545d2..f28d10909c31769ac52f5b9376bf2022efaced5a
+index f28d10909c31769ac52f5b9376bf2022efaced5a..b0d4ebf5a36062ea077fae7ffa0286a0571e13ab
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,17 +1,9 @@
-+import MenuHeroSection from "../components/MenuHeroSection"
-+
+@@ -1,43 +1,11 @@
+ import MenuHeroSection from "../components/MenuHeroSection"
++import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
  export default function Menu() {
    return (
      <main>
--      <section id="menu-hero" aria-labelledby="menu-title">
+       <MenuHeroSection />
+-
+-      <section id="menu-categories" aria-labelledby="menu-categories-title">
 -        <div>
--          <p>Servizi educativi per cani e persone</p>
--          <h1 id="menu-title">Percorsi chiari, rispettosi e costruiti sulla vita reale</h1>
+-          <h2 id="menu-categories-title">Aree di lavoro</h2>
 -          <p>
--            In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
--            Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
--            obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza.
+-            La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+-            ora, questa pagina definisce il contenitore corretto per la futura
+-            organizzazione dell&apos;offerta.
 -          </p>
+-          <div>
+-            <article>
+-              <h3>Educazione di base</h3>
+-              <p>
+-                Supporto per comunicazione, gestione quotidiana e competenze utili nella
+-                vita di tutti i giorni.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Consulenze comportamentali</h3>
+-              <p>
+-                Un primo orientamento per leggere difficolta, contesto e bisogni del cane
+-                con maggiore chiarezza.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Percorsi personalizzati</h3>
+-              <p>
+-                Interventi calibrati su eta, storia, ambiente e obiettivi concreti della
+-                famiglia.
+-              </p>
+-            </article>
+-          </div>
 -        </div>
 -      </section>
-+      <MenuHeroSection />
- 
-       <section id="menu-categories" aria-labelledby="menu-categories-title">
-         <div>
++      <MenuCategoriesSection />
+     </main>
+   )
+ }
 
 codex
-The section code is in place. I’m running the build check now to confirm the new component compiles cleanly and doesn’t break the current route.
+The section component is in place. I’m running the build now, then I’ll append the task summary to `agent/AGENT_REPORT.md` as required.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 832ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/MenuCategoriesSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 53ms:
+const categories = [
+  {
+    title: "Educazione quotidiana",
+    description:
+      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
+    details: [
+      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
+      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
+    ],
+  },
+  {
+    title: "Passeggiata, richiamo e gestione in esterna",
+    description:
+      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
+    details: [
+      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
+      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
+    ],
+  },
+  {
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr succeeded in 875ms:
 
 > site-create-a-premium-modern-website-for-a-pr@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 51 modules transformed.
+✓ 52 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-Ci2ggH1N.js   243.98 kB │ gzip: 77.25 kB
+dist/assets/index-BG0duYDR.js   247.24 kB │ gzip: 77.99 kB
 ✓ built in 560ms
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e7cc1a060f492a8ed938d4b279ed7c29b1c062c1..a5c24df05ad08ce2d731a0a0868acf7b8fe1ba52
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -146,3 +146,8 @@
- Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
- 
- Launching Codex for TASK section-menu-menu-hero.
-+
-+Completed TASK `section-menu-menu-hero`.
-+- Created a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
-+- Replaced the inline `menu-hero` markup in `src/pages/Menu.jsx` with the new dedicated hero section component.
-+- Added brand-aligned hero copy, valid hash-route CTAs, and a visually dominant layout while preserving the required `menu-hero` section id and page `h1`.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
+diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..5b0e336f4b1130a6af53ca52241409d5f1a031c9
+index 0000000000000000000000000000000000000000..4dd60490a0074267a0d9588070725dea61b09e07
 --- /dev/null
-+++ b/src/components/MenuHeroSection.jsx
-@@ -0,0 +1,129 @@
++++ b/src/components/MenuCategoriesSection.jsx
+@@ -0,0 +1,181 @@
++const categories = [
++  {
++    title: "Educazione quotidiana",
++    description:
++      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
++    details: [
++      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
++      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
++    ],
++  },
++  {
++    title: "Passeggiata, richiamo e gestione in esterna",
++    description:
++      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
++    details: [
++      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
++      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
++    ],
++  },
++  {
++    title: "Consulenze comportamentali e supporto emotivo",
++    description:
++      "Spazi di osservazione e orientamento per difficolta piu complesse, sempre con un approccio rispettoso e progressivo.",
++    details: [
++      "Utile in presenza di reattivita, ansia, difficolta di gestione, cambiamenti familiari o fasi delicate.",
++      "Il lavoro parte dalla comprensione del quadro generale per costruire passi realistici e ben guidati.",
++    ],
++  },
++  {
++    title: "Affiancamento nelle fasi di cambiamento",
++    description:
++      "Supporto prima e dopo l'adozione, incontri individuali ed eventuali consulenze online quando sono realmente adatte.",
++    details: [
++      "Pensato per chi desidera prepararsi con maggiore consapevolezza o affrontare una nuova convivenza con piu struttura.",
++      "Ogni proposta viene calibrata sul contesto familiare, sull'ambiente e sugli obiettivi davvero utili.",
++    ],
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-+    backgroundColor: "#f5efe5",
-+    color: "#2e312b",
-+  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
 +  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
-+    width: "min(100%, 44rem)",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "46rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#6a7464",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.6rem, 8vw, 4.8rem)",
-+    lineHeight: 0.97,
-+    maxWidth: "11ch",
-+    color: "#22251f",
++    fontSize: "clamp(2rem, 5vw, 3.2rem)",
++    lineHeight: 1.02,
++    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    fontSize: "1.05rem",
++    fontSize: "1rem",
 +    lineHeight: 1.75,
-+    maxWidth: "38rem",
-+    color: "#4d524a",
++    color: "#4b5047",
++    maxWidth: "41rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++    alignContent: "start",
++  },
++  index: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
++    width: "2.5rem",
++    height: "2.5rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#6b7760",
-+    color: "#f8f4ec",
-+    textDecoration: "none",
++    backgroundColor: "#e7dfd3",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(46, 49, 43, 0.16)",
-+    backgroundColor: "rgba(255, 255, 255, 0.34)",
-+    color: "#2e312b",
-+    textDecoration: "none",
-+    backdropFilter: "blur(8px)",
-+  },
-+  highlights: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.75rem",
++  cardTitle: {
 +    margin: 0,
-+    padding: 0,
-+    listStyle: "none",
-+    color: "#52574f",
-+    fontSize: "0.95rem",
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
 +  },
-+  highlightItem: {
-+    padding: "0.45rem 0.8rem",
-+    borderRadius: "999px",
-+    backgroundColor: "rgba(255, 255, 255, 0.42)",
-+    border: "1px solid rgba(46, 49, 43, 0.08)",
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.7rem",
++    color: "#53584f",
++    lineHeight: 1.65,
++  },
++  note: {
++    padding: "1.25rem 1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#efe7db",
++    color: "#454a42",
++    lineHeight: 1.7,
++    maxWidth: "52rem",
 +  },
 +}
 +
-+export default function MenuHeroSection() {
++export default function MenuCategoriesSection() {
 +  return (
-+    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section
++      id="menu-categories"
++      aria-labelledby="menu-categories-title"
++      style={styles.section}
++    >
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
-+
-+        <h1 id="menu-title" style={styles.title}>
-+          Percorsi chiari, rispettosi e costruiti sulla vita reale
-+        </h1>
-+
-+        <p style={styles.description}>
-+          In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
-+          Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
-+          obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza,
-+          senza scorciatoie o promesse irrealistiche.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/contatti" style={styles.primaryLink}>
-+            Richiedi informazioni
-+          </a>
-+          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+            Scopri l&apos;approccio
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Aree di lavoro</p>
++          <h2 id="menu-categories-title" style={styles.title}>
++            Una panoramica chiara delle principali tipologie di supporto
++          </h2>
++          <p style={styles.description}>
++            Ogni intervento nasce dall&apos;incontro tra storia del cane, bisogni
++            della famiglia e obiettivi concreti. Qui trovi le macro aree su cui
++            lavoro piu spesso, per aiutarti a capire da dove si puo iniziare.
++          </p>
 +        </div>
 +
-+        <ul style={styles.highlights}>
-+          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        </ul>
++        <div style={styles.grid}>
++          {categories.map((category, index) => (
++            <article key={category.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.index}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{category.title}</h3>
++              <p style={styles.cardDescription}>{category.description}</p>
++              <ul style={styles.list}>
++                {category.details.map((detail) => (
++                  <li key={detail}>{detail}</li>
++                ))}
++              </ul>
++            </article>
++          ))}
++        </div>
++
++        <p style={styles.note}>
++          Se non sai quale area sia piu adatta alla tua situazione, il primo
++          confronto serve proprio a fare chiarezza e a definire un percorso
++          realistico, rispettoso e sostenibile nel tempo.
++        </p>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 109162308e8134402e9e23fdc2460b1b2b3545d2..f28d10909c31769ac52f5b9376bf2022efaced5a
+index f28d10909c31769ac52f5b9376bf2022efaced5a..b0d4ebf5a36062ea077fae7ffa0286a0571e13ab
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,17 +1,9 @@
-+import MenuHeroSection from "../components/MenuHeroSection"
-+
+@@ -1,43 +1,11 @@
+ import MenuHeroSection from "../components/MenuHeroSection"
++import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
  export default function Menu() {
    return (
      <main>
--      <section id="menu-hero" aria-labelledby="menu-title">
+       <MenuHeroSection />
+-
+-      <section id="menu-categories" aria-labelledby="menu-categories-title">
 -        <div>
--          <p>Servizi educativi per cani e persone</p>
--          <h1 id="menu-title">Percorsi chiari, rispettosi e costruiti sulla vita reale</h1>
+-          <h2 id="menu-categories-title">Aree di lavoro</h2>
 -          <p>
--            In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
--            Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
--            obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza.
+-            La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+-            ora, questa pagina definisce il contenitore corretto per la futura
+-            organizzazione dell&apos;offerta.
 -          </p>
+-          <div>
+-            <article>
+-              <h3>Educazione di base</h3>
+-              <p>
+-                Supporto per comunicazione, gestione quotidiana e competenze utili nella
+-                vita di tutti i giorni.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Consulenze comportamentali</h3>
+-              <p>
+-                Un primo orientamento per leggere difficolta, contesto e bisogni del cane
+-                con maggiore chiarezza.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Percorsi personalizzati</h3>
+-              <p>
+-                Interventi calibrati su eta, storia, ambiente e obiettivi concreti della
+-                famiglia.
+-              </p>
+-            </article>
+-          </div>
 -        </div>
 -      </section>
-+      <MenuHeroSection />
- 
-       <section id="menu-categories" aria-labelledby="menu-categories-title">
-         <div>
++      <MenuCategoriesSection />
+     </main>
+   )
+ }
 
 codex
-Implemented the `menu-hero` task by extracting the inline hero from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx) into a dedicated [src/components/MenuHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx). The new section keeps the required `menu-hero` id and page `h1`, adds premium brand-aligned copy, and includes valid hash-route CTAs to `#/contatti` and `#/chi-siamo`. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md) with the task summary.
+The build passed. I’m appending the task result to the agent report now, keeping it limited to this section task and its rendered integration on the menu page.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+@@ -164 +164,12 @@
+ Launching Codex for TASK section-menu-menu-categories.
++
++Completed TASK `section-menu-menu-categories`.
++- Created a reusable `MenuCategoriesSection` component in `src/components/MenuCategoriesSection.jsx`.
++- Replaced the inline `menu-categories` placeholder in `src/pages/Menu.jsx` with the new dedicated section component.
++- Implemented four responsive service-category cards and supporting intro copy while preserving the required `menu-categories` section id on the menu page.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
+apply_patch(auto_approved=true) exited 0 in 66ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 1fc420da0e9c691d9f29bf2c321025dfbc879041..a59966f4f13996f79976ef50400f2a7149b59637
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -162,3 +162,14 @@
+ Prepared TASK section-menu-menu-categories (Create menu-categories section on menu) for execution.
+ 
+ Launching Codex for TASK section-menu-menu-categories.
++
++Completed TASK `section-menu-menu-categories`.
++- Created a reusable `MenuCategoriesSection` component in `src/components/MenuCategoriesSection.jsx`.
++- Replaced the inline `menu-categories` placeholder in `src/pages/Menu.jsx` with the new dedicated section component.
++- Implemented four responsive service-category cards and supporting intro copy while preserving the required `menu-categories` section id on the menu page.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
+diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..4dd60490a0074267a0d9588070725dea61b09e07
+--- /dev/null
++++ b/src/components/MenuCategoriesSection.jsx
+@@ -0,0 +1,181 @@
++const categories = [
++  {
++    title: "Educazione quotidiana",
++    description:
++      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
++    details: [
++      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
++      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
++    ],
++  },
++  {
++    title: "Passeggiata, richiamo e gestione in esterna",
++    description:
++      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
++    details: [
++      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
++      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
++    ],
++  },
++  {
++    title: "Consulenze comportamentali e supporto emotivo",
++    description:
++      "Spazi di osservazione e orientamento per difficolta piu complesse, sempre con un approccio rispettoso e progressivo.",
++    details: [
++      "Utile in presenza di reattivita, ansia, difficolta di gestione, cambiamenti familiari o fasi delicate.",
++      "Il lavoro parte dalla comprensione del quadro generale per costruire passi realistici e ben guidati.",
++    ],
++  },
++  {
++    title: "Affiancamento nelle fasi di cambiamento",
++    description:
++      "Supporto prima e dopo l'adozione, incontri individuali ed eventuali consulenze online quando sono realmente adatte.",
++    details: [
++      "Pensato per chi desidera prepararsi con maggiore consapevolezza o affrontare una nuova convivenza con piu struttura.",
++      "Ogni proposta viene calibrata sul contesto familiare, sull'ambiente e sugli obiettivi davvero utili.",
++    ],
++  },
++]
++
++const styles = {
++  section: {
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
++  },
++  container: {
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "46rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#7d695a",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2rem, 5vw, 3.2rem)",
++    lineHeight: 1.02,
++    color: "#23251f",
++    maxWidth: "12ch",
++  },
++  description: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#4b5047",
++    maxWidth: "41rem",
++  },
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    gap: "1rem",
++  },
++  card: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++    alignContent: "start",
++  },
++  index: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "2.5rem",
++    height: "2.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#e7dfd3",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
++  },
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.7rem",
++    color: "#53584f",
++    lineHeight: 1.65,
++  },
++  note: {
++    padding: "1.25rem 1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#efe7db",
++    color: "#454a42",
++    lineHeight: 1.7,
++    maxWidth: "52rem",
++  },
++}
++
++export default function MenuCategoriesSection() {
++  return (
++    <section
++      id="menu-categories"
++      aria-labelledby="menu-categories-title"
++      style={styles.section}
++    >
++      <div style={styles.container}>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Aree di lavoro</p>
++          <h2 id="menu-categories-title" style={styles.title}>
++            Una panoramica chiara delle principali tipologie di supporto
++          </h2>
++          <p style={styles.description}>
++            Ogni intervento nasce dall&apos;incontro tra storia del cane, bisogni
++            della famiglia e obiettivi concreti. Qui trovi le macro aree su cui
++            lavoro piu spesso, per aiutarti a capire da dove si puo iniziare.
++          </p>
++        </div>
++
++        <div style={styles.grid}>
++          {categories.map((category, index) => (
++            <article key={category.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.index}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{category.title}</h3>
++              <p style={styles.cardDescription}>{category.description}</p>
++              <ul style={styles.list}>
++                {category.details.map((detail) => (
++                  <li key={detail}>{detail}</li>
++                ))}
++              </ul>
++            </article>
++          ))}
++        </div>
++
++        <p style={styles.note}>
++          Se non sai quale area sia piu adatta alla tua situazione, il primo
++          confronto serve proprio a fare chiarezza e a definire un percorso
++          realistico, rispettoso e sostenibile nel tempo.
++        </p>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index f28d10909c31769ac52f5b9376bf2022efaced5a..b0d4ebf5a36062ea077fae7ffa0286a0571e13ab
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,43 +1,11 @@
+ import MenuHeroSection from "../components/MenuHeroSection"
++import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
+   return (
+     <main>
+       <MenuHeroSection />
+-
+-      <section id="menu-categories" aria-labelledby="menu-categories-title">
+-        <div>
+-          <h2 id="menu-categories-title">Aree di lavoro</h2>
+-          <p>
+-            La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+-            ora, questa pagina definisce il contenitore corretto per la futura
+-            organizzazione dell&apos;offerta.
+-          </p>
+-          <div>
+-            <article>
+-              <h3>Educazione di base</h3>
+-              <p>
+-                Supporto per comunicazione, gestione quotidiana e competenze utili nella
+-                vita di tutti i giorni.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Consulenze comportamentali</h3>
+-              <p>
+-                Un primo orientamento per leggere difficolta, contesto e bisogni del cane
+-                con maggiore chiarezza.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Percorsi personalizzati</h3>
+-              <p>
+-                Interventi calibrati su eta, storia, ambiente e obiettivi concreti della
+-                famiglia.
+-              </p>
+-            </article>
+-          </div>
+-        </div>
+-      </section>
++      <MenuCategoriesSection />
+     </main>
+   )
+ }
 
-Modified files:
-- [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx)
-- [src/components/MenuHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuHeroSection.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 1fc420da0e9c691d9f29bf2c321025dfbc879041..a59966f4f13996f79976ef50400f2a7149b59637
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -162,3 +162,14 @@
+ Prepared TASK section-menu-menu-categories (Create menu-categories section on menu) for execution.
+ 
+ Launching Codex for TASK section-menu-menu-categories.
++
++Completed TASK `section-menu-menu-categories`.
++- Created a reusable `MenuCategoriesSection` component in `src/components/MenuCategoriesSection.jsx`.
++- Replaced the inline `menu-categories` placeholder in `src/pages/Menu.jsx` with the new dedicated section component.
++- Implemented four responsive service-category cards and supporting intro copy while preserving the required `menu-categories` section id on the menu page.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
+diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..4dd60490a0074267a0d9588070725dea61b09e07
+--- /dev/null
++++ b/src/components/MenuCategoriesSection.jsx
+@@ -0,0 +1,181 @@
++const categories = [
++  {
++    title: "Educazione quotidiana",
++    description:
++      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
++    details: [
++      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
++      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
++    ],
++  },
++  {
++    title: "Passeggiata, richiamo e gestione in esterna",
++    description:
++      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
++    details: [
++      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
++      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
++    ],
++  },
++  {
++    title: "Consulenze comportamentali e supporto emotivo",
++    description:
++      "Spazi di osservazione e orientamento per difficolta piu complesse, sempre con un approccio rispettoso e progressivo.",
++    details: [
++      "Utile in presenza di reattivita, ansia, difficolta di gestione, cambiamenti familiari o fasi delicate.",
++      "Il lavoro parte dalla comprensione del quadro generale per costruire passi realistici e ben guidati.",
++    ],
++  },
++  {
++    title: "Affiancamento nelle fasi di cambiamento",
++    description:
++      "Supporto prima e dopo l'adozione, incontri individuali ed eventuali consulenze online quando sono realmente adatte.",
++    details: [
++      "Pensato per chi desidera prepararsi con maggiore consapevolezza o affrontare una nuova convivenza con piu struttura.",
++      "Ogni proposta viene calibrata sul contesto familiare, sull'ambiente e sugli obiettivi davvero utili.",
++    ],
++  },
++]
++
++const styles = {
++  section: {
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
++  },
++  container: {
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "46rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#7d695a",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2rem, 5vw, 3.2rem)",
++    lineHeight: 1.02,
++    color: "#23251f",
++    maxWidth: "12ch",
++  },
++  description: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#4b5047",
++    maxWidth: "41rem",
++  },
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    gap: "1rem",
++  },
++  card: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++    alignContent: "start",
++  },
++  index: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "2.5rem",
++    height: "2.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#e7dfd3",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
++  },
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.7rem",
++    color: "#53584f",
++    lineHeight: 1.65,
++  },
++  note: {
++    padding: "1.25rem 1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#efe7db",
++    color: "#454a42",
++    lineHeight: 1.7,
++    maxWidth: "52rem",
++  },
++}
++
++export default function MenuCategoriesSection() {
++  return (
++    <section
++      id="menu-categories"
++      aria-labelledby="menu-categories-title"
++      style={styles.section}
++    >
++      <div style={styles.container}>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Aree di lavoro</p>
++          <h2 id="menu-categories-title" style={styles.title}>
++            Una panoramica chiara delle principali tipologie di supporto
++          </h2>
++          <p style={styles.description}>
++            Ogni intervento nasce dall&apos;incontro tra storia del cane, bisogni
++            della famiglia e obiettivi concreti. Qui trovi le macro aree su cui
++            lavoro piu spesso, per aiutarti a capire da dove si puo iniziare.
++          </p>
++        </div>
++
++        <div style={styles.grid}>
++          {categories.map((category, index) => (
++            <article key={category.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.index}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{category.title}</h3>
++              <p style={styles.cardDescription}>{category.description}</p>
++              <ul style={styles.list}>
++                {category.details.map((detail) => (
++                  <li key={detail}>{detail}</li>
++                ))}
++              </ul>
++            </article>
++          ))}
++        </div>
++
++        <p style={styles.note}>
++          Se non sai quale area sia piu adatta alla tua situazione, il primo
++          confronto serve proprio a fare chiarezza e a definire un percorso
++          realistico, rispettoso e sostenibile nel tempo.
++        </p>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index f28d10909c31769ac52f5b9376bf2022efaced5a..b0d4ebf5a36062ea077fae7ffa0286a0571e13ab
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,43 +1,11 @@
+ import MenuHeroSection from "../components/MenuHeroSection"
++import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
+   return (
+     <main>
+       <MenuHeroSection />
+-
+-      <section id="menu-categories" aria-labelledby="menu-categories-title">
+-        <div>
+-          <h2 id="menu-categories-title">Aree di lavoro</h2>
+-          <p>
+-            La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+-            ora, questa pagina definisce il contenitore corretto per la futura
+-            organizzazione dell&apos;offerta.
+-          </p>
+-          <div>
+-            <article>
+-              <h3>Educazione di base</h3>
+-              <p>
+-                Supporto per comunicazione, gestione quotidiana e competenze utili nella
+-                vita di tutti i giorni.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Consulenze comportamentali</h3>
+-              <p>
+-                Un primo orientamento per leggere difficolta, contesto e bisogni del cane
+-                con maggiore chiarezza.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Percorsi personalizzati</h3>
+-              <p>
+-                Interventi calibrati su eta, storia, ambiente e obiettivi concreti della
+-                famiglia.
+-              </p>
+-            </article>
+-          </div>
+-        </div>
+-      </section>
++      <MenuCategoriesSection />
+     </main>
+   )
+ }
+
+codex
+Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx), [src/components/MenuCategoriesSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/components/MenuCategoriesSection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/agent/AGENT_REPORT.md)
+
+Implemented the `menu-categories` section on the menu page by extracting the inline placeholder into a reusable `MenuCategoriesSection` component and rendering it from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-a-pr/src/pages/Menu.jsx). The new section uses the required `menu-categories` id, includes a structured intro, and presents four responsive service-category cards with concrete Italian copy aligned to the brand tone.
 
 Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e7cc1a060f492a8ed938d4b279ed7c29b1c062c1..a5c24df05ad08ce2d731a0a0868acf7b8fe1ba52
+index 1fc420da0e9c691d9f29bf2c321025dfbc879041..a59966f4f13996f79976ef50400f2a7149b59637
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -146,3 +146,8 @@
- Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
+@@ -162,3 +162,14 @@
+ Prepared TASK section-menu-menu-categories (Create menu-categories section on menu) for execution.
  
- Launching Codex for TASK section-menu-menu-hero.
+ Launching Codex for TASK section-menu-menu-categories.
 +
-+Completed TASK `section-menu-menu-hero`.
-+- Created a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
-+- Replaced the inline `menu-hero` markup in `src/pages/Menu.jsx` with the new dedicated hero section component.
-+- Added brand-aligned hero copy, valid hash-route CTAs, and a visually dominant layout while preserving the required `menu-hero` section id and page `h1`.
-diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
++Completed TASK `section-menu-menu-categories`.
++- Created a reusable `MenuCategoriesSection` component in `src/components/MenuCategoriesSection.jsx`.
++- Replaced the inline `menu-categories` placeholder in `src/pages/Menu.jsx` with the new dedicated section component.
++- Implemented four responsive service-category cards and supporting intro copy while preserving the required `menu-categories` section id on the menu page.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
+diff --git a/src/components/MenuCategoriesSection.jsx b/src/components/MenuCategoriesSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..5b0e336f4b1130a6af53ca52241409d5f1a031c9
+index 0000000000000000000000000000000000000000..4dd60490a0074267a0d9588070725dea61b09e07
 --- /dev/null
-+++ b/src/components/MenuHeroSection.jsx
-@@ -0,0 +1,129 @@
++++ b/src/components/MenuCategoriesSection.jsx
+@@ -0,0 +1,181 @@
++const categories = [
++  {
++    title: "Educazione quotidiana",
++    description:
++      "Percorsi dedicati a cani cuccioli, adolescenti o adulti che hanno bisogno di basi piu chiare nella vita di tutti i giorni.",
++    details: [
++      "Per chi vuole migliorare comunicazione, gestione in casa e collaborazione nelle routine.",
++      "Focus su competenze pratiche come attenzione, calma, lettura del contesto e coerenza nelle richieste.",
++    ],
++  },
++  {
++    title: "Passeggiata, richiamo e gestione in esterna",
++    description:
++      "Un lavoro concreto per rendere le uscite piu serene, leggibili e sostenibili sia per il cane sia per la persona.",
++    details: [
++      "Indicato quando la passeggiata e fonte di tensione, confusione o fatica costante.",
++      "Obiettivi centrati su guinzaglio, richiamo, orientamento e capacita di muoversi meglio nell'ambiente.",
++    ],
++  },
++  {
++    title: "Consulenze comportamentali e supporto emotivo",
++    description:
++      "Spazi di osservazione e orientamento per difficolta piu complesse, sempre con un approccio rispettoso e progressivo.",
++    details: [
++      "Utile in presenza di reattivita, ansia, difficolta di gestione, cambiamenti familiari o fasi delicate.",
++      "Il lavoro parte dalla comprensione del quadro generale per costruire passi realistici e ben guidati.",
++    ],
++  },
++  {
++    title: "Affiancamento nelle fasi di cambiamento",
++    description:
++      "Supporto prima e dopo l'adozione, incontri individuali ed eventuali consulenze online quando sono realmente adatte.",
++    details: [
++      "Pensato per chi desidera prepararsi con maggiore consapevolezza o affrontare una nuova convivenza con piu struttura.",
++      "Ogni proposta viene calibrata sul contesto familiare, sull'ambiente e sugli obiettivi davvero utili.",
++    ],
++  },
++]
++
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4.5rem, 9vw, 7rem) 1.5rem 4rem",
-+    backgroundColor: "#f5efe5",
-+    color: "#2e312b",
-+  },
-+  background: {
-+    position: "absolute",
-+    inset: 0,
-+    backgroundImage:
-+      "linear-gradient(110deg, rgba(245, 239, 229, 0.97) 0%, rgba(245, 239, 229, 0.92) 38%, rgba(245, 239, 229, 0.62) 68%, rgba(245, 239, 229, 0.26) 100%), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundPosition: "center",
-+    backgroundSize: "cover",
++    padding: "clamp(4rem, 7vw, 6rem) 1.5rem",
++    backgroundColor: "#fcf8f1",
++    color: "#2f312d",
 +  },
 +  container: {
-+    position: "relative",
-+    zIndex: 1,
++    width: "min(100%, 72rem)",
++    margin: "0 auto",
 +    display: "grid",
-+    gap: "1.5rem",
-+    width: "min(100%, 44rem)",
++    gap: "2rem",
++  },
++  intro: {
++    display: "grid",
++    gap: "1rem",
++    maxWidth: "46rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.8rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#6a7464",
++    color: "#7d695a",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.6rem, 8vw, 4.8rem)",
-+    lineHeight: 0.97,
-+    maxWidth: "11ch",
-+    color: "#22251f",
++    fontSize: "clamp(2rem, 5vw, 3.2rem)",
++    lineHeight: 1.02,
++    color: "#23251f",
++    maxWidth: "12ch",
 +  },
 +  description: {
 +    margin: 0,
-+    fontSize: "1.05rem",
++    fontSize: "1rem",
 +    lineHeight: 1.75,
-+    maxWidth: "38rem",
-+    color: "#4d524a",
++    color: "#4b5047",
++    maxWidth: "41rem",
 +  },
-+  actions: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.875rem",
++  grid: {
++    display: "grid",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    gap: "1rem",
 +  },
-+  primaryLink: {
++  card: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#fffdf9",
++    border: "1px solid rgba(47, 49, 45, 0.08)",
++    boxShadow: "0 18px 40px rgba(62, 52, 42, 0.08)",
++    alignContent: "start",
++  },
++  index: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
++    width: "2.5rem",
++    height: "2.5rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#6b7760",
-+    color: "#f8f4ec",
-+    textDecoration: "none",
++    backgroundColor: "#e7dfd3",
++    color: "#5c6455",
++    fontSize: "0.9rem",
++    fontWeight: 700,
 +  },
-+  secondaryLink: {
-+    display: "inline-flex",
-+    alignItems: "center",
-+    justifyContent: "center",
-+    minHeight: "3.25rem",
-+    padding: "0.85rem 1.4rem",
-+    borderRadius: "999px",
-+    border: "1px solid rgba(46, 49, 43, 0.16)",
-+    backgroundColor: "rgba(255, 255, 255, 0.34)",
-+    color: "#2e312b",
-+    textDecoration: "none",
-+    backdropFilter: "blur(8px)",
-+  },
-+  highlights: {
-+    display: "flex",
-+    flexWrap: "wrap",
-+    gap: "0.75rem",
++  cardTitle: {
 +    margin: 0,
-+    padding: 0,
-+    listStyle: "none",
-+    color: "#52574f",
-+    fontSize: "0.95rem",
++    fontSize: "1.25rem",
++    lineHeight: 1.3,
++    color: "#23251f",
 +  },
-+  highlightItem: {
-+    padding: "0.45rem 0.8rem",
-+    borderRadius: "999px",
-+    backgroundColor: "rgba(255, 255, 255, 0.42)",
-+    border: "1px solid rgba(46, 49, 43, 0.08)",
++  cardDescription: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "#53584f",
++  },
++  list: {
++    margin: 0,
++    paddingLeft: "1.1rem",
++    display: "grid",
++    gap: "0.7rem",
++    color: "#53584f",
++    lineHeight: 1.65,
++  },
++  note: {
++    padding: "1.25rem 1.5rem",
++    borderRadius: "1.5rem",
++    backgroundColor: "#efe7db",
++    color: "#454a42",
++    lineHeight: 1.7,
++    maxWidth: "52rem",
 +  },
 +}
 +
-+export default function MenuHeroSection() {
++export default function MenuCategoriesSection() {
 +  return (
-+    <section id="menu-hero" aria-labelledby="menu-title" style={styles.section}>
-+      <div aria-hidden="true" style={styles.background} />
-+
++    <section
++      id="menu-categories"
++      aria-labelledby="menu-categories-title"
++      style={styles.section}
++    >
 +      <div style={styles.container}>
-+        <p style={styles.eyebrow}>Servizi educativi per cani e persone</p>
-+
-+        <h1 id="menu-title" style={styles.title}>
-+          Percorsi chiari, rispettosi e costruiti sulla vita reale
-+        </h1>
-+
-+        <p style={styles.description}>
-+          In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
-+          Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
-+          obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza,
-+          senza scorciatoie o promesse irrealistiche.
-+        </p>
-+
-+        <div style={styles.actions}>
-+          <a href="#/contatti" style={styles.primaryLink}>
-+            Richiedi informazioni
-+          </a>
-+          <a href="#/chi-siamo" style={styles.secondaryLink}>
-+            Scopri l&apos;approccio
-+          </a>
++        <div style={styles.intro}>
++          <p style={styles.eyebrow}>Aree di lavoro</p>
++          <h2 id="menu-categories-title" style={styles.title}>
++            Una panoramica chiara delle principali tipologie di supporto
++          </h2>
++          <p style={styles.description}>
++            Ogni intervento nasce dall&apos;incontro tra storia del cane, bisogni
++            della famiglia e obiettivi concreti. Qui trovi le macro aree su cui
++            lavoro piu spesso, per aiutarti a capire da dove si puo iniziare.
++          </p>
 +        </div>
 +
-+        <ul style={styles.highlights}>
-+          <li style={styles.highlightItem}>Percorsi individuali e personalizzati</li>
-+          <li style={styles.highlightItem}>Supporto pratico nella quotidianita</li>
-+          <li style={styles.highlightItem}>Torino e dintorni, anche online se utile</li>
-+        </ul>
++        <div style={styles.grid}>
++          {categories.map((category, index) => (
++            <article key={category.title} style={styles.card}>
++              <span aria-hidden="true" style={styles.index}>
++                {String(index + 1).padStart(2, "0")}
++              </span>
++              <h3 style={styles.cardTitle}>{category.title}</h3>
++              <p style={styles.cardDescription}>{category.description}</p>
++              <ul style={styles.list}>
++                {category.details.map((detail) => (
++                  <li key={detail}>{detail}</li>
++                ))}
++              </ul>
++            </article>
++          ))}
++        </div>
++
++        <p style={styles.note}>
++          Se non sai quale area sia piu adatta alla tua situazione, il primo
++          confronto serve proprio a fare chiarezza e a definire un percorso
++          realistico, rispettoso e sostenibile nel tempo.
++        </p>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 109162308e8134402e9e23fdc2460b1b2b3545d2..f28d10909c31769ac52f5b9376bf2022efaced5a
+index f28d10909c31769ac52f5b9376bf2022efaced5a..b0d4ebf5a36062ea077fae7ffa0286a0571e13ab
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,17 +1,9 @@
-+import MenuHeroSection from "../components/MenuHeroSection"
-+
+@@ -1,43 +1,11 @@
+ import MenuHeroSection from "../components/MenuHeroSection"
++import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
  export default function Menu() {
    return (
      <main>
--      <section id="menu-hero" aria-labelledby="menu-title">
+       <MenuHeroSection />
+-
+-      <section id="menu-categories" aria-labelledby="menu-categories-title">
 -        <div>
--          <p>Servizi educativi per cani e persone</p>
--          <h1 id="menu-title">Percorsi chiari, rispettosi e costruiti sulla vita reale</h1>
+-          <h2 id="menu-categories-title">Aree di lavoro</h2>
 -          <p>
--            In questa pagina trovi una panoramica ordinata dei servizi di Equilibrio
--            Cinofilo. Ogni proposta nasce dall&apos;osservazione del binomio, dagli
--            obiettivi quotidiani e dal bisogno di creare equilibrio nella convivenza.
+-            La struttura completa dei servizi verra sviluppata nei task dedicati. Per
+-            ora, questa pagina definisce il contenitore corretto per la futura
+-            organizzazione dell&apos;offerta.
 -          </p>
+-          <div>
+-            <article>
+-              <h3>Educazione di base</h3>
+-              <p>
+-                Supporto per comunicazione, gestione quotidiana e competenze utili nella
+-                vita di tutti i giorni.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Consulenze comportamentali</h3>
+-              <p>
+-                Un primo orientamento per leggere difficolta, contesto e bisogni del cane
+-                con maggiore chiarezza.
+-              </p>
+-            </article>
+-            <article>
+-              <h3>Percorsi personalizzati</h3>
+-              <p>
+-                Interventi calibrati su eta, storia, ambiente e obiettivi concreti della
+-                famiglia.
+-              </p>
+-            </article>
+-          </div>
 -        </div>
 -      </section>
-+      <MenuHeroSection />
- 
-       <section id="menu-categories" aria-labelledby="menu-categories-title">
-         <div>
++      <MenuCategoriesSection />
+     </main>
+   )
+ }
 
 tokens used
-20.735
+24.488
