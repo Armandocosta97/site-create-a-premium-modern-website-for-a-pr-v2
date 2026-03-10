@@ -1,22 +1,12 @@
 import AboutHeroSection from "../components/AboutHeroSection"
+import StorySection from "../components/StorySection"
 
 export default function ChiSiamo() {
   return (
     <main>
       <AboutHeroSection />
 
-      <section id="story">
-        <h2>Chi sono</h2>
-        <p>
-          Equilibrio Cinofilo nasce dal desiderio di offrire un supporto professionale, leggibile e umano
-          a chi vuole capire meglio il proprio cane e affrontare con maggiore serenita le sfide di ogni
-          giorno.
-        </p>
-        <p>
-          Questa pagina introduce la storia, il metodo e i valori del progetto. I contenuti di dettaglio
-          verranno sviluppati nei task dedicati, mantenendo una struttura chiara e facile da approfondire.
-        </p>
-      </section>
+      <StorySection />
 
       <section id="philosophy">
         <h2>Come lavoro</h2>

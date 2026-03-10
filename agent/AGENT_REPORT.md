@@ -223,3 +223,25 @@ Waiting for validation.
 
 TASK section-chi-siamo-about-hero completed successfully.
 Build passed.
+Commit created for TASK section-chi-siamo-about-hero.
+
+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-story.
+
+Completed TASK `section-chi-siamo-story`.
+- Created a reusable `StorySection` component in `src/components/StorySection.jsx`.
+- Replaced the inline `story` placeholder in `src/pages/ChiSiamo.jsx` with the new editorial-content section component.
+- Added real Italian story copy and supporting editorial cards while preserving the required `story` section id on the chi-siamo page.
+
+TASK section-chi-siamo-story executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-story completed successfully.
+Build passed.
+
+TASK section-chi-siamo-story executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-story completed successfully.
+Build passed.
