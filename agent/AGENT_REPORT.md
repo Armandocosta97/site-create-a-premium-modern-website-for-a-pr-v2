@@ -218,6 +218,17 @@ Waiting for validation.
 TASK section-chi-siamo-about-hero completed successfully.
 Build passed.
 
+Completed TASK `navigation-structure`.
+- Centralized the spec navigation items and route definitions in `src/App.jsx`.
+- Updated `src/layout/Layout.jsx` to render all navigation entries with `NavLink`, preserving compatibility with `HashRouter`.
+- Confirmed the rendered navigation targets remain valid for `/`, `/menu`, `/chi-siamo`, and `/contatti`.
+
+TASK navigation-structure executed by Codex.
+Waiting for validation.
+
+TASK navigation-structure completed successfully.
+Build passed.
+
 Completed TASK `cta-contatti-contatti-whatsapp`.
 - Added a dedicated `ContactWhatsAppCtaSection` component in `src/components/ContactWhatsAppCtaSection.jsx`.
 - Rendered the new body CTA on `src/pages/Contatti.jsx` between the contact details and availability sections.
@@ -395,4 +406,15 @@ TASK cta-contatti-contatti-phone executed by Codex.
 Waiting for validation.
 
 TASK cta-contatti-contatti-phone completed successfully.
+Build passed.
+Commit created for TASK cta-contatti-contatti-phone.
+
+Prepared TASK navigation-structure (Build navigation from spec) for execution.
+
+Launching Codex for TASK navigation-structure.
+
+TASK navigation-structure executed by Codex.
+Waiting for validation.
+
+TASK navigation-structure completed successfully.
 Build passed.

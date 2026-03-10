@@ -1,12 +1,19 @@
-export default function Layout({ children }) {
+import { NavLink } from "react-router-dom"
+
+export default function Layout({ children, navigationItems = [] }) {
   return (
     <>
       <header>
         <nav aria-label="Main navigation">
-          <a href="#/">Home</a>
-          <a href="#/menu">Menu</a>
-          <a href="#/chi-siamo">Chi siamo</a>
-          <a href="#/contatti">Contatti</a>
+          {navigationItems.map((item) => (
+            <NavLink
+              key={item.target}
+              to={item.target}
+              end={item.target === "/"}
+            >
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
       </header>
 
